@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Envelope</title>
+
+  <!-- Alex Brush font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+    }
+
+    /* Page layout */
+    .page{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 70px 20px 70px;
+      box-sizing: border-box;
+    }
+
+    /* Top names */
+    .top-title{
+      font-family: "Alex Brush", cursive;
+      font-size: clamp(36px, 5vw, 56px);
+      color: #111;
+      text-align: center;
+    }
+
+    /* Bottom instruction (bigger on desktop) */
+    .bottom-instruction{
+      font-family: "Alex Brush", cursive;
+      font-size: 26px; /* ⬆️ increased */
+      color: #111;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    /* Envelope (ONLY thing that flips) */
+    .envelope{
+      width: min(560px, 82vw); /* ⬅️ reduced desktop size */
+      perspective: 1400px;
+      cursor: pointer;
+    }
+
+    .inner{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      transform-style: preserve-3d;
+      transition: transform 1.5s ease-in-out;
+    }
+
+    .envelope.flipped .inner{
+      transform: rotateY(180deg);
+    }
+
+    .face{
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+    }
+
+    .face img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .back{
+      transform: rotateY(180deg);
+    }
+
+    /* MOBILE SPACING & SIZE FIX */
+    @media (max-width: 768px) {
+      .page{
+        justify-content: center;
+        gap: 40px;
+        padding: 50px 20px 50px;
+      }
+
+      .envelope{
+        width: min(88vw, 480px);
+      }
+
+      .bottom-instruction{
+        font-size: 22px; /* still readable on phone */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <div class="top-title">Shannen &amp; Samarth</div>
+
+    <div class="envelope" id="env">
+      <div class="inner">
+        <div class="face front">
+          <img src="envelope-front.png" alt="Envelope front">
+        </div>
+        <div class="face back">
+          <img src="envelope-back.png" alt="Envelope back">
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-instruction">Click envelope to open...</div>
+
+  </div>
+
+  <script>
+  const env = document.querySelector(".envelope");
+  let clicked = false;
+
+  env.addEventListener("click", () => {
+    if (clicked) return;
+    clicked = true;
+
+    env.classList.add("flipped");
+
+    setTimeout(() => {
+      window.location.assign("home.html");
+    }, 1300);
+  });
+</script>
