@@ -12,16 +12,19 @@
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
 
-    /* 🔑 CRITICAL: prevent white flash */
     html, body{
-      background: #000; /* fallback only, never visible */
+      background: #000; /* safety net */
     }
 
     body{
       font-family: "Playfair Display", serif;
       color: #fff;
-      opacity: 0;
-      transition: opacity 1.6s ease; /* must match index fade */
+
+      /* 🔑 start almost visible, not invisible */
+      opacity: 0.15;
+
+      /* 🔑 faster + softer fade */
+      transition: opacity 900ms ease-out;
     }
 
     body.fade-in{
@@ -72,10 +75,9 @@
   </section>
 
   <script>
-    window.addEventListener("load", () => {
-      requestAnimationFrame(() => {
-        document.body.classList.add("fade-in");
-      });
+    /* Fade in immediately — no delay */
+    requestAnimationFrame(() => {
+      document.body.classList.add("fade-in");
     });
   </script>
 </body>
