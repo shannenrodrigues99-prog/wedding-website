@@ -16,7 +16,7 @@
     body{
       font-family: "Playfair Display", serif;
       background: #000;
-      overflow: hidden; /* no scrolling anywhere */
+      overflow: hidden;
     }
 
     /* ===== SCENES ===== */
@@ -29,272 +29,213 @@
       transition: opacity 1.6s ease;
     }
 
-    /* ===== ENVELOPE SCENE ===== */
+    /* ===== ENVELOPE ===== */
     .scene-envelope{
-      background: #ffffff;
-      z-index: 2;
-      opacity: 1;
+      background:#fff;
+      z-index:2;
     }
     .scene-envelope.fade-out{
-      opacity: 0;
-      pointer-events: none;
+      opacity:0;
+      pointer-events:none;
     }
 
     .page{
-      min-height: 100vh;
-      width: 100%;
-      padding: 70px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
+      min-height:100vh;
+      padding:70px 20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:center;
     }
 
     .top-title{
-      font-family: "Alex Brush", cursive;
-      font-size: clamp(36px, 5vw, 56px);
-      color: #111;
-      text-align: center;
+      font-family:"Alex Brush", cursive;
+      font-size:clamp(36px,5vw,56px);
+      color:#111;
     }
 
     .bottom-instruction{
-      font-family: "Alex Brush", cursive;
-      font-size: 26px;
-      color: #111;
-      text-align: center;
-      opacity: 0.9;
+      font-family:"Alex Brush", cursive;
+      font-size:26px;
+      color:#111;
+      opacity:0.9;
     }
 
     .envelope{
-      width: min(560px, 82vw);
-      perspective: 1400px;
-      cursor: pointer;
+      width:min(560px,82vw);
+      perspective:1400px;
+      cursor:pointer;
     }
 
     .inner{
-      width: 100%;
-      aspect-ratio: 3 / 2;
-      transform-style: preserve-3d;
-      transition: transform 1.5s ease-in-out;
-      position: relative;
+      width:100%;
+      aspect-ratio:3/2;
+      transform-style:preserve-3d;
+      transition:transform 1.5s ease-in-out;
+      position:relative;
     }
 
     .envelope.flipped .inner{
-      transform: rotateY(180deg);
+      transform:rotateY(180deg);
     }
 
     .face{
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
     }
 
     .face img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
+      width:100%;
+      height:100%;
+      object-fit:contain;
     }
 
-    .back{ transform: rotateY(180deg); }
+    .back{ transform:rotateY(180deg); }
 
-    /* ===== HOME SCENE ===== */
+    /* ===== HOME ===== */
     .scene-home{
-      z-index: 1;
-      opacity: 0;
-      color: #fff;
-      text-align: center;
-
-      /* Hero background */
+      z-index:1;
+      opacity:0;
+      color:#fff;
       background:
-        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-        url("hero.jpg") center / cover no-repeat;
-
-      display: block; /* so we can position nav + hero easily */
+        linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.25)),
+        url("hero.jpg") center/cover no-repeat;
     }
 
-    .scene-home.fade-in{ opacity: 1; }
+    .scene-home.fade-in{ opacity:1; }
 
-    /* Top tabs like inspo */
+    /* ===== NAV ===== */
     .topnav{
-      position: absolute;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 80px);
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      font-size: 12px;
+      position:absolute;
+      top:28px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 80px);
+      display:flex;
+      justify-content:space-between;
+      text-transform:uppercase;
+      letter-spacing:1.6px;
+      font-size:12px;
     }
 
     .topnav .left{
-      display: flex;
-      gap: 44px;
-      align-items: center;
-      opacity: 0.95;
+      display:flex;
+      gap:44px;
     }
 
     .topnav a{
-      color: #fff;
-      text-decoration: none;
-      opacity: 0.85;
+      color:#fff;
+      text-decoration:none;
+      opacity:0.85;
     }
 
-    .topnav a:hover{ opacity: 1; }
+    .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
-      padding: 10px 18px;
-      border: 1px solid rgba(255,255,255,0.65);
-      opacity: 0.95;
+      padding:10px 18px;
+      border:1px solid rgba(255,255,255,0.65);
     }
 
-    .topnav .rsvp:hover{
-      border-color: rgba(255,255,255,0.9);
-      opacity: 1;
+    /* Locked links */
+    .locked-link{
+      pointer-events:none;
+      opacity:0.35 !important;
     }
 
-    /* Hero centered content */
+    /* ===== HERO ===== */
     .hero-wrap{
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
     .home-center{
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-items: center;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      align-items:center;
     }
 
     .monogram{
-      width: clamp(140px, 20vw, 260px); /* responsive sizing */
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width:clamp(140px,20vw,260px);
     }
 
-    .monogram img{
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+    .monogram img{ width:100%; }
 
     .names{
-      font-family: "Alex Brush", cursive;
-      font-size: clamp(26px, 4vw, 38px);
-      opacity: 0.95;
+      font-family:"Alex Brush", cursive;
+      font-size:clamp(26px,4vw,38px);
     }
 
-    .date{
-      font-size: 14px;
-      letter-spacing: 3px;
-      opacity: 0.9;
-    }
-
-    /* ===== Password gate ===== */
+    /* ===== PASSWORD ===== */
     .pw-wrap{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-      margin-top: 4px;
-    }
-
-    .pw-label{
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.9;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
     }
 
     .pw-row{
-      display: flex;
-      gap: 10px;
-      align-items: center;
+      display:flex;
+      gap:10px;
     }
 
     .pw-input{
-      width: min(260px, 70vw);
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.35);
-      background: rgba(0,0,0,0.22);
-      color: #fff;
-      outline: none;
-      font-family: "Playfair Display", serif;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(0,0,0,0.25);
+      color:#fff;
+      width:min(300px,75vw);
     }
 
     .pw-btn{
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.65);
-      background: transparent;
-      color: #fff;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      font-size: 11px;
-      cursor: pointer;
-      opacity: 0.95;
-    }
-
-    .pw-btn:hover{
-      border-color: rgba(255,255,255,0.9);
-      opacity: 1;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.65);
+      background:transparent;
+      color:#fff;
+      cursor:pointer;
+      letter-spacing:1.5px;
+      font-size:11px;
+      text-transform:uppercase;
     }
 
     .pw-error{
-      min-height: 16px;
-      font-size: 12px;
-      opacity: 0.9;
+      min-height:14px;
+      font-size:12px;
+      opacity:0.9;
     }
 
-    .is-hidden{
-      display: none !important;
-    }
+    .is-hidden{ display:none !important; }
 
-    @media (max-width: 768px){
-      .bottom-instruction{ font-size: 22px; }
-
+    @media(max-width:768px){
       .topnav{
-        top: 18px;
-        width: calc(100% - 32px);
-        font-size: 10px;
-        letter-spacing: 1.2px;
+        top:18px;
+        width:calc(100% - 32px);
+        font-size:10px;
       }
-
-      .topnav .left{
-        gap: 18px;
-      }
-
-      .topnav .rsvp{
-        padding: 8px 12px;
-      }
+      .topnav .left{ gap:18px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ENVELOPE SCENE -->
+  <!-- ENVELOPE -->
   <section class="scene scene-envelope" id="sceneEnvelope">
     <div class="page">
       <div class="top-title">Shannen &amp; Samarth</div>
 
-      <div class="envelope" id="env" aria-label="Open envelope">
+      <div class="envelope" id="env">
         <div class="inner">
           <div class="face front">
-            <img src="envelope-front1.png" alt="Envelope front">
+            <img src="envelope-front1.png" alt="">
           </div>
           <div class="face back">
-            <img src="envelope-back1.png" alt="Envelope back">
+            <img src="envelope-back1.png" alt="">
           </div>
         </div>
       </div>
@@ -303,143 +244,104 @@
     </div>
   </section>
 
-  <!-- HOME SCENE -->
+  <!-- HOME -->
   <section class="scene scene-home" id="sceneHome">
-    <nav class="topnav" aria-label="Primary navigation">
+    <nav class="topnav">
       <div class="left">
         <a href="index.html">Home</a>
-        <a href="schedule.html">Schedule</a>
-        <a href="faqs.html">FAQs</a>
-        <a href="dresscode.html">Dress Code</a>
+        <a data-protected href="schedule.html">Schedule</a>
+        <a data-protected href="faqs.html">FAQs</a>
+        <a data-protected href="dresscode.html">Dress Code</a>
       </div>
-
-      <a class="rsvp" href="rsvp.html">RSVP</a>
+      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
     </nav>
 
     <div class="hero-wrap">
       <div class="home-center">
         <div class="monogram">
-          <img src="monogram1.png" alt="S & S monogram">
+          <img src="monogram1.png" alt="">
         </div>
 
         <div class="names">Shannen &amp; Samarth</div>
 
-        <!-- Password gate -->
+        <!-- Password -->
         <div class="pw-wrap" id="pwWrap">
-          <div class="pw-label">Enter password to view date</div>
           <div class="pw-row">
-            <input id="pwInput" class="pw-input" type="password" placeholder="Password" autocomplete="off" />
-            <button id="pwBtn" class="pw-btn" type="button">Unlock</button>
+            <input
+              id="pwInput"
+              class="pw-input"
+              type="password"
+              placeholder="Enter password to view details"
+              autocomplete="off"
+            />
+            <button id="pwBtn" class="pw-btn">Enter</button>
           </div>
-          <div class="pw-error" id="pwError" aria-live="polite"></div>
+          <div class="pw-error" id="pwError"></div>
         </div>
-
-        <!-- Date (hidden until unlocked) -->
-        <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
       </div>
     </div>
   </section>
 
   <script>
+    /* ===== ENVELOPE FLOW ===== */
     const env = document.getElementById("env");
     const envelopeScene = document.getElementById("sceneEnvelope");
     const homeScene = document.getElementById("sceneHome");
-
-    const FLIP_DURATION = 1500;
-    const PAUSE_ON_BACK = 1200;
-    const OPEN_KEY = "inviteOpened";
-
-    let clicked = false;
-
-    function showHomeInstant(){
-      envelopeScene.classList.add("fade-out");
-      homeScene.classList.add("fade-in");
-      env.classList.add("flipped");
-      clicked = true;
-    }
-
-    function showEnvelopeInstant(){
-      envelopeScene.classList.remove("fade-out");
-      homeScene.classList.remove("fade-in");
-      env.classList.remove("flipped");
-      clicked = false;
-    }
-
-    function initInvite(){
-      if (sessionStorage.getItem(OPEN_KEY) === "1") {
-        showHomeInstant();
-      } else {
-        showEnvelopeInstant();
-      }
-    }
-
-    window.addEventListener("pageshow", initInvite);
-    initInvite();
+    let opened = false;
 
     env.addEventListener("click", () => {
-      if (clicked) return;
-      clicked = true;
-
-      sessionStorage.setItem(OPEN_KEY, "1");
+      if (opened) return;
+      opened = true;
       env.classList.add("flipped");
-
       setTimeout(() => {
         envelopeScene.classList.add("fade-out");
         homeScene.classList.add("fade-in");
-      }, FLIP_DURATION + PAUSE_ON_BACK);
+      }, 2700);
     });
 
-    // ===== DATE PASSWORD GATE =====
-    const DATE_UNLOCK_KEY = "dateUnlocked";
-
-    // CHANGE THIS PASSWORD 👇
-    const DATE_PASSWORD = "ss2027";
+    /* ===== PASSWORD GATE ===== */
+    const SITE_PASSWORD = "ss2027"; // CHANGE THIS
+    const UNLOCK_KEY = "siteUnlocked";
 
     const pwWrap = document.getElementById("pwWrap");
     const pwInput = document.getElementById("pwInput");
     const pwBtn = document.getElementById("pwBtn");
     const pwError = document.getElementById("pwError");
-    const weddingDate = document.getElementById("weddingDate");
+    const protectedLinks = document.querySelectorAll("[data-protected]");
 
-    function unlockDate(){
-      weddingDate.classList.remove("is-hidden");
-      if (pwWrap) pwWrap.style.display = "none";
-      sessionStorage.setItem(DATE_UNLOCK_KEY, "1");
+    function lockUI(){
+      protectedLinks.forEach(l => l.classList.add("locked-link"));
+      pwWrap.classList.remove("is-hidden");
     }
 
-    function lockDate(){
-      weddingDate.classList.add("is-hidden");
-      if (pwWrap) pwWrap.style.display = "flex";
-      sessionStorage.removeItem(DATE_UNLOCK_KEY);
+    function unlockUI(){
+      protectedLinks.forEach(l => l.classList.remove("locked-link"));
+      pwWrap.classList.add("is-hidden");
     }
 
-    function initDateGate(){
-      if (sessionStorage.getItem(DATE_UNLOCK_KEY) === "1") {
-        unlockDate();
+    function initGate(){
+      if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
+      else lockUI();
+    }
+
+    function tryUnlock(){
+      if (pwInput.value.trim() === SITE_PASSWORD) {
+        sessionStorage.setItem(UNLOCK_KEY, "1");
+        pwError.textContent = "";
+        unlockUI();
       } else {
-        lockDate();
+        pwError.textContent = "Incorrect password.";
+        pwInput.value = "";
+        pwInput.focus();
       }
     }
 
-    function tryPassword(){
-      const val = (pwInput?.value || "").trim();
-      if (val === DATE_PASSWORD) {
-        if (pwError) pwError.textContent = "";
-        unlockDate();
-      } else {
-        if (pwError) pwError.textContent = "Incorrect password. Please try again.";
-        if (pwInput) pwInput.value = "";
-        pwInput?.focus();
-      }
-    }
-
-    pwBtn?.addEventListener("click", tryPassword);
-    pwInput?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") tryPassword();
+    pwBtn.addEventListener("click", tryUnlock);
+    pwInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") tryUnlock();
     });
 
-    initDateGate();
-    window.addEventListener("pageshow", initDateGate);
+    initGate();
   </script>
 
 </body>
