@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP | Shannen & Samarth</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    body{
+      font-family:"Playfair Display", serif;
+      color:#fff;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("hero.jpg") center / cover no-repeat fixed;
+      min-height:100vh;
+    }
+
+    .topnav{
+      position: fixed;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 12px;
+      z-index: 10;
+    }
+    .topnav .left{ display:flex; gap:44px; align-items:center; opacity:0.95; }
+    .topnav a{ color:#fff; text-decoration:none; opacity:0.85; }
+    .topnav a:hover{ opacity:1; }
+    .topnav .rsvp{
+      padding:10px 18px;
+      border:1px solid rgba(255,255,255,0.65);
+      opacity:0.95;
+    }
+    .topnav .rsvp:hover{ border-color: rgba(255,255,255,0.9); opacity:1; }
+
+    .wrap{
+      min-height:100vh;
+      padding: 120px 20px 80px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .panel{
+      width: min(760px, 92vw);
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 34px 26px;
+      backdrop-filter: blur(6px);
+    }
+
+    .title{
+      font-family:"Alex Brush", cursive;
+      font-size: clamp(40px, 5vw, 64px);
+      text-align:center;
+      margin-bottom: 10px;
+    }
+    .subtitle{
+      text-align:center;
+      letter-spacing: 3px;
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 26px;
+    }
+
+    form{ display:grid; gap: 12px; max-width: 520px; margin: 0 auto; }
+    label{ font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.9; }
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(0,0,0,0.25);
+      color: #fff;
+      outline: none;
+      font-family: inherit;
+    }
+    textarea{ min-height: 100px; resize: vertical; }
+
+    button{
+      margin-top: 6px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.65);
+      background: transparent;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    button:hover{ border-color: rgba(255,255,255,0.9); }
+
+    .thanks{
+      display:none;
+      text-align:center;
+      padding: 16px;
+      margin-top: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.22);
+      opacity: 0.95;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px){
+      .topnav{
+        top: 18px;
+        width: calc(100% - 32px);
+        font-size: 10px;
+        letter-spacing: 1.2px;
+      }
+      .topnav .left{ gap:18px; }
+      .topnav .rsvp{ padding:8px 12px; }
+      .panel{ padding: 28px 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="topnav" aria-label="Primary navigation">
+    <div class="left">
+      <a href="index.html">Home</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="dresscode.html">Dress Code</a>
+    </div>
+    <a class="rsvp" href="rsvp.html" style="opacity:1;">RSVP</a>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="title">RSVP</div>
+      <div class="subtitle">WE CAN’T WAIT TO CELEBRATE</div>
+
+      <!-- Front-end only. For real collection, connect to Google Forms or a backend. -->
+      <form id="rsvpForm">
+        <div>
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" required />
+        </div>
+
+        <div>
+          <label for="attendance">Will you be attending?</label>
+          <select id="attendance" name="attendance" required>
+            <option value="">Select…</option>
+            <option value="yes">Yes, gladly</option>
+            <option value="no">No, sadly</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="diet">Dietary requirements</label>
+          <input id="diet" name="diet" type="text" placeholder="e.g., vegetarian, halal, allergies..." />
+        </div>
+
+        <div>
+          <label for="message">Message (optional)</label>
+          <textarea id="message" name="message" placeholder="Leave a note…"></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <div class="thanks" id="thanksBox">
+        Thank you! Your RSVP has been noted on this device.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    if (sessionStorage.getItem("siteUnlocked") !== "1") {
+      window.location.replace("index.html");
+    }
+
+    const form = document.getElementById("rsvpForm");
+    const thanks = document.getElementById("thanksBox");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      form.style.display = "none";
+      thanks.style.display = "block";
+    });
+  </script>
+</body>
+</html>
