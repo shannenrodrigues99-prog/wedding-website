@@ -3,134 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Envelope</title>
+  <title>Shannen & Samarth</title>
 
-  <!-- Alex Brush font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    *{
+      box-sizing: border-box;
       margin: 0;
-      background: #ffffff;
+      padding: 0;
     }
 
-    /* Page layout */
-    .page{
+    body{
+      font-family: "Playfair Display", serif;
+      color: #ffffff;
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
       min-height: 100vh;
+      background: 
+        linear-gradient(
+          rgba(0,0,0,0.25),
+          rgba(0,0,0,0.25)
+        ),
+        url("hero.jpg") center / cover no-repeat;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* NAV */
+    .nav{
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px);
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 70px 20px 70px;
-      box-sizing: border-box;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
-    /* Top names */
-    .top-title{
-      font-family: "Alex Brush", cursive;
-      font-size: clamp(36px, 5vw, 56px);
-      color: #111;
-      text-align: center;
-    }
-
-    /* Bottom instruction (bigger on desktop) */
-    .bottom-instruction{
-      font-family: "Alex Brush", cursive;
-      font-size: 26px; /* ⬆️ increased */
-      color: #111;
-      text-align: center;
+    .nav a{
+      color: #fff;
+      text-decoration: none;
       opacity: 0.9;
     }
 
-    /* Envelope (ONLY thing that flips) */
-    .envelope{
-      width: min(560px, 82vw); /* ⬅️ reduced desktop size */
-      perspective: 1400px;
-      cursor: pointer;
+    .nav a:hover{
+      opacity: 1;
     }
 
-    .inner{
-      position: relative;
-      width: 100%;
-      aspect-ratio: 3 / 2;
-      transform-style: preserve-3d;
-      transition: transform 1.5s ease-in-out;
+    .nav-right{
+      border: 1px solid rgba(255,255,255,0.7);
+      padding: 8px 16px;
     }
 
-    .envelope.flipped .inner{
-      transform: rotateY(180deg);
+    /* CENTER CONTENT */
+    .center{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
     }
 
-    .face{
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
+    .monogram{
+      font-size: clamp(80px, 12vw, 140px);
+      font-weight: 400;
+      line-height: 1;
     }
 
-    .face img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
+    .names{
+      font-family: "Alex Brush", cursive;
+      font-size: clamp(26px, 4vw, 38px);
+      opacity: 0.95;
     }
 
-    .back{
-      transform: rotateY(180deg);
+    .date{
+      margin-top: 6px;
+      font-size: 14px;
+      letter-spacing: 3px;
     }
 
-    /* MOBILE SPACING & SIZE FIX */
-    @media (max-width: 768px) {
-      .page{
-        justify-content: center;
-        gap: 40px;
-        padding: 50px 20px 50px;
+    /* MOBILE */
+    @media (max-width: 768px){
+      .nav{
+        top: 20px;
+        width: calc(100% - 40px);
+        font-size: 11px;
       }
 
-      .envelope{
-        width: min(88vw, 480px);
-      }
-
-      .bottom-instruction{
-        font-size: 22px; /* still readable on phone */
+      .nav-right{
+        padding: 6px 12px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
 
-    <div class="top-title">Shannen &amp; Samarth</div>
+  <section class="hero">
 
-    <div class="envelope" id="env">
-      <div class="inner">
-        <div class="face front">
-          <img src="envelope-front1.png" alt="Envelope front">
-        </div>
-        <div class="face back">
-          <img src="envelope-back1.png" alt="Envelope back">
-        </div>
+    <!-- NAV -->
+    <div class="nav">
+      <div class="nav-left">
+        <a href="#">Save the Date</a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="#">Our Story</a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="#">Details</a>
+      </div>
+
+      <div class="nav-right">
+        <a href="#">RSVP</a>
       </div>
     </div>
 
-    <div class="bottom-instruction">Click envelope to open...</div>
+    <!-- CENTER -->
+    <div class="center">
+      <div class="monogram">S&nbsp;S</div>
+      <div class="names">Shannen &amp; Samarth</div>
+      <div class="date">27 · 02 · 2027</div>
+    </div>
 
-  </div>
+  </section>
 
-  <script>
-  const env = document.querySelector(".envelope");
-  let clicked = false;
-
-  env.addEventListener("click", () => {
-    if (clicked) return;
-    clicked = true;
-
-    env.classList.add("flipped");
-
-    setTimeout(() => {
-      window.location.assign("home.html");
-    }, 2000);
-  });
-</script>
+</body>
+</html>
