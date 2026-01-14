@@ -12,11 +12,16 @@
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
 
+    /* 🔑 CRITICAL: prevent white flash */
+    html, body{
+      background: #000; /* fallback only, never visible */
+    }
+
     body{
       font-family: "Playfair Display", serif;
       color: #fff;
       opacity: 0;
-      transition: opacity 1.6s ease; /* MATCH index fade */
+      transition: opacity 1.6s ease; /* must match index fade */
     }
 
     body.fade-in{
