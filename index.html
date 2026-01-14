@@ -14,6 +14,12 @@
     body {
       margin: 0;
       background: #ffffff;
+      transition: opacity 1.6s ease; /* PAGE FADE */
+      opacity: 1;
+    }
+
+    body.fade-out{
+      opacity: 0;
     }
 
     .page{
@@ -22,7 +28,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 70px 20px 70px;
+      padding: 70px 20px;
       box-sizing: border-box;
     }
 
@@ -48,11 +54,10 @@
     }
 
     .inner{
-      position: relative;
       width: 100%;
       aspect-ratio: 3 / 2;
       transform-style: preserve-3d;
-      transition: transform 1.5s ease-in-out; /* FLIP */
+      transition: transform 1.5s ease-in-out;
     }
 
     .envelope.flipped .inner{
@@ -76,35 +81,12 @@
       transform: rotateY(180deg);
     }
 
-    /* FADE OVERLAY */
-    .fade-overlay{
-      position: fixed;
-      inset: 0;
-      background: #ffffff;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1600ms ease; /* SLOW FADE */
-      z-index: 9999;
-    }
-
-    .fade-overlay.show{
-      opacity: 1;
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 768px){
       .page{
         justify-content: center;
         gap: 40px;
-        padding: 50px 20px 50px;
       }
-
-      .envelope{
-        width: min(88vw, 480px);
-      }
-
-      .bottom-instruction{
-        font-size: 22px;
-      }
+      .bottom-instruction{ font-size: 22px; }
     }
   </style>
 </head>
@@ -116,10 +98,10 @@
     <div class="envelope" id="env">
       <div class="inner">
         <div class="face front">
-          <img src="envelope-front1.png" alt="Envelope front">
+          <img src="envelope-front1.png" alt="">
         </div>
         <div class="face back">
-          <img src="envelope-back1.png" alt="Envelope back">
+          <img src="envelope-back1.png" alt="">
         </div>
       </div>
     </div>
@@ -127,35 +109,30 @@
     <div class="bottom-instruction">Click envelope to open...</div>
   </div>
 
-  <div class="fade-overlay" id="fadeOverlay"></div>
-
   <script>
     const env = document.getElementById("env");
-    const overlay = document.getElementById("fadeOverlay");
     let clicked = false;
 
-    /* TIMING CONTROLS (tweak these) */
-    const FLIP_DURATION = 1500; // must match CSS flip
-    const PAUSE_ON_BACK = 1200; // 👈 THIS is your pause
-    const FADE_DURATION = 1600; // must match CSS fade
+    const FLIP_DURATION = 1500;
+    const PAUSE_ON_BACK = 1200;
+    const FADE_DURATION = 1600;
 
     env.addEventListener("click", () => {
       if (clicked) return;
       clicked = true;
 
-      // 1. Flip envelope
+      // Flip
       env.classList.add("flipped");
 
-      // 2. AFTER flip + pause → start fade
+      // After flip + pause → fade page out
       setTimeout(() => {
-        overlay.classList.add("show");
+        document.body.classList.add("fade-out");
       }, FLIP_DURATION + PAUSE_ON_BACK);
 
-      // 3. Navigate DURING fade so home loads behind it
+      // Navigate near end of fade
       setTimeout(() => {
-        sessionStorage.setItem("fadeFromIndex", "true");
         window.location.assign("home.html");
-      }, FLIP_DURATION + PAUSE_ON_BACK + Math.floor(FADE_DURATION * 0.65));
+      }, FLIP_DURATION + PAUSE_ON_BACK + Math.floor(FADE_DURATION * 0.8));
     });
   </script>
 </body>
