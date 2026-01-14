@@ -35,18 +35,18 @@
       text-align: center;
     }
 
-    /* Bottom instruction (bigger on desktop) */
+    /* Bottom instruction */
     .bottom-instruction{
       font-family: "Alex Brush", cursive;
-      font-size: 26px; /* ⬆️ increased */
+      font-size: 26px;
       color: #111;
       text-align: center;
       opacity: 0.9;
     }
 
-    /* Envelope (ONLY thing that flips) */
+    /* Envelope */
     .envelope{
-      width: min(560px, 82vw); /* ⬅️ reduced desktop size */
+      width: min(560px, 82vw);
       perspective: 1400px;
       cursor: pointer;
     }
@@ -80,7 +80,22 @@
       transform: rotateY(180deg);
     }
 
-    /* MOBILE SPACING & SIZE FIX */
+    /* FADE OVERLAY */
+    .fade-overlay{
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 700ms ease;
+      z-index: 9999;
+    }
+
+    .fade-overlay.show{
+      opacity: 1;
+    }
+
+    /* Mobile */
     @media (max-width: 768px) {
       .page{
         justify-content: center;
@@ -93,7 +108,7 @@
       }
 
       .bottom-instruction{
-        font-size: 22px; /* still readable on phone */
+        font-size: 22px;
       }
     }
   </style>
@@ -119,18 +134,32 @@
 
   </div>
 
+  <!-- Fade overlay -->
+  <div class="fade-overlay" id="fadeOverlay"></div>
+
   <script>
-  const env = document.querySelector(".envelope");
-  let clicked = false;
+    const env = document.getElementById("env");
+    const overlay = document.getElementById("fadeOverlay");
+    let clicked = false;
 
-  env.addEventListener("click", () => {
-    if (clicked) return;
-    clicked = true;
+    env.addEventListener("click", () => {
+      if (clicked) return;
+      clicked = true;
 
-    env.classList.add("flipped");
+      // Start flip
+      env.classList.add("flipped");
 
-    setTimeout(() => {
-      window.location.assign("home.html");
-    }, 2000);
-  });
-</script>
+      // Start fade shortly after flip begins
+      setTimeout(() => {
+        overlay.classList.add("show");
+      }, 500);
+
+      // Navigate while fade is active
+      setTimeout(() => {
+        sessionStorage.setItem("fadeFromIndex", "true");
+        window.location.assign("home.html");
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
