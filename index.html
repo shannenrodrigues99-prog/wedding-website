@@ -175,7 +175,19 @@
       align-items: center;
     }
 
-    .monogram{ font-size: clamp(80px, 12vw, 140px); }
+    .monogram{
+  width: clamp(140px, 20vw, 260px); /* responsive sizing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monogram img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
     .names{
       font-family: "Alex Brush", cursive;
       font-size: clamp(26px, 4vw, 38px);
@@ -244,7 +256,10 @@
 
     <div class="hero-wrap">
       <div class="home-center">
-        <div class="monogram">S&nbsp;S</div>
+        <div class="monogram">
+  <img src="monogram.png" alt="S & S monogram">
+</div>
+
         <div class="names">Shannen &amp; Samarth</div>
         <div class="date">27 · 02 · 2027</div>
       </div>
