@@ -16,7 +16,7 @@
     body{
       font-family: "Playfair Display", serif;
       background: #000;
-      overflow: hidden; /* keep like your single-page experience */
+      overflow: hidden; /* no scrolling anywhere */
     }
 
     /* ===== SCENES ===== */
@@ -102,40 +102,41 @@
     .scene-home{
       z-index: 1;
       opacity: 0;
+      color: #fff;
+      text-align: center;
+
+      /* Hero background */
       background:
         linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
         url("hero.jpg") center / cover no-repeat;
-      color: #fff;
-      text-align: center;
-      display: block; /* allow scrolling content inside */
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+
+      display: block; /* so we can position nav + hero easily */
     }
 
-    .scene-home.fade-in{
-      opacity: 1;
-    }
+    .scene-home.fade-in{ opacity: 1; }
 
     /* Top tabs like inspo */
     .topnav{
-      position: sticky; /* stays at top while you scroll sections */
-      top: 0;
-      z-index: 10;
+      position: absolute;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px);
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 28px 40px;
-      background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0)); /* subtle */
-      backdrop-filter: blur(0px);
+
+      /* subtle: keep clean, no bar */
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 12px;
     }
 
     .topnav .left{
       display: flex;
       gap: 44px;
       align-items: center;
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      font-size: 12px;
       opacity: 0.95;
     }
 
@@ -148,13 +149,8 @@
     .topnav a:hover{ opacity: 1; }
 
     .topnav .rsvp{
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      font-size: 12px;
       padding: 10px 18px;
       border: 1px solid rgba(255,255,255,0.65);
-      color: #fff;
-      text-decoration: none;
       opacity: 0.95;
     }
 
@@ -163,13 +159,13 @@
       opacity: 1;
     }
 
-    /* Hero center */
+    /* Hero centered content */
     .hero-wrap{
-      min-height: calc(100vh - 76px);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px 80px;
+      padding: 60px 20px;
     }
 
     .home-center{
@@ -185,57 +181,28 @@
       font-size: clamp(26px, 4vw, 38px);
       opacity: 0.95;
     }
-    .date{ font-size: 14px; letter-spacing: 3px; opacity: 0.9; }
-
-    /* Sections (placeholders for now) */
-    .section{
-      padding: 90px 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .card{
-      width: min(900px, 92vw);
-      background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 34px 28px;
-      text-align: left;
-    }
-
-    .card h2{
-      font-weight: 500;
-      font-size: 22px;
-      letter-spacing: 0.5px;
-      margin-bottom: 12px;
-    }
-
-    .card p{
+    .date{
+      font-size: 14px;
+      letter-spacing: 3px;
       opacity: 0.9;
-      line-height: 1.6;
-      font-size: 15px;
     }
-
-    /* smoother anchor scroll */
-    html{ scroll-behavior: smooth; }
 
     @media (max-width: 768px){
-      body{ overflow: hidden; }
       .bottom-instruction{ font-size: 22px; }
 
       .topnav{
-        padding: 18px 16px;
-      }
-
-      .topnav .left{
-        gap: 18px;
+        top: 18px;
+        width: calc(100% - 32px);
         font-size: 10px;
         letter-spacing: 1.2px;
       }
 
+      .topnav .left{
+        gap: 18px;
+      }
+
       .topnav .rsvp{
         padding: 8px 12px;
-        font-size: 10px;
       }
     }
   </style>
@@ -265,18 +232,16 @@
 
   <!-- HOME SCENE -->
   <section class="scene scene-home" id="sceneHome">
-
-    <!-- Tabs -->
     <nav class="topnav" aria-label="Primary navigation">
       <div class="left">
-        <a href="#schedule">Schedule</a>
-        <a href="#faq">FAQ</a>
-        <a href="#dresscode">Dress Code</a>
+        <a href="schedule.html" target="_blank" rel="noopener noreferrer">Schedule</a>
+        <a href="faq.html" target="_blank" rel="noopener noreferrer">FAQ</a>
+        <a href="dresscode.html" target="_blank" rel="noopener noreferrer">Dress Code</a>
       </div>
-      <a class="rsvp" href="#rsvp">RSVP</a>
+
+      <a class="rsvp" href="rsvp.html" target="_blank" rel="noopener noreferrer">RSVP</a>
     </nav>
 
-    <!-- Hero -->
     <div class="hero-wrap">
       <div class="home-center">
         <div class="monogram">S&nbsp;S</div>
@@ -284,36 +249,6 @@
         <div class="date">27 · 02 · 2027</div>
       </div>
     </div>
-
-    <!-- Sections -->
-    <section class="section" id="schedule">
-      <div class="card">
-        <h2>Schedule</h2>
-        <p>Placeholder section. Add your events + times here.</p>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="card">
-        <h2>FAQ</h2>
-        <p>Placeholder section. Add your frequently asked questions here.</p>
-      </div>
-    </section>
-
-    <section class="section" id="dresscode">
-      <div class="card">
-        <h2>Dress Code</h2>
-        <p>Placeholder section. Add dress code guidance here.</p>
-      </div>
-    </section>
-
-    <section class="section" id="rsvp">
-      <div class="card">
-        <h2>RSVP</h2>
-        <p>Placeholder section. Add your RSVP form/embed here.</p>
-      </div>
-    </section>
-
   </section>
 
   <script>
@@ -330,16 +265,11 @@
       if (clicked) return;
       clicked = true;
 
-      // Flip envelope
       env.classList.add("flipped");
 
-      // After flip + pause → cross-fade scenes
       setTimeout(() => {
         envelopeScene.classList.add("fade-out");
         homeScene.classList.add("fade-in");
-
-        // Enable scrolling once home is visible
-        document.body.style.overflow = "hidden"; // body stays hidden; home scrolls
       }, FLIP_DURATION + PAUSE_ON_BACK);
     });
   </script>
