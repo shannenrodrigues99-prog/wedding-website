@@ -26,7 +26,7 @@
     .hero{
       position: relative;
       min-height: 100vh;
-      background: 
+      background:
         linear-gradient(
           rgba(0,0,0,0.25),
           rgba(0,0,0,0.25)
@@ -54,7 +54,7 @@
     }
 
     .nav a{
-      color: #fff;
+      color: #ffffff;
       text-decoration: none;
       opacity: 0.9;
     }
@@ -94,6 +94,17 @@
       letter-spacing: 3px;
     }
 
+    /* FADE OVERLAY (visible on load) */
+    .fade-overlay{
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      opacity: 1;
+      pointer-events: none;
+      transition: opacity 700ms ease;
+      z-index: 9999;
+    }
+
     /* MOBILE */
     @media (max-width: 768px){
       .nav{
@@ -110,6 +121,9 @@
 </head>
 
 <body>
+
+  <!-- Fade overlay -->
+  <div class="fade-overlay" id="fadeOverlay"></div>
 
   <section class="hero">
 
@@ -136,6 +150,20 @@
     </div>
 
   </section>
+
+  <script>
+    window.addEventListener("load", () => {
+      const overlay = document.getElementById("fadeOverlay");
+
+      // Fade overlay away whether coming from index or refreshing
+      requestAnimationFrame(() => {
+        overlay.style.opacity = "0";
+      });
+
+      // Clean up flag if it exists
+      sessionStorage.removeItem("fadeFromIndex");
+    });
+  </script>
 
 </body>
 </html>
