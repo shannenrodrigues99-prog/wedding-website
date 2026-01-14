@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs | Shannen & Samarth</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    body{
+      font-family:"Playfair Display", serif;
+      color:#fff;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("hero.jpg") center / cover no-repeat fixed;
+      min-height:100vh;
+    }
+
+    .topnav{
+      position: fixed;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 80px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 12px;
+      z-index: 10;
+    }
+    .topnav .left{ display:flex; gap:44px; align-items:center; opacity:0.95; }
+    .topnav a{ color:#fff; text-decoration:none; opacity:0.85; }
+    .topnav a:hover{ opacity:1; }
+    .topnav .rsvp{
+      padding:10px 18px;
+      border:1px solid rgba(255,255,255,0.65);
+      opacity:0.95;
+    }
+    .topnav .rsvp:hover{ border-color: rgba(255,255,255,0.9); opacity:1; }
+
+    .wrap{
+      min-height:100vh;
+      padding: 120px 20px 80px;
+      display:flex;
+      justify-content:center;
+    }
+    .panel{
+      width: min(900px, 92vw);
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 34px 26px;
+      backdrop-filter: blur(6px);
+    }
+
+    .title{
+      font-family:"Alex Brush", cursive;
+      font-size: clamp(40px, 5vw, 64px);
+      text-align:center;
+      margin-bottom: 10px;
+    }
+    .subtitle{
+      text-align:center;
+      letter-spacing: 3px;
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 26px;
+    }
+
+    details{
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: rgba(0,0,0,0.22);
+      margin-bottom: 12px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      list-style:none;
+      outline:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .answer{
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px){
+      .topnav{
+        top: 18px;
+        width: calc(100% - 32px);
+        font-size: 10px;
+        letter-spacing: 1.2px;
+      }
+      .topnav .left{ gap:18px; }
+      .topnav .rsvp{ padding:8px 12px; }
+      .panel{ padding: 28px 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="topnav" aria-label="Primary navigation">
+    <div class="left">
+      <a href="index.html">Home</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="faqs.html" style="opacity:1;">FAQs</a>
+      <a href="dresscode.html">Dress Code</a>
+    </div>
+    <a class="rsvp" href="rsvp.html">RSVP</a>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="title">FAQs</div>
+      <div class="subtitle">HELPFUL DETAILS</div>
+
+      <details>
+        <summary>Where is the wedding?</summary>
+        <div class="answer">Venue details will be shared on your formal invitation / closer to the date.</div>
+      </details>
+
+      <details>
+        <summary>What time should I arrive?</summary>
+        <div class="answer">Please arrive 20–30 minutes early so you’re seated before the ceremony begins.</div>
+      </details>
+
+      <details>
+        <summary>Can I bring a plus one?</summary>
+        <div class="answer">Please refer to the names on your invitation. If you’re unsure, message us.</div>
+      </details>
+
+      <details>
+        <summary>Are kids invited?</summary>
+        <div class="answer">We love your little ones! We’ll clarify on the formal invite whether the event is adult-only.</div>
+      </details>
+
+      <details>
+        <summary>Is there parking?</summary>
+        <div class="answer">Yes — parking details and transport options will be included closer to the day.</div>
+      </details>
+
+      <details>
+        <summary>Will there be food options?</summary>
+        <div class="answer">Yes. We’ll cater for dietary requirements — please note them on the RSVP page.</div>
+      </details>
+    </section>
+  </main>
+</body>
+</html>
