@@ -128,7 +128,7 @@
 
       <details>
         <summary>Where is the wedding?</summary>
-        <div class="answer">Venue details will be shared on your formal invitation / closer to the date.</div>
+        <div class="answer">Venue details will be shared closer to the date.</div>
       </details>
 
       <details>
@@ -143,19 +143,25 @@
 
       <details>
         <summary>Are kids invited?</summary>
-        <div class="answer">We love your little ones! We’ll clarify on the formal invite whether the event is adult-only.</div>
+        <div class="answer">We’ll clarify on the formal invite whether the event is adult-only.</div>
       </details>
 
       <details>
         <summary>Is there parking?</summary>
-        <div class="answer">Yes — parking details and transport options will be included closer to the day.</div>
+        <div class="answer">Yes — parking and transport options will be included closer to the day.</div>
       </details>
 
       <details>
-        <summary>Will there be food options?</summary>
-        <div class="answer">Yes. We’ll cater for dietary requirements — please note them on the RSVP page.</div>
+        <summary>Dietary requirements?</summary>
+        <div class="answer">Please note any dietary needs on the RSVP page.</div>
       </details>
     </section>
   </main>
+
+  <script>
+    if (sessionStorage.getItem("siteUnlocked") !== "1") {
+      window.location.replace("index.html");
+    }
+  </script>
 </body>
 </html>
