@@ -137,7 +137,6 @@
       border:1px solid rgba(255,255,255,0.65);
     }
 
-    /* Locked links */
     .locked-link{
       pointer-events:none;
       opacity:0.35 !important;
@@ -264,7 +263,6 @@
 
         <div class="names">Shannen &amp; Samarth</div>
 
-        <!-- Password -->
         <div class="pw-wrap" id="pwWrap">
           <div class="pw-row">
             <input
@@ -283,15 +281,44 @@
   </section>
 
   <script>
-    /* ===== ENVELOPE FLOW ===== */
+    /* ===== ENVELOPE FLOW (RETURN EXPERIENCE) ===== */
     const env = document.getElementById("env");
     const envelopeScene = document.getElementById("sceneEnvelope");
     const homeScene = document.getElementById("sceneHome");
+
+    const INVITE_OPEN_KEY = "inviteOpened";
     let opened = false;
+
+    function showHomeInstant(){
+      envelopeScene.classList.add("fade-out");
+      homeScene.classList.add("fade-in");
+      env.classList.add("flipped");
+      opened = true;
+    }
+
+    function showEnvelopeInstant(){
+      envelopeScene.classList.remove("fade-out");
+      homeScene.classList.remove("fade-in");
+      env.classList.remove("flipped");
+      opened = false;
+    }
+
+    function initInvite(){
+      if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
+        showHomeInstant();
+      } else {
+        showEnvelopeInstant();
+      }
+    }
+
+    window.addEventListener("pageshow", initInvite);
+    initInvite();
 
     env.addEventListener("click", () => {
       if (opened) return;
       opened = true;
+      sessionStorage.setItem(INVITE_OPEN_KEY, "1");
+
       env.classList.add("flipped");
       setTimeout(() => {
         envelopeScene.classList.add("fade-out");
@@ -300,7 +327,7 @@
     });
 
     /* ===== PASSWORD GATE ===== */
-    const SITE_PASSWORD = "ss2027"; // CHANGE THIS
+    const SITE_PASSWORD = "ss2027"; // CHANGE IF NEEDED
     const UNLOCK_KEY = "siteUnlocked";
 
     const pwWrap = document.getElementById("pwWrap");
