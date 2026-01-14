@@ -153,7 +153,7 @@
     .home-center{
       display:flex;
       flex-direction:column;
-      gap:18px;
+      gap:14px;
       align-items:center;
     }
 
@@ -168,12 +168,19 @@
       font-size:clamp(26px,4vw,38px);
     }
 
+    .date{
+      font-size:14px;
+      letter-spacing:3px;
+      opacity:0.9;
+    }
+
     /* ===== PASSWORD ===== */
     .pw-wrap{
       display:flex;
       flex-direction:column;
       align-items:center;
       gap:10px;
+      margin-top:6px;
     }
 
     .pw-row{
@@ -263,6 +270,10 @@
 
         <div class="names">Shannen &amp; Samarth</div>
 
+        <!-- DATE (hidden until password) -->
+        <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
+
+        <!-- PASSWORD -->
         <div class="pw-wrap" id="pwWrap">
           <div class="pw-row">
             <input
@@ -327,23 +338,26 @@
     });
 
     /* ===== PASSWORD GATE ===== */
-    const SITE_PASSWORD = "ss2027"; // CHANGE IF NEEDED
+    const SITE_PASSWORD = "ss2027";
     const UNLOCK_KEY = "siteUnlocked";
 
     const pwWrap = document.getElementById("pwWrap");
     const pwInput = document.getElementById("pwInput");
     const pwBtn = document.getElementById("pwBtn");
     const pwError = document.getElementById("pwError");
+    const weddingDate = document.getElementById("weddingDate");
     const protectedLinks = document.querySelectorAll("[data-protected]");
 
     function lockUI(){
       protectedLinks.forEach(l => l.classList.add("locked-link"));
       pwWrap.classList.remove("is-hidden");
+      weddingDate.classList.add("is-hidden");
     }
 
     function unlockUI(){
       protectedLinks.forEach(l => l.classList.remove("locked-link"));
       pwWrap.classList.add("is-hidden");
+      weddingDate.classList.remove("is-hidden");
     }
 
     function initGate(){
