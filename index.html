@@ -3,58 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Envelope</title>
+  <title>Shannen & Samarth</title>
 
-  <!-- Alex Brush font -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
 
   <style>
-    /* IMPORTANT: prevent white flash */
-    html, body{
-      margin: 0;
-      background: transparent; /* <-- key change */
-    }
+    *{ margin:0; padding:0; box-sizing:border-box; }
 
     body{
+      font-family: "Playfair Display", serif;
+      background: #000;
+      overflow: hidden;
+    }
+
+    /* ===== SCENES ===== */
+    .scene{
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1.6s ease;
+    }
+
+    /* ===== ENVELOPE SCENE ===== */
+    .scene-envelope{
+      background: #ffffff;
+      z-index: 2;
       opacity: 1;
-      transition: opacity 1.6s ease; /* fade speed */
     }
 
-    body.fade-out{
+    .scene-envelope.fade-out{
       opacity: 0;
+      pointer-events: none;
     }
 
-    /* Page layout */
     .page{
       min-height: 100vh;
+      width: 100%;
+      padding: 70px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 70px 20px 70px;
-      box-sizing: border-box;
     }
 
-    /* Top names */
     .top-title{
       font-family: "Alex Brush", cursive;
       font-size: clamp(36px, 5vw, 56px);
       color: #111;
-      text-align: center;
     }
 
-    /* Bottom instruction */
     .bottom-instruction{
       font-family: "Alex Brush", cursive;
       font-size: 26px;
       color: #111;
-      text-align: center;
       opacity: 0.9;
     }
 
-    /* Envelope */
     .envelope{
       width: min(560px, 82vw);
       perspective: 1400px;
@@ -62,11 +71,10 @@
     }
 
     .inner{
-      position: relative;
       width: 100%;
       aspect-ratio: 3 / 2;
       transform-style: preserve-3d;
-      transition: transform 1.5s ease-in-out; /* flip duration */
+      transition: transform 1.5s ease-in-out;
     }
 
     .envelope.flipped .inner{
@@ -83,78 +91,109 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      display: block;
     }
 
     .back{
       transform: rotateY(180deg);
     }
 
-    /* Mobile */
-    @media (max-width: 768px) {
-      .page{
-        justify-content: center;
-        gap: 40px;
-        padding: 50px 20px 50px;
-      }
+    /* ===== HOME SCENE ===== */
+    .scene-home{
+      z-index: 1;
+      opacity: 0;
+      background:
+        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+        url("hero.jpg") center / cover no-repeat;
+      color: #fff;
+      text-align: center;
+    }
 
-      .envelope{
-        width: min(88vw, 480px);
-      }
+    .scene-home.fade-in{
+      opacity: 1;
+    }
 
-      .bottom-instruction{
-        font-size: 22px;
-      }
+    .home-center{
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .monogram{
+      font-size: clamp(80px, 12vw, 140px);
+    }
+
+    .names{
+      font-family: "Alex Brush", cursive;
+      font-size: clamp(26px, 4vw, 38px);
+    }
+
+    .date{
+      font-size: 14px;
+      letter-spacing: 3px;
+    }
+
+    @media (max-width: 768px){
+      .bottom-instruction{ font-size: 22px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
 
-    <div class="top-title">Shannen &amp; Samarth</div>
+  <!-- ENVELOPE SCENE -->
+  <section class="scene scene-envelope" id="sceneEnvelope">
+    <div class="page">
+      <div class="top-title">Shannen &amp; Samarth</div>
 
-    <div class="envelope" id="env">
-      <div class="inner">
-        <div class="face front">
-          <img src="envelope-front1.png" alt="Envelope front">
-        </div>
-        <div class="face back">
-          <img src="envelope-back1.png" alt="Envelope back">
+      <div class="envelope" id="env">
+        <div class="inner">
+          <div class="face front">
+            <img src="envelope-front1.png" alt="">
+          </div>
+          <div class="face back">
+            <img src="envelope-back1.png" alt="">
+          </div>
         </div>
       </div>
+
+      <div class="bottom-instruction">Click envelope to open...</div>
     </div>
+  </section>
 
-    <div class="bottom-instruction">Click envelope to open...</div>
-
-  </div>
+  <!-- HOME SCENE -->
+  <section class="scene scene-home" id="sceneHome">
+    <div class="home-center">
+      <div class="monogram">S&nbsp;S</div>
+      <div class="names">Shannen &amp; Samarth</div>
+      <div class="date">27 · 02 · 2027</div>
+    </div>
+  </section>
 
   <script>
     const env = document.getElementById("env");
-    let clicked = false;
+    const envelopeScene = document.getElementById("sceneEnvelope");
+    const homeScene = document.getElementById("sceneHome");
 
-    // Timing controls
-    const FLIP_DURATION = 1500; // matches CSS flip transition
-    const PAUSE_ON_BACK = 1200; // how long you see the back before fade
-    const FADE_DURATION = 1600; // matches body transition
+    const FLIP_DURATION = 1500;
+    const PAUSE_ON_BACK = 1200;
+
+    let clicked = false;
 
     env.addEventListener("click", () => {
       if (clicked) return;
       clicked = true;
 
-      // 1) Flip
+      // Flip envelope
       env.classList.add("flipped");
 
-      // 2) Pause on back, then fade out page
+      // After flip + pause → cross-fade scenes
       setTimeout(() => {
-        document.body.classList.add("fade-out");
+        envelopeScene.classList.add("fade-out");
+        homeScene.classList.add("fade-in");
       }, FLIP_DURATION + PAUSE_ON_BACK);
-
-      // 3) Navigate near end of fade
-      setTimeout(() => {
-        window.location.assign("home.html");
-      }, FLIP_DURATION + PAUSE_ON_BACK + Math.floor(FADE_DURATION * 0.85));
     });
   </script>
+
 </body>
 </html>
