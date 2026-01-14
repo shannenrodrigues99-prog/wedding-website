@@ -76,10 +76,7 @@
       margin-bottom: 28px;
     }
 
-    .grid{
-      display:grid;
-      gap:14px;
-    }
+    .grid{ display:grid; gap:14px; }
 
     .event{
       display:grid;
@@ -191,9 +188,15 @@
       </div>
 
       <div class="note">
-        Times are a guide and may shift slightly. We’ll keep everything running smoothly on the day.
+        Times are a guide and may shift slightly.
       </div>
     </section>
   </main>
+
+  <script>
+    if (sessionStorage.getItem("siteUnlocked") !== "1") {
+      window.location.replace("index.html");
+    }
+  </script>
 </body>
 </html>
