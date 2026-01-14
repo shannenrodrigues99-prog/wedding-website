@@ -5,121 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shannen & Samarth</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
 
   <style>
-    *{ box-sizing: border-box; margin: 0; padding: 0; }
+    *{ margin:0; padding:0; box-sizing:border-box; }
 
     body{
       font-family: "Playfair Display", serif;
-      color: #ffffff;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 1.6s ease; /* MATCH index fade */
+    }
+
+    body.fade-in{
+      opacity: 1;
     }
 
     .hero{
-      position: relative;
       min-height: 100vh;
       background:
         linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
         url("hero.jpg") center / cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .nav{
-      position: absolute;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 80px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .nav a{
-      color: #fff;
-      text-decoration: none;
-      opacity: 0.9;
-    }
-    .nav a:hover{ opacity: 1; }
-
-    .nav-right{
-      border: 1px solid rgba(255,255,255,0.7);
-      padding: 8px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
     }
 
     .center{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+      align-items:center;
     }
 
     .monogram{
       font-size: clamp(80px, 12vw, 140px);
-      font-weight: 400;
-      line-height: 1;
     }
 
     .names{
       font-family: "Alex Brush", cursive;
       font-size: clamp(26px, 4vw, 38px);
-      opacity: 0.95;
     }
 
     .date{
-      margin-top: 6px;
-      font-size: 14px;
-      letter-spacing: 3px;
-    }
-
-    /* Overlay is present so the transition can continue across pages */
-    .fade-overlay{
-      position: fixed;
-      inset: 0;
-      background: #ffffff;
-      opacity: 1;                /* visible by default */
-      pointer-events: none;
-      transition: opacity 1400ms ease; /* match index fade */
-      z-index: 9999;
-    }
-
-    @media (max-width: 768px){
-      .nav{
-        top: 20px;
-        width: calc(100% - 40px);
-        font-size: 11px;
-      }
-      .nav-right{ padding: 6px 12px; }
+      font-size:14px;
+      letter-spacing:3px;
     }
   </style>
 </head>
 
 <body>
-  <div class="fade-overlay" id="fadeOverlay"></div>
-
   <section class="hero">
-    <div class="nav">
-      <div class="nav-left">
-        <a href="#">Save the Date</a>
-        &nbsp;&nbsp;&nbsp;
-        <a href="#">Our Story</a>
-        &nbsp;&nbsp;&nbsp;
-        <a href="#">Details</a>
-      </div>
-      <div class="nav-right">
-        <a href="#">RSVP</a>
-      </div>
-    </div>
-
     <div class="center">
       <div class="monogram">S&nbsp;S</div>
       <div class="names">Shannen &amp; Samarth</div>
@@ -129,22 +68,9 @@
 
   <script>
     window.addEventListener("load", () => {
-      const overlay = document.getElementById("fadeOverlay");
-
-      // If coming from index, let the home load behind the overlay, then lift it.
-      // If user refreshes home, still lift it quickly so it doesn't stay white.
-      const fromIndex = sessionStorage.getItem("fadeFromIndex") === "true";
-
-      // Small delay feels smoother + prevents flashes on slower connections
-      const delay = fromIndex ? 120 : 0;
-
-      setTimeout(() => {
-        requestAnimationFrame(() => {
-          overlay.style.opacity = "0";
-        });
-      }, delay);
-
-      sessionStorage.removeItem("fadeFromIndex");
+      requestAnimationFrame(() => {
+        document.body.classList.add("fade-in");
+      });
     });
   </script>
 </body>
