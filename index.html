@@ -16,7 +16,7 @@
     body{
       font-family: "Playfair Display", serif;
       background: #000;
-      overflow: hidden;
+      overflow: hidden; /* keep like your single-page experience */
     }
 
     /* ===== SCENES ===== */
@@ -35,7 +35,6 @@
       z-index: 2;
       opacity: 1;
     }
-
     .scene-envelope.fade-out{
       opacity: 0;
       pointer-events: none;
@@ -55,12 +54,14 @@
       font-family: "Alex Brush", cursive;
       font-size: clamp(36px, 5vw, 56px);
       color: #111;
+      text-align: center;
     }
 
     .bottom-instruction{
       font-family: "Alex Brush", cursive;
       font-size: 26px;
       color: #111;
+      text-align: center;
       opacity: 0.9;
     }
 
@@ -75,6 +76,7 @@
       aspect-ratio: 3 / 2;
       transform-style: preserve-3d;
       transition: transform 1.5s ease-in-out;
+      position: relative;
     }
 
     .envelope.flipped .inner{
@@ -91,11 +93,10 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      display: block;
     }
 
-    .back{
-      transform: rotateY(180deg);
-    }
+    .back{ transform: rotateY(180deg); }
 
     /* ===== HOME SCENE ===== */
     .scene-home{
@@ -106,10 +107,69 @@
         url("hero.jpg") center / cover no-repeat;
       color: #fff;
       text-align: center;
+      display: block; /* allow scrolling content inside */
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .scene-home.fade-in{
       opacity: 1;
+    }
+
+    /* Top tabs like inspo */
+    .topnav{
+      position: sticky; /* stays at top while you scroll sections */
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 40px;
+      background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0)); /* subtle */
+      backdrop-filter: blur(0px);
+    }
+
+    .topnav .left{
+      display: flex;
+      gap: 44px;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 12px;
+      opacity: 0.95;
+    }
+
+    .topnav a{
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.85;
+    }
+
+    .topnav a:hover{ opacity: 1; }
+
+    .topnav .rsvp{
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 12px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,0.65);
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+
+    .topnav .rsvp:hover{
+      border-color: rgba(255,255,255,0.9);
+      opacity: 1;
+    }
+
+    /* Hero center */
+    .hero-wrap{
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 80px;
     }
 
     .home-center{
@@ -119,22 +179,64 @@
       align-items: center;
     }
 
-    .monogram{
-      font-size: clamp(80px, 12vw, 140px);
-    }
-
+    .monogram{ font-size: clamp(80px, 12vw, 140px); }
     .names{
       font-family: "Alex Brush", cursive;
       font-size: clamp(26px, 4vw, 38px);
+      opacity: 0.95;
+    }
+    .date{ font-size: 14px; letter-spacing: 3px; opacity: 0.9; }
+
+    /* Sections (placeholders for now) */
+    .section{
+      padding: 90px 20px;
+      display: flex;
+      justify-content: center;
     }
 
-    .date{
-      font-size: 14px;
-      letter-spacing: 3px;
+    .card{
+      width: min(900px, 92vw);
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 34px 28px;
+      text-align: left;
     }
+
+    .card h2{
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .card p{
+      opacity: 0.9;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* smoother anchor scroll */
+    html{ scroll-behavior: smooth; }
 
     @media (max-width: 768px){
+      body{ overflow: hidden; }
       .bottom-instruction{ font-size: 22px; }
+
+      .topnav{
+        padding: 18px 16px;
+      }
+
+      .topnav .left{
+        gap: 18px;
+        font-size: 10px;
+        letter-spacing: 1.2px;
+      }
+
+      .topnav .rsvp{
+        padding: 8px 12px;
+        font-size: 10px;
+      }
     }
   </style>
 </head>
@@ -146,13 +248,13 @@
     <div class="page">
       <div class="top-title">Shannen &amp; Samarth</div>
 
-      <div class="envelope" id="env">
+      <div class="envelope" id="env" aria-label="Open envelope">
         <div class="inner">
           <div class="face front">
-            <img src="envelope-front1.png" alt="">
+            <img src="envelope-front1.png" alt="Envelope front">
           </div>
           <div class="face back">
-            <img src="envelope-back1.png" alt="">
+            <img src="envelope-back1.png" alt="Envelope back">
           </div>
         </div>
       </div>
@@ -163,11 +265,55 @@
 
   <!-- HOME SCENE -->
   <section class="scene scene-home" id="sceneHome">
-    <div class="home-center">
-      <div class="monogram">S&nbsp;S</div>
-      <div class="names">Shannen &amp; Samarth</div>
-      <div class="date">27 · 02 · 2027</div>
+
+    <!-- Tabs -->
+    <nav class="topnav" aria-label="Primary navigation">
+      <div class="left">
+        <a href="#schedule">Schedule</a>
+        <a href="#faq">FAQ</a>
+        <a href="#dresscode">Dress Code</a>
+      </div>
+      <a class="rsvp" href="#rsvp">RSVP</a>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero-wrap">
+      <div class="home-center">
+        <div class="monogram">S&nbsp;S</div>
+        <div class="names">Shannen &amp; Samarth</div>
+        <div class="date">27 · 02 · 2027</div>
+      </div>
     </div>
+
+    <!-- Sections -->
+    <section class="section" id="schedule">
+      <div class="card">
+        <h2>Schedule</h2>
+        <p>Placeholder section. Add your events + times here.</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="card">
+        <h2>FAQ</h2>
+        <p>Placeholder section. Add your frequently asked questions here.</p>
+      </div>
+    </section>
+
+    <section class="section" id="dresscode">
+      <div class="card">
+        <h2>Dress Code</h2>
+        <p>Placeholder section. Add dress code guidance here.</p>
+      </div>
+    </section>
+
+    <section class="section" id="rsvp">
+      <div class="card">
+        <h2>RSVP</h2>
+        <p>Placeholder section. Add your RSVP form/embed here.</p>
+      </div>
+    </section>
+
   </section>
 
   <script>
@@ -191,6 +337,9 @@
       setTimeout(() => {
         envelopeScene.classList.add("fade-out");
         homeScene.classList.add("fade-in");
+
+        // Enable scrolling once home is visible
+        document.body.style.overflow = "hidden"; // body stays hidden; home scrolls
       }, FLIP_DURATION + PAUSE_ON_BACK);
     });
   </script>
