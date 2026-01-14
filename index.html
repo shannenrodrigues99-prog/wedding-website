@@ -16,7 +16,6 @@
       background: #ffffff;
     }
 
-    /* Page layout */
     .page{
       min-height: 100vh;
       display: flex;
@@ -27,7 +26,6 @@
       box-sizing: border-box;
     }
 
-    /* Top names */
     .top-title{
       font-family: "Alex Brush", cursive;
       font-size: clamp(36px, 5vw, 56px);
@@ -35,7 +33,6 @@
       text-align: center;
     }
 
-    /* Bottom instruction */
     .bottom-instruction{
       font-family: "Alex Brush", cursive;
       font-size: 26px;
@@ -44,7 +41,6 @@
       opacity: 0.9;
     }
 
-    /* Envelope */
     .envelope{
       width: min(560px, 82vw);
       perspective: 1400px;
@@ -56,7 +52,7 @@
       width: 100%;
       aspect-ratio: 3 / 2;
       transform-style: preserve-3d;
-      transition: transform 1.5s ease-in-out; /* flip duration */
+      transition: transform 1.5s ease-in-out; /* FLIP */
     }
 
     .envelope.flipped .inner{
@@ -87,12 +83,14 @@
       background: #ffffff;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 1400ms ease; /* slow fade */
+      transition: opacity 1600ms ease; /* SLOW FADE */
       z-index: 9999;
     }
-    .fade-overlay.show{ opacity: 1; }
 
-    /* Mobile */
+    .fade-overlay.show{
+      opacity: 1;
+    }
+
     @media (max-width: 768px) {
       .page{
         justify-content: center;
@@ -113,7 +111,6 @@
 
 <body>
   <div class="page">
-
     <div class="top-title">Shannen &amp; Samarth</div>
 
     <div class="envelope" id="env">
@@ -128,10 +125,8 @@
     </div>
 
     <div class="bottom-instruction">Click envelope to open...</div>
-
   </div>
 
-  <!-- Fade overlay -->
   <div class="fade-overlay" id="fadeOverlay"></div>
 
   <script>
@@ -139,28 +134,28 @@
     const overlay = document.getElementById("fadeOverlay");
     let clicked = false;
 
-    // Timing controls (ms)
-    const FLIP_DURATION = 1500;  // matches CSS transition duration
-    const BACK_HOLD     = 900;   // how long you "see the back"
-    const FADE_DURATION = 1400;  // matches overlay transition
+    /* TIMING CONTROLS (tweak these) */
+    const FLIP_DURATION = 1500; // must match CSS flip
+    const PAUSE_ON_BACK = 1200; // 👈 THIS is your pause
+    const FADE_DURATION = 1600; // must match CSS fade
 
     env.addEventListener("click", () => {
       if (clicked) return;
       clicked = true;
 
-      // 1) Flip
+      // 1. Flip envelope
       env.classList.add("flipped");
 
-      // 2) After flip finishes + hold on back, start fade
+      // 2. AFTER flip + pause → start fade
       setTimeout(() => {
         overlay.classList.add("show");
-      }, FLIP_DURATION + BACK_HOLD);
+      }, FLIP_DURATION + PAUSE_ON_BACK);
 
-      // 3) Navigate near the end of the fade so home loads behind it
+      // 3. Navigate DURING fade so home loads behind it
       setTimeout(() => {
         sessionStorage.setItem("fadeFromIndex", "true");
         window.location.assign("home.html");
-      }, FLIP_DURATION + BACK_HOLD + Math.floor(FADE_DURATION * 0.65));
+      }, FLIP_DURATION + PAUSE_ON_BACK + Math.floor(FADE_DURATION * 0.65));
     });
   </script>
 </body>
