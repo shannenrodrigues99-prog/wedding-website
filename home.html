@@ -11,26 +11,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
 
   <style>
-    *{
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *{ box-sizing: border-box; margin: 0; padding: 0; }
 
     body{
       font-family: "Playfair Display", serif;
       color: #ffffff;
     }
 
-    /* HERO */
     .hero{
       position: relative;
       min-height: 100vh;
       background:
-        linear-gradient(
-          rgba(0,0,0,0.25),
-          rgba(0,0,0,0.25)
-        ),
+        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
         url("hero.jpg") center / cover no-repeat;
       display: flex;
       align-items: center;
@@ -38,7 +30,6 @@
       text-align: center;
     }
 
-    /* NAV */
     .nav{
       position: absolute;
       top: 30px;
@@ -54,21 +45,17 @@
     }
 
     .nav a{
-      color: #ffffff;
+      color: #fff;
       text-decoration: none;
       opacity: 0.9;
     }
-
-    .nav a:hover{
-      opacity: 1;
-    }
+    .nav a:hover{ opacity: 1; }
 
     .nav-right{
       border: 1px solid rgba(255,255,255,0.7);
       padding: 8px 16px;
     }
 
-    /* CENTER CONTENT */
     .center{
       display: flex;
       flex-direction: column;
@@ -94,40 +81,32 @@
       letter-spacing: 3px;
     }
 
-    /* FADE OVERLAY (visible on load) */
+    /* Overlay is present so the transition can continue across pages */
     .fade-overlay{
       position: fixed;
       inset: 0;
       background: #ffffff;
-      opacity: 1;
+      opacity: 1;                /* visible by default */
       pointer-events: none;
-      transition: opacity 700ms ease;
+      transition: opacity 1400ms ease; /* match index fade */
       z-index: 9999;
     }
 
-    /* MOBILE */
     @media (max-width: 768px){
       .nav{
         top: 20px;
         width: calc(100% - 40px);
         font-size: 11px;
       }
-
-      .nav-right{
-        padding: 6px 12px;
-      }
+      .nav-right{ padding: 6px 12px; }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- Fade overlay -->
   <div class="fade-overlay" id="fadeOverlay"></div>
 
   <section class="hero">
-
-    <!-- NAV -->
     <div class="nav">
       <div class="nav-left">
         <a href="#">Save the Date</a>
@@ -136,34 +115,37 @@
         &nbsp;&nbsp;&nbsp;
         <a href="#">Details</a>
       </div>
-
       <div class="nav-right">
         <a href="#">RSVP</a>
       </div>
     </div>
 
-    <!-- CENTER -->
     <div class="center">
       <div class="monogram">S&nbsp;S</div>
       <div class="names">Shannen &amp; Samarth</div>
       <div class="date">27 · 02 · 2027</div>
     </div>
-
   </section>
 
   <script>
     window.addEventListener("load", () => {
       const overlay = document.getElementById("fadeOverlay");
 
-      // Fade overlay away whether coming from index or refreshing
-      requestAnimationFrame(() => {
-        overlay.style.opacity = "0";
-      });
+      // If coming from index, let the home load behind the overlay, then lift it.
+      // If user refreshes home, still lift it quickly so it doesn't stay white.
+      const fromIndex = sessionStorage.getItem("fadeFromIndex") === "true";
 
-      // Clean up flag if it exists
+      // Small delay feels smoother + prevents flashes on slower connections
+      const delay = fromIndex ? 120 : 0;
+
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          overlay.style.opacity = "0";
+        });
+      }, delay);
+
       sessionStorage.removeItem("fadeFromIndex");
     });
   </script>
-
 </body>
 </html>
