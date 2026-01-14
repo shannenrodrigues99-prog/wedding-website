@@ -11,27 +11,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    /* IMPORTANT: prevent white flash */
+    html, body{
       margin: 0;
-      background: #ffffff;
-      transition: opacity 1.6s ease; /* PAGE FADE */
+      background: transparent; /* <-- key change */
+    }
+
+    body{
       opacity: 1;
+      transition: opacity 1.6s ease; /* fade speed */
     }
 
     body.fade-out{
       opacity: 0;
     }
 
+    /* Page layout */
     .page{
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 70px 20px;
+      padding: 70px 20px 70px;
       box-sizing: border-box;
     }
 
+    /* Top names */
     .top-title{
       font-family: "Alex Brush", cursive;
       font-size: clamp(36px, 5vw, 56px);
@@ -39,6 +45,7 @@
       text-align: center;
     }
 
+    /* Bottom instruction */
     .bottom-instruction{
       font-family: "Alex Brush", cursive;
       font-size: 26px;
@@ -47,6 +54,7 @@
       opacity: 0.9;
     }
 
+    /* Envelope */
     .envelope{
       width: min(560px, 82vw);
       perspective: 1400px;
@@ -54,10 +62,11 @@
     }
 
     .inner{
+      position: relative;
       width: 100%;
       aspect-ratio: 3 / 2;
       transform-style: preserve-3d;
-      transition: transform 1.5s ease-in-out;
+      transition: transform 1.5s ease-in-out; /* flip duration */
     }
 
     .envelope.flipped .inner{
@@ -81,58 +90,70 @@
       transform: rotateY(180deg);
     }
 
-    @media (max-width: 768px){
+    /* Mobile */
+    @media (max-width: 768px) {
       .page{
         justify-content: center;
         gap: 40px;
+        padding: 50px 20px 50px;
       }
-      .bottom-instruction{ font-size: 22px; }
+
+      .envelope{
+        width: min(88vw, 480px);
+      }
+
+      .bottom-instruction{
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="page">
+
     <div class="top-title">Shannen &amp; Samarth</div>
 
     <div class="envelope" id="env">
       <div class="inner">
         <div class="face front">
-          <img src="envelope-front1.png" alt="">
+          <img src="envelope-front1.png" alt="Envelope front">
         </div>
         <div class="face back">
-          <img src="envelope-back1.png" alt="">
+          <img src="envelope-back1.png" alt="Envelope back">
         </div>
       </div>
     </div>
 
     <div class="bottom-instruction">Click envelope to open...</div>
+
   </div>
 
   <script>
     const env = document.getElementById("env");
     let clicked = false;
 
-    const FLIP_DURATION = 1500;
-    const PAUSE_ON_BACK = 1200;
-    const FADE_DURATION = 1600;
+    // Timing controls
+    const FLIP_DURATION = 1500; // matches CSS flip transition
+    const PAUSE_ON_BACK = 1200; // how long you see the back before fade
+    const FADE_DURATION = 1600; // matches body transition
 
     env.addEventListener("click", () => {
       if (clicked) return;
       clicked = true;
 
-      // Flip
+      // 1) Flip
       env.classList.add("flipped");
 
-      // After flip + pause → fade page out
+      // 2) Pause on back, then fade out page
       setTimeout(() => {
         document.body.classList.add("fade-out");
       }, FLIP_DURATION + PAUSE_ON_BACK);
 
-      // Navigate near end of fade
+      // 3) Navigate near end of fade
       setTimeout(() => {
         window.location.assign("home.html");
-      }, FLIP_DURATION + PAUSE_ON_BACK + Math.floor(FADE_DURATION * 0.8));
+      }, FLIP_DURATION + PAUSE_ON_BACK + Math.floor(FADE_DURATION * 0.85));
     });
   </script>
 </body>
