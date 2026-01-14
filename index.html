@@ -16,7 +16,7 @@
     body{
       font-family: "Playfair Display", serif;
       background: #000;
-      overflow: hidden; /* no scrolling anywhere */
+      overflow: hidden;
     }
 
     /* ===== SCENES ===== */
@@ -104,30 +104,24 @@
       opacity: 0;
       color: #fff;
       text-align: center;
-
-      /* Hero background */
       background:
         linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
         url("hero.jpg") center / cover no-repeat;
-
-      display: block; /* so we can position nav + hero easily */
+      display: block;
     }
 
     .scene-home.fade-in{ opacity: 1; }
 
-    /* Top tabs like inspo */
+    /* ===== TOP NAV ===== */
     .topnav{
       position: absolute;
       top: 28px;
       left: 50%;
       transform: translateX(-50%);
       width: calc(100% - 80px);
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      /* subtle: keep clean, no bar */
       text-transform: uppercase;
       letter-spacing: 1.6px;
       font-size: 12px;
@@ -159,7 +153,7 @@
       opacity: 1;
     }
 
-    /* Hero centered content */
+    /* ===== HERO ===== */
     .hero-wrap{
       min-height: 100vh;
       display: flex;
@@ -176,23 +170,24 @@
     }
 
     .monogram{
-  width: clamp(140px, 20vw, 260px); /* responsive sizing */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      width: clamp(140px, 20vw, 260px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.monogram img{
-  width: 100%;
-  height: auto;
-  display: block;
-}
+    .monogram img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
     .names{
       font-family: "Alex Brush", cursive;
       font-size: clamp(26px, 4vw, 38px);
       opacity: 0.95;
     }
+
     .date{
       font-size: 14px;
       letter-spacing: 3px;
@@ -209,13 +204,8 @@
         letter-spacing: 1.2px;
       }
 
-      .topnav .left{
-        gap: 18px;
-      }
-
-      .topnav .rsvp{
-        padding: 8px 12px;
-      }
+      .topnav .left{ gap: 18px; }
+      .topnav .rsvp{ padding: 8px 12px; }
     }
   </style>
 </head>
@@ -246,19 +236,19 @@
   <section class="scene scene-home" id="sceneHome">
     <nav class="topnav" aria-label="Primary navigation">
       <div class="left">
-        <a href="schedule.html" target="_blank" rel="noopener noreferrer">Schedule</a>
-        <a href="faqs.html" target="_blank" rel="noopener noreferrer">FAQs</a>
-        <a href="dresscode.html" target="_blank" rel="noopener noreferrer">Dress Code</a>
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="dresscode.html">Dress Code</a>
       </div>
-
-      <a class="rsvp" href="rsvp.html" target="_blank" rel="noopener noreferrer">RSVP</a>
+      <a class="rsvp" href="rsvp.html">RSVP</a>
     </nav>
 
     <div class="hero-wrap">
       <div class="home-center">
         <div class="monogram">
-  <img src="monogram1.png" alt="S & S monogram">
-</div>
+          <img src="monogram1.png" alt="S & S monogram">
+        </div>
 
         <div class="names">Shannen &amp; Samarth</div>
         <div class="date">27 · 02 · 2027</div>
@@ -266,6 +256,7 @@
     </div>
   </section>
 
+  <!-- SCRIPT -->
   <script>
     const env = document.getElementById("env");
     const envelopeScene = document.getElementById("sceneEnvelope");
@@ -273,12 +264,40 @@
 
     const FLIP_DURATION = 1500;
     const PAUSE_ON_BACK = 1200;
+    const OPEN_KEY = "inviteOpened";
 
     let clicked = false;
+
+    function showHomeInstant(){
+      envelopeScene.classList.add("fade-out");
+      homeScene.classList.add("fade-in");
+      env.classList.add("flipped");
+      clicked = true;
+    }
+
+    function showEnvelopeInstant(){
+      envelopeScene.classList.remove("fade-out");
+      homeScene.classList.remove("fade-in");
+      env.classList.remove("flipped");
+      clicked = false;
+    }
+
+    function init(){
+      if (sessionStorage.getItem(OPEN_KEY) === "1") {
+        showHomeInstant();
+      } else {
+        showEnvelopeInstant();
+      }
+    }
+
+    window.addEventListener("pageshow", init);
+    init();
 
     env.addEventListener("click", () => {
       if (clicked) return;
       clicked = true;
+
+      sessionStorage.setItem(OPEN_KEY, "1");
 
       env.classList.add("flipped");
 
