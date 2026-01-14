@@ -1,299 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shannen & Samarth</title>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
-
+  <title>Monogram</title>
   <style>
-    *{ margin:0; padding:0; box-sizing:border-box; }
-
-    body{
-      font-family: "Playfair Display", serif;
-      background: #000;
-      overflow: hidden; /* no scrolling anywhere */
-    }
-
-    /* ===== SCENES ===== */
-    .scene{
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 1.6s ease;
-    }
-
-    /* ===== ENVELOPE SCENE ===== */
-    .scene-envelope{
-      background: #ffffff;
-      z-index: 2;
-      opacity: 1;
-    }
-    .scene-envelope.fade-out{
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .page{
-      min-height: 100vh;
-      width: 100%;
-      padding: 70px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .top-title{
-      font-family: "Alex Brush", cursive;
-      font-size: clamp(36px, 5vw, 56px);
-      color: #111;
-      text-align: center;
-    }
-
-    .bottom-instruction{
-      font-family: "Alex Brush", cursive;
-      font-size: 26px;
-      color: #111;
-      text-align: center;
-      opacity: 0.9;
-    }
-
-    .envelope{
-      width: min(560px, 82vw);
-      perspective: 1400px;
-      cursor: pointer;
-    }
-
-    .inner{
-      width: 100%;
-      aspect-ratio: 3 / 2;
-      transform-style: preserve-3d;
-      transition: transform 1.5s ease-in-out;
-      position: relative;
-    }
-
-    .envelope.flipped .inner{
-      transform: rotateY(180deg);
-    }
-
-    .face{
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-    }
-
-    .face img{
-      width: 100%;
+    html, body {
       height: 100%;
-      object-fit: contain;
-      display: block;
+      margin: 0;
     }
 
-    .back{ transform: rotateY(180deg); }
-
-    /* ===== HOME SCENE ===== */
-    .scene-home{
-      z-index: 1;
-      opacity: 0;
-      color: #fff;
-      text-align: center;
-
-      /* Hero background */
-      background:
-        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
-        url("hero.jpg") center / cover no-repeat;
-
-      display: block; /* so we can position nav + hero easily */
-    }
-
-    .scene-home.fade-in{ opacity: 1; }
-
-    /* Top tabs like inspo */
-    .topnav{
-      position: absolute;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 80px);
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      /* subtle: keep clean, no bar */
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      font-size: 12px;
-    }
-
-    .topnav .left{
-      display: flex;
-      gap: 44px;
-      align-items: center;
-      opacity: 0.95;
-    }
-
-    .topnav a{
-      color: #fff;
-      text-decoration: none;
-      opacity: 0.85;
-    }
-
-    .topnav a:hover{ opacity: 1; }
-
-    .topnav .rsvp{
-      padding: 10px 18px;
-      border: 1px solid rgba(255,255,255,0.65);
-      opacity: 0.95;
-    }
-
-    .topnav .rsvp:hover{
-      border-color: rgba(255,255,255,0.9);
-      opacity: 1;
-    }
-
-    /* Hero centered content */
-    .hero-wrap{
-      min-height: 100vh;
+    /* Change this if you want a background */
+    body {
+      background: transparent; /* or #2E241E for espresso */
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 60px 20px;
     }
 
-    .home-center{
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-items: center;
+    /* Responsive SVG sizing */
+    .wrap {
+      width: min(92vw, 900px);
+      height: auto;
     }
 
-    .monogram{
-  width: clamp(140px, 20vw, 260px); /* responsive sizing */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.monogram img{
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-    .names{
-      font-family: "Alex Brush", cursive;
-      font-size: clamp(26px, 4vw, 38px);
-      opacity: 0.95;
-    }
-    .date{
-      font-size: 14px;
-      letter-spacing: 3px;
-      opacity: 0.9;
-    }
-
-    @media (max-width: 768px){
-      .bottom-instruction{ font-size: 22px; }
-
-      .topnav{
-        top: 18px;
-        width: calc(100% - 32px);
-        font-size: 10px;
-        letter-spacing: 1.2px;
-      }
-
-      .topnav .left{
-        gap: 18px;
-      }
-
-      .topnav .rsvp{
-        padding: 8px 12px;
-      }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
     }
   </style>
 </head>
-
 <body>
-
-  <!-- ENVELOPE SCENE -->
-  <section class="scene scene-envelope" id="sceneEnvelope">
-    <div class="page">
-      <div class="top-title">Shannen &amp; Samarth</div>
-
-      <div class="envelope" id="env" aria-label="Open envelope">
-        <div class="inner">
-          <div class="face front">
-            <img src="envelope-front1.png" alt="Envelope front">
-          </div>
-          <div class="face back">
-            <img src="envelope-back1.png" alt="Envelope back">
-          </div>
-        </div>
-      </div>
-
-      <div class="bottom-instruction">Click envelope to open...</div>
-    </div>
-  </section>
-
-  <!-- HOME SCENE -->
-  <section class="scene scene-home" id="sceneHome">
-    <nav class="topnav" aria-label="Primary navigation">
-      <div class="left">
-        <a href="schedule.html" target="_blank" rel="noopener noreferrer">Schedule</a>
-        <a href="faq.html" target="_blank" rel="noopener noreferrer">FAQ</a>
-        <a href="dresscode.html" target="_blank" rel="noopener noreferrer">Dress Code</a>
-      </div>
-
-      <a class="rsvp" href="rsvp.html" target="_blank" rel="noopener noreferrer">RSVP</a>
-    </nav>
-
-    <div class="hero-wrap">
-      <div class="home-center">
-      <div class="monogram">
-  <img class="mono-base" src="monogram.png" alt="S & S monogram">
-
-  <!-- line.svg pasted inline so it can animate -->
-  <svg class="mono-line" viewBox="0 0 1024 1024" aria-hidden="true">
-    <!-- paste the PATH from line.svg here -->
-  </svg>
-</div>
-
-
-        <div class="names">Shannen &amp; Samarth</div>
-        <div class="date">27 · 02 · 2027</div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    const env = document.getElementById("env");
-    const envelopeScene = document.getElementById("sceneEnvelope");
-    const homeScene = document.getElementById("sceneHome");
-
-    const FLIP_DURATION = 1500;
-    const PAUSE_ON_BACK = 1200;
-
-    let clicked = false;
-
-    env.addEventListener("click", () => {
-      if (clicked) return;
-      clicked = true;
-
-      env.classList.add("flipped");
-
-      setTimeout(() => {
-        envelopeScene.classList.add("fade-out");
-        homeScene.classList.add("fade-in");
-      }, FLIP_DURATION + PAUSE_ON_BACK);
-    });
-  </script>
-
+  <div class="wrap">
+    <!-- NOTE:
+         If this looks cropped, your viewBox needs to match the original SVG’s viewBox.
+         Try adjusting the viewBox numbers (min-x min-y width height). -->
+    <svg xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 1000 1000"
+         role="img"
+         aria-label="Monogram">
+      
+      <path d="M31.8893 900.103C31.8893 900.346 31.7929 901.159 31.4638 902.396M31.4638 902.396C31.2845 903.07 31.0362 903.869 30.6968 904.771M31.4638 902.396C31.4536 901.675 31.4945 900.947 31.6094 900.285M31.4638 902.396C31.4641 902.418 31.4644 902.441 31.4649 902.464C31.479 903.223 31.7191 903.623 32.0138 903.963C32.2196 904.201 32.4736 904.391 32.7623 904.547M30.6968 904.771C30.6605 904.868 30.6231 904.965 30.5846 905.064C30.1662 906.14 30.1004 907.365 30.1746 908.674C30.24 909.828 30.8777 910.91 31.7226 911.826M30.6968 904.771C30.5802 903.696 30.6004 902.12 31.6094 900.285M30.6968 904.771C30.7477 905.241 30.8247 905.615 30.8569 905.874C30.972 906.31 31.2023 906.68 31.5859 906.777C31.7669 906.823 31.9806 906.805 32.2132 906.754M31.7226 911.826C32.6904 912.875 33.9299 913.707 34.8923 914.18C36.1711 914.808 37.5879 914.203 38.4838 913.753C38.7758 913.606 39.0529 913.427 39.3176 913.22M31.7226 911.826C31.854 909.801 31.9923 908.111 32.2132 906.754M31.7226 911.826C31.6418 913.072 31.5635 914.445 31.4702 915.945C31.3361 918.1 31.7041 919.076 32.1805 919.769C32.649 920.449 33.6383 920.625 34.6235 920.662C35.8539 920.709 37.0188 919.594 38.1112 917.89M39.3176 913.22C40.1841 912.543 40.918 911.567 41.6069 910.434M39.3176 913.22C38.9232 914.917 38.5321 916.489 38.1112 917.89M39.3176 913.22C39.4084 912.83 39.4993 912.433 39.5908 912.029C40.2306 909.21 39.8292 907.289 38.9205 905.873C38.6464 905.445 38.2146 904.992 37.7358 904.568M41.6069 910.434C42.1467 909.546 42.6588 908.562 43.1855 907.55L43.2374 907.45C44.9458 904.168 44.7074 902.148 43.9728 899.901C43.5763 898.689 43.045 897.745 42.4448 896.995M41.6069 910.434C41.5295 910.661 41.4455 910.888 41.3542 911.115C40.3618 913.579 39.2779 916.07 38.1112 917.89M41.6069 910.434C42.626 907.447 42.4838 904.502 42.4606 902.695C42.4484 901.747 41.9985 901.062 41.4182 900.462M42.4448 896.995C40.8695 895.026 38.8199 894.392 37.4891 893.73M42.4448 896.995C42.2003 898.187 41.8692 899.381 41.4182 900.462M42.4448 896.995C42.6961 895.77 42.8559 894.547 42.9604 893.451C43.0197 892.829 41.9813 892.657 41.2308 892.593C39.9785 892.485 38.712 892.934 37.4891 893.73M37.4891 893.73C37.4782 893.725 37.4674 893.719 37.4566 893.714C35.826 892.895 33.6598 893.693 31.6153 894.709C29.4395 895.79 27.9672 898.968 26.728 904.504C24.3822 914.983 27.2898 919.507 28.9538 922.643C29.6031 923.867 31.047 924.286 32.2897 924.609C32.8988 924.767 33.5137 924.679 34.0882 924.433C35.9108 923.654 37.0975 921.265 38.1112 917.89M37.4891 893.73C36.0355 894.676 34.6437 896.112 33.4108 897.686M37.7358 904.568C37.1396 904.04 36.4705 903.557 35.9418 903.227C34.9882 902.633 34.4106 902.659 34.0013 902.897C33.4635 903.21 33.0658 903.76 32.7623 904.547M37.7358 904.568C36.679 905.071 35.6495 905.298 34.7288 905.142C34.0088 905.02 33.3207 904.849 32.7623 904.547M37.7358 904.568C38.0508 904.418 38.3683 904.243 38.686 904.047C39.9004 903.297 40.7795 901.993 41.4182 900.462M32.7623 904.547C32.5316 905.146 32.3553 905.881 32.2132 906.754M32.2132 906.754C32.4732 906.697 32.7569 906.597 33.045 906.496M41.4182 900.462C41.2399 900.278 41.0492 900.101 40.8552 899.928C39.0514 898.314 36.3563 897.945 34.0544 897.683C33.8246 897.657 33.6129 897.653 33.4108 897.686M33.4108 897.686C33.1709 897.725 32.9446 897.817 32.7178 897.988C32.1262 898.434 31.7831 899.284 31.6094 900.285M33.4108 897.686C32.9304 898.299 32.4742 898.933 32.0478 899.567C31.8842 899.81 31.7387 900.05 31.6094 900.285M40.2336 880.953C39.2571 880.959 36.4227 881.378 30.451 884.97C27.7721 886.582 23.7573 890.317 19.446 895.598C17.3093 898.215 15.9938 903.034 14.2253 908.551C13.3881 911.162 12.8494 913.448 12.418 919.271C11.9866 925.093 11.7238 934.396 11.6193 939.51C11.5017 945.264 12.3326 948.648 13.8417 953.695C16.8101 960.231 17.7362 961.657 18.9069 963.064C19.7292 964.008 21.0148 965.42 22.5102 966.99M12.1215 949.659C12.1215 950.282 12.2847 952.395 14.1375 956.509C14.95 958.314 16.4059 960.81 17.3538 962.425C18.3016 964.04 18.792 964.652 20.1118 965.867C21.4317 967.082 23.5661 968.882 25.2306 970.189C26.8952 971.497 28.0252 972.257 29.1901 972.927C30.3551 973.598 31.5209 974.155 32.9279 974.692C35.911 975.831 37.7612 976.265 37.9067 976.28C38.0832 976.298 37.3345 976.023 35.8074 973.977C34.454 972.163 32.1299 968.629 29.5966 963.495C27.0632 958.361 24.4433 951.697 22.6929 946.594C20.9424 941.491 20.141 938.152 19.6435 933.423C19.146 928.695 18.9767 922.678 18.5966 918.22C18.2165 913.762 17.6307 911.045 17.2834 909.51C16.8731 907.697 16.6641 907.27 16.4492 907.06C16.3493 906.963 16.1537 907.054 15.9541 908.171C15.7544 909.288 15.5273 911.47 15.5086 915.663C15.4899 919.855 15.6864 925.991 15.9057 929.774C16.125 933.556 16.3612 934.798 17.5192 938.86C18.6773 942.922 20.7501 949.767 22.1662 953.959C23.5824 958.152 24.2792 959.486 24.8332 960.447C25.3872 961.407 25.7774 961.953 26.0985 962.354C26.4195 962.755 26.6596 962.996 27.1305 963.318M37.7873 878.361C37.7751 878.372 37.6061 878.385 35.7054 879.334C33.9365 880.216 30.6585 882.152 28.2854 883.627C25.9123 885.102 24.575 886.118 23.4613 887.095C21.4157 888.89 20.1726 890.623 19.2116 892.356C18.6562 893.358 18.1438 894.703 17.5658 896.554C16.9879 898.404 16.4063 900.744 16.0591 902.29C15.712 903.836 15.617 904.517 15.5572 905.66C15.4974 906.803 15.4756 908.387 15.525 909.698C15.5744 911.01 15.6956 912.003 15.8567 913.052M34.997 884.524C33.5299 884.545 30.109 884.783 28.2206 885.725C26.8578 886.405 24.8136 887.759 23.2809 888.822C20.7489 890.577 19.7105 891.684 19.17 892.298C17.3 894.421 16.4721 896.063 15.6321 898.286C15.1213 899.637 14.6421 901.516 14.1479 904.577C13.6538 907.638 13.2113 911.842 12.9833 914.75C12.7553 917.659 12.7553 919.144 12.7553 920.674M24.2831 891.422C23.691 891.428 22.1888 891.504 20.7149 892.264C19.7148 892.78 18.0589 894.671 15.9154 896.914C14.6513 898.236 13.9671 899.895 12.8688 903.276C12.1251 905.565 11.4025 909.139 10.9483 912.511C10.4942 915.884 10.4326 918.977 10.5552 922.502C10.6778 926.027 10.9866 929.89 11.1931 932.104C11.4944 934.765 11.7251 935.431 12.0641 935.864C12.2701 936.092 12.5452 936.336 12.8286 936.588M35.3338 886.137C35.3799 885.874 35.8051 884.963 36.7435 883.929C38.1919 882.335 39.2362 881.875 40.7484 880.702C42.0909 879.66 43.4366 879.3 46.2706 878.852C46.3191 878.844 46.3678 878.837 46.4164 878.829M46.4164 878.829C49.931 878.31 53.701 879.06 56.1277 879.628C58.4587 880.173 60.2801 881.446 61.285 882.243C62.1027 882.891 63.9086 884.42 65.9841 886.314C67.005 887.246 68.1423 889.2 69.7628 892.072C70.8488 893.997 71.2755 896.409 71.8457 899.841C72.5396 904.017 72.0084 906.571 71.6476 906.657C71.4671 906.7 71.3003 906.361 70.4711 904.755C69.6419 903.149 68.1574 900.188 66.6055 897.537C65.0535 894.887 63.479 892.638 61.4009 890.282C59.3227 887.927 56.7887 885.533 55.3596 884.203C53.257 882.246 52.0658 881.492 50.3184 880.226C49.52 879.647 48.0316 879.189 46.4164 878.829ZM46.4164 878.829C45.7292 878.676 45.0189 878.541 44.3291 878.422C41.7462 877.978 39.7609 878.797 38.2593 879.749C37.072 880.501 35.8915 881.42 35.3774 882.728C35.2888 883.002 35.2429 883.266 35.218 883.848"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+    </svg>
+  </div>
 </body>
 </html>
