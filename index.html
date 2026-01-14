@@ -16,7 +16,7 @@
     body{
       font-family: "Playfair Display", serif;
       background: #000;
-      overflow: hidden;
+      overflow: hidden; /* no scrolling anywhere */
     }
 
     /* ===== SCENES ===== */
@@ -104,24 +104,29 @@
       opacity: 0;
       color: #fff;
       text-align: center;
+
+      /* Hero background */
       background:
         linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
         url("hero.jpg") center / cover no-repeat;
-      display: block;
+
+      display: block; /* so we can position nav + hero easily */
     }
 
     .scene-home.fade-in{ opacity: 1; }
 
-    /* ===== TOP NAV ===== */
+    /* Top tabs like inspo */
     .topnav{
       position: absolute;
       top: 28px;
       left: 50%;
       transform: translateX(-50%);
       width: calc(100% - 80px);
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       text-transform: uppercase;
       letter-spacing: 1.6px;
       font-size: 12px;
@@ -153,7 +158,7 @@
       opacity: 1;
     }
 
-    /* ===== HERO ===== */
+    /* Hero centered content */
     .hero-wrap{
       min-height: 100vh;
       display: flex;
@@ -170,7 +175,7 @@
     }
 
     .monogram{
-      width: clamp(140px, 20vw, 260px);
+      width: clamp(140px, 20vw, 260px); /* responsive sizing */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -194,6 +199,67 @@
       opacity: 0.9;
     }
 
+    /* ===== Password gate ===== */
+    .pw-wrap{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .pw-label{
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .pw-row{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .pw-input{
+      width: min(260px, 70vw);
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.22);
+      color: #fff;
+      outline: none;
+      font-family: "Playfair Display", serif;
+    }
+
+    .pw-btn{
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.65);
+      background: transparent;
+      color: #fff;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      font-size: 11px;
+      cursor: pointer;
+      opacity: 0.95;
+    }
+
+    .pw-btn:hover{
+      border-color: rgba(255,255,255,0.9);
+      opacity: 1;
+    }
+
+    .pw-error{
+      min-height: 16px;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .is-hidden{
+      display: none !important;
+    }
+
     @media (max-width: 768px){
       .bottom-instruction{ font-size: 22px; }
 
@@ -204,8 +270,13 @@
         letter-spacing: 1.2px;
       }
 
-      .topnav .left{ gap: 18px; }
-      .topnav .rsvp{ padding: 8px 12px; }
+      .topnav .left{
+        gap: 18px;
+      }
+
+      .topnav .rsvp{
+        padding: 8px 12px;
+      }
     }
   </style>
 </head>
@@ -241,6 +312,7 @@
         <a href="faqs.html">FAQs</a>
         <a href="dresscode.html">Dress Code</a>
       </div>
+
       <a class="rsvp" href="rsvp.html">RSVP</a>
     </nav>
 
@@ -251,12 +323,23 @@
         </div>
 
         <div class="names">Shannen &amp; Samarth</div>
-        <div class="date">27 · 02 · 2027</div>
+
+        <!-- Password gate -->
+        <div class="pw-wrap" id="pwWrap">
+          <div class="pw-label">Enter password to view date</div>
+          <div class="pw-row">
+            <input id="pwInput" class="pw-input" type="password" placeholder="Password" autocomplete="off" />
+            <button id="pwBtn" class="pw-btn" type="button">Unlock</button>
+          </div>
+          <div class="pw-error" id="pwError" aria-live="polite"></div>
+        </div>
+
+        <!-- Date (hidden until unlocked) -->
+        <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
       </div>
     </div>
   </section>
 
-  <!-- SCRIPT -->
   <script>
     const env = document.getElementById("env");
     const envelopeScene = document.getElementById("sceneEnvelope");
@@ -282,7 +365,7 @@
       clicked = false;
     }
 
-    function init(){
+    function initInvite(){
       if (sessionStorage.getItem(OPEN_KEY) === "1") {
         showHomeInstant();
       } else {
@@ -290,15 +373,14 @@
       }
     }
 
-    window.addEventListener("pageshow", init);
-    init();
+    window.addEventListener("pageshow", initInvite);
+    initInvite();
 
     env.addEventListener("click", () => {
       if (clicked) return;
       clicked = true;
 
       sessionStorage.setItem(OPEN_KEY, "1");
-
       env.classList.add("flipped");
 
       setTimeout(() => {
@@ -306,6 +388,58 @@
         homeScene.classList.add("fade-in");
       }, FLIP_DURATION + PAUSE_ON_BACK);
     });
+
+    // ===== DATE PASSWORD GATE =====
+    const DATE_UNLOCK_KEY = "dateUnlocked";
+
+    // CHANGE THIS PASSWORD 👇
+    const DATE_PASSWORD = "ss2027";
+
+    const pwWrap = document.getElementById("pwWrap");
+    const pwInput = document.getElementById("pwInput");
+    const pwBtn = document.getElementById("pwBtn");
+    const pwError = document.getElementById("pwError");
+    const weddingDate = document.getElementById("weddingDate");
+
+    function unlockDate(){
+      weddingDate.classList.remove("is-hidden");
+      if (pwWrap) pwWrap.style.display = "none";
+      sessionStorage.setItem(DATE_UNLOCK_KEY, "1");
+    }
+
+    function lockDate(){
+      weddingDate.classList.add("is-hidden");
+      if (pwWrap) pwWrap.style.display = "flex";
+      sessionStorage.removeItem(DATE_UNLOCK_KEY);
+    }
+
+    function initDateGate(){
+      if (sessionStorage.getItem(DATE_UNLOCK_KEY) === "1") {
+        unlockDate();
+      } else {
+        lockDate();
+      }
+    }
+
+    function tryPassword(){
+      const val = (pwInput?.value || "").trim();
+      if (val === DATE_PASSWORD) {
+        if (pwError) pwError.textContent = "";
+        unlockDate();
+      } else {
+        if (pwError) pwError.textContent = "Incorrect password. Please try again.";
+        if (pwInput) pwInput.value = "";
+        pwInput?.focus();
+      }
+    }
+
+    pwBtn?.addEventListener("click", tryPassword);
+    pwInput?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") tryPassword();
+    });
+
+    initDateGate();
+    window.addEventListener("pageshow", initDateGate);
   </script>
 
 </body>
