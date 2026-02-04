@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shannen & Samarth</title>
 
-  <!-- Fonts -->
+  <!-- Playfair for nav/date (keep) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -17,6 +17,22 @@
       font-family:"Playfair Display", serif;
       background:#000;
       overflow:hidden;
+    }
+
+    /* ========= SIGNATURA MONOLINE (LOCAL FONT) =========
+      Put your font files next to this HTML:
+        SignaturaMonoline.woff2 (recommended)
+        SignaturaMonoline.woff  (fallback)
+      If your files have different names, update the URLs below.
+    */
+    @font-face{
+      font-family:"Signatura Monoline";
+      src:
+        url("SignaturaMonoline.woff2") format("woff2"),
+        url("SignaturaMonoline.woff") format("woff");
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
     }
 
     /* ===== SCENES ===== */
@@ -34,7 +50,6 @@
       background:#fff;
       z-index:2;
     }
-
     .scene-envelope.fade-out{
       opacity:0;
       pointer-events:none;
@@ -50,13 +65,13 @@
     }
 
     .top-title{
-      font-family:"Alex Brush", cursive;
-      font-size:clamp(36px,5vw,56px);
+      font-family:"Signatura Monoline", cursive;
+      font-size:clamp(34px,5vw,56px);
       color:#111;
     }
 
     .bottom-instruction{
-      font-family:"Alex Brush", cursive;
+      font-family:"Signatura Monoline", cursive;
       font-size:26px;
       color:#111;
       opacity:0.9;
@@ -107,7 +122,6 @@
         linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
         url("hero.jpg") center/cover no-repeat;
     }
-
     .scene-home.fade-in{ opacity:1; }
 
     /* ===== NAV ===== */
@@ -134,7 +148,6 @@
       text-decoration:none;
       opacity:.85;
     }
-
     .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
@@ -154,43 +167,57 @@
       display:flex;
       align-items:center;
       justify-content:center;
+      padding:110px 20px 70px; /* gives “breathing room” like your inspo */
     }
 
-    /* UPDATED SPACING RHYTHM */
+    /* SIZING/SPACING LIKE INSPO */
     .home-center{
       display:flex;
       flex-direction:column;
       align-items:center;
+      text-align:center;
+      transform:translateY(-6px); /* tiny lift for a more cinematic balance */
     }
 
+    /* BIG monogram */
     .monogram{
-      width:clamp(140px,20vw,260px);
-      margin-bottom:18px; /* UPDATED */
+      width:clamp(220px,32vw,420px);
+      margin-bottom:14px;
+      opacity:.96;
     }
+    .monogram img{ width:100%; display:block; }
 
-    .monogram img{ width:100%; }
-
+    /* Script names across like inspo */
     .names{
-      font-family:"Alex Brush", cursive;
-      font-size:clamp(26px,4vw,38px);
-      margin-bottom:10px; /* UPDATED */
+      font-family:"Signatura Monoline", cursive;
+      font-size:clamp(34px,6vw,64px);
+      font-weight:400;
+      line-height:1;
+      letter-spacing:0.2px;
+      opacity:.92;
+      margin-bottom:26px; /* this is the “space before date/password” */
     }
 
+    /* Date sits where password sits (same vertical slot) */
     .date{
-      font-size:16px;
-      letter-spacing:3px;
-      opacity:.9;
-      margin-bottom:26px; /* UPDATED */
+      font-family:"Playfair Display", serif;
+      font-size:clamp(12px,1.6vw,15px);
+      letter-spacing:4px;
+      opacity:.85;
+      margin-top:0;
+      margin-bottom:0;
     }
 
     /* ===== PASSWORD (NO OUTER PILL) ===== */
     .pw-wrap{
-      margin-top:28px; /* UPDATED */
+      margin-top:0; /* keep it exactly where the date sits */
     }
 
     .pw-row{
       display:flex;
-      gap:12px; /* UPDATED */
+      gap:12px;
+      align-items:center;
+      justify-content:center;
     }
 
     /* GLASS ONLY ON INPUT + BUTTON */
@@ -210,7 +237,7 @@
 
     .pw-input{
       padding:0 18px;
-      width:min(300px,72vw);
+      width:min(320px,74vw);
       outline:none;
     }
 
@@ -240,7 +267,7 @@
     }
 
     .pw-error{
-      margin-top:10px; /* UPDATED */
+      margin-top:10px;
       min-height:14px;
       font-size:12px;
       opacity:.85;
@@ -257,11 +284,12 @@
       }
       .topnav .left{ gap:18px; }
 
-      /* OPTIONAL: slightly tighter mobile rhythm */
-      .monogram{ margin-bottom:14px; }
-      .names{ margin-bottom:8px; }
-      .pw-wrap{ margin-top:22px; }
-      .date{ margin-bottom:20px; }
+      .hero-wrap{ padding:96px 16px 56px; }
+      .monogram{ width:clamp(200px,56vw,320px); margin-bottom:10px; }
+      .names{ margin-bottom:20px; }
+      .pw-row{ flex-direction:column; gap:10px; }
+      .pw-input{ width:min(360px,82vw); }
+      .pw-btn{ width:min(200px,60vw); }
     }
   </style>
 </head>
