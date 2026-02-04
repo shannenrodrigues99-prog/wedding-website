@@ -255,16 +255,16 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ✅ UPDATED MOBILE VIEW (fix proportions + no bottom white + no truncation) */
+    /* ✅ MOBILE: true centered hero stack + optical lift */
     @media (max-width: 520px){
 
-      /* stable viewport height on iOS */
+      /* stable viewport */
       .scene,
       .scene-home{
         min-height:100svh;
       }
 
-      /* background + readability */
+      /* background overlay */
       .scene-home{
         background:
           linear-gradient(rgba(0,0,0,.38), rgba(0,0,0,.38)),
@@ -272,7 +272,7 @@
         background-color:#000;
       }
 
-      /* NAV: safe area + slightly smaller */
+      /* NAV */
       .topnav{
         top: calc(12px + env(safe-area-inset-top));
         width: calc(100% - 22px);
@@ -282,23 +282,26 @@
       .topnav .left{ gap:14px; }
       .topnav .rsvp{ padding:8px 12px; }
 
-      /* HERO: lift content + reduce awkward bottom space */
+      /* TRUE CENTERING */
       .hero-wrap{
         min-height:100svh;
-        align-items:flex-start;
+        display:flex;
+        align-items:center;
         justify-content:center;
         padding:
-          calc(12vh + env(safe-area-inset-top))
+          env(safe-area-inset-top)
           16px
-          calc(22px + env(safe-area-inset-bottom));
+          env(safe-area-inset-bottom);
       }
 
+      /* Optical lift so it feels centered */
       .home-center{
         width:100%;
         max-width:420px;
+        transform: translateY(-6vh);
+        text-align:center;
       }
 
-      /* Monogram + names */
       .monogram{
         width: clamp(120px, 28vw, 160px);
         margin-bottom:20px;
@@ -313,7 +316,7 @@
         margin-bottom:18px;
       }
 
-      /* Password: centered input on one line, ENTER below */
+      /* Password: input centered on one line, ENTER below */
       .pw-wrap{
         margin-top:12px;
         width:100%;
@@ -377,16 +380,15 @@
   </section>
 
   <!-- HOME -->
-  <section class="scene scene-home" id="sceneHome">
-    <nav class="topnav">
-      <div class="left">
-        <a href="index.html">Home</a>
-        <a data-protected href="schedule.html">Schedule</a>
-        <a data-protected href="faqs.html">FAQs</a>
-        <a data-protected href="dresscode.html">Dress Code</a>
-      </div>
-      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
-    </nav>
+  <section classivat">
+    <div class="left">
+      <a href="index.html">Home</a>
+      <a data-protected href="schedule.html">Schedule</a>
+      <a data-protected href="faqs.html">FAQs</a>
+      <a data-protected href="dresscode.html">Dress Code</a>
+    </div>
+    <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
+  </nav>
 
     <div class="hero-wrap">
       <div class="home-center">
