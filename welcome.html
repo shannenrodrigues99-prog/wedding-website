@@ -100,14 +100,14 @@
       margin-bottom:18px;
     }
 
-    /* IMAGE SIGNATURE */
-.signature-img{
-  display:block;
-  margin:0 auto;
-  max-width:400px;   /* ← bigger */
-  width:100%;
-  height:auto;
-}
+    /* IMAGE SIGNATURE (desktop stays the same) */
+    .signature-img{
+      display:block;
+      margin:0 auto;
+      max-width:400px;   /* desktop size */
+      width:100%;
+      height:auto;
+    }
 
     /* ===== RIGHT PHOTO LAYOUT ===== */
     .collage{
@@ -169,7 +169,14 @@
 
     @media (max-width:560px){
       .copy h1{ font-size:30px; }
-      .signature-img{ max-width:180px; }
+
+      /* BIGGER ON MOBILE ONLY (desktop unchanged) */
+      .signature-img{
+        max-width:300px;
+        /* optional contrast boost for readability */
+        filter: drop-shadow(0 1px 6px rgba(0,0,0,0.15));
+      }
+
       .collage{ height:560px; }
       .frame.main{
         left:2%;
