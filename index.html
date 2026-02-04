@@ -80,6 +80,7 @@
       aspect-ratio:3/2;
       transform-style:preserve-3d;
       transition:transform 1.5s ease-in-out;
+      position:relative;
     }
 
     .envelope.flipped .inner{
@@ -231,33 +232,35 @@
       .scene,
       .scene-home{ min-height:100svh; }
 
-      /* ✅ MOBILE NAV: tabs level/in-line with RSVP */
+      /* ✅ EVEN TOP SPACING + LEVEL WITH RSVP */
       .topnav{
-        top: calc(12px + env(safe-area-inset-top));
-        width: calc(100% - 22px);
+        top: calc(14px + env(safe-area-inset-top));
+        width: calc(100% - 28px);
+        padding: 0 4px;
+
         font-size:9.5px;
         letter-spacing:1.1px;
 
         display:flex;
-        align-items:center;          /* key */
+        align-items:center;
         justify-content:space-between;
         white-space:nowrap;
-        height:36px;                 /* key: consistent bar height */
+        height:36px;
       }
 
       .topnav .left{
         display:flex;
-        align-items:center;          /* key */
-        gap:16px;
+        align-items:center;
+        gap:18px;
         flex-wrap:nowrap;
       }
 
       .topnav a{
         display:inline-flex;
-        align-items:center;          /* key */
-        height:36px;                 /* match nav height */
-        line-height:1;               /* remove baseline drift */
-        padding:0;                   /* consistent on all pages */
+        align-items:center;
+        height:36px;
+        line-height:1;
+        padding:0;
         flex-shrink:0;
       }
 
@@ -265,13 +268,13 @@
         display:inline-flex;
         align-items:center;
         justify-content:center;
-        height:36px;                 /* match nav height */
-        padding:0 14px;              /* keeps it neat */
+        height:36px;
+        padding:0 16px;
       }
 
       .pw-input{
         width:min(78vw,340px);
-        font-size:16px;
+        font-size:16px;        /* prevent iOS zoom */
         text-align:center;
       }
 
@@ -290,11 +293,11 @@
 <!-- ENVELOPE -->
 <section class="scene scene-envelope" id="sceneEnvelope">
   <div class="page">
-    <div class="top-title">Shannen & Samarth</div>
-    <button class="envelope" id="env">
+    <div class="top-title">Shannen &amp; Samarth</div>
+    <button class="envelope" id="env" aria-label="Open invitation">
       <div class="inner">
-        <div class="face front"><img src="envelope-front1.png"></div>
-        <div class="face back"><img src="envelope-back1.png"></div>
+        <div class="face front"><img src="envelope-front1.png" alt=""></div>
+        <div class="face back"><img src="envelope-back1.png" alt=""></div>
       </div>
     </button>
     <div class="bottom-instruction">Click envelope to open…</div>
@@ -319,13 +322,13 @@
         <img src="monogram1.png" alt="Monogram">
       </div>
 
-      <img class="names" src="signature1.png" alt="Shannen & Samarth">
+      <img class="names" src="signature1.png" alt="Shannen &amp; Samarth">
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Enter password">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Enter password" autocomplete="off">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
@@ -335,60 +338,67 @@
 </section>
 
 <script>
-  const env=document.getElementById("env");
-  const envelopeScene=document.getElementById("sceneEnvelope");
-  const homeScene=document.getElementById("sceneHome");
-  const INVITE_OPEN_KEY="inviteOpened";
-  const UNLOCK_KEY="siteUnlocked";
-  const SITE_PASSWORD="ss2027";
+  const env = document.getElementById("env");
+  const envelopeScene = document.getElementById("sceneEnvelope");
+  const homeScene = document.getElementById("sceneHome");
 
-  if(sessionStorage.getItem(INVITE_OPEN_KEY)==="1"){
+  const INVITE_OPEN_KEY = "inviteOpened";
+  const UNLOCK_KEY = "siteUnlocked";
+  const SITE_PASSWORD = "ss2027";
+
+  if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
     envelopeScene.classList.add("fade-out");
     homeScene.classList.add("fade-in");
+    env.classList.add("flipped");
   }
 
-  env.addEventListener("click",()=>{
-    sessionStorage.setItem(INVITE_OPEN_KEY,"1");
+  env.addEventListener("click", () => {
+    sessionStorage.setItem(INVITE_OPEN_KEY, "1");
     env.classList.add("flipped");
-    setTimeout(()=>{
+    setTimeout(() => {
       envelopeScene.classList.add("fade-out");
       homeScene.classList.add("fade-in");
-    },2700);
+    }, 2700);
   });
 
-  const pwInput=document.getElementById("pwInput");
-  const pwBtn=document.getElementById("pwBtn");
-  const pwWrap=document.getElementById("pwWrap");
-  const weddingDate=document.getElementById("weddingDate");
-  const protectedLinks=document.querySelectorAll("[data-protected]");
-  const pwError=document.getElementById("pwError");
+  const pwInput = document.getElementById("pwInput");
+  const pwBtn = document.getElementById("pwBtn");
+  const pwWrap = document.getElementById("pwWrap");
+  const weddingDate = document.getElementById("weddingDate");
+  const protectedLinks = document.querySelectorAll("[data-protected]");
+  const pwError = document.getElementById("pwError");
 
   function lockUI(){
-    protectedLinks.forEach(l=>l.classList.add("locked-link"));
+    protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
     weddingDate.classList.add("is-hidden");
   }
 
   function unlockUI(){
-    protectedLinks.forEach(l=>l.classList.remove("locked-link"));
+    protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
     weddingDate.classList.remove("is-hidden");
   }
 
-  if(sessionStorage.getItem(UNLOCK_KEY)==="1") unlockUI(); else lockUI();
+  if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
+  else lockUI();
 
   function tryUnlock(){
-    if(pwInput.value===SITE_PASSWORD){
-      sessionStorage.setItem(UNLOCK_KEY,"1");
+    if (pwInput.value.trim() === SITE_PASSWORD) {
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      pwError.textContent = "";
       unlockUI();
-    }else{
-      pwError.textContent="Incorrect password.";
-      pwInput.value="";
+    } else {
+      pwError.textContent = "Incorrect password.";
+      pwInput.value = "";
+      pwInput.focus();
     }
   }
 
-  pwBtn.onclick=tryUnlock;
-  pwInput.onkeydown=e=>{ if(e.key==="Enter") tryUnlock(); };
+  pwBtn.addEventListener("click", tryUnlock);
+  pwInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") tryUnlock();
+  });
 </script>
 
 </body>
