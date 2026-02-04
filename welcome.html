@@ -15,12 +15,12 @@
 
     body{
       font-family:"Playfair Display", serif;
-      background:#E9E5DC;
+      background:#EEE9DF;         /* soft beige like your inspo */
       color:#6F6A60;
       min-height:100vh;
     }
 
-    /* ===== NAV ===== */
+    /* NAV (same concept) */
     .topnav{
       position:fixed;
       top:28px;
@@ -43,62 +43,77 @@
     .topnav a{
       color:#6F6A60;
       text-decoration:none;
-      opacity:.75;
+      opacity:0.8;
     }
 
     .topnav a:hover{ opacity:1; }
 
-    .topnav .active{
-      opacity:1;
-    }
-
     .topnav .rsvp{
       padding:10px 18px;
-      border:1px solid rgba(111,106,96,.45);
+      border:1px solid rgba(111,106,96,0.45);
     }
 
-    /* ===== CONTENT ===== */
+    /* CONTENT */
     .wrap{
       min-height:100vh;
-      padding:140px 24px 40px;
+      padding:140px 60px 60px;  /* mirrors your schedule page spacing */
       display:flex;
       justify-content:center;
       align-items:center;
     }
 
-    .card{
-      width:min(1120px,100%);
+    /* two-column layout like inspo (text left, photos right) */
+    .layout{
+      width:min(1200px, calc(100vw - 120px));
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:clamp(28px,4vw,56px);
+      grid-template-columns: 1.05fr 1fr;
+      gap:80px;
       align-items:center;
     }
 
-    /* LEFT — SIGN OFF ONLY */
+    /* LEFT */
     .copy{
-      display:flex;
-      align-items:flex-end;
+      max-width:520px;
+    }
+
+    .title{
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-weight:500;
+      font-size:28px;
+      line-height:1.15;
+      margin-bottom:18px;
+      color:#6F6A60;
+    }
+
+    .copy p{
+      font-size:13px;
+      line-height:1.8;
+      opacity:.9;
+      margin-bottom:14px;
     }
 
     .signature{
+      margin-top:26px;
       font-family:"Alex Brush", cursive;
-      font-size:clamp(36px,4vw,52px);
+      font-size:44px;
       opacity:.85;
+      color:#6F6A60;
       white-space:nowrap;
     }
 
-    /* RIGHT — IMAGES */
-    .images{
+    /* RIGHT — exact-style photo layout (two tall/rectangles) */
+    .photos{
       position:relative;
-      width:min(520px,100%);
-      aspect-ratio:1/1;
-      margin-left:auto;
+      width:100%;
+      height:520px;
     }
 
     .photo{
       position:absolute;
       overflow:hidden;
-      box-shadow:0 18px 40px rgba(0,0,0,.18);
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      background:#ddd;
     }
 
     .photo img{
@@ -108,45 +123,68 @@
       display:block;
     }
 
-    .photo.portrait{
-      width:58%;
-      height:78%;
-      left:18%;
-      top:2%;
+    /* Tall main photo centred-ish */
+    .photo.main{
+      left:6%;
+      top:0;
+      width:44%;
+      height:100%;
       z-index:2;
     }
 
-    .photo.angled{
-      width:56%;
-      height:44%;
+    /* Right photo sits a bit lower (like your inspo) */
+    .photo.side{
       right:0;
-      bottom:0;
-      transform:rotate(-9deg);
+      top:80px;
+      width:44%;
+      height:64%;
       z-index:1;
     }
 
-    @media (max-width:860px){
-      .card{
+    /* Responsive */
+    @media (max-width: 980px){
+      .wrap{ padding:140px 24px 60px; }
+      .layout{
+        width:min(900px, 100%);
         grid-template-columns:1fr;
+        gap:42px;
       }
-      .images{
-        margin:0 auto;
+      .photos{
+        height:560px;
       }
-      .copy{
-        justify-content:center;
-        margin-top:12px;
+      .photo.main{
+        left:50%;
+        transform:translateX(-50%);
+        width:58%;
       }
+      .photo.side{
+        right:50%;
+        transform:translateX(50%);
+        width:58%;
+        top:300px;
+        height:48%;
+      }
+    }
+
+    @media (max-width: 560px){
+      .photos{ height:520px; }
+      .photo.main{ width:72%; }
+      .photo.side{
+        width:72%;
+        top:290px;
+        height:44%;
+      }
+      .signature{ font-size:40px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
   <nav class="topnav">
     <div class="left">
-      <a href="home.html">Home</a>
-      <a href="welcome.html" class="active">Welcome</a>
+      <a href="index.html">Home</a>
+      <a href="welcome.html" style="opacity:1;">Welcome</a>
       <a href="schedule.html">Schedule</a>
       <a href="faqs.html">FAQs</a>
       <a href="dresscode.html">Dress Code</a>
@@ -154,19 +192,37 @@
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
-  <!-- PAGE -->
   <main class="wrap">
-    <section class="card">
+    <section class="layout">
 
+      <!-- LEFT (keep, edit, or delete text anytime) -->
       <div class="copy">
+        <div class="title">
+          Join us as we embark<br>
+          on a journey of love,<br>
+          joy, and eternal<br>
+          happiness.
+        </div>
+
+        <p>
+          As we begin our journey together, we'd love for you to join us in celebrating our big day.
+        </p>
+        <p>
+          Here, you'll find all the details you need: schedule, venue information, RSVP, and more.
+        </p>
+        <p>
+          With love,
+        </p>
+
         <div class="signature">Shannen &amp; Samarth</div>
       </div>
 
-      <div class="images">
-        <div class="photo portrait">
+      <!-- RIGHT -->
+      <div class="photos" aria-label="Welcome photos">
+        <div class="photo main">
           <img src="assets/welcome-portrait.jpg" alt="">
         </div>
-        <div class="photo angled">
+        <div class="photo side">
           <img src="assets/welcome-detail.jpg" alt="">
         </div>
       </div>
@@ -174,12 +230,10 @@
     </section>
   </main>
 
-  <!-- LOCK CHECK -->
   <script>
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
   </script>
-
 </body>
 </html>
