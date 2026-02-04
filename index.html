@@ -111,44 +111,36 @@
     .scene-home.fade-in{ opacity:1; }
 
     /* ===== NAV ===== */
-.topnav{
-  position:absolute;
-  top:28px;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:1100px;              /* controls spacing feel */
-  padding:0 24px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  text-transform:uppercase;
-  letter-spacing:2.5px;          /* wider like reference */
-  font-size:11px;
-}
+    .topnav{
+      position:absolute;
+      top:28px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 80px);
+      display:flex;
+      justify-content:space-between;
+      text-transform:uppercase;
+      letter-spacing:1.6px;
+      font-size:12px;
+    }
 
+    .topnav .left{
+      display:flex;
+      gap:44px;
+    }
 
-.topnav .left{
-  display:flex;
-  gap:56px;                      /* reference-style spacing */
-}
+    .topnav a{
+      color:#fff;
+      text-decoration:none;
+      opacity:.85;
+    }
 
-.topnav a{
-  color:rgba(255,255,255,0.75);
-  text-decoration:none;
-  transition:opacity .3s ease;
-}
+    .topnav a:hover{ opacity:1; }
 
-.topnav a:hover{
-  opacity:1;
-}
-
-.topnav .rsvp{
-  padding:10px 22px;
-  border:1px solid rgba(255,255,255,0.55);
-  letter-spacing:2.5px;
-}
-
+    .topnav .rsvp{
+      padding:10px 18px;
+      border:1px solid rgba(255,255,255,.65);
+    }
 
     .locked-link{
       pointer-events:none;
@@ -250,16 +242,14 @@
 
     .is-hidden{ display:none !important; }
 
-@media(max-width:768px){
-  .topnav{
-    max-width:100%;
-    font-size:10px;
-    letter-spacing:2px;
-    
-  .topnav .left{
-    gap:20px;
-  }
-}
+    @media(max-width:768px){
+      .topnav{
+        top:18px;
+        width:calc(100% - 32px);
+        font-size:10px;
+      }
+      .topnav .left{ gap:18px; }
+    }
   </style>
 </head>
 
