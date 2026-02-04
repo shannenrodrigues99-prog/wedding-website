@@ -414,3 +414,33 @@
 
 </body>
 </html>
+
+/* ✅ MOBILE FIX (better spacing + safe area + password stack) */
+@media (max-width: 520px){
+
+  /* Respect iPhone notch / safe area */
+  .topnav{
+    top: calc(14px + env(safe-area-inset-top));
+    width: calc(100% - 28px);
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  .topnav .left{
+    gap: 16px;
+  }
+
+  .topnav .rsvp{
+    padding: 9px 14px;
+  }
+
+  /* Give the center content a bit more room below nav */
+  .hero-wrap{
+    padding-top: calc(44px + env(safe-area-inset-top));
+  }
+
+  /* Monogram + names sizing + spacing */
+  .monogram{
+    width: clamp(92px, 24vw, 140px);
+    margin-bottom
+
