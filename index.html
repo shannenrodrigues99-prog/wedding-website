@@ -14,19 +14,19 @@
     *{ margin:0; padding:0; box-sizing:border-box; }
 
     body{
-      font-family:"Playfair Display", serif;
-      background:#000;
-      overflow:hidden;
+      font-family: "Playfair Display", serif;
+      background: #000;
+      overflow: hidden;
     }
 
     /* ===== SCENES ===== */
     .scene{
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:opacity 1.6s ease;
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1.6s ease;
     }
 
     /* ===== ENVELOPE ===== */
@@ -34,7 +34,6 @@
       background:#fff;
       z-index:2;
     }
-
     .scene-envelope.fade-out{
       opacity:0;
       pointer-events:none;
@@ -189,27 +188,20 @@
       gap:10px;
     }
 
-    /* 🔑 Readable translucent input */
     .pw-input{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.65);
-      background:rgba(255,255,255,0.82);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color:#000;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(0,0,0,0.25);
+      color:#fff;
       width:min(300px,75vw);
-    }
-
-    .pw-input::placeholder{
-      color:#444;
     }
 
     .pw-btn{
       padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.85);
-      background:rgba(0,0,0,0.55);
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.65);
+      background:transparent;
       color:#fff;
       cursor:pointer;
       letter-spacing:1.5px;
@@ -278,6 +270,7 @@
 
         <div class="names">Shannen &amp; Samarth</div>
 
+        <!-- DATE (hidden until password) -->
         <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
 
         <!-- PASSWORD -->
@@ -297,6 +290,100 @@
       </div>
     </div>
   </section>
+
+  <script>
+    /* ===== ENVELOPE FLOW (RETURN EXPERIENCE) ===== */
+    const env = document.getElementById("env");
+    const envelopeScene = document.getElementById("sceneEnvelope");
+    const homeScene = document.getElementById("sceneHome");
+
+    const INVITE_OPEN_KEY = "inviteOpened";
+    let opened = false;
+
+    function showHomeInstant(){
+      envelopeScene.classList.add("fade-out");
+      homeScene.classList.add("fade-in");
+      env.classList.add("flipped");
+      opened = true;
+    }
+
+    function showEnvelopeInstant(){
+      envelopeScene.classList.remove("fade-out");
+      homeScene.classList.remove("fade-in");
+      env.classList.remove("flipped");
+      opened = false;
+    }
+
+    function initInvite(){
+      if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
+        showHomeInstant();
+      } else {
+        showEnvelopeInstant();
+      }
+    }
+
+    window.addEventListener("pageshow", initInvite);
+    initInvite();
+
+    env.addEventListener("click", () => {
+      if (opened) return;
+      opened = true;
+      sessionStorage.setItem(INVITE_OPEN_KEY, "1");
+
+      env.classList.add("flipped");
+      setTimeout(() => {
+        envelopeScene.classList.add("fade-out");
+        homeScene.classList.add("fade-in");
+      }, 2700);
+    });
+
+    /* ===== PASSWORD GATE ===== */
+    const SITE_PASSWORD = "ss2027";
+    const UNLOCK_KEY = "siteUnlocked";
+
+    const pwWrap = document.getElementById("pwWrap");
+    const pwInput = document.getElementById("pwInput");
+    const pwBtn = document.getElementById("pwBtn");
+    const pwError = document.getElementById("pwError");
+    const weddingDate = document.getElementById("weddingDate");
+    const protectedLinks = document.querySelectorAll("[data-protected]");
+
+    function lockUI(){
+      protectedLinks.forEach(l => l.classList.add("locked-link"));
+      pwWrap.classList.remove("is-hidden");
+      weddingDate.classList.add("is-hidden");
+    }
+
+    function unlockUI(){
+      protectedLinks.forEach(l => l.classList.remove("locked-link"));
+      pwWrap.classList.add("is-hidden");
+      weddingDate.classList.remove("is-hidden");
+    }
+
+    function initGate(){
+      if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
+      else lockUI();
+    }
+
+    function tryUnlock(){
+      if (pwInput.value.trim() === SITE_PASSWORD) {
+        sessionStorage.setItem(UNLOCK_KEY, "1");
+        pwError.textContent = "";
+        unlockUI();
+      } else {
+        pwError.textContent = "Incorrect password.";
+        pwInput.value = "";
+        pwInput.focus();
+      }
+    }
+
+    pwBtn.addEventListener("click", tryUnlock);
+    pwInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") tryUnlock();
+    });
+
+    initGate();
+  </script>
 
 </body>
 </html>
