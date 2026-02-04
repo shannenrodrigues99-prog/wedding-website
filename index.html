@@ -189,46 +189,24 @@
     }
 
     .pw-input{
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.35);
-      backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
-      -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
-      color:#000;
-      width:min(320px,80vw);
-    }
-
-    /* ✅ WHITE PLACEHOLDER TEXT */
-    .pw-input::placeholder{
-      color: rgba(255,255,255,0.95);
-    }
-    .pw-input::-webkit-input-placeholder{
-      color: rgba(255,255,255,0.95);
-    }
-    .pw-input::-moz-placeholder{
-      color: rgba(255,255,255,0.95);
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(0,0,0,0.25);
+      color:#fff;
+      width:min(300px,75vw);
     }
 
     .pw-btn{
-      padding:10px 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.35);
-      background: rgba(255,255,255,0.14);
-      backdrop-filter: blur(24px) saturate(180%) brightness(1.08);
-      -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.08);
-      color:#ffffff;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.65);
+      background:transparent;
+      color:#fff;
       cursor:pointer;
       letter-spacing:1.5px;
       font-size:11px;
       text-transform:uppercase;
-    }
-
-    /* Remove blue focus rings */
-    .pw-input:focus,
-    .pw-btn:focus{
-      outline:none;
-      box-shadow:none;
     }
 
     .pw-error{
@@ -251,6 +229,161 @@
 </head>
 
 <body>
-  <!-- body content unchanged -->
+
+  <!-- ENVELOPE -->
+  <section class="scene scene-envelope" id="sceneEnvelope">
+    <div class="page">
+      <div class="top-title">Shannen &amp; Samarth</div>
+
+      <div class="envelope" id="env">
+        <div class="inner">
+          <div class="face front">
+            <img src="envelope-front1.png" alt="">
+          </div>
+          <div class="face back">
+            <img src="envelope-back1.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-instruction">Click envelope to open...</div>
+    </div>
+  </section>
+
+  <!-- HOME -->
+  <section class="scene scene-home" id="sceneHome">
+    <nav class="topnav">
+      <div class="left">
+        <a href="index.html">Home</a>
+        <a data-protected href="schedule.html">Schedule</a>
+        <a data-protected href="faqs.html">FAQs</a>
+        <a data-protected href="dresscode.html">Dress Code</a>
+      </div>
+      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
+    </nav>
+
+    <div class="hero-wrap">
+      <div class="home-center">
+        <div class="monogram">
+          <img src="monogram1.png" alt="">
+        </div>
+
+        <div class="names">Shannen &amp; Samarth</div>
+
+        <!-- DATE (hidden until password) -->
+        <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
+
+        <!-- PASSWORD -->
+        <div class="pw-wrap" id="pwWrap">
+          <div class="pw-row">
+            <input
+              id="pwInput"
+              class="pw-input"
+              type="password"
+              placeholder="Enter password to view details"
+              autocomplete="off"
+            />
+            <button id="pwBtn" class="pw-btn">Enter</button>
+          </div>
+          <div class="pw-error" id="pwError"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* ===== ENVELOPE FLOW (RETURN EXPERIENCE) ===== */
+    const env = document.getElementById("env");
+    const envelopeScene = document.getElementById("sceneEnvelope");
+    const homeScene = document.getElementById("sceneHome");
+
+    const INVITE_OPEN_KEY = "inviteOpened";
+    let opened = false;
+
+    function showHomeInstant(){
+      envelopeScene.classList.add("fade-out");
+      homeScene.classList.add("fade-in");
+      env.classList.add("flipped");
+      opened = true;
+    }
+
+    function showEnvelopeInstant(){
+      envelopeScene.classList.remove("fade-out");
+      homeScene.classList.remove("fade-in");
+      env.classList.remove("flipped");
+      opened = false;
+    }
+
+    function initInvite(){
+      if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
+        showHomeInstant();
+      } else {
+        showEnvelopeInstant();
+      }
+    }
+
+    window.addEventListener("pageshow", initInvite);
+    initInvite();
+
+    env.addEventListener("click", () => {
+      if (opened) return;
+      opened = true;
+      sessionStorage.setItem(INVITE_OPEN_KEY, "1");
+
+      env.classList.add("flipped");
+      setTimeout(() => {
+        envelopeScene.classList.add("fade-out");
+        homeScene.classList.add("fade-in");
+      }, 2700);
+    });
+
+    /* ===== PASSWORD GATE ===== */
+    const SITE_PASSWORD = "ss2027";
+    const UNLOCK_KEY = "siteUnlocked";
+
+    const pwWrap = document.getElementById("pwWrap");
+    const pwInput = document.getElementById("pwInput");
+    const pwBtn = document.getElementById("pwBtn");
+    const pwError = document.getElementById("pwError");
+    const weddingDate = document.getElementById("weddingDate");
+    const protectedLinks = document.querySelectorAll("[data-protected]");
+
+    function lockUI(){
+      protectedLinks.forEach(l => l.classList.add("locked-link"));
+      pwWrap.classList.remove("is-hidden");
+      weddingDate.classList.add("is-hidden");
+    }
+
+    function unlockUI(){
+      protectedLinks.forEach(l => l.classList.remove("locked-link"));
+      pwWrap.classList.add("is-hidden");
+      weddingDate.classList.remove("is-hidden");
+    }
+
+    function initGate(){
+      if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
+      else lockUI();
+    }
+
+    function tryUnlock(){
+      if (pwInput.value.trim() === SITE_PASSWORD) {
+        sessionStorage.setItem(UNLOCK_KEY, "1");
+        pwError.textContent = "";
+        unlockUI();
+      } else {
+        pwError.textContent = "Incorrect password.";
+        pwInput.value = "";
+        pwInput.focus();
+      }
+    }
+
+    pwBtn.addEventListener("click", tryUnlock);
+    pwInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") tryUnlock();
+    });
+
+    initGate();
+  </script>
+
 </body>
 </html>
