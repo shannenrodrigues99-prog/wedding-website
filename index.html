@@ -387,3 +387,30 @@
 
 </body>
 </html>
+/* iOS glass */
+.pw-input,
+.pw-btn{
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  background: rgba(255,255,255,0.10);        /* glass tint */
+  border: 1px solid rgba(255,255,255,0.28);  /* glass edge */
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.22);    /* top highlight */
+}
+
+/* input specifics */
+.pw-input{
+  color:#fff;
+  border-radius: 999px;
+  padding: 14px 16px;
+  outline: none;
+}
+
+.pw-input::placeholder{
+  color: rgba(255,255,255,0.65);
+}
+
+/* button specifics */
+.pw-btn{
+  b
