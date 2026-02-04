@@ -81,22 +81,32 @@
     }
 
     .copy h1{
-      font-family:"Playfair Display", serif;
       font-weight:400;
       font-size:34px;
       line-height:1.2;
-      margin-bottom:28px;
-      color:#000;
+      margin-bottom:26px;
       text-transform:lowercase;
       letter-spacing:0.02em;
     }
 
-    .sig{
-      margin-top:28px;
-      font-family:"Alex Brush", cursive;
-      font-size:54px;
-      color:#000;
-      white-space:nowrap;
+    .copy p{
+      font-size:14px;
+      line-height:1.8;
+      margin-bottom:22px;
+      text-transform:lowercase;
+    }
+
+    .copy .with-love{
+      margin-bottom:18px;
+    }
+
+    /* IMAGE SIGNATURE */
+    .signature-img{
+      display:block;
+      margin:0 auto;
+      max-width:220px;     /* adjust if needed */
+      width:100%;
+      height:auto;
     }
 
     /* ===== RIGHT PHOTO LAYOUT ===== */
@@ -159,7 +169,7 @@
 
     @media (max-width:560px){
       .copy h1{ font-size:30px; }
-      .sig{ font-size:46px; }
+      .signature-img{ max-width:180px; }
       .collage{ height:560px; }
       .frame.main{
         left:2%;
@@ -194,10 +204,24 @@
   <main class="wrap">
     <section class="layout">
 
-      <!-- LEFT (ONLY THESE TWO LINES NOW) -->
+      <!-- LEFT -->
       <div class="copy">
         <h1>welcome</h1>
-        <div class="sig">Shannen &amp; Samarth</div>
+
+        <p>
+          as we count down to our wedding, this website will share the important details,
+          plans, and moments leading up to the celebration. we can’t wait to share this
+          special chapter and create unforgettable memories together.
+        </p>
+
+        <p class="with-love">with love</p>
+
+        <!-- IMAGE SIGNATURE -->
+        <img
+          src="assets/signature.png"
+          alt="Shannen & Samarth signature"
+          class="signature-img"
+        />
       </div>
 
       <!-- RIGHT -->
