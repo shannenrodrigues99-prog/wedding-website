@@ -170,10 +170,11 @@
 
     .monogram img{ width:100%; }
 
+    /* SIGNATURE IMAGE (replaces text ONLY on home page) */
     .names{
-      font-family:"Alex Brush", cursive;
-      font-size:clamp(26px,4vw,38px);
+      width:clamp(180px,38vw,320px);
       margin-bottom:10px;
+      display:block;
     }
 
     .date{
@@ -227,7 +228,6 @@
 
     /* ===== MOBILE ===== */
     @media (max-width:520px){
-
       .scene,
       .scene-home{ min-height:100svh; }
 
@@ -236,37 +236,9 @@
         width: calc(100% - 22px);
         font-size:9.5px;
         letter-spacing:1.1px;
-        align-items:center;
-        white-space:nowrap;
       }
 
-      .topnav .left{
-        display:flex;
-        align-items:center;
-        gap:16px;
-        flex-wrap:nowrap;
-      }
-
-      .topnav a{
-        line-height:1;
-        padding:6px 0;
-        flex-shrink:0;
-      }
-
-      .topnav .rsvp{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        height:32px;
-        padding:0 14px;
-      }
-
-      .hero-wrap{
-        padding:
-          calc(18px + env(safe-area-inset-top))
-          16px
-          calc(18px + env(safe-area-inset-bottom));
-      }
+      .topnav .left{ gap:16px; }
 
       .pw-input{
         width:min(78vw,340px);
@@ -315,8 +287,12 @@
 
   <div class="hero-wrap">
     <div class="home-center">
-      <div class="monogram"><img src="monogram1.png"></div>
-      <div class="names">Shannen & Samarth</div>
+      <div class="monogram">
+        <img src="monogram1.png">
+      </div>
+
+      <!-- SIGNATURE PNG UNDER MONOGRAM -->
+      <img class="names" src="signature1.png" alt="Shannen & Samarth">
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
 
