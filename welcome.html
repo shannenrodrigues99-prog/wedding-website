@@ -33,7 +33,7 @@
       text-transform:uppercase;
       letter-spacing:1.6px;
       font-size:12px;
-      z-index:20;
+      z-index:9999;
     }
 
     .topnav .left{
@@ -72,32 +72,42 @@
       align-items:center;
     }
 
+    /* ================= COPY ================= */
     .copy{
       max-width:520px;
       text-align:center;
+    }
+
+    /* FORCE sentence case */
+    .copy h1,
+    .copy p{
+      text-transform:none !important;
     }
 
     .copy h1{
       font-weight:400;
       font-size:34px;
       margin-bottom:26px;
-      text-transform:lowercase;
     }
 
     .copy p{
       font-size:14px;
       line-height:1.8;
       margin-bottom:22px;
-      text-transform:lowercase;
+    }
+
+    .with-love{
+      margin-bottom:18px;
     }
 
     .signature-img{
       max-width:400px;
       width:100%;
-      margin:0 auto;
       display:block;
+      margin:0 auto;
     }
 
+    /* ================= COLLAGE ================= */
     .collage{
       position:relative;
       width:100%;
@@ -129,7 +139,7 @@
       transform:translateY(68px);
     }
 
-    /* ================= MOBILE FIX ================= */
+    /* ================= MOBILE ================= */
     @media (max-width:560px){
 
       :root{
@@ -138,7 +148,6 @@
         --headerH:calc(var(--safeTop) + var(--navH));
       }
 
-      /* ✅ TRUE FIXED HEADER */
       .topnav{
         top:0;
         left:0;
@@ -149,7 +158,6 @@
         background:#EEE9DF;
         font-size:9.5px;
         letter-spacing:1.1px;
-        z-index:9999;
       }
 
       .topnav .left{
@@ -169,20 +177,19 @@
         align-items:center;
       }
 
-      /* ✅ Push content BELOW fixed header */
       .wrap{
         padding-top:calc(var(--headerH) + 28px);
         padding-left:16px;
         padding-right:16px;
       }
 
-      .signature-img{
-        max-width:300px;
-      }
-
       .layout{
         grid-template-columns:1fr;
         gap:44px;
+      }
+
+      .signature-img{
+        max-width:300px;
       }
 
       .collage{
@@ -211,14 +218,16 @@
 
       <div class="copy">
         <h1>Welcome</h1>
-<p class="sentence">
-  As we count down to our wedding, this website will share the important details,
-  plans, and moments leading up to the celebration. We can’t wait to share this
-  special chapter and create unforgettable memories together.
-</p>
 
-        <p>With love,</p>
-        <img src="signature.png" class="signature-img" alt="signature">
+        <p>
+          As we count down to our wedding, this website will share the important details,
+          plans, and moments leading up to the celebration. We can’t wait to share this
+          special chapter and create unforgettable memories together.
+        </p>
+
+        <p class="with-love">With love</p>
+
+        <img src="signature.png" alt="Signature" class="signature-img">
       </div>
 
       <div class="collage">
