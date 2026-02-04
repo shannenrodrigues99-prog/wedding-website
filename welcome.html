@@ -100,7 +100,6 @@
       margin-bottom:18px;
     }
 
-    /* IMAGE SIGNATURE (desktop stays the same) */
     .signature-img{
       display:block;
       margin:0 auto;
@@ -168,8 +167,10 @@
     }
 
     @media (max-width:560px){
-      /* ✅ MOBILE NAV (match index: level + even spacing) */
+
+      /* ===== LOCK NAV IN PLACE ===== */
       .topnav{
+        position:fixed;
         top: calc(14px + env(safe-area-inset-top));
         width: calc(100% - 28px);
         padding: 0 4px;
@@ -182,6 +183,7 @@
         justify-content:space-between;
         white-space:nowrap;
         height:36px;
+        z-index:9999;
       }
 
       .topnav .left{
@@ -208,9 +210,13 @@
         padding:0 16px;
       }
 
+      /* ⬇️ reserve space so content never slides under nav */
+      .wrap{
+        padding-top:120px;
+      }
+
       .copy h1{ font-size:30px; }
 
-      /* BIGGER ON MOBILE ONLY (desktop unchanged) */
       .signature-img{
         max-width:300px;
         filter: drop-shadow(0 1px 6px rgba(0,0,0,0.15));
@@ -249,24 +255,21 @@
   <main class="wrap">
     <section class="layout">
 
-      <!-- LEFT -->
       <div class="copy">
         <h1>welcome</h1>
 
         <p>
-          as we count down to our wedding, this website will share the important details,
-          plans, and moments leading up to the celebration. we can’t wait to share this
+          As we count down to our wedding, this website will share the important details,
+          plans, and moments leading up to the celebration. We can’t wait to share this
           special chapter and create unforgettable memories together.
         </p>
 
-        <p class="with-love">with love</p>
+        <p class="with-love">With love,</p>
 
-        <!-- SIGNATURE IMAGE -->
         <img src="signature.png" alt="signature" class="signature-img">
       </div>
 
-      <!-- RIGHT -->
-      <div class="collage" aria-label="Welcome photo collage">
+      <div class="collage">
         <div class="frame main">
           <img src="assets/welcome-portrait.jpg" alt="">
         </div>
