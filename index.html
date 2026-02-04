@@ -1,3 +1,5 @@
+where it says enter password to view details make the section white with black text so no one misses it
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,19 +16,19 @@
     *{ margin:0; padding:0; box-sizing:border-box; }
 
     body{
-      font-family:"Playfair Display", serif;
-      background:#000;
-      overflow:hidden;
+      font-family: "Playfair Display", serif;
+      background: #000;
+      overflow: hidden;
     }
 
     /* ===== SCENES ===== */
     .scene{
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:opacity 1.6s ease;
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1.6s ease;
     }
 
     /* ===== ENVELOPE ===== */
@@ -34,7 +36,6 @@
       background:#fff;
       z-index:2;
     }
-
     .scene-envelope.fade-out{
       opacity:0;
       pointer-events:none;
@@ -189,20 +190,13 @@
       gap:10px;
     }
 
-    /* ⭐ ONLY THIS IS CHANGED ⭐ */
     .pw-input{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,0.35);
-      background:rgba(255,255,255,0.75); /* translucent, not stark white */
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      color:#000;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.35);
+      background:rgba(0,0,0,0.25);
+      color:#fff;
       width:min(300px,75vw);
-    }
-
-    .pw-input::placeholder{
-      color:#333;
     }
 
     .pw-btn{
@@ -278,6 +272,7 @@
 
         <div class="names">Shannen &amp; Samarth</div>
 
+        <!-- DATE (hidden until password) -->
         <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
 
         <!-- PASSWORD -->
@@ -299,7 +294,7 @@
   </section>
 
   <script>
-    /* ===== ENVELOPE FLOW ===== */
+    /* ===== ENVELOPE FLOW (RETURN EXPERIENCE) ===== */
     const env = document.getElementById("env");
     const envelopeScene = document.getElementById("sceneEnvelope");
     const homeScene = document.getElementById("sceneHome");
@@ -322,8 +317,11 @@
     }
 
     function initInvite(){
-      if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") showHomeInstant();
-      else showEnvelopeInstant();
+      if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
+        showHomeInstant();
+      } else {
+        showEnvelopeInstant();
+      }
     }
 
     window.addEventListener("pageshow", initInvite);
@@ -333,6 +331,7 @@
       if (opened) return;
       opened = true;
       sessionStorage.setItem(INVITE_OPEN_KEY, "1");
+
       env.classList.add("flipped");
       setTimeout(() => {
         envelopeScene.classList.add("fade-out");
