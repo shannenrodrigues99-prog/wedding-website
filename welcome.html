@@ -104,7 +104,7 @@
     .signature-img{
       display:block;
       margin:0 auto;
-      max-width:400px;   /* desktop size */
+      max-width:400px;
       width:100%;
       height:auto;
     }
@@ -168,12 +168,51 @@
     }
 
     @media (max-width:560px){
+      /* ✅ MOBILE NAV (match index: level + even spacing) */
+      .topnav{
+        top: calc(14px + env(safe-area-inset-top));
+        width: calc(100% - 28px);
+        padding: 0 4px;
+
+        font-size:9.5px;
+        letter-spacing:1.1px;
+
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        white-space:nowrap;
+        height:36px;
+      }
+
+      .topnav .left{
+        display:flex;
+        align-items:center;
+        gap:18px;
+        flex-wrap:nowrap;
+      }
+
+      .topnav a{
+        display:inline-flex;
+        align-items:center;
+        height:36px;
+        line-height:1;
+        padding:0;
+        flex-shrink:0;
+      }
+
+      .topnav .rsvp{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        height:36px;
+        padding:0 16px;
+      }
+
       .copy h1{ font-size:30px; }
 
       /* BIGGER ON MOBILE ONLY (desktop unchanged) */
       .signature-img{
         max-width:300px;
-        /* optional contrast boost for readability */
         filter: drop-shadow(0 1px 6px rgba(0,0,0,0.15));
       }
 
