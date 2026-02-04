@@ -13,9 +13,13 @@
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
 
+    html, body{
+      height:100%;
+      background:#000; /* prevents any white showing */
+    }
+
     body{
       font-family:"Playfair Display", serif;
-      background:#000;
       overflow:hidden;
     }
 
@@ -27,6 +31,7 @@
       align-items:center;
       justify-content:center;
       transition:opacity 1.6s ease;
+      min-height:100vh;
     }
 
     /* ===== ENVELOPE ===== */
@@ -106,6 +111,7 @@
       background:
         linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
         url("hero.jpg") center/cover no-repeat;
+      background-color:#000;
     }
 
     .scene-home.fade-in{ opacity:1; }
@@ -122,6 +128,7 @@
       text-transform:uppercase;
       letter-spacing:1.6px;
       font-size:12px;
+      z-index:5;
     }
 
     .topnav .left{
@@ -156,17 +163,15 @@
       justify-content:center;
     }
 
-    /* UPDATED SPACING RHYTHM */
     .home-center{
       display:flex;
       flex-direction:column;
       align-items:center;
     }
 
-    /* ✅ MORE SPACE BETWEEN MONOGRAM + NAMES */
     .monogram{
       width:clamp(110px,16vw,200px);
-      margin-bottom:34px; /* increased from 18px */
+      margin-bottom:34px;
     }
 
     .monogram img{ width:100%; }
@@ -250,19 +255,91 @@
 
     .is-hidden{ display:none !important; }
 
-    @media(max-width:768px){
-      .topnav{
-        top:18px;
-        width:calc(100% - 32px);
-        font-size:10px;
-      }
-      .topnav .left{ gap:18px; }
+    /* ✅ MOBILE PROPORTIONS FIX */
+    @media (max-width: 520px){
 
-      /* OPTIONAL: slightly tighter mobile rhythm */
-      .monogram{ margin-bottom:24px; } /* was 14px, adjusted to keep spacing but not huge */
-      .names{ margin-bottom:8px; }
-      .pw-wrap{ margin-top:22px; }
-      .date{ margin-bottom:20px; }
+      /* stable viewport on mobile; prevents bottom blank gap */
+      .scene,
+      .scene-home{
+        min-height:100svh;
+      }
+
+      /* readable overlay + never flashes white */
+      .scene-home{
+        background:
+          linear-gradient(rgba(0,0,0,.40), rgba(0,0,0,.40)),
+          url("hero.jpg") center/cover no-repeat;
+        background-color:#000;
+      }
+
+      /* Safe-area nav */
+      .topnav{
+        top: calc(14px + env(safe-area-inset-top));
+        width: calc(100% - 28px);
+        font-size:10px;
+        letter-spacing:1.2px;
+      }
+
+      .topnav .left{ gap:16px; }
+      .topnav .rsvp{ padding:9px 14px; }
+
+      /* Lift content, avoid bottom whitespace */
+      .hero-wrap{
+        min-height:100svh;
+        align-items:flex-start;
+        justify-content:center;
+        padding:
+          calc(16vh + env(safe-area-inset-top))
+          16px
+          calc(18px + env(safe-area-inset-bottom));
+      }
+
+      .home-center{
+        width:100%;
+        max-width:360px;
+      }
+
+      /* Monogram + names proportions */
+      .monogram{
+        width: clamp(110px, 26vw, 150px);
+        margin-bottom:24px;
+      }
+
+      .names{
+        font-size: clamp(26px, 6.2vw, 32px);
+        margin-bottom:16px;
+      }
+
+      /* Password: input centered, ENTER below */
+      .pw-wrap{
+        margin-top:10px;
+        width:100%;
+      }
+
+      .pw-row{
+        flex-direction:column;
+        align-items:center;
+        gap:12px;
+      }
+
+      .pw-input{
+        width:100%;
+        max-width:360px;
+        height:44px;
+        padding:0 16px;
+        font-size:14px;
+      }
+
+      .pw-btn{
+        width:140px;
+        height:42px;
+        font-size:11px;
+        letter-spacing:2px;
+      }
+
+      .pw-error{
+        margin-top:8px;
+      }
     }
   </style>
 </head>
@@ -414,33 +491,3 @@
 
 </body>
 </html>
-
-/* ✅ MOBILE FIX (better spacing + safe area + password stack) */
-@media (max-width: 520px){
-
-  /* Respect iPhone notch / safe area */
-  .topnav{
-    top: calc(14px + env(safe-area-inset-top));
-    width: calc(100% - 28px);
-    font-size: 10px;
-    letter-spacing: 1.2px;
-  }
-
-  .topnav .left{
-    gap: 16px;
-  }
-
-  .topnav .rsvp{
-    padding: 9px 14px;
-  }
-
-  /* Give the center content a bit more room below nav */
-  .hero-wrap{
-    padding-top: calc(44px + env(safe-area-inset-top));
-  }
-
-  /* Monogram + names sizing + spacing */
-  .monogram{
-    width: clamp(92px, 24vw, 140px);
-    margin-bottom
-
