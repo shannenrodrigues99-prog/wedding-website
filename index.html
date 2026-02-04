@@ -206,18 +206,28 @@
   color: rgba(0,0,0,0.55);
 }
 
-    .pw-btn{
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.65);
-      background:transparent;
-      color:#fff;
-      cursor:pointer;
-      letter-spacing:1.5px;
-      font-size:11px;
-      text-transform:uppercase;
-    }
+.pw-btn{
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.45);
 
+  /* iOS glass */
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+
+  color:#ffffff;
+  cursor:pointer;
+  letter-spacing:1.5px;
+  font-size:11px;
+  text-transform:uppercase;
+}
+/* Remove default focus outlines (iOS / Chrome / Safari) */
+.pw-input:focus,
+.pw-btn:focus{
+  outline:none;
+  box-shadow:none;
+}
     .pw-error{
       min-height:14px;
       font-size:12px;
