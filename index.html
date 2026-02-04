@@ -209,18 +209,19 @@
 .pw-btn{
   padding:10px 16px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,0.45);
+  border:1px solid rgba(255,255,255,0.35);
 
-  /* iOS glass */
-  background: rgba(255,255,255,0.25);
-  backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
-  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.05);
+  /* Ultra iOS-style glass */
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(24px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.08);
 
-  color:#ffffff;
+  color:#ffffff; /* force white text */
   cursor:pointer;
   letter-spacing:1.5px;
   font-size:11px;
   text-transform:uppercase;
+
 }
 /* Remove default focus outlines (iOS / Chrome / Safari) */
 .pw-input:focus,
