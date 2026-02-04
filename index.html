@@ -163,34 +163,35 @@
       align-items:center;
     }
 
-  .monogram{
-  width:clamp(110px,16vw,200px);
-  margin-bottom:18px;
-}
+    /* ✅ MORE SPACE BETWEEN MONOGRAM + NAMES */
+    .monogram{
+      width:clamp(110px,16vw,200px);
+      margin-bottom:34px; /* increased from 18px */
+    }
 
     .monogram img{ width:100%; }
 
     .names{
       font-family:"Alex Brush", cursive;
       font-size:clamp(26px,4vw,38px);
-      margin-bottom:10px; /* UPDATED */
+      margin-bottom:10px;
     }
 
     .date{
       font-size:16px;
       letter-spacing:3px;
       opacity:.9;
-      margin-bottom:26px; /* UPDATED */
+      margin-bottom:26px;
     }
 
     /* ===== PASSWORD (NO OUTER PILL) ===== */
     .pw-wrap{
-      margin-top:28px; /* UPDATED */
+      margin-top:28px;
     }
 
     .pw-row{
       display:flex;
-      gap:12px; /* UPDATED */
+      gap:12px;
     }
 
     /* GLASS ONLY ON INPUT + BUTTON */
@@ -240,7 +241,7 @@
     }
 
     .pw-error{
-      margin-top:10px; /* UPDATED */
+      margin-top:10px;
       min-height:14px;
       font-size:12px;
       opacity:.85;
@@ -258,7 +259,7 @@
       .topnav .left{ gap:18px; }
 
       /* OPTIONAL: slightly tighter mobile rhythm */
-      .monogram{ margin-bottom:14px; }
+      .monogram{ margin-bottom:24px; } /* was 14px, adjusted to keep spacing but not huge */
       .names{ margin-bottom:8px; }
       .pw-wrap{ margin-top:22px; }
       .date{ margin-bottom:20px; }
