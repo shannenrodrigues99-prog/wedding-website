@@ -65,7 +65,6 @@
       font-size:26px;
       color:#111;
       opacity:0.9;
-      transition:opacity .6s ease;
     }
 
     .envelope{
@@ -163,20 +162,20 @@
       align-items:center;
     }
 
-.monogram{
-  width: clamp(80px, 12vw, 140px);
-  margin-bottom: 24px;
-}
+    /* SMALLER MONOGRAM */
+    .monogram{
+      width: clamp(80px, 12vw, 140px);
+      margin-bottom: 24px;
+    }
 
     .monogram img{ width:100%; }
 
-    /* SIGNATURE IMAGE (replaces text ONLY on home page) */
-.names{
-  width: clamp(300px, 60vw, 520px);
-  margin-bottom: 14px;
-  display: block;
-}
-
+    /* MUCH LARGER SIGNATURE */
+    .names{
+      width: clamp(300px, 60vw, 520px);
+      margin-bottom: 14px;
+      display: block;
+    }
 
     .date{
       font-size:16px;
@@ -269,7 +268,7 @@
         <div class="face back"><img src="envelope-back1.png"></div>
       </div>
     </button>
-    <div class="bottom-instruction" id="envHint">Click envelope to open…</div>
+    <div class="bottom-instruction">Click envelope to open…</div>
   </div>
 </section>
 
@@ -289,10 +288,9 @@
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
-        <img src="monogram1.png">
+        <img src="monogram1.png" alt="Monogram">
       </div>
 
-      <!-- SIGNATURE PNG UNDER MONOGRAM -->
       <img class="names" src="signature1.png" alt="Shannen & Samarth">
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
