@@ -20,23 +20,27 @@
       min-height:100vh;
     }
 
-    /* NAV */
+    /* ===== NAV (STICKY / FIXED) ===== */
     .topnav{
-      position:fixed;
+      position:fixed;          /* stays on screen */
       top:28px;
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
+      align-items:center;
       text-transform:uppercase;
       letter-spacing:1.6px;
       font-size:12px;
+      z-index:9999;            /* always above content */
+      pointer-events:auto;
     }
 
     .topnav .left{
       display:flex;
       gap:44px;
+      align-items:center;
     }
 
     .topnav a{
@@ -45,16 +49,23 @@
       opacity:0.8;
     }
 
-    .topnav a:hover{ opacity:1; }
+    .topnav a:hover,
+    .topnav a.active{
+      opacity:1;
+    }
 
     .topnav .rsvp{
       padding:10px 18px;
       border:1px solid rgba(0,0,0,0.4);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    /* CONTENT */
+    /* ===== CONTENT ===== */
     .wrap{
       min-height:100vh;
+      /* Push content down so it never scrolls under the fixed nav */
       padding:140px 20px 40px;
       display:flex;
       justify-content:center;
@@ -70,75 +81,76 @@
       font-size:clamp(44px,6vw,64px);
       margin-bottom:10px;
     }
+
+    /* ===== MOBILE NAV (MATCH ALL PAGES) ===== */
+    @media (max-width:520px){
+
+      .topnav{
+        top: calc(14px + env(safe-area-inset-top));
+        width: calc(100% - 28px);
+        padding: 0 4px;
+
+        font-size:9.5px;
+        letter-spacing:1.1px;
+
+        white-space:nowrap;
+        height:36px;
+      }
+
+      .topnav .left{
+        gap:18px;
+        flex-wrap:nowrap;
+      }
+
+      .topnav a{
+        display:inline-flex;
+        align-items:center;
+        height:36px;
+        line-height:1;
+        padding:0;
+        flex-shrink:0;
+      }
+
+      .topnav .rsvp{
+        height:36px;
+        padding:0 16px;
+      }
+
+      /* Content offset for smaller fixed nav */
+      .wrap{
+        padding:110px 16px 40px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- NAV -->
   <nav class="topnav">
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
-      <a href="schedule.html" style="opacity:1;">Schedule</a>
+      <a href="schedule.html" class="active">Schedule</a>
       <a href="faqs.html">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
+  <!-- PAGE -->
   <main class="wrap">
     <div class="content">
       <h1>Schedule</h1>
+      <!-- add schedule content here -->
     </div>
   </main>
 
+  <!-- LOCK -->
   <script>
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
   </script>
+
 </body>
 </html>
-@media (max-width: 520px){
-
-  /* NAV — consistent height + perfect vertical alignment */
-  .topnav{
-    top: calc(12px + env(safe-area-inset-top));
-    width: calc(100% - 22px);
-    font-size: 9.5px;
-    letter-spacing: 1.1px;
-
-    display:flex;
-    align-items:center;          /* key */
-    justify-content:space-between;
-    white-space:nowrap;
-
-    height: 36px;                /* key: same bar height on all pages */
-  }
-
-  .topnav .left{
-    display:flex;
-    align-items:center;          /* key */
-    gap:16px;
-    flex-wrap:nowrap;
-  }
-
-  /* Make all nav links share the same "hit height" + baseline */
-  .topnav a{
-    display:inline-flex;
-    align-items:center;          /* key */
-    height: 36px;                /* match .topnav height */
-    line-height: 1;              /* avoid baseline drift */
-    padding: 0;                  /* keep clean + consistent */
-    flex-shrink:0;
-  }
-
-  /* RSVP — same height + centered text */
-  .topnav .rsvp{
-    display:inline-flex;
-    align-items:center;          /* key */
-    justify-content:center;
-    height: 36px;                /* match */
-    padding: 0 14px;
-  }
-
-}
