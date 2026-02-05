@@ -56,23 +56,13 @@
     .topnav .left{
       display:flex;
       gap:56px;
-      align-items:center;
     }
 
     .topnav a{
       color:#fff;
       text-decoration:none;
       opacity:.78;
-      transition:opacity .2s ease;
       position:relative;
-    }
-
-    .topnav a:hover{ opacity:1; }
-
-    .topnav .rsvp{
-      padding:0;
-      border:none;
-      opacity:.9;
     }
 
     .topnav .rsvp::after{
@@ -90,9 +80,8 @@
       opacity:.30 !important;
     }
 
-    /* ===== CENTER CONTENT ===== */
+    /* ===== CENTER ===== */
     .hero-wrap{
-      position:relative;
       height:100vh;
       display:flex;
       align-items:center;
@@ -103,23 +92,20 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:center;
       text-align:center;
       gap:22px;
     }
 
     .monogram{
       width: clamp(150px, 17vw, 250px);
-      opacity:.96;
     }
 
     .monogram img{
       width:100%;
-      height:auto;
       display:block;
     }
 
-    /* ===== NEW: AFTER-UNLOCK TEXT (ONLY AFFECTS names.png VIEW) ===== */
+    /* ===== AFTER UNLOCK TEXT ===== */
     .after-title{
       font-family:"Montserrat", sans-serif;
       font-size:11px;
@@ -130,7 +116,6 @@
     }
 
     .after-date{
-      font-family:"Playfair Display", serif;
       font-size:16px;
       letter-spacing:0.18em;
       opacity:.85;
@@ -138,115 +123,59 @@
     }
 
     /* ===== PASSWORD ===== */
-    .pw-wrap{
-      margin-top:6px;
-    }
-
     .pw-row{
       display:flex;
-      align-items:center;
-      justify-content:center;
       gap:16px;
     }
 
     .pw-input{
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
       backdrop-filter: blur(18px) saturate(160%);
       background: rgba(255,255,255,0.16);
       border:1px solid rgba(255,255,255,0.26);
-      box-shadow:
-        0 14px 34px rgba(0,0,0,0.32),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-      color:#fff;
       border-radius:999px;
       height:48px;
       width: clamp(320px, 34vw, 460px);
       padding:0 20px;
-      outline:none;
-      caret-color:#fff;
       font-size:14px;
+      color:#fff;
       line-height:1;
     }
 
-    .pw-input::placeholder{
-      color:#fff;
-      opacity:.9;
-    }
-
     .pw-btn{
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
       backdrop-filter: blur(18px) saturate(160%);
       background: rgba(255,255,255,0.14);
       border:1px solid rgba(255,255,255,0.28);
-      box-shadow:
-        0 12px 30px rgba(0,0,0,0.28),
-        inset 0 1px 0 rgba(255,255,255,0.20);
-      color:#fff;
       border-radius:999px;
       height:48px;
       padding:0 22px;
       font-family:"Montserrat", sans-serif;
-      font-weight:500;
       font-size:11px;
       letter-spacing:0.34em;
       text-transform:uppercase;
+      color:#fff;
       cursor:pointer;
-      opacity:.95;
     }
 
     .pw-error{
       margin-top:10px;
-      min-height:14px;
       font-size:12px;
-      text-align:center;
-      opacity:.9;
     }
 
     .is-hidden{ display:none !important; }
 
     /* ===== MOBILE ===== */
     @media (max-width:768px){
-      .home-center{ gap:14px; padding:0 16px; }
-
-      .monogram{ width: min(150px, 40vw); }
-
+      .home-center{ gap:14px; }
+      .monogram{ width:min(150px,40vw); }
       .pw-row{ flex-direction:column; gap:10px; }
-
-      .pw-input,
-      .pw-btn{ height:44px; }
-
-      .pw-input{
-        width: min(82vw, 360px);
-        text-align:center;
-        font-family:"Montserrat", sans-serif;
-        font-weight:500;
-        font-size:16px;
-        letter-spacing:0.12em;
-        padding:0 18px;
-        line-height:1;
-      }
-
-      .pw-btn{
-        width: min(82vw, 360px);
-        font-size:11px;
-        letter-spacing:0.34em;
-      }
-
+      .pw-input,.pw-btn{ height:44px; width:82vw; }
+      .pw-input{ font-size:16px; }
       .after-date{ font-size:14px; }
     }
 
     /* ===== DESKTOP ===== */
     @media (min-width:769px){
-      .monogram{ margin-bottom:28px; }
-
-      .pw-input{
-        width: clamp(260px, 26vw, 360px);
-      }
-
-      /* Make names.png bigger ONLY after unlock */
-      #logoAfter{
-        width: clamp(360px, 38vw, 520px);
-      }
+      #logoAfter{ width: clamp(360px, 38vw, 520px); }
     }
   </style>
 </head>
@@ -255,24 +184,37 @@
 
 <section class="scene-home">
 
+  <!-- NAV (hidden until unlock) -->
+  <div id="siteNav" class="is-hidden">
+    <nav class="topnav">
+      <div class="left">
+        <a href="index.html">Home</a>
+        <a data-protected href="welcome.html">Welcome</a>
+        <a data-protected href="schedule.html">Schedule</a>
+        <a data-protected href="faqs.html">FAQs</a>
+      </div>
+      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
+    </nav>
+  </div>
+
   <div class="hero-wrap">
     <div class="home-center">
 
       <div class="monogram">
-        <!-- BEFORE PASSWORD -->
-        <img id="logoBefore" src="monogram1.png" alt="Monogram">
+        <!-- BEFORE -->
+        <img id="logoBefore" src="monogram1.png">
 
-        <!-- AFTER PASSWORD -->
+        <!-- AFTER -->
         <div id="logoAfterWrap" class="is-hidden">
           <div class="after-title">THE WEDDING OF</div>
-          <img id="logoAfter" src="names.png" alt="Names">
+          <img id="logoAfter" src="names.png">
           <div class="after-date">27.02.27</div>
         </div>
       </div>
 
-      <div class="pw-wrap" id="pwWrap">
+      <div id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here" autocomplete="off">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
@@ -284,41 +226,35 @@
 </section>
 
 <script>
-  const UNLOCK_KEY = "siteUnlocked";
   const SITE_PASSWORD = "ss2027";
+  const UNLOCK_KEY = "siteUnlocked";
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
-  const pwWrap = document.getElementById("pwWrap");
   const pwError = document.getElementById("pwError");
+  const pwWrap = document.getElementById("pwWrap");
+  const siteNav = document.getElementById("siteNav");
 
   const logoBefore = document.getElementById("logoBefore");
   const logoAfterWrap = document.getElementById("logoAfterWrap");
 
   function unlockUI(){
     pwWrap.classList.add("is-hidden");
+    siteNav.classList.remove("is-hidden");
     logoBefore.classList.add("is-hidden");
     logoAfterWrap.classList.remove("is-hidden");
   }
 
-  function tryUnlock(){
-    if (pwInput.value.trim() === SITE_PASSWORD) {
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      pwError.textContent = "";
+  if(sessionStorage.getItem(UNLOCK_KEY)==="1") unlockUI();
+
+  pwBtn.onclick = () => {
+    if(pwInput.value === SITE_PASSWORD){
+      sessionStorage.setItem(UNLOCK_KEY,"1");
       unlockUI();
     } else {
       pwError.textContent = "Incorrect password.";
-      pwInput.value = "";
-      pwInput.focus();
     }
-  }
-
-  if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
-
-  pwBtn.addEventListener("click", tryUnlock);
-  pwInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") tryUnlock();
-  });
+  };
 </script>
 
 </body>
