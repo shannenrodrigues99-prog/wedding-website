@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -20,105 +20,87 @@
       min-height:100vh;
     }
 
-    /* ===== NAV (STICKY / FIXED) ===== */
+    /* ===== NAV (MATCHES WELCOME / ENTER) ===== */
     .topnav{
-      position:fixed;          /* stays on screen */
+      position:fixed;
       top:28px;
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
-      align-items:center;
+      font-family:"Montserrat", sans-serif;
+      font-weight:400;
       text-transform:uppercase;
-      letter-spacing:1.6px;
-      font-size:12px;
-      z-index:9999;            /* always above content */
-      pointer-events:auto;
+      letter-spacing:0.36em;
+      font-size:11px;
+      z-index:10;
     }
 
     .topnav .left{
       display:flex;
       gap:44px;
-      align-items:center;
     }
 
     .topnav a{
       color:#111;
       text-decoration:none;
-      opacity:0.8;
+      opacity:0.75;
     }
 
-    .topnav a:hover,
-    .topnav a.active{
-      opacity:1;
-    }
+    .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
-      border:1px solid rgba(0,0,0,0.4);
-      display:inline-flex;
+      border:1px solid rgba(0,0,0,0.35);
+    }
+
+    /* ===== PAGE LAYOUT ===== */
+    .wrap{
+      min-height:100vh;
+      padding:140px 80px 40px;
+      display:flex;
       align-items:center;
       justify-content:center;
     }
 
-    /* ===== CONTENT ===== */
-    .wrap{
-      min-height:100vh;
-      /* Push content down so it never scrolls under the fixed nav */
-      padding:140px 20px 40px;
-      display:flex;
-      justify-content:center;
-    }
-
     .content{
-      width:min(800px,90vw);
-      text-align:center;
+      width:100%;
+      max-width:1100px;
     }
 
-    h1{
-      font-family:"Alex Brush", cursive;
-      font-size:clamp(44px,6vw,64px);
-      margin-bottom:10px;
-    }
-
-    /* ===== MOBILE NAV (MATCH ALL PAGES) ===== */
-    @media (max-width:520px){
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px){
 
       .topnav{
-        top: calc(14px + env(safe-area-inset-top));
-        width: calc(100% - 28px);
-        padding: 0 4px;
-
-        font-size:9.5px;
-        letter-spacing:1.1px;
-
-        white-space:nowrap;
-        height:36px;
+        top:20px;
+        width:100%;
+        padding:0 20px;
+        flex-direction:column;
+        align-items:center;
+        gap:16px;
+        font-size:10px;
+        letter-spacing:0.28em;
       }
 
       .topnav .left{
-        gap:18px;
-        flex-wrap:nowrap;
-      }
-
-      .topnav a{
-        display:inline-flex;
-        align-items:center;
-        height:36px;
-        line-height:1;
-        padding:0;
-        flex-shrink:0;
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
       }
 
       .topnav .rsvp{
-        height:36px;
-        padding:0 16px;
+        margin-top:6px;
+        padding:8px 16px;
       }
 
-      /* Content offset for smaller fixed nav */
       .wrap{
-        padding:110px 16px 40px;
+        padding:160px 20px 40px;
+        align-items:flex-start;
+      }
+
+      .content{
+        width:min(800px,90vw);
       }
     }
   </style>
@@ -126,26 +108,22 @@
 
 <body>
 
-  <!-- NAV -->
   <nav class="topnav">
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
-      <a href="schedule.html" class="active">Schedule</a>
+      <a href="schedule.html" style="opacity:1;">Schedule</a>
       <a href="faqs.html">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
-  <!-- PAGE -->
   <main class="wrap">
     <div class="content">
-      <h1>Schedule</h1>
-      <!-- add schedule content here -->
+      <!-- Schedule content will go here -->
     </div>
   </main>
 
-  <!-- LOCK -->
   <script>
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
