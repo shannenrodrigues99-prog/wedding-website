@@ -119,14 +119,34 @@
       display:block;
     }
 
-    /* 🔒 ONLY CHANGE: make names.png bigger */
-   #logoAfter{
-  width:200%;
-  position:relative;
-  left:50%;
-  transform:translateX(-50%);
-}
+    /* ===== NAMES (EDITORIAL MOMENT) ===== */
+    #logoAfter{
+      width:200%;
+      position:relative;
+      left:50%;
+      transform:translateX(-50%);
+    }
 
+    #logoAfter::before{
+      content:"THE WEDDING OF";
+      display:block;
+      margin-bottom:14px;
+      font-family:"Montserrat", sans-serif;
+      font-size:11px;
+      letter-spacing:0.34em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+
+    #logoAfter::after{
+      content:"27.02.27";
+      display:block;
+      margin-top:14px;
+      font-family:"Playfair Display", serif;
+      font-size:14px;
+      letter-spacing:0.12em;
+      opacity:.9;
+    }
 
     /* ===== PASSWORD ===== */
     .pw-wrap{
