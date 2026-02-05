@@ -59,7 +59,7 @@
     /* ===== PAGE ===== */
     .wrap{
       min-height:100vh;
-      padding:130px 80px 60px;
+      padding:130px 80px 60px; /* slightly higher on desktop */
       display:flex;
       align-items:flex-start;
       justify-content:center;
@@ -76,10 +76,10 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      transform: translateY(-34px);
+      transform: translateY(-34px); /* ✅ higher on desktop */
     }
 
-    /* Date – Playfair Display (restored) */
+    /* Date – Playfair */
     .fancy-date{
       font-family:"Playfair Display", serif;
       font-size:clamp(24px, 2.8vw, 34px);
@@ -155,12 +155,15 @@
         padding:8px 16px;
       }
 
+      /* ✅ Match welcome.html spacing on phone */
       .wrap{
-        padding:150px 20px 60px;
+        padding:160px 20px 40px;
+        align-items:flex-start;
       }
 
+      /* ✅ Keep it in the same vertical position as Welcome on phone */
       .countdown-center{
-        transform: translateY(-14px);
+        transform:none;
       }
 
       .fancy-date{
@@ -243,6 +246,7 @@
     const weddingISO = "2027-02-27T00:00:00+08:00";
     const weddingDate = new Date(weddingISO);
 
+    // Saturday, 27 February 2027 (comma after weekday)
     const formatted = new Intl.DateTimeFormat("en-AU", {
       weekday:"long",
       day:"2-digit",
