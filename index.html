@@ -147,7 +147,7 @@
       outline:none;
       caret-color:#fff;
       font-size:14px;
-      line-height:1; /* centres placeholder vertically */
+      line-height:1;
     }
 
     .pw-input::placeholder{
@@ -220,10 +220,9 @@
         gap:10px;
       }
 
-      /* 🔹 Mobile pill refinement */
       .pw-input,
       .pw-btn{
-        height:44px; /* slimmer pills on mobile */
+        height:44px;
       }
 
       .pw-input{
@@ -231,11 +230,11 @@
         text-align:center;
         font-family:"Montserrat", sans-serif;
         font-weight:500;
-        font-size:16px; /* prevents iOS zoom */
+        font-size:16px;
         letter-spacing:0.12em;
         text-transform:none;
         padding:0 18px;
-        line-height:1; /* keeps text vertically centred */
+        line-height:1;
       }
 
       .pw-btn{
@@ -278,12 +277,13 @@
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
-        <img src="monogram1.png" alt="Monogram">
+        <!-- ONLY CHANGE: image source -->
+        <img src="names.png" alt="Names">
       </div>
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here to view details" autocomplete="off">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here" autocomplete="off">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
