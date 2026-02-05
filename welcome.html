@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -20,7 +20,7 @@
       min-height:100vh;
     }
 
-    /* ===== NAV (MATCHES ENTER) ===== */
+    /* ===== NAV (EDITORIAL UI) ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -30,10 +30,10 @@
       display:flex;
       justify-content:space-between;
       font-family:"Montserrat", sans-serif;
-      font-weight:500;
+      font-weight:400;
       text-transform:uppercase;
-      letter-spacing:0.32em;
-      font-size:12px;
+      letter-spacing:0.36em;
+      font-size:11px;
       z-index:10;
     }
 
@@ -45,14 +45,14 @@
     .topnav a{
       color:#111;
       text-decoration:none;
-      opacity:0.8;
+      opacity:0.75;
     }
 
     .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
-      border:1px solid rgba(0,0,0,0.4);
+      border:1px solid rgba(0,0,0,0.35);
     }
 
     /* ===== PAGE LAYOUT ===== */
@@ -70,7 +70,7 @@
       display:grid;
       grid-template-columns: 1fr 1fr;
       align-items:center;
-      gap:80px;
+      gap:90px;
     }
 
     /* ===== LEFT TEXT ===== */
@@ -80,23 +80,30 @@
 
     .welcome-title{
       font-size:42px;
-      margin-bottom:36px;
+      margin-bottom:40px;
     }
 
+    /* ✨ EDITORIAL BODY COPY ✨ */
     .welcome-text{
       font-family:"Montserrat", sans-serif;
-      font-weight:400;
-      font-size:18px;
-      line-height:1.8;
+      font-weight:300;
+      font-size:17px;
+      line-height:1.9;
+      letter-spacing:0.02em;
+      color:#2a2a2a;
       max-width:520px;
-      margin-bottom:48px;
+      margin-bottom:56px;
     }
 
+    /* ✨ EDITORIAL SIGN-OFF ✨ */
     .welcome-signoff{
       font-family:"Montserrat", sans-serif;
       font-weight:400;
-      font-size:18px;
-      margin-bottom:24px;
+      font-size:14px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:#444;
+      margin-bottom:22px;
     }
 
     .signature{
@@ -112,7 +119,7 @@
       min-height:420px;
     }
 
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE (UNCHANGED FEEL) ===== */
     @media (max-width: 768px){
 
       .topnav{
@@ -122,7 +129,8 @@
         flex-direction:column;
         align-items:center;
         gap:16px;
-        font-size:11px;
+        font-size:10px;
+        letter-spacing:0.28em;
       }
 
       .topnav .left{
@@ -197,7 +205,7 @@
           special chapter and create unforgettable memories together.
         </p>
 
-        <p class="welcome-signoff">With love</p>
+        <p class="welcome-signoff">With love,</p>
 
         <img
           src="signature.png"
