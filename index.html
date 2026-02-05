@@ -220,14 +220,17 @@
         gap:10px;
       }
 
-      .pw-input{
-        width:min(82vw,360px);
-        height:44px;
-        text-align:center;
-        font-size:11px;
-        letter-spacing:0.12em;
-      }
+.pw-input{
+  width:min(82vw,360px);
+  height:44px;
+  text-align:center;
 
+  font-size:16px;            /* prevents iOS zoom */
+  letter-spacing:0.12em;
+
+  transform: scale(0.75);    /* visually matches 11px */
+  transform-origin: center;
+}
       .pw-btn{
         width:160px;
         height:44px;
