@@ -3,24 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome | Shannen & Samarth</title>
+  <title>FAQs | Shannen & Samarth</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
-
     body{
       font-family:"Playfair Display", serif;
-      background:#EEE9DF;
-      color:#000;
+      background:#ffffff;
+      color:#111;
       min-height:100vh;
     }
 
-    /* ================= NAV (UPDATED TO MATCH INDEX PROPORTIONS) ================= */
     .topnav{
       position:fixed;
       top:28px;
@@ -32,228 +29,46 @@
       text-transform:uppercase;
       letter-spacing:1.6px;
       font-size:12px;
-      z-index:9999;
-      height:36px;                 /* ✅ consistent nav line height */
-      align-items:center;          /* ✅ same visual alignment */
     }
 
-    .topnav .left{
-      display:flex;
-      gap:44px;
-      height:36px;                 /* ✅ keep left group on same line */
-      align-items:center;
-    }
-
-    .topnav a{
-      color:#000;
-      text-decoration:none;
-      opacity:0.75;
-
-      display:inline-flex;         /* ✅ makes links align like index */
-      align-items:center;
-      height:36px;
-      line-height:1;
-    }
-
-    .topnav a:hover,
-    .topnav a.active{ opacity:1; }
-
+    .topnav .left{ display:flex; gap:44px; }
+    .topnav a{ color:#111; text-decoration:none; opacity:0.8; }
+    .topnav a:hover{ opacity:1; }
     .topnav .rsvp{
-      border:1px solid rgba(0,0,0,0.45);
-
-      display:inline-flex;         /* ✅ RSVP aligns perfectly */
-      align-items:center;
-      justify-content:center;
-      height:36px;
-      padding:0 18px;              /* ✅ match index button feel */
+      padding:10px 18px;
+      border:1px solid rgba(0,0,0,0.4);
     }
 
-    /* ================= PAGE ================= */
     .wrap{
       min-height:100vh;
-      padding:140px 60px 70px;
+      padding:140px 20px 40px;
       display:flex;
       justify-content:center;
-      align-items:center;
     }
 
-    .layout{
-      width:min(1180px, 100%);
-      display:grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap:70px;
-      align-items:center;
-    }
-
-    /* ================= COPY ================= */
-    .copy{
-      max-width:520px;
+    .content{
+      width:min(800px,90vw);
       text-align:center;
-    }
-
-    /* FORCE sentence case */
-    .copy h1,
-    .copy p{
-      text-transform:none !important;
-    }
-
-    .copy h1{
-      font-weight:400;
-      font-size:34px;
-      margin-bottom:26px;
-    }
-
-    .copy p{
-      font-size:14px;
-      line-height:1.8;
-      margin-bottom:22px;
-    }
-
-    .with-love{
-      margin-bottom:18px;
-    }
-
-    .signature-img{
-      max-width:400px;
-      width:100%;
-      display:block;
-      margin:0 auto;
-    }
-
-    /* ================= COLLAGE ================= */
-    .collage{
-      position:relative;
-      width:100%;
-      height:560px;
-    }
-
-    .frame{
-      position:absolute;
-      background:#d9d4cb;
-      overflow:hidden;
-    }
-
-    .frame img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .frame.main{
-      width:52%;
-      height:74%;
-    }
-
-    .frame.side{
-      right:0;
-      top:10%;
-      width:46%;
-      height:82%;
-      transform:translateY(68px);
-    }
-
-    /* ================= MOBILE ================= */
-    @media (max-width:560px){
-
-      :root{
-        --navH:36px;
-        --safeTop:calc(14px + env(safe-area-inset-top));
-        --headerH:calc(var(--safeTop) + var(--navH));
-      }
-
-      .topnav{
-        top:0;
-        left:0;
-        transform:none;
-        width:100%;
-        height:var(--headerH);
-        padding:var(--safeTop) 14px 0;
-        background:#EEE9DF;
-        font-size:9.5px;
-        letter-spacing:1.1px;
-      }
-
-      .topnav .left{
-        gap:18px;
-        height:var(--navH);
-      }
-
-      .topnav a{
-        height:var(--navH);
-        display:flex;
-        align-items:center;
-      }
-
-      .topnav .rsvp{
-        height:var(--navH);
-        padding:0 16px;
-        display:flex;
-        align-items:center;
-      }
-
-      .wrap{
-        padding-top:calc(var(--headerH) + 28px);
-        padding-left:16px;
-        padding-right:16px;
-      }
-
-      .layout{
-        grid-template-columns:1fr;
-        gap:44px;
-      }
-
-      .signature-img{
-        max-width:300px;
-      }
-
-      .collage{
-        height:520px;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAV -->
   <nav class="topnav">
     <div class="left">
       <a href="index.html">Home</a>
-      <a href="welcome.html" class="active">Welcome</a>
+      <a href="welcome.html">Welcome</a>
       <a href="schedule.html">Schedule</a>
-      <a href="faqs.html">FAQs</a>
+      <a href="faqs.html" style="opacity:1;">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
-  <!-- CONTENT -->
   <main class="wrap">
-    <section class="layout">
-
-      <div class="copy">
-        <h1>Welcome</h1>
-
-        <p>
-          As we count down to our wedding, this website will share the important details,
-          plans, and moments leading up to the celebration. We can’t wait to share this
-          special chapter and create unforgettable memories together.
-        </p>
-
-        <p class="with-love">With love</p>
-
-        <img src="signature.png" alt="Signature" class="signature-img">
-      </div>
-
-      <div class="collage">
-        <div class="frame main">
-          <img src="assets/welcome-portrait.jpg" alt="">
-        </div>
-        <div class="frame side">
-          <img src="assets/welcome-detail.jpg" alt="">
-        </div>
-      </div>
-
-    </section>
+    <div class="content">
+      <!-- FAQ content goes here (heading removed) -->
+    </div>
   </main>
 
   <script>
@@ -261,6 +76,5 @@
       window.location.replace("index.html");
     }
   </script>
-
 </body>
 </html>
