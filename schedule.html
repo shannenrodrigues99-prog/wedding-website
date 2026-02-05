@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -82,13 +82,16 @@
       align-items:center;
     }
 
+    /* Date – Playfair */
     .fancy-date{
-      font-family:"Alex Brush", cursive;
+      font-family:"Playfair Display", serif;
       font-size:clamp(36px, 4.5vw, 54px);
+      font-weight:500;
       line-height:1.2;
       margin-bottom:28px;
     }
 
+    /* Countdown – Montserrat */
     .countdown-line{
       display:flex;
       align-items:flex-end;
@@ -97,17 +100,18 @@
     }
 
     .time{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(32px, 4vw, 48px);
-      font-weight:500;
-      letter-spacing:0.08em;
+      font-family:"Montserrat", sans-serif;
+      font-size:clamp(30px, 3.8vw, 44px);
+      font-weight:400;
+      letter-spacing:0.18em;
       line-height:1;
     }
 
     .sep{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(26px, 3.5vw, 42px);
-      opacity:0.6;
+      font-family:"Montserrat", sans-serif;
+      font-size:clamp(24px, 3.2vw, 38px);
+      font-weight:300;
+      opacity:0.55;
       transform:translateY(-2px);
     }
 
@@ -120,7 +124,7 @@
 
       font-family:"Montserrat", sans-serif;
       font-size:10px;
-      letter-spacing:0.32em;
+      letter-spacing:0.34em;
       text-transform:uppercase;
       opacity:0.6;
     }
@@ -164,11 +168,12 @@
       }
 
       .time{
-        font-size:28px;
+        font-size:26px;
+        letter-spacing:0.16em;
       }
 
       .sep{
-        font-size:24px;
+        font-size:22px;
       }
 
       .countdown-labels{
