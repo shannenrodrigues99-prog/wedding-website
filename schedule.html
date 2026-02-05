@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -72,7 +72,7 @@
 
     .content{
       width:100%;
-      max-width:900px;
+      max-width:820px;
     }
 
     /* ===== DATE + COUNTDOWN ===== */
@@ -82,13 +82,14 @@
       align-items:center;
     }
 
-    /* Date – Playfair */
+    /* Date – Nanum Myeongjo */
     .fancy-date{
-      font-family:"Playfair Display", serif;
-      font-size:clamp(36px, 4.5vw, 54px);
-      font-weight:500;
-      line-height:1.2;
-      margin-bottom:28px;
+      font-family:"Nanum Myeongjo", serif;
+      font-size:clamp(28px, 3.2vw, 40px);
+      font-weight:400;
+      line-height:1.35;
+      margin-bottom:20px;
+      letter-spacing:0.01em;
     }
 
     /* Countdown – Montserrat */
@@ -96,37 +97,37 @@
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      gap:14px;
+      gap:10px;
     }
 
     .time{
       font-family:"Montserrat", sans-serif;
-      font-size:clamp(30px, 3.8vw, 44px);
+      font-size:clamp(18px, 2.2vw, 26px);
       font-weight:400;
-      letter-spacing:0.18em;
+      letter-spacing:0.22em;
       line-height:1;
     }
 
     .sep{
       font-family:"Montserrat", sans-serif;
-      font-size:clamp(24px, 3.2vw, 38px);
+      font-size:clamp(16px, 2vw, 22px);
       font-weight:300;
-      opacity:0.55;
-      transform:translateY(-2px);
+      opacity:0.5;
+      transform:translateY(-1px);
     }
 
     .countdown-labels{
       display:grid;
       grid-template-columns:repeat(4, auto);
       justify-content:center;
-      gap:38px;
-      margin-top:14px;
+      gap:30px;
+      margin-top:10px;
 
       font-family:"Montserrat", sans-serif;
-      font-size:10px;
+      font-size:9px;
       letter-spacing:0.34em;
       text-transform:uppercase;
-      opacity:0.6;
+      opacity:0.55;
     }
 
     /* ===== MOBILE ===== */
@@ -159,26 +160,26 @@
       }
 
       .fancy-date{
-        font-size:32px;
-        margin-bottom:22px;
+        font-size:26px;
+        margin-bottom:18px;
       }
 
       .countdown-line{
-        gap:10px;
+        gap:8px;
       }
 
       .time{
-        font-size:26px;
-        letter-spacing:0.16em;
+        font-size:18px;
+        letter-spacing:0.2em;
       }
 
       .sep{
-        font-size:22px;
+        font-size:16px;
       }
 
       .countdown-labels{
-        gap:22px;
-        font-size:9px;
+        gap:18px;
+        font-size:8px;
       }
     }
   </style>
