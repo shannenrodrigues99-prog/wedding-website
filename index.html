@@ -121,7 +121,7 @@
 
     .scene-home.fade-in{ opacity:1; }
 
-    /* ===== NAV (DESKTOP — KEEP AS IS) ===== */
+    /* ===== NAV (DESKTOP UNCHANGED) ===== */
     .topnav{
       position:absolute;
       top:28px;
@@ -187,7 +187,7 @@
     }
 
     .date{
-      font-size:16px;
+      font-size:20px;
       letter-spacing:3px;
       opacity:.9;
       margin-bottom:26px;
@@ -243,24 +243,45 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE (MATCH WELCOME.HTML) ===== */
+    /* ===== MOBILE (ENVELOPE + NAV FIX) ===== */
     @media (max-width:768px){
-      .scene,
-      .scene-home{ min-height:100svh; }
 
-      /* ✅ stacked nav like welcome.html */
+      /* Envelope page */
+      .page{
+        min-height:100svh;
+        padding:
+          calc(18px + env(safe-area-inset-top))
+          18px
+          calc(22px + env(safe-area-inset-bottom));
+        justify-content:center;
+        gap:22px;
+      }
+
+      .top-signature{
+        width:min(320px,78vw);
+        margin-top:0;
+      }
+
+      .envelope{
+        width:min(520px,92vw);
+      }
+
+      .bottom-instruction{
+        font-size:22px;
+        margin-top:0;
+        opacity:0.85;
+      }
+
+      /* Nav (matches welcome.html after unlock) */
       .topnav{
         top: calc(20px + env(safe-area-inset-top));
         width:100%;
         padding:0 20px;
-
         flex-direction:column;
         align-items:center;
         gap:16px;
-
         font-size:10px;
         letter-spacing:0.28em;
-        height:auto;
       }
 
       .topnav .left{
@@ -274,20 +295,20 @@
         padding:8px 16px;
       }
 
+      .pw-row{
+        flex-direction:column;
+        align-items:center;
+      }
+
       .pw-input{
         width:min(78vw,340px);
         font-size:16px;
         text-align:center;
       }
 
-      .pw-row{
-        flex-direction:column;
-        align-items:center;
-      }
-
       .pw-btn{ width:160px; }
 
-      /* ✅ Hide headings/nav on mobile until unlocked */
+      /* Hide nav until unlock */
       #siteContent{ display:none; }
       #siteContent.is-visible{ display:block; }
     }
@@ -317,7 +338,6 @@
 <!-- HOME -->
 <section class="scene scene-home" id="sceneHome">
 
-  <!-- Password block (visible before unlock) -->
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
@@ -326,7 +346,7 @@
 
       <img class="names" src="signature1.png" alt="Shannen & Samarth">
 
-      <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
+      <div class="date is-hidden" id="weddingDate">27 · 02 · 27</div>
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
@@ -338,7 +358,6 @@
     </div>
   </div>
 
-  <!-- NAV + anything else you want hidden until unlock -->
   <div id="siteContent">
     <nav class="topnav">
       <div class="left">
