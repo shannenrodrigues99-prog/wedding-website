@@ -8,13 +8,13 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
 
     body{
-      font-family:"Playfair Display", serif;
+      font-family:"Nanum Myeongjo", serif;
       background:#ffffff;
       color:#111;
       min-height:100vh;
@@ -37,17 +37,13 @@
       z-index:10;
     }
 
-    .topnav .left{
-      display:flex;
-      gap:44px;
-    }
+    .topnav .left{ display:flex; gap:44px; }
 
     .topnav a{
       color:#111;
       text-decoration:none;
       opacity:0.75;
     }
-
     .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
@@ -89,36 +85,39 @@
       font-weight:400;
       line-height:1.35;
       margin-bottom:20px;
-      letter-spacing:0.01em;
+      letter-spacing:0.06em;
     }
 
-    /* Countdown – Montserrat */
+    /* Countdown – softened */
+    .countdown-meta{
+      opacity:0.45;
+    }
+
     .countdown-line{
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      gap:10px;
+      gap:12px;
     }
 
     .time{
       font-family:"Montserrat", sans-serif;
       font-size:clamp(18px, 2.2vw, 26px);
       font-weight:400;
-      letter-spacing:0.22em;
+      letter-spacing:0.12em;   /* ✅ reduced tracking */
       line-height:1;
     }
 
     .sep{
       font-family:"Montserrat", sans-serif;
-      font-size:clamp(16px, 2vw, 22px);
-      font-weight:300;
-      opacity:0.5;
+      font-size:clamp(14px, 1.8vw, 20px);
+      font-weight:400;
+      opacity:0.55;
       transform:translateY(-1px);
     }
 
     .countdown-labels{
-      display:grid;
-      grid-template-columns:repeat(4, auto);
+      display:flex;
       justify-content:center;
       gap:30px;
       margin-top:10px;
@@ -162,6 +161,7 @@
       .fancy-date{
         font-size:26px;
         margin-bottom:18px;
+        letter-spacing:0.055em;
       }
 
       .countdown-line{
@@ -170,7 +170,7 @@
 
       .time{
         font-size:18px;
-        letter-spacing:0.2em;
+        letter-spacing:0.11em;
       }
 
       .sep{
@@ -206,21 +206,23 @@
           Saturday, 27 February 2027
         </div>
 
-        <div class="countdown-line">
-          <div class="time" id="cdDays">—</div>
-          <span class="sep">:</span>
-          <div class="time" id="cdHours">—</div>
-          <span class="sep">:</span>
-          <div class="time" id="cdMins">—</div>
-          <span class="sep">:</span>
-          <div class="time" id="cdSecs">—</div>
-        </div>
+        <div class="countdown-meta">
+          <div class="countdown-line">
+            <div class="time" id="cdDays">—</div>
+            <span class="sep">·</span>
+            <div class="time" id="cdHours">—</div>
+            <span class="sep">·</span>
+            <div class="time" id="cdMins">—</div>
+            <span class="sep">·</span>
+            <div class="time" id="cdSecs">—</div>
+          </div>
 
-        <div class="countdown-labels">
-          <span>DAYS</span>
-          <span>HOURS</span>
-          <span>MINS</span>
-          <span>SECS</span>
+          <div class="countdown-labels">
+            <span>DAYS</span>
+            <span>HOURS</span>
+            <span>MINS</span>
+            <span>SECS</span>
+          </div>
         </div>
 
       </section>
@@ -242,7 +244,7 @@
       month:"long",
       year:"numeric",
       timeZone:"Australia/Perth"
-    }).format(weddingDate);
+    }).format(weddingDate).replace(/^(\p{L}+)/u, "$1,");
 
     document.getElementById("weddingDateText").textContent = formatted;
 
