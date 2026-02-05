@@ -8,8 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- ✅ Updated to include Montserrat so NAV matches the "Enter" style -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -21,7 +20,7 @@
       min-height:100vh;
     }
 
-    /* ===== DESKTOP NAV (NOW MATCHES ENTER) ===== */
+    /* ===== NAV (MATCHES ENTER) ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -30,13 +29,10 @@
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
-
-      /* ✅ Match Enter button */
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
       letter-spacing:0.32em;
-
       font-size:12px;
       z-index:10;
     }
@@ -59,12 +55,12 @@
       border:1px solid rgba(0,0,0,0.4);
     }
 
-    /* ===== PAGE LAYOUT (DESKTOP: vertically centered + left block + space for photo) ===== */
+    /* ===== PAGE LAYOUT ===== */
     .wrap{
       min-height:100vh;
-      padding:140px 80px 40px; /* keeps nav clearance + nice desktop margins */
+      padding:140px 80px 40px;
       display:flex;
-      align-items:center;       /* vertical centering */
+      align-items:center;
       justify-content:center;
     }
 
@@ -72,12 +68,12 @@
       width:100%;
       max-width:1100px;
       display:grid;
-      grid-template-columns: 1fr 1fr; /* text left, photo right */
+      grid-template-columns: 1fr 1fr;
       align-items:center;
       gap:80px;
     }
 
-    /* ===== LEFT TEXT COLUMN (DESKTOP) ===== */
+    /* ===== LEFT TEXT ===== */
     .welcome-text-wrap{
       text-align:left;
     }
@@ -88,6 +84,8 @@
     }
 
     .welcome-text{
+      font-family:"Montserrat", sans-serif;
+      font-weight:400;
       font-size:18px;
       line-height:1.8;
       max-width:520px;
@@ -95,6 +93,8 @@
     }
 
     .welcome-signoff{
+      font-family:"Montserrat", sans-serif;
+      font-weight:400;
       font-size:18px;
       margin-bottom:24px;
     }
@@ -106,28 +106,22 @@
       display:block;
     }
 
-    /* ===== RIGHT IMAGE PLACEHOLDER (DESKTOP) ===== */
+    /* ===== RIGHT IMAGE PLACEHOLDER ===== */
     .welcome-image{
       width:100%;
-      min-height:420px; /* keeps space reserved visually */
-      /* photo will go here later */
+      min-height:420px;
     }
 
-    /* ===== MOBILE NAV ONLY (KEEP SAME AS PREVIOUS) ===== */
+    /* ===== MOBILE ===== */
     @media (max-width: 768px){
 
       .topnav{
-        position:fixed;
         top:20px;
-        left:50%;
-        transform:translateX(-50%);
         width:100%;
         padding:0 20px;
         flex-direction:column;
         align-items:center;
         gap:16px;
-
-        /* ✅ keep nav font matching Enter on mobile too */
         font-size:11px;
       }
 
@@ -142,17 +136,14 @@
         padding:8px 16px;
       }
 
-      /* === MOBILE VIEW: revert to previous single-column centered layout === */
       .wrap{
-        padding:160px 20px 40px;   /* same feel as previous */
-        display:flex;
-        align-items:flex-start;     /* like previous (not vertically centered) */
-        justify-content:center;
+        padding:160px 20px 40px;
+        align-items:flex-start;
       }
 
       .content{
         width:min(800px,90vw);
-        display:block;             /* remove grid */
+        display:block;
         text-align:center;
       }
 
@@ -176,7 +167,7 @@
       }
 
       .welcome-image{
-        display:none;              /* keep mobile same as previous (no right column) */
+        display:none;
       }
     }
   </style>
@@ -197,7 +188,6 @@
   <main class="wrap">
     <div class="content">
 
-      <!-- LEFT TEXT -->
       <div class="welcome-text-wrap">
         <h1 class="welcome-title">Welcome</h1>
 
@@ -216,7 +206,6 @@
         />
       </div>
 
-      <!-- RIGHT IMAGE SPACE (desktop only) -->
       <div class="welcome-image"></div>
 
     </div>
