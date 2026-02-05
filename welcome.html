@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAQs | Shannen & Samarth</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
@@ -65,6 +66,32 @@
       text-align:center;
     }
 
+    /* ===== WELCOME CONTENT ===== */
+    .welcome-title{
+      font-size:42px;
+      margin-bottom:36px;
+    }
+
+    .welcome-text{
+      font-size:18px;
+      line-height:1.8;
+      max-width:680px;
+      margin:0 auto 48px;
+    }
+
+    .welcome-signoff{
+      font-size:18px;
+      margin-bottom:24px;
+    }
+
+    .signature{
+      max-width:420px;
+      width:100%;
+      height:auto;
+      margin:0 auto;
+      display:block;
+    }
+
     /* ===== MOBILE NAV ONLY ===== */
     @media (max-width: 768px){
 
@@ -95,6 +122,18 @@
       .wrap{
         padding-top:160px;
       }
+
+      .welcome-title{
+        font-size:34px;
+      }
+
+      .welcome-text{
+        font-size:16px;
+      }
+
+      .signature{
+        max-width:320px;
+      }
     }
   </style>
 </head>
@@ -103,7 +142,7 @@
 
   <nav class="topnav">
     <div class="left">
-     <a href="index.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="welcome.html" style="opacity:1;">Welcome</a>
       <a href="schedule.html">Schedule</a>
       <a href="faqs.html">FAQs</a>
@@ -112,8 +151,24 @@
   </nav>
 
   <main class="wrap">
-    <div class="content">
-      <!-- FAQ content goes here -->
+    <div class="content welcome">
+
+      <h1 class="welcome-title">Welcome</h1>
+
+      <p class="welcome-text">
+        As we count down to our wedding, this website will share the important details,
+        plans, and moments leading up to the celebration. We can’t wait to share this
+        special chapter and create unforgettable memories together.
+      </p>
+
+      <p class="welcome-signoff">With love</p>
+
+      <img
+        src="signature.png"
+        alt="Shannen & Samarth"
+        class="signature"
+      />
+
     </div>
   </main>
 
@@ -122,5 +177,6 @@
       window.location.replace("index.html");
     }
   </script>
+
 </body>
 </html>
