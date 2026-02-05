@@ -54,11 +54,11 @@
       align-items:center;
     }
 
-    /* TOP SIGNATURE */
+    /* ===== TOP SIGNATURE (HEADER) ===== */
     .top-signature{
-      width: clamp(220px, 36vw, 360px);
-      margin-top: 10px;
-      opacity: 0.95;
+      width: clamp(300px, 48vw, 520px);
+      margin-top: 8px;
+      opacity: 0.96;
     }
 
     .top-signature img{
@@ -238,6 +238,11 @@
       .scene,
       .scene-home{ min-height:100svh; }
 
+      .top-signature{
+        width: min(86vw, 420px);
+        margin-top: 2px;
+      }
+
       .topnav{
         top: calc(14px + env(safe-area-inset-top));
         width: calc(100% - 28px);
@@ -257,11 +262,6 @@
       .topnav .rsvp{
         height:36px;
         padding:0 16px;
-      }
-
-      .top-signature{
-        width:260px;
-        margin-top:4px;
       }
 
       .pw-input{
@@ -287,7 +287,7 @@
   <div class="page">
 
     <div class="top-signature">
-      <img src="signature.png" alt="Shannen & Samarth">
+      <img src="signature1.png" alt="Shannen & Samarth">
     </div>
 
     <button class="envelope" id="env" aria-label="Open invitation">
@@ -320,7 +320,7 @@
         <img src="monogram1.png" alt="Monogram">
       </div>
 
-      <img class="names" src="signature.png" alt="Shannen & Samarth">
+      <img class="names" src="signature1.png" alt="Shannen & Samarth">
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
 
