@@ -56,13 +56,23 @@
     .topnav .left{
       display:flex;
       gap:56px;
+      align-items:center;
     }
 
     .topnav a{
       color:#fff;
       text-decoration:none;
       opacity:.78;
+      transition:opacity .2s ease;
       position:relative;
+    }
+
+    .topnav a:hover{ opacity:1; }
+
+    .topnav .rsvp{
+      padding:0;
+      border:none;
+      opacity:.9;
     }
 
     .topnav .rsvp::after{
@@ -80,8 +90,9 @@
       opacity:.30 !important;
     }
 
-    /* ===== CENTER ===== */
+    /* ===== CENTER CONTENT ===== */
     .hero-wrap{
+      position:relative;
       height:100vh;
       display:flex;
       align-items:center;
@@ -92,97 +103,163 @@
       display:flex;
       flex-direction:column;
       align-items:center;
+      justify-content:center;
       text-align:center;
       gap:22px;
     }
 
     .monogram{
       width: clamp(150px, 17vw, 250px);
+      opacity:.96;
     }
 
     .monogram img{
       width:100%;
+      height:auto;
       display:block;
     }
 
-    /* ===== AFTER UNLOCK TEXT ===== */
-    .after-title{
-      font-family:"Montserrat", sans-serif;
-      font-size:11px;
-      letter-spacing:0.34em;
-      text-transform:uppercase;
-      opacity:.85;
-      margin-bottom:14px;
-    }
-
-    .after-date{
-      font-size:16px;
-      letter-spacing:0.18em;
-      opacity:.85;
-      margin-top:14px;
-    }
-
     /* ===== PASSWORD ===== */
+    .pw-wrap{
+      margin-top:6px;
+    }
+
     .pw-row{
       display:flex;
+      align-items:center;
+      justify-content:center;
       gap:16px;
     }
 
     .pw-input{
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
       backdrop-filter: blur(18px) saturate(160%);
       background: rgba(255,255,255,0.16);
       border:1px solid rgba(255,255,255,0.26);
+      box-shadow:
+        0 14px 34px rgba(0,0,0,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+      color:#fff;
       border-radius:999px;
       height:48px;
       width: clamp(320px, 34vw, 460px);
       padding:0 20px;
+      outline:none;
+      caret-color:#fff;
       font-size:14px;
-      color:#fff;
       line-height:1;
     }
 
+    .pw-input::placeholder{
+      color:#fff;
+      opacity:.9;
+    }
+
     .pw-btn{
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
       backdrop-filter: blur(18px) saturate(160%);
       background: rgba(255,255,255,0.14);
       border:1px solid rgba(255,255,255,0.28);
+      box-shadow:
+        0 12px 30px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.20);
+      color:#fff;
       border-radius:999px;
       height:48px;
       padding:0 22px;
       font-family:"Montserrat", sans-serif;
+      font-weight:500;
       font-size:11px;
       letter-spacing:0.34em;
       text-transform:uppercase;
-      color:#fff;
       cursor:pointer;
+      opacity:.95;
     }
 
     .pw-error{
       margin-top:10px;
+      min-height:14px;
       font-size:12px;
+      text-align:center;
+      opacity:.9;
     }
 
     .is-hidden{ display:none !important; }
 
     /* ===== MOBILE ===== */
     @media (max-width:768px){
-      .home-center{ gap:14px; }
-      .monogram{ width:min(150px,40vw); }
-      .pw-row{ flex-direction:column; gap:10px; }
-      .pw-input,.pw-btn{ height:44px; width:82vw; }
-      .pw-input{ font-size:16px; }
-      .after-date{ font-size:14px; }
+      .topnav{
+        top: calc(45px + env(safe-area-inset-top));
+        width:100%;
+        padding:0 20px 16px;
+        flex-direction:column;
+        align-items:center;
+        gap:16px;
+        font-size:10px;
+        letter-spacing:0.28em;
+        border-bottom:1px solid rgba(255,255,255,.20);
+      }
+
+      .topnav .left{
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
+      }
+
+      .home-center{
+        gap:14px;
+        padding:0 16px;
+      }
+
+      .monogram{
+        width: min(150px, 40vw);
+      }
+
+      .pw-row{
+        flex-direction:column;
+        gap:10px;
+      }
+
+      .pw-input,
+      .pw-btn{
+        height:44px;
+      }
+
+      .pw-input{
+        width: min(82vw, 360px);
+        text-align:center;
+        font-family:"Montserrat", sans-serif;
+        font-weight:500;
+        font-size:16px;
+        letter-spacing:0.12em;
+        text-transform:none;
+        padding:0 18px;
+        line-height:1;
+      }
+
+      .pw-btn{
+        width: min(82vw, 360px);
+        font-size:11px;
+        letter-spacing:0.34em;
+      }
     }
 
     /* ===== DESKTOP ===== */
     @media (min-width:769px){
-      #logoAfter{ width: clamp(360px, 38vw, 520px); }
+      .monogram{
+        margin-bottom:28px;
+      }
+
+      .pw-input{
+        width: clamp(260px, 26vw, 360px);
+      }
     }
   </style>
 </head>
 
 <body>
 
-<section class="scene-home">
+<section class="scene-home" id="sceneHome">
 
   <!-- NAV (hidden until unlock) -->
   <div id="siteNav" class="is-hidden">
@@ -199,62 +276,72 @@
 
   <div class="hero-wrap">
     <div class="home-center">
-
       <div class="monogram">
-        <!-- BEFORE -->
-        <img id="logoBefore" src="monogram1.png">
-
-        <!-- AFTER -->
-        <div id="logoAfterWrap" class="is-hidden">
-          <div class="after-title">THE WEDDING OF</div>
-          <img id="logoAfter" src="names.png">
-          <div class="after-date">27.02.27</div>
-        </div>
+        <img id="logoBefore" src="monogram1.png" alt="Monogram">
+        <img id="logoAfter" src="names.png" alt="Names" class="is-hidden">
       </div>
 
-      <div id="pwWrap">
+      <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here to view details" autocomplete="off">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
       </div>
-
     </div>
   </div>
 
 </section>
 
 <script>
-  const SITE_PASSWORD = "ss2027";
   const UNLOCK_KEY = "siteUnlocked";
+  const SITE_PASSWORD = "ss2027";
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
-  const pwError = document.getElementById("pwError");
   const pwWrap = document.getElementById("pwWrap");
+  const pwError = document.getElementById("pwError");
+  const protectedLinks = document.querySelectorAll("[data-protected]");
   const siteNav = document.getElementById("siteNav");
 
   const logoBefore = document.getElementById("logoBefore");
-  const logoAfterWrap = document.getElementById("logoAfterWrap");
+  const logoAfter = document.getElementById("logoAfter");
+
+  function lockUI(){
+    protectedLinks.forEach(l => l.classList.add("locked-link"));
+    pwWrap.classList.remove("is-hidden");
+    siteNav.classList.add("is-hidden");
+    logoBefore.classList.remove("is-hidden");
+    logoAfter.classList.add("is-hidden");
+  }
 
   function unlockUI(){
+    protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
     siteNav.classList.remove("is-hidden");
     logoBefore.classList.add("is-hidden");
-    logoAfterWrap.classList.remove("is-hidden");
+    logoAfter.classList.remove("is-hidden");
   }
 
-  if(sessionStorage.getItem(UNLOCK_KEY)==="1") unlockUI();
+  if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
+  else lockUI();
 
-  pwBtn.onclick = () => {
-    if(pwInput.value === SITE_PASSWORD){
-      sessionStorage.setItem(UNLOCK_KEY,"1");
+  function tryUnlock(){
+    if (pwInput.value.trim() === SITE_PASSWORD) {
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      pwError.textContent = "";
       unlockUI();
     } else {
       pwError.textContent = "Incorrect password.";
+      pwInput.value = "";
+      pwInput.focus();
     }
-  };
+  }
+
+  pwBtn.addEventListener("click", tryUnlock);
+  pwInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") tryUnlock();
+  });
 </script>
 
 </body>
