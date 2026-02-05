@@ -207,31 +207,36 @@
         flex-wrap:wrap;
       }
 
+      /* 🔹 MOBILE PROPORTION TWEAKS ONLY 🔹 */
       .home-center{
         transform: translateY(6px);
-        gap:16px;
+        gap:14px;
         padding:0 16px;
       }
 
       .monogram{
-        width:min(220px, 60vw);
+        width: min(200px, 54vw);
+        margin-bottom:6px;
       }
 
       .pw-row{
         flex-direction:column;
-        gap:12px;
+        gap:10px;
       }
 
       .pw-input{
         width:min(82vw,360px);
-        height:46px;
+        height:44px;
         text-align:center;
-        font-size:16px;
+        font-size:11px;          /* MATCHES ENTER */
+        letter-spacing:0.12em;
       }
 
       .pw-btn{
         width:160px;
-        height:46px;
+        height:44px;
+        font-size:11px;
+        letter-spacing:0.34em;
       }
     }
 
@@ -269,7 +274,7 @@
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here to view details" autocomplete="off">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Type password to view details" autocomplete="off">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
