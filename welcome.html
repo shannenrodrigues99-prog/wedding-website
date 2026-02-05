@@ -53,20 +53,29 @@
       border:1px solid rgba(0,0,0,0.4);
     }
 
-    /* ===== PAGE LAYOUT ===== */
+    /* ===== PAGE LAYOUT (DESKTOP: vertically centered + left block + space for photo) ===== */
     .wrap{
       min-height:100vh;
-      padding:140px 20px 40px;
+      padding:140px 80px 40px; /* keeps nav clearance + nice desktop margins */
       display:flex;
+      align-items:center;       /* vertical centering */
       justify-content:center;
     }
 
     .content{
-      width:min(800px,90vw);
-      text-align:center;
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns: 1fr 1fr; /* text left, photo right */
+      align-items:center;
+      gap:80px;
     }
 
-    /* ===== WELCOME CONTENT ===== */
+    /* ===== LEFT TEXT COLUMN (DESKTOP) ===== */
+    .welcome-text-wrap{
+      text-align:left;
+    }
+
     .welcome-title{
       font-size:42px;
       margin-bottom:36px;
@@ -75,8 +84,8 @@
     .welcome-text{
       font-size:18px;
       line-height:1.8;
-      max-width:680px;
-      margin:0 auto 48px;
+      max-width:520px;
+      margin-bottom:48px;
     }
 
     .welcome-signoff{
@@ -88,11 +97,17 @@
       max-width:420px;
       width:100%;
       height:auto;
-      margin:0 auto;
       display:block;
     }
 
-    /* ===== MOBILE NAV ONLY ===== */
+    /* ===== RIGHT IMAGE PLACEHOLDER (DESKTOP) ===== */
+    .welcome-image{
+      width:100%;
+      min-height:420px; /* keeps space reserved visually */
+      /* photo will go here later */
+    }
+
+    /* ===== MOBILE NAV ONLY (KEEP SAME AS PREVIOUS) ===== */
     @media (max-width: 768px){
 
       .topnav{
@@ -119,8 +134,22 @@
         padding:8px 16px;
       }
 
+      /* === MOBILE VIEW: revert to previous single-column centered layout === */
       .wrap{
-        padding-top:160px;
+        padding:160px 20px 40px;   /* same feel as previous */
+        display:flex;
+        align-items:flex-start;     /* like previous (not vertically centered) */
+        justify-content:center;
+      }
+
+      .content{
+        width:min(800px,90vw);
+        display:block;             /* remove grid */
+        text-align:center;
+      }
+
+      .welcome-text-wrap{
+        text-align:center;
       }
 
       .welcome-title{
@@ -129,10 +158,17 @@
 
       .welcome-text{
         font-size:16px;
+        max-width:680px;
+        margin:0 auto 48px;
       }
 
       .signature{
         max-width:320px;
+        margin:0 auto;
+      }
+
+      .welcome-image{
+        display:none;              /* keep mobile same as previous (no right column) */
       }
     }
   </style>
@@ -151,23 +187,29 @@
   </nav>
 
   <main class="wrap">
-    <div class="content welcome">
+    <div class="content">
 
-      <h1 class="welcome-title">Welcome</h1>
+      <!-- LEFT TEXT -->
+      <div class="welcome-text-wrap">
+        <h1 class="welcome-title">Welcome</h1>
 
-      <p class="welcome-text">
-        As we count down to our wedding, this website will share the important details,
-        plans, and moments leading up to the celebration. We can’t wait to share this
-        special chapter and create unforgettable memories together.
-      </p>
+        <p class="welcome-text">
+          As we count down to our wedding, this website will share the important details,
+          plans, and moments leading up to the celebration. We can’t wait to share this
+          special chapter and create unforgettable memories together.
+        </p>
 
-      <p class="welcome-signoff">With love</p>
+        <p class="welcome-signoff">With love</p>
 
-      <img
-        src="signature.png"
-        alt="Shannen & Samarth"
-        class="signature"
-      />
+        <img
+          src="signature.png"
+          alt="Shannen & Samarth"
+          class="signature"
+        />
+      </div>
+
+      <!-- RIGHT IMAGE SPACE (desktop only) -->
+      <div class="welcome-image"></div>
 
     </div>
   </main>
