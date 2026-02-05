@@ -23,73 +23,7 @@
       overflow:hidden;
     }
 
-    /* ===== SCENES ===== */
-    .scene{
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:opacity 1.6s ease;
-      min-height:100vh;
-    }
-
-    /* ===== TOP SIGNATURE ===== */
-    .top-signature{
-      width: clamp(300px, 48vw, 520px);
-      margin-top: 8px;
-      opacity: 0.96;
-    }
-
-    .top-signature img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .bottom-instruction{
-      font-family:"Alex Brush", cursive;
-      font-size:26px;
-      color:#111;
-      opacity:0.9;
-      margin-top:12px;
-    }
-
-    .envelope{
-      width:min(560px,82vw);
-      perspective:1400px;
-      cursor:pointer;
-      background:transparent;
-      border:0;
-    }
-
-    .inner{
-      width:100%;
-      aspect-ratio:3/2;
-      transform-style:preserve-3d;
-      transition:transform 1.5s ease-in-out;
-      position:relative;
-    }
-
-    .envelope.flipped .inner{
-      transform:rotateY(180deg);
-    }
-
-    .face{
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
-    }
-
-    .face img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-    }
-
-    .back{ transform:rotateY(180deg); }
-
-    /* ===== HOME ===== */
+/* ===== HOME ===== */
     .scene-home{
       z-index:1;
       opacity:0;
