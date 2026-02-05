@@ -22,7 +22,7 @@
 
     /* ================= NAV ================= */
     .topnav{
-      position:fixed;
+      position:absolute; /* ✅ changed from fixed to match index.html desktop */
       top:28px;
       left:50%;
       transform:translateX(-50%);
@@ -204,49 +204,4 @@
   <!-- NAV -->
   <nav class="topnav">
     <div class="left">
-      <a href="index.html">Home</a>
-      <a href="welcome.html" class="active">Welcome</a>
-      <a href="schedule.html">Schedule</a>
-      <a href="faqs.html">FAQs</a>
-    </div>
-    <a class="rsvp" href="rsvp.html">RSVP</a>
-  </nav>
-
-  <!-- CONTENT -->
-  <main class="wrap">
-    <section class="layout">
-
-      <div class="copy">
-        <h1>Welcome</h1>
-
-        <p>
-          As we count down to our wedding, this website will share the important details,
-          plans, and moments leading up to the celebration. We can’t wait to share this
-          special chapter and create unforgettable memories together.
-        </p>
-
-        <p class="with-love">With love</p>
-
-        <img src="signature.png" alt="Signature" class="signature-img">
-      </div>
-
-      <div class="collage">
-        <div class="frame main">
-          <img src="assets/welcome-portrait.jpg" alt="">
-        </div>
-        <div class="frame side">
-          <img src="assets/welcome-detail.jpg" alt="">
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <script>
-    if (sessionStorage.getItem("siteUnlocked") !== "1") {
-      window.location.replace("index.html");
-    }
-  </script>
-
-</body>
-</html>
+      <a href="index
