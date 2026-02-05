@@ -142,11 +142,12 @@
       color:#fff;
       border-radius:999px;
       height:48px;
-      width: clamp(320px, 34vw, 460px); /* default */
+      width: clamp(320px, 34vw, 460px);
       padding:0 20px;
       outline:none;
       caret-color:#fff;
       font-size:14px;
+      line-height:1; /* centres placeholder vertically */
     }
 
     .pw-input::placeholder{
@@ -219,9 +220,14 @@
         gap:10px;
       }
 
+      /* 🔹 Mobile pill refinement */
+      .pw-input,
+      .pw-btn{
+        height:44px; /* slimmer pills on mobile */
+      }
+
       .pw-input{
         width: min(82vw, 360px);
-        height:48px;
         text-align:center;
         font-family:"Montserrat", sans-serif;
         font-weight:500;
@@ -229,17 +235,17 @@
         letter-spacing:0.12em;
         text-transform:none;
         padding:0 18px;
+        line-height:1; /* keeps text vertically centred */
       }
 
       .pw-btn{
         width: min(82vw, 360px);
-        height:48px;
         font-size:11px;
         letter-spacing:0.34em;
       }
     }
 
-    /* ===== DESKTOP: narrower password pill ===== */
+    /* ===== DESKTOP ===== */
     @media (min-width:769px){
       .monogram{
         margin-bottom:28px;
@@ -277,7 +283,7 @@
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here" autocomplete="off">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here to view details" autocomplete="off">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
