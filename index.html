@@ -191,7 +191,7 @@
       margin-bottom:26px;
     }
 
-    /* ===== PASSWORD (ONLY CHANGE) ===== */
+    /* ===== PASSWORD ===== */
     .pw-wrap{ margin-top:28px; }
 
     .pw-row{
@@ -218,28 +218,18 @@
       caret-color:#fff;
     }
 
-    /* FORCE PLACEHOLDER WHITE */
     .pw-input::placeholder{
       color:#fff !important;
       opacity:1 !important;
     }
     .pw-input::-webkit-input-placeholder{
       color:#fff !important;
-      opacity:1 !important;
     }
     .pw-input::-moz-placeholder{
       color:#fff !important;
-      opacity:1 !important;
     }
     .pw-input:-ms-input-placeholder{
       color:#fff !important;
-      opacity:1 !important;
-    }
-
-    /* Autofill safety */
-    .pw-input:-webkit-autofill{
-      -webkit-text-fill-color:#fff !important;
-      transition: background-color 9999s ease-out 0s;
     }
 
     .pw-btn{
@@ -259,10 +249,25 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE ONLY ===== */
     @media (max-width:520px){
       .scene,
       .scene-home{ min-height:100svh; }
+
+      /* tighten envelope spacing on mobile */
+      .scene-envelope .page{
+        justify-content:flex-start;
+        padding-top:40px;
+        padding-bottom:40px;
+      }
+
+      .scene-envelope .top-signature{
+        margin-bottom:18px;
+      }
+
+      .scene-envelope .bottom-instruction{
+        margin-top:18px;
+      }
 
       .top-signature{
         width: min(86vw, 420px);
@@ -350,7 +355,7 @@
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password" autocomplete="off">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Enter password" autocomplete="off">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
