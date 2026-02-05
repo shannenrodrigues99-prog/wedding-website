@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FAQs | Shannen & Samarth</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -19,7 +20,7 @@
       min-height:100vh;
     }
 
-    /* ===== DESKTOP NAV (UNCHANGED) ===== */
+    /* ===== NAV (EDITORIAL) ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -28,9 +29,11 @@
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
+      font-family:"Montserrat", sans-serif;
+      font-weight:400;
       text-transform:uppercase;
-      letter-spacing:1.6px;
-      font-size:12px;
+      letter-spacing:0.36em;
+      font-size:11px;
       z-index:10;
     }
 
@@ -42,43 +45,48 @@
     .topnav a{
       color:#111;
       text-decoration:none;
-      opacity:0.8;
+      opacity:0.75;
     }
 
     .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
-      border:1px solid rgba(0,0,0,0.4);
+      border:1px solid rgba(0,0,0,0.35);
+    }
+
+    /* ✅ Override for FAQs only */
+    .nav-faqs{
+      text-transform:none;
+      letter-spacing:0.28em;
     }
 
     /* ===== PAGE LAYOUT ===== */
     .wrap{
       min-height:100vh;
-      padding:140px 20px 40px;
+      padding:140px 80px 40px;
       display:flex;
+      align-items:center;
       justify-content:center;
     }
 
     .content{
-      width:min(800px,90vw);
-      text-align:center;
+      width:100%;
+      max-width:1100px;
     }
 
-    /* ===== MOBILE NAV ONLY ===== */
+    /* ===== MOBILE ===== */
     @media (max-width: 768px){
 
       .topnav{
-        position:fixed;
         top:20px;
-        left:50%;
-        transform:translateX(-50%);
         width:100%;
         padding:0 20px;
         flex-direction:column;
         align-items:center;
         gap:16px;
-        font-size:11px;
+        font-size:10px;
+        letter-spacing:0.28em;
       }
 
       .topnav .left{
@@ -93,7 +101,12 @@
       }
 
       .wrap{
-        padding-top:160px;
+        padding:160px 20px 40px;
+        align-items:flex-start;
+      }
+
+      .content{
+        width:min(800px,90vw);
       }
     }
   </style>
@@ -106,14 +119,14 @@
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
       <a href="schedule.html">Schedule</a>
-      <a href="faqs.html" style="opacity:1;">FAQs</a>
+      <a href="faqs.html" class="nav-faqs" style="opacity:1;">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
   <main class="wrap">
     <div class="content">
-      <!-- FAQ content goes here -->
+      <!-- FAQs content will go here -->
     </div>
   </main>
 
@@ -122,5 +135,6 @@
       window.location.replace("index.html");
     }
   </script>
+
 </body>
 </html>
