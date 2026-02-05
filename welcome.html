@@ -13,12 +13,6 @@
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
 
-    /* ✅ match index.html behavior on desktop */
-    html, body{
-      height:100%;
-      overflow:hidden;
-    }
-
     body{
       font-family:"Playfair Display", serif;
       background:#EEE9DF;
@@ -26,7 +20,7 @@
       min-height:100vh;
     }
 
-    /* ================= NAV ================= */
+    /* ================= NAV (UPDATED TO MATCH INDEX PROPORTIONS) ================= */
     .topnav{
       position:fixed;
       top:28px;
@@ -35,35 +29,48 @@
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
-      align-items:center;
       text-transform:uppercase;
       letter-spacing:1.6px;
       font-size:12px;
       z-index:9999;
+      height:36px;                 /* ✅ consistent nav line height */
+      align-items:center;          /* ✅ same visual alignment */
     }
 
     .topnav .left{
       display:flex;
       gap:44px;
+      height:36px;                 /* ✅ keep left group on same line */
+      align-items:center;
     }
 
     .topnav a{
       color:#000;
       text-decoration:none;
       opacity:0.75;
+
+      display:inline-flex;         /* ✅ makes links align like index */
+      align-items:center;
+      height:36px;
+      line-height:1;
     }
 
     .topnav a:hover,
     .topnav a.active{ opacity:1; }
 
     .topnav .rsvp{
-      padding:10px 18px;
       border:1px solid rgba(0,0,0,0.45);
+
+      display:inline-flex;         /* ✅ RSVP aligns perfectly */
+      align-items:center;
+      justify-content:center;
+      height:36px;
+      padding:0 18px;              /* ✅ match index button feel */
     }
 
     /* ================= PAGE ================= */
     .wrap{
-      height:100vh;
+      min-height:100vh;
       padding:140px 60px 70px;
       display:flex;
       justify-content:center;
@@ -148,9 +155,6 @@
     /* ================= MOBILE ================= */
     @media (max-width:560px){
 
-      /* ✅ allow scrolling on mobile */
-      html, body{ overflow:auto; }
-
       :root{
         --navH:36px;
         --safeTop:calc(14px + env(safe-area-inset-top));
@@ -171,6 +175,7 @@
 
       .topnav .left{
         gap:18px;
+        height:var(--navH);
       }
 
       .topnav a{
@@ -187,11 +192,9 @@
       }
 
       .wrap{
-        height:auto;
         padding-top:calc(var(--headerH) + 28px);
         padding-left:16px;
         padding-right:16px;
-        padding-bottom:70px;
       }
 
       .layout{
