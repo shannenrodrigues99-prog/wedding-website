@@ -22,10 +22,11 @@
 
     /* ================= NAV ================= */
     .topnav{
-      position:fixed;              /* stays in place */
+      position:fixed;
       top:28px;
-      left:40px;                   /* ✅ matches index.html width logic */
-      right:40px;                  /* ✅ matches index.html width logic */
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -56,7 +57,7 @@
 
     /* ================= PAGE ================= */
     .wrap{
-      min-height:100vh;
+      height:100vh; /* ✅ was min-height:100vh (this removes desktop scrollbar + fixes nav alignment) */
       padding:140px 60px 70px;
       display:flex;
       justify-content:center;
@@ -150,7 +151,7 @@
       .topnav{
         top:0;
         left:0;
-        right:0;
+        transform:none;
         width:100%;
         height:var(--headerH);
         padding:var(--safeTop) 14px 0;
@@ -177,9 +178,11 @@
       }
 
       .wrap{
+        height:auto; /* ✅ allow scroll on mobile */
         padding-top:calc(var(--headerH) + 28px);
         padding-left:16px;
         padding-right:16px;
+        padding-bottom:70px;
       }
 
       .layout{
