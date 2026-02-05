@@ -119,7 +119,22 @@
       display:block;
     }
 
-    /* ===== NAMES (EDITORIAL MOMENT) ===== */
+    /* ===== NAMES WRAPPER (ONLY ADDITION) ===== */
+    #logoAfterWrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .wedding-label{
+      font-family:"Montserrat", sans-serif;
+      font-size:11px;
+      letter-spacing:0.34em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+      opacity:.85;
+    }
+
     #logoAfter{
       width:200%;
       position:relative;
@@ -127,20 +142,7 @@
       transform:translateX(-50%);
     }
 
-    #logoAfter::before{
-      content:"THE WEDDING OF";
-      display:block;
-      margin-bottom:14px;
-      font-family:"Montserrat", sans-serif;
-      font-size:11px;
-      letter-spacing:0.34em;
-      text-transform:uppercase;
-      opacity:.85;
-    }
-
-    #logoAfter::after{
-      content:"27.02.27";
-      display:block;
+    .wedding-date{
       margin-top:14px;
       font-family:"Playfair Display", serif;
       font-size:14px;
@@ -261,9 +263,7 @@
         font-weight:500;
         font-size:16px;
         letter-spacing:0.12em;
-        text-transform:none;
         padding:0 18px;
-        line-height:1;
       }
 
       .pw-btn{
@@ -306,7 +306,13 @@
     <div class="home-center">
       <div class="monogram">
         <img id="logoBefore" src="monogram1.png" alt="Monogram">
-        <img id="logoAfter" src="names.png" alt="Names" class="is-hidden">
+
+        <!-- ONLY STRUCTURAL ADDITION -->
+        <div id="logoAfterWrap" class="is-hidden">
+          <span class="wedding-label">THE WEDDING OF</span>
+          <img id="logoAfter" src="names.png" alt="Names">
+          <span class="wedding-date">27.02.27</span>
+        </div>
       </div>
 
       <div class="pw-wrap" id="pwWrap">
@@ -333,14 +339,14 @@
   const siteNav = document.getElementById("siteNav");
 
   const logoBefore = document.getElementById("logoBefore");
-  const logoAfter = document.getElementById("logoAfter");
+  const logoAfterWrap = document.getElementById("logoAfterWrap");
 
   function lockUI(){
     protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
     siteNav.classList.add("is-hidden");
     logoBefore.classList.remove("is-hidden");
-    logoAfter.classList.add("is-hidden");
+    logoAfterWrap.classList.add("is-hidden");
   }
 
   function unlockUI(){
@@ -348,7 +354,7 @@
     pwWrap.classList.add("is-hidden");
     siteNav.classList.remove("is-hidden");
     logoBefore.classList.add("is-hidden");
-    logoAfter.classList.remove("is-hidden");
+    logoAfterWrap.classList.remove("is-hidden");
   }
 
   if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
