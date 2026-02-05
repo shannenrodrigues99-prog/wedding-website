@@ -55,6 +55,12 @@
       border:1px solid rgba(0,0,0,0.35);
     }
 
+    /* ✅ Override so FAQs renders correctly */
+    .nav-faqs{
+      text-transform:none;
+      letter-spacing:0.28em;
+    }
+
     /* ===== PAGE LAYOUT ===== */
     .wrap{
       min-height:100vh;
@@ -83,7 +89,6 @@
       margin-bottom:40px;
     }
 
-    /* ✨ EDITORIAL BODY COPY ✨ */
     .welcome-text{
       font-family:"Montserrat", sans-serif;
       font-weight:300;
@@ -95,15 +100,14 @@
       margin-bottom:56px;
     }
 
-    /* ✨ EDITORIAL SIGN-OFF ✨ */
-.welcome-signoff{
-  font-family:"Montserrat", sans-serif;
-  font-weight:400;
-  font-size:14px;
-  letter-spacing:0.12em;
-  color:#444;
-  margin-bottom:22px;
-}
+    .welcome-signoff{
+      font-family:"Montserrat", sans-serif;
+      font-weight:400;
+      font-size:14px;
+      letter-spacing:0.12em;
+      color:#444;
+      margin-bottom:22px;
+    }
 
     .signature{
       max-width:420px;
@@ -118,7 +122,7 @@
       min-height:420px;
     }
 
-    /* ===== MOBILE (UNCHANGED FEEL) ===== */
+    /* ===== MOBILE ===== */
     @media (max-width: 768px){
 
       .topnav{
@@ -187,7 +191,7 @@
       <a href="index.html">Home</a>
       <a href="welcome.html" style="opacity:1;">Welcome</a>
       <a href="schedule.html">Schedule</a>
-      <a href="faqs.html">FAQs</a>
+      <a href="faqs.html" class="nav-faqs">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
