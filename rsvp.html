@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RSVP | Shannen & Samarth</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
+
     body{
       font-family:"Playfair Display", serif;
       background:#ffffff;
@@ -18,6 +20,7 @@
       min-height:100vh;
     }
 
+    /* ===== NAV (EDITORIAL – RSVP UNCHANGED) ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -26,35 +29,86 @@
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
+      font-family:"Montserrat", sans-serif;
+      font-weight:400;
       text-transform:uppercase;
-      letter-spacing:1.6px;
-      font-size:12px;
+      letter-spacing:0.36em;
+      font-size:11px;
+      z-index:10;
     }
 
-    .topnav .left{ display:flex; gap:44px; }
-    .topnav a{ color:#111; text-decoration:none; opacity:0.8; }
+    .topnav .left{
+      display:flex;
+      gap:44px;
+    }
+
+    .topnav a{
+      color:#111;
+      text-decoration:none;
+      opacity:0.75;
+    }
+
     .topnav a:hover{ opacity:1; }
+
     .topnav .rsvp{
       padding:10px 18px;
-      border:1px solid rgba(0,0,0,0.4);
-      opacity:1;
+      border:1px solid rgba(0,0,0,0.35);
+      /* intentionally untouched */
     }
 
+    /* ✅ Override for FAQs only */
+    .nav-faqs{
+      text-transform:none;
+      letter-spacing:0.28em;
+    }
+
+    /* ===== PAGE LAYOUT ===== */
     .wrap{
       min-height:100vh;
-      padding:140px 20px 40px;
+      padding:140px 80px 40px;
       display:flex;
+      align-items:center;
       justify-content:center;
     }
 
     .content{
-      width:min(800px,90vw);
-      text-align:center;
+      width:100%;
+      max-width:1100px;
     }
 
-    h1{
-      font-family:"Alex Brush", cursive;
-      font-size:clamp(44px,6vw,64px);
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px){
+
+      .topnav{
+        top:20px;
+        width:100%;
+        padding:0 20px;
+        flex-direction:column;
+        align-items:center;
+        gap:16px;
+        font-size:10px;
+        letter-spacing:0.28em;
+      }
+
+      .topnav .left{
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
+      }
+
+      .topnav .rsvp{
+        margin-top:6px;
+        padding:8px 16px;
+      }
+
+      .wrap{
+        padding:160px 20px 40px;
+        align-items:flex-start;
+      }
+
+      .content{
+        width:min(800px,90vw);
+      }
     }
   </style>
 </head>
@@ -66,14 +120,14 @@
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
       <a href="schedule.html">Schedule</a>
-      <a href="faqs.html">FAQs</a>
+      <a href="faqs.html" class="nav-faqs">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html" style="opacity:1;">RSVP</a>
   </nav>
 
   <main class="wrap">
     <div class="content">
-      <h1>RSVP</h1>
+      <!-- RSVP content will go here -->
     </div>
   </main>
 
@@ -82,49 +136,6 @@
       window.location.replace("index.html");
     }
   </script>
+
 </body>
 </html>
-@media (max-width: 520px){
-
-  /* NAV — consistent height + perfect vertical alignment */
-  .topnav{
-    top: calc(12px + env(safe-area-inset-top));
-    width: calc(100% - 22px);
-    font-size: 9.5px;
-    letter-spacing: 1.1px;
-
-    display:flex;
-    align-items:center;          /* key */
-    justify-content:space-between;
-    white-space:nowrap;
-
-    height: 36px;                /* key: same bar height on all pages */
-  }
-
-  .topnav .left{
-    display:flex;
-    align-items:center;          /* key */
-    gap:16px;
-    flex-wrap:nowrap;
-  }
-
-  /* Make all nav links share the same "hit height" + baseline */
-  .topnav a{
-    display:inline-flex;
-    align-items:center;          /* key */
-    height: 36px;                /* match .topnav height */
-    line-height: 1;              /* avoid baseline drift */
-    padding: 0;                  /* keep clean + consistent */
-    flex-shrink:0;
-  }
-
-  /* RSVP — same height + centered text */
-  .topnav .rsvp{
-    display:inline-flex;
-    align-items:center;          /* key */
-    justify-content:center;
-    height: 36px;                /* match */
-    padding: 0 14px;
-  }
-
-}
