@@ -20,7 +20,7 @@
       min-height:100vh;
     }
 
-    /* ===== NAV (EDITORIAL) ===== */
+    /* ===== NAV ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -55,111 +55,81 @@
       border:1px solid rgba(0,0,0,0.35);
     }
 
-    /* ✅ Override for FAQs only */
     .nav-faqs{
       text-transform:none;
       letter-spacing:0.28em;
     }
 
-    /* ===== PAGE LAYOUT ===== */
+    /* ===== PAGE ===== */
     .wrap{
       min-height:100vh;
-      padding:140px 80px 60px;
+      padding:160px 80px 60px;
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:center;
+      text-align:center;
     }
 
     .content{
       width:100%;
-      max-width:1100px;
+      max-width:900px;
     }
 
-    /* ===== EDITORIAL HEADER ===== */
-    .kicker{
-      font-family:"Montserrat", sans-serif;
-      font-weight:400;
-      text-transform:uppercase;
-      letter-spacing:0.34em;
-      font-size:11px;
-      opacity:0.65;
-      margin-bottom:18px;
+    /* ===== DATE + COUNTDOWN ===== */
+    .countdown-center{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
-    .page-title{
-      font-size:44px;
-      font-weight:500;
-      letter-spacing:0.01em;
-      margin-bottom:22px;
+    .fancy-date{
+      font-family:"Alex Brush", cursive;
+      font-size:clamp(36px, 4.5vw, 54px);
+      line-height:1.2;
+      margin-bottom:28px;
     }
 
-    .rule{
-      height:1px;
-      width:100%;
-      background:rgba(0,0,0,0.10);
-      margin:22px 0 34px;
-    }
-
-    .wedding-date{
-      font-family:"Montserrat", sans-serif;
-      font-weight:300;
-      font-size:18px;
-      line-height:1.7;
-      letter-spacing:0.02em;
-      color:#2a2a2a;
-      margin-bottom:26px;
-    }
-
-    /* ===== COUNTDOWN ===== */
-    .countdown-wrap{
+    .countdown-line{
       display:flex;
       align-items:flex-end;
-      gap:26px;
-      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
     }
 
-    .count-item{
-      min-width:140px;
-      padding:18px 18px 16px;
-      border:1px solid rgba(0,0,0,0.10);
-      border-radius:18px;
-    }
-
-    .count-value{
+    .time{
       font-family:"Playfair Display", serif;
-      font-size:40px;
+      font-size:clamp(32px, 4vw, 48px);
       font-weight:500;
-      letter-spacing:0.02em;
+      letter-spacing:0.08em;
       line-height:1;
     }
 
-    .count-label{
-      font-family:"Montserrat", sans-serif;
-      font-weight:400;
-      text-transform:uppercase;
-      letter-spacing:0.26em;
-      font-size:10px;
-      opacity:0.65;
-      margin-top:10px;
+    .sep{
+      font-family:"Playfair Display", serif;
+      font-size:clamp(26px, 3.5vw, 42px);
+      opacity:0.6;
+      transform:translateY(-2px);
     }
 
-    .note{
-      margin-top:28px;
+    .countdown-labels{
+      display:grid;
+      grid-template-columns:repeat(4, auto);
+      justify-content:center;
+      gap:38px;
+      margin-top:14px;
+
       font-family:"Montserrat", sans-serif;
-      font-weight:300;
-      font-size:14px;
-      line-height:1.8;
-      letter-spacing:0.02em;
-      color:#3a3a3a;
-      opacity:0.95;
-      max-width:720px;
+      font-size:10px;
+      letter-spacing:0.32em;
+      text-transform:uppercase;
+      opacity:0.6;
     }
 
     /* ===== MOBILE ===== */
-    @media (max-width: 768px){
+    @media (max-width:768px){
 
       .topnav{
-        top: calc(45px + env(safe-area-inset-top));
+        top:calc(45px + env(safe-area-inset-top));
         width:100%;
         padding:0 20px;
         flex-direction:column;
@@ -181,32 +151,29 @@
       }
 
       .wrap{
-        padding:190px 20px 60px;
+        padding:200px 20px 60px;
       }
 
-      .content{
-        width:min(900px,92vw);
+      .fancy-date{
+        font-size:32px;
+        margin-bottom:22px;
       }
 
-      .page-title{
-        font-size:34px;
+      .countdown-line{
+        gap:10px;
       }
 
-      .wedding-date{
-        font-size:16px;
+      .time{
+        font-size:28px;
       }
 
-      .countdown-wrap{
-        gap:14px;
+      .sep{
+        font-size:24px;
       }
 
-      .count-item{
-        min-width:calc(50% - 7px);
-        border-radius:16px;
-      }
-
-      .count-value{
-        font-size:34px;
+      .countdown-labels{
+        gap:22px;
+        font-size:9px;
       }
     }
   </style>
@@ -227,100 +194,83 @@
   <main class="wrap">
     <div class="content">
 
-      <div class="kicker">Wedding Weekend</div>
-      <h1 class="page-title">Schedule</h1>
+      <section class="countdown-center">
 
-      <div class="rule"></div>
-
-      <!-- Date (auto formatted) -->
-      <div class="wedding-date" id="weddingDateText">Saturday, 27 February 2027</div>
-
-      <!-- Countdown -->
-      <div class="countdown-wrap" aria-label="Countdown to wedding">
-        <div class="count-item">
-          <div class="count-value" id="cdDays">—</div>
-          <div class="count-label">Days</div>
+        <div class="fancy-date" id="weddingDateText">
+          Saturday, 27 February 2027
         </div>
 
-        <div class="count-item">
-          <div class="count-value" id="cdHours">—</div>
-          <div class="count-label">Hours</div>
+        <div class="countdown-line">
+          <div class="time" id="cdDays">—</div>
+          <span class="sep">:</span>
+          <div class="time" id="cdHours">—</div>
+          <span class="sep">:</span>
+          <div class="time" id="cdMins">—</div>
+          <span class="sep">:</span>
+          <div class="time" id="cdSecs">—</div>
         </div>
 
-        <div class="count-item">
-          <div class="count-value" id="cdMins">—</div>
-          <div class="count-label">Minutes</div>
+        <div class="countdown-labels">
+          <span>DAYS</span>
+          <span>HOURS</span>
+          <span>MINS</span>
+          <span>SECS</span>
         </div>
 
-        <div class="count-item">
-          <div class="count-value" id="cdSecs">—</div>
-          <div class="count-label">Seconds</div>
-        </div>
-      </div>
-
-      <p class="note">
-        Times and locations will be added closer to the day. This page will be kept up to date as our plans are finalised.
-      </p>
+      </section>
 
     </div>
   </main>
 
   <script>
-    // Gate
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
 
-    // --- Wedding date/time (Perth) ---
-    // Set the actual ceremony start time if you want a more accurate countdown.
-    // Example: 2:30 PM Perth time -> "2027-02-27T14:30:00+08:00"
     const weddingISO = "2027-02-27T00:00:00+08:00";
-
-    // Format as: Saturday, 27 February 2027
     const weddingDate = new Date(weddingISO);
+
     const formatted = new Intl.DateTimeFormat("en-AU", {
-      weekday: "long",
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      timeZone: "Australia/Perth"
+      weekday:"long",
+      day:"2-digit",
+      month:"long",
+      year:"numeric",
+      timeZone:"Australia/Perth"
     }).format(weddingDate);
 
     document.getElementById("weddingDateText").textContent = formatted;
 
-    const elDays = document.getElementById("cdDays");
-    const elHours = document.getElementById("cdHours");
-    const elMins = document.getElementById("cdMins");
-    const elSecs = document.getElementById("cdSecs");
+    const d = document.getElementById("cdDays");
+    const h = document.getElementById("cdHours");
+    const m = document.getElementById("cdMins");
+    const s = document.getElementById("cdSecs");
 
-    function pad2(n){ return String(n).padStart(2, "0"); }
+    function pad(n){ return String(n).padStart(2,"0"); }
 
     function tick(){
       const now = new Date();
-      const diff = weddingDate.getTime() - now.getTime();
+      let diff = weddingDate - now;
 
-      if (diff <= 0){
-        elDays.textContent = "0";
-        elHours.textContent = "00";
-        elMins.textContent = "00";
-        elSecs.textContent = "00";
+      if(diff <= 0){
+        d.textContent = "0";
+        h.textContent = m.textContent = s.textContent = "00";
         return;
       }
 
-      const totalSeconds = Math.floor(diff / 1000);
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const mins = Math.floor((totalSeconds % 3600) / 60);
-      const secs = totalSeconds % 60;
+      const total = Math.floor(diff/1000);
+      const days = Math.floor(total/86400);
+      const hrs  = Math.floor((total%86400)/3600);
+      const mins = Math.floor((total%3600)/60);
+      const secs = total%60;
 
-      elDays.textContent = String(days);
-      elHours.textContent = pad2(hours);
-      elMins.textContent = pad2(mins);
-      elSecs.textContent = pad2(secs);
+      d.textContent = days;
+      h.textContent = pad(hrs);
+      m.textContent = pad(mins);
+      s.textContent = pad(secs);
     }
 
     tick();
-    setInterval(tick, 1000);
+    setInterval(tick,1000);
   </script>
 
 </body>
