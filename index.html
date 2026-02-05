@@ -24,7 +24,7 @@
       color:#fff;
     }
 
-    /* ===== BACKGROUND ===== */
+    /* ===== BACKGROUND (HERO) ===== */
     .scene-home{
       position:fixed;
       inset:0;
@@ -56,18 +56,20 @@
     .topnav .left{
       display:flex;
       gap:56px;
+      align-items:center;
     }
 
     .topnav a{
       color:#fff;
       text-decoration:none;
       opacity:.78;
+      transition:opacity .2s ease;
       position:relative;
     }
 
     .topnav a:hover{ opacity:1; }
 
-    /* RSVP underline style */
+    /* ===== RSVP (UNDERLINE ONLY — NO BOX) ===== */
     .topnav .rsvp{
       padding:0;
       border:none;
@@ -89,8 +91,9 @@
       opacity:.30 !important;
     }
 
-    /* ===== CENTER ===== */
+    /* ===== CENTER CONTENT ===== */
     .hero-wrap{
+      position:relative;
       height:100vh;
       display:flex;
       align-items:center;
@@ -101,92 +104,135 @@
       display:flex;
       flex-direction:column;
       align-items:center;
+      justify-content:center;
+      text-align:center;
+      transform: translateY(10px);
       gap:18px;
-      transform:translateY(10px);
     }
 
     .monogram{
-      width:clamp(150px,17vw,250px);
+      width: clamp(150px, 17vw, 250px);
+      opacity:.96;
     }
 
     .monogram img{
       width:100%;
+      height:auto;
       display:block;
     }
 
     .script-names{
       font-family:"Alex Brush", cursive;
-      font-size:clamp(34px,4.4vw,64px);
-      letter-spacing:.06em;
+      font-size: clamp(34px, 4.4vw, 64px);
+      font-weight:400;
+      letter-spacing:0.06em;
       opacity:.78;
-      transform:translateY(-4px);
-      text-shadow:0 10px 26px rgba(0,0,0,.35);
+      line-height:1;
+      transform: translateY(-4px);
+      text-shadow: 0 10px 26px rgba(0,0,0,.35);
       white-space:nowrap;
     }
 
     /* ===== PASSWORD ===== */
-    .pw-row{
-      display:flex;
-      gap:16px;
+    .pw-wrap{
       margin-top:6px;
     }
 
+    .pw-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+    }
+
     .pw-input{
-      -webkit-backdrop-filter:blur(18px) saturate(160%);
-      backdrop-filter:blur(18px) saturate(160%);
-      background:rgba(255,255,255,.16);
-      border:1px solid rgba(255,255,255,.26);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      backdrop-filter: blur(18px) saturate(160%);
+      background: rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.26);
+      box-shadow:
+        0 14px 34px rgba(0,0,0,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+      color:#fff;
       border-radius:999px;
       height:44px;
-      width:clamp(320px,34vw,460px);
+      width: clamp(320px, 34vw, 460px);
       padding:0 20px;
+      outline:none;
+      caret-color:#fff;
+      font-size:14px;
+    }
+
+    .pw-input::placeholder{
       color:#fff;
+      opacity:.9;
     }
 
     .pw-btn{
-      -webkit-backdrop-filter:blur(18px) saturate(160%);
-      backdrop-filter:blur(18px) saturate(160%);
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.28);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      backdrop-filter: blur(18px) saturate(160%);
+      background: rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.28);
+      box-shadow:
+        0 14px 34px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+      color:#fff;
       border-radius:999px;
       height:44px;
       padding:0 22px;
       font-family:"Montserrat", sans-serif;
+      font-weight:500;
       font-size:11px;
-      letter-spacing:.34em;
+      letter-spacing:0.34em;
       text-transform:uppercase;
       cursor:pointer;
+      opacity:.95;
     }
 
     .pw-error{
       margin-top:10px;
+      min-height:14px;
       font-size:12px;
       text-align:center;
+      opacity:.9;
     }
 
-    .is-hidden{ display:none!important; }
+    .is-hidden{ display:none !important; }
 
     /* ===== MOBILE ===== */
     @media (max-width:768px){
       .topnav{
-        top:calc(45px + env(safe-area-inset-top));
+        top: calc(45px + env(safe-area-inset-top));
         width:100%;
         padding:0 20px 16px;
         flex-direction:column;
+        align-items:center;
         gap:16px;
         font-size:10px;
-        letter-spacing:.28em;
+        letter-spacing:0.28em;
+        border-bottom:1px solid rgba(255,255,255,.20);
       }
 
       .topnav .left{
         gap:24px;
-        flex-wrap:wrap;
         justify-content:center;
+        flex-wrap:wrap;
       }
 
       .home-center{
+        transform: translateY(6px);
+        gap:16px;
         padding:0 16px;
-        transform:translateY(6px);
+      }
+
+      .monogram{
+        width:min(220px, 60vw);
+      }
+
+      .script-names{
+        font-size:min(44px, 10vw);
+        letter-spacing:0.04em;
+        white-space:normal;
       }
 
       .pw-row{
@@ -196,12 +242,14 @@
 
       .pw-input{
         width:min(82vw,360px);
+        height:46px;
         text-align:center;
         font-size:16px;
       }
 
       .pw-btn{
         width:160px;
+        height:46px;
       }
     }
   </style>
@@ -209,7 +257,8 @@
 
 <body>
 
-<section class="scene-home">
+<section class="scene-home" id="sceneHome">
+
   <nav class="topnav">
     <div class="left">
       <a href="index.html">Home</a>
@@ -223,19 +272,21 @@
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
-        <img src="monogram1.png" alt="">
+        <img src="monogram1.png" alt="Monogram">
       </div>
 
       <div class="script-names">Shannen &amp; Samarth</div>
 
-      <div class="pw-row" id="pwWrap">
-        <input id="pwInput" class="pw-input" type="password" placeholder="Enter password">
-        <button id="pwBtn" class="pw-btn">Enter</button>
+      <div class="pw-wrap" id="pwWrap">
+        <div class="pw-row">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Enter password" autocomplete="off">
+          <button id="pwBtn" class="pw-btn">Enter</button>
+        </div>
+        <div class="pw-error" id="pwError"></div>
       </div>
-
-      <div class="pw-error" id="pwError"></div>
     </div>
   </div>
+
 </section>
 
 <script>
@@ -262,20 +313,20 @@
   else lockUI();
 
   function tryUnlock(){
-    if (pwInput.value.trim() === SITE_PASSWORD){
-      sessionStorage.setItem(UNLOCK_KEY,"1");
-      pwError.textContent="";
+    if (pwInput.value.trim() === SITE_PASSWORD) {
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      pwError.textContent = "";
       unlockUI();
     } else {
-      pwError.textContent="Incorrect password.";
-      pwInput.value="";
+      pwError.textContent = "Incorrect password.";
+      pwInput.value = "";
       pwInput.focus();
     }
   }
 
   pwBtn.addEventListener("click", tryUnlock);
   pwInput.addEventListener("keydown", e => {
-    if(e.key==="Enter") tryUnlock();
+    if (e.key === "Enter") tryUnlock();
   });
 </script>
 
