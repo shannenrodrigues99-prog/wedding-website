@@ -121,7 +121,7 @@
 
     .scene-home.fade-in{ opacity:1; }
 
-    /* ===== NAV (MATCHES ENTER) ===== */
+    /* ===== NAV (DESKTOP — KEEP AS IS) ===== */
     .topnav{
       position:absolute;
       top:28px;
@@ -224,7 +224,6 @@
       opacity:1;
     }
 
-    /* ENTER BUTTON (MATCHES NAV) */
     .pw-btn{
       font-family:"Montserrat", sans-serif;
       font-weight:500;
@@ -244,30 +243,35 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE ===== */
-    @media (max-width:520px){
+    /* ===== MOBILE (MATCH WELCOME.HTML) ===== */
+    @media (max-width:768px){
       .scene,
       .scene-home{ min-height:100svh; }
 
+      /* ✅ stacked nav like welcome.html */
       .topnav{
-        top: calc(14px + env(safe-area-inset-top));
-        width: calc(100% - 28px);
-        font-size:9.5px;
+        top: calc(20px + env(safe-area-inset-top));
+        width:100%;
+        padding:0 20px;
+
+        flex-direction:column;
+        align-items:center;
+        gap:16px;
+
+        font-size:10px;
         letter-spacing:0.28em;
-        height:36px;
+        height:auto;
       }
 
-      .topnav .left{ gap:18px; }
-
-      .topnav a{
-        display:inline-flex;
-        align-items:center;
-        height:36px;
+      .topnav .left{
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
       }
 
       .topnav .rsvp{
-        height:36px;
-        padding:0 16px;
+        margin-top:6px;
+        padding:8px 16px;
       }
 
       .pw-input{
@@ -283,7 +287,7 @@
 
       .pw-btn{ width:160px; }
 
-      /* ✅ NEW: Hide headings/nav on mobile until unlocked */
+      /* ✅ Hide headings/nav on mobile until unlocked */
       #siteContent{ display:none; }
       #siteContent.is-visible{ display:block; }
     }
@@ -313,7 +317,7 @@
 <!-- HOME -->
 <section class="scene scene-home" id="sceneHome">
 
-  <!-- ✅ Password stays outside so it’s the only thing you see on mobile before unlock -->
+  <!-- Password block (visible before unlock) -->
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
@@ -334,7 +338,7 @@
     </div>
   </div>
 
-  <!-- ✅ Everything that should NOT show on mobile until unlocked -->
+  <!-- NAV + anything else you want hidden until unlock -->
   <div id="siteContent">
     <nav class="topnav">
       <div class="left">
@@ -379,27 +383,24 @@
   const weddingDate = document.getElementById("weddingDate");
   const protectedLinks = document.querySelectorAll("[data-protected]");
   const pwError = document.getElementById("pwError");
-
-  // ✅ NEW
   const siteContent = document.getElementById("siteContent");
-  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+
+  function isMobile(){
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
 
   function lockUI(){
     protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
     weddingDate.classList.add("is-hidden");
-
-    // ✅ Hide headings/nav on mobile
-    if (isMobile) siteContent.classList.remove("is-visible");
+    if (isMobile()) siteContent.classList.remove("is-visible");
   }
 
   function unlockUI(){
     protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
     weddingDate.classList.remove("is-hidden");
-
-    // ✅ Show headings/nav on mobile after unlock
-    if (isMobile) siteContent.classList.add("is-visible");
+    if (isMobile()) siteContent.classList.add("is-visible");
   }
 
   if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
