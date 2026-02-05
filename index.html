@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -121,7 +121,7 @@
 
     .scene-home.fade-in{ opacity:1; }
 
-    /* ===== NAV ===== */
+    /* ===== NAV (MATCHES ENTER) ===== */
     .topnav{
       position:absolute;
       top:28px;
@@ -130,8 +130,10 @@
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
+      font-family:"Montserrat", sans-serif;
+      font-weight:500;
       text-transform:uppercase;
-      letter-spacing:1.6px;
+      letter-spacing:0.32em;
       font-size:12px;
       z-index:5;
     }
@@ -214,20 +216,22 @@
       padding:0 18px;
       width:min(300px,72vw);
       outline:none;
-      color:#fff;
       caret-color:#fff;
     }
 
     .pw-input::placeholder{
-      color:#fff !important;
-      opacity:1 !important;
+      color:#fff;
+      opacity:1;
     }
 
+    /* ENTER BUTTON (MATCHES NAV) */
     .pw-btn{
-      padding:0 22px;
+      font-family:"Montserrat", sans-serif;
+      font-weight:500;
       font-size:11px;
-      letter-spacing:2px;
+      letter-spacing:0.32em;
       text-transform:uppercase;
+      padding:0 22px;
       cursor:pointer;
     }
 
@@ -240,46 +244,16 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE ONLY ===== */
+    /* ===== MOBILE ===== */
     @media (max-width:520px){
       .scene,
       .scene-home{ min-height:100svh; }
-
-      /* Center whole envelope group vertically */
-      .scene-envelope{
-        align-items:center;
-      }
-
-      .scene-envelope .page{
-        min-height:auto;
-        justify-content:center;
-        padding-top:24px;
-        padding-bottom:24px;
-      }
-
-      /* Slightly more space between text and envelope */
-      .scene-envelope .top-signature{
-        margin-bottom:22px;
-      }
-
-      .scene-envelope .envelope{
-        margin-bottom:18px;
-      }
-
-      .scene-envelope .bottom-instruction{
-        margin-top:0;
-      }
-
-      .top-signature{
-        width: min(86vw, 420px);
-        margin-top: 0;
-      }
 
       .topnav{
         top: calc(14px + env(safe-area-inset-top));
         width: calc(100% - 28px);
         font-size:9.5px;
-        letter-spacing:1.1px;
+        letter-spacing:0.28em;
         height:36px;
       }
 
