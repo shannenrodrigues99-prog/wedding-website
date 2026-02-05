@@ -20,7 +20,7 @@
       min-height:100vh;
     }
 
-    /* ===== NAV (MATCHES WELCOME / ENTER) ===== */
+    /* ===== NAV (EDITORIAL) ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -53,6 +53,12 @@
     .topnav .rsvp{
       padding:10px 18px;
       border:1px solid rgba(0,0,0,0.35);
+    }
+
+    /* ✅ Override for FAQs only */
+    .nav-faqs{
+      text-transform:none;
+      letter-spacing:0.28em;
     }
 
     /* ===== PAGE LAYOUT ===== */
@@ -113,7 +119,7 @@
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
       <a href="schedule.html" style="opacity:1;">Schedule</a>
-      <a href="faqs.html">FAQs</a>
+      <a href="faqs.html" class="nav-faqs">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
