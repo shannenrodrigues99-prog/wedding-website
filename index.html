@@ -69,7 +69,6 @@
 
     .topnav a:hover{ opacity:1; }
 
-    /* RSVP underline */
     .topnav .rsvp{
       padding:0;
       border:none;
@@ -106,7 +105,6 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      transform: translateY(10px);
       gap:22px;
     }
 
@@ -207,16 +205,14 @@
         flex-wrap:wrap;
       }
 
-      /* 🔹 MOBILE PROPORTION TWEAKS ONLY 🔹 */
       .home-center{
-        transform: translateY(6px);
         gap:14px;
         padding:0 16px;
       }
 
+      /* 🔹 Smaller monogram on mobile */
       .monogram{
-        width: min(200px, 54vw);
-        margin-bottom:6px;
+        width: min(180px, 48vw);
       }
 
       .pw-row{
@@ -228,7 +224,7 @@
         width:min(82vw,360px);
         height:44px;
         text-align:center;
-        font-size:11px;          /* MATCHES ENTER */
+        font-size:11px;
         letter-spacing:0.12em;
       }
 
