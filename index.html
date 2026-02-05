@@ -210,7 +210,6 @@
         padding:0 16px;
       }
 
-      /* 🔹 Smaller monogram on mobile */
       .monogram{
         width: min(150px, 40vw);
       }
@@ -220,26 +219,26 @@
         gap:10px;
       }
 
-.pw-input{
-  width:min(82vw,360px);
-  height:44px;
-  text-align:center;
+      /* 👇 KEY CHANGE: make pills proportionate */
+      .pw-input{
+        width: min(82vw, 360px);
+        height:44px;
+        text-align:center;
+        font-size:16px;          /* prevents iOS zoom */
+        letter-spacing:0.12em;
+        transform: scale(0.75);  /* visually smaller */
+        transform-origin:center;
+      }
 
-  font-size:16px;            /* prevents iOS zoom */
-  letter-spacing:0.12em;
-
-  transform: scale(0.75);    /* visually matches 11px */
-  transform-origin: center;
-}
       .pw-btn{
-        width:160px;
+        width: min(82vw, 360px); /* MATCH input width */
         height:44px;
         font-size:11px;
         letter-spacing:0.34em;
       }
     }
 
-    /* Desktop-only spacing between monogram and password */
+    /* Desktop-only spacing */
     @media (min-width:769px){
       .monogram{
         margin-bottom:28px;
