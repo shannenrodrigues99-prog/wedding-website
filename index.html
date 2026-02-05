@@ -69,7 +69,7 @@
 
     .topnav a:hover{ opacity:1; }
 
-    /* ===== RSVP (UNDERLINE ONLY) ===== */
+    /* RSVP underline */
     .topnav .rsvp{
       padding:0;
       border:none;
@@ -233,12 +233,13 @@
         width:160px;
         height:46px;
       }
-/* Desktop-only spacing between monogram and password */
-@media (min-width: 769px){
-  .monogram{
-    margin-bottom: 28px;
-  }
-}
+    }
+
+    /* Desktop-only spacing between monogram and password */
+    @media (min-width:769px){
+      .monogram{
+        margin-bottom:28px;
+      }
     }
   </style>
 </head>
@@ -247,15 +248,18 @@
 
 <section class="scene-home" id="sceneHome">
 
-  <nav class="topnav">
-    <div class="left">
-      <a href="index.html">Home</a>
-      <a data-protected href="welcome.html">Welcome</a>
-      <a data-protected href="schedule.html">Schedule</a>
-      <a data-protected href="faqs.html">FAQs</a>
-    </div>
-    <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
-  </nav>
+  <!-- NAV (hidden until unlock) -->
+  <div id="siteNav" class="is-hidden">
+    <nav class="topnav">
+      <div class="left">
+        <a href="index.html">Home</a>
+        <a data-protected href="welcome.html">Welcome</a>
+        <a data-protected href="schedule.html">Schedule</a>
+        <a data-protected href="faqs.html">FAQs</a>
+      </div>
+      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
+    </nav>
+  </div>
 
   <div class="hero-wrap">
     <div class="home-center">
@@ -284,15 +288,18 @@
   const pwWrap = document.getElementById("pwWrap");
   const pwError = document.getElementById("pwError");
   const protectedLinks = document.querySelectorAll("[data-protected]");
+  const siteNav = document.getElementById("siteNav");
 
   function lockUI(){
     protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
+    siteNav.classList.add("is-hidden");
   }
 
   function unlockUI(){
     protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
+    siteNav.classList.remove("is-hidden");
   }
 
   if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
