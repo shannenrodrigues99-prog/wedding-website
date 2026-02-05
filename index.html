@@ -23,17 +23,24 @@
       overflow:hidden;
     }
 
-/* ===== HOME ===== */
+    /* ===== SCENE (HOME ONLY) ===== */
+    .scene{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
+
+    /* ===== HOME ===== */
     .scene-home{
       z-index:1;
-      opacity:0;
       color:#fff;
       background:
         linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
         url("hero.jpg") center/cover no-repeat;
     }
-
-    .scene-home.fade-in{ opacity:1; }
 
     /* ===== NAV (DESKTOP UNCHANGED) ===== */
     .topnav{
@@ -157,34 +164,8 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE (ENVELOPE + NAV FIX) ===== */
+    /* ===== MOBILE (NAV FIX) ===== */
     @media (max-width:768px){
-
-      /* Envelope page */
-      .page{
-        min-height:100svh;
-        padding:
-          calc(18px + env(safe-area-inset-top))
-          18px
-          calc(22px + env(safe-area-inset-bottom));
-        justify-content:center;
-        gap:22px;
-      }
-
-      .top-signature{
-        width:min(320px,78vw);
-        margin-top:0;
-      }
-
-      .envelope{
-        width:min(520px,92vw);
-      }
-
-      .bottom-instruction{
-        font-size:22px;
-        margin-top:0;
-        opacity:0.85;
-      }
 
       /* Nav (matches welcome.html after unlock) */
       .topnav{
@@ -231,25 +212,7 @@
 
 <body>
 
-<!-- ENVELOPE -->
-<section class="scene scene-envelope" id="sceneEnvelope">
-  <div class="page">
-    <div class="top-signature">
-      <img src="signature.png" alt="Shannen & Samarth">
-    </div>
-
-    <button class="envelope" id="env" aria-label="Open invitation">
-      <div class="inner">
-        <div class="face front"><img src="envelope-front1.png" alt=""></div>
-        <div class="face back"><img src="envelope-back1.png" alt=""></div>
-      </div>
-    </button>
-
-    <div class="bottom-instruction">Click envelope to open…</div>
-  </div>
-</section>
-
-<!-- HOME -->
+<!-- HOME ONLY -->
 <section class="scene scene-home" id="sceneHome">
 
   <div class="hero-wrap">
@@ -287,28 +250,8 @@
 </section>
 
 <script>
-  const env = document.getElementById("env");
-  const envelopeScene = document.getElementById("sceneEnvelope");
-  const homeScene = document.getElementById("sceneHome");
-
-  const INVITE_OPEN_KEY = "inviteOpened";
   const UNLOCK_KEY = "siteUnlocked";
   const SITE_PASSWORD = "ss2027";
-
-  if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
-    envelopeScene.classList.add("fade-out");
-    homeScene.classList.add("fade-in");
-    env.classList.add("flipped");
-  }
-
-  env.addEventListener("click", () => {
-    sessionStorage.setItem(INVITE_OPEN_KEY, "1");
-    env.classList.add("flipped");
-    setTimeout(() => {
-      envelopeScene.classList.add("fade-out");
-      homeScene.classList.add("fade-in");
-    }, 2700);
-  });
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
