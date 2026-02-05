@@ -222,15 +222,6 @@
       color:#fff !important;
       opacity:1 !important;
     }
-    .pw-input::-webkit-input-placeholder{
-      color:#fff !important;
-    }
-    .pw-input::-moz-placeholder{
-      color:#fff !important;
-    }
-    .pw-input:-ms-input-placeholder{
-      color:#fff !important;
-    }
 
     .pw-btn{
       padding:0 22px;
@@ -254,24 +245,34 @@
       .scene,
       .scene-home{ min-height:100svh; }
 
-      /* tighten envelope spacing on mobile */
-      .scene-envelope .page{
-        justify-content:flex-start;
-        padding-top:40px;
-        padding-bottom:40px;
+      /* Center whole envelope group vertically */
+      .scene-envelope{
+        align-items:center;
       }
 
+      .scene-envelope .page{
+        min-height:auto;
+        justify-content:center;
+        padding-top:24px;
+        padding-bottom:24px;
+      }
+
+      /* Slightly more space between text and envelope */
       .scene-envelope .top-signature{
+        margin-bottom:22px;
+      }
+
+      .scene-envelope .envelope{
         margin-bottom:18px;
       }
 
       .scene-envelope .bottom-instruction{
-        margin-top:18px;
+        margin-top:0;
       }
 
       .top-signature{
         width: min(86vw, 420px);
-        margin-top: 2px;
+        margin-top: 0;
       }
 
       .topnav{
