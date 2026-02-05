@@ -191,7 +191,7 @@
       margin-bottom:26px;
     }
 
-    /* ===== PASSWORD ===== */
+    /* ===== PASSWORD (ONLY CHANGE) ===== */
     .pw-wrap{ margin-top:28px; }
 
     .pw-row{
@@ -214,23 +214,32 @@
       padding:0 18px;
       width:min(300px,72vw);
       outline:none;
-      color:#fff;          /* typed text white */
-      caret-color:#fff;   /* cursor white */
+      color:#fff;
+      caret-color:#fff;
     }
 
-    /* PLACEHOLDER TEXT — WHITE */
+    /* FORCE PLACEHOLDER WHITE */
     .pw-input::placeholder{
-      color: rgba(255,255,255,0.92);
-      opacity:1;
+      color:#fff !important;
+      opacity:1 !important;
     }
     .pw-input::-webkit-input-placeholder{
-      color: rgba(255,255,255,0.92);
+      color:#fff !important;
+      opacity:1 !important;
+    }
+    .pw-input::-moz-placeholder{
+      color:#fff !important;
+      opacity:1 !important;
     }
     .pw-input:-ms-input-placeholder{
-      color: rgba(255,255,255,0.92);
+      color:#fff !important;
+      opacity:1 !important;
     }
-    .pw-input::-ms-input-placeholder{
-      color: rgba(255,255,255,0.92);
+
+    /* Autofill safety */
+    .pw-input:-webkit-autofill{
+      -webkit-text-fill-color:#fff !important;
+      transition: background-color 9999s ease-out 0s;
     }
 
     .pw-btn{
@@ -283,7 +292,7 @@
 
       .pw-input{
         width:min(78vw,340px);
-        font-size:16px; /* prevent iOS zoom */
+        font-size:16px;
         text-align:center;
       }
 
