@@ -277,13 +277,13 @@
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
-        <!-- ONLY CHANGE: image source -->
-        <img src="names.png" alt="Names">
+        <img id="logoBefore" src="monogram1.png" alt="Monogram">
+        <img id="logoAfter" src="names.png" alt="Names" class="is-hidden">
       </div>
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here" autocomplete="off">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here to view details" autocomplete="off">
           <button id="pwBtn" class="pw-btn">Enter</button>
         </div>
         <div class="pw-error" id="pwError"></div>
@@ -304,16 +304,23 @@
   const protectedLinks = document.querySelectorAll("[data-protected]");
   const siteNav = document.getElementById("siteNav");
 
+  const logoBefore = document.getElementById("logoBefore");
+  const logoAfter = document.getElementById("logoAfter");
+
   function lockUI(){
     protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
     siteNav.classList.add("is-hidden");
+    logoBefore.classList.remove("is-hidden");
+    logoAfter.classList.add("is-hidden");
   }
 
   function unlockUI(){
     protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
     siteNav.classList.remove("is-hidden");
+    logoBefore.classList.add("is-hidden");
+    logoAfter.classList.remove("is-hidden");
   }
 
   if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
