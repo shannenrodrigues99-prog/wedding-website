@@ -220,15 +220,17 @@
       }
 
       /* 👇 KEY CHANGE: make pills proportionate */
-      .pw-input{
-        width: min(82vw, 360px);
-        height:44px;
-        text-align:center;
-        font-size:16px;          /* prevents iOS zoom */
-        letter-spacing:0.12em;
-        transform: scale(0.75);  /* visually smaller */
-        transform-origin:center;
-      }
+.pw-input{
+  width: min(82vw, 360px);
+  height:48px;
+  text-align:center;
+
+  font-size:16px;        /* prevents iOS zoom */
+  letter-spacing:0.12em;
+
+  padding: 0 18px;       /* controls visual size instead of scaling */
+}
+
 
       .pw-btn{
         width: min(82vw, 360px); /* MATCH input width */
