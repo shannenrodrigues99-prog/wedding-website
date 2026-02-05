@@ -21,68 +21,70 @@
     body{
       font-family:"Playfair Display", serif;
       overflow:hidden;
+      color:#fff;
     }
 
-    /* ===== SCENE (HOME ONLY) ===== */
-    .scene{
+    /* ===== BACKGROUND (HERO) ===== */
+    .scene-home{
       position:fixed;
       inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:100vh;
-    }
-
-    /* ===== HOME ===== */
-    .scene-home{
-      z-index:1;
-      color:#fff;
       background:
-        linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
+        linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.18)),
         url("hero.jpg") center/cover no-repeat;
     }
 
-    /* ===== NAV (DESKTOP UNCHANGED) ===== */
+    /* ===== NAV (DESKTOP LIKE YOUR REF) ===== */
     .topnav{
-      position:absolute;
+      position:fixed;
       top:28px;
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
+      align-items:center;
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
-      letter-spacing:0.32em;
-      font-size:12px;
-      z-index:5;
+      letter-spacing:0.34em;
+      font-size:11px;
+      z-index:10;
+
+      /* the subtle line under the nav */
+      padding-bottom:18px;
+      border-bottom:1px solid rgba(255,255,255,.22);
     }
 
     .topnav .left{
       display:flex;
-      gap:44px;
+      gap:56px;              /* more airy like your screenshot */
+      align-items:center;
     }
 
     .topnav a{
       color:#fff;
       text-decoration:none;
-      opacity:.85;
+      opacity:.78;
+      transition:opacity .2s ease;
     }
 
+    .topnav a:hover{ opacity:1; }
+
     .topnav .rsvp{
-      padding:10px 18px;
-      border:1px solid rgba(255,255,255,.65);
+      padding:10px 20px;
+      border:1px solid rgba(255,255,255,.45);
+      opacity:.9;
     }
 
     .locked-link{
       pointer-events:none;
-      opacity:.35 !important;
+      opacity:.28 !important;
     }
 
-    /* ===== HERO ===== */
+    /* ===== CENTER CONTENT ===== */
     .hero-wrap{
-      min-height:100vh;
+      position:relative;
+      height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -92,34 +94,37 @@
       display:flex;
       flex-direction:column;
       align-items:center;
+      justify-content:center;
+      text-align:center;
+      transform: translateY(10px); /* tiny downshift like ref */
     }
 
     .monogram{
-      width: clamp(80px, 12vw, 140px);
-      margin-bottom: 24px;
+      width: clamp(160px, 18vw, 260px); /* bigger like your screenshot */
+      margin:0 auto;
+      opacity:.95;
     }
 
-    .monogram img{ width:100%; }
-
-    .names{
-      width: clamp(300px, 60vw, 520px);
-      margin-bottom: 14px;
+    .monogram img{
+      width:100%;
+      height:auto;
       display:block;
     }
 
-    .date{
-      font-size:20px;
-      letter-spacing:3px;
-      opacity:.9;
-      margin-bottom:26px;
-    }
+    /* keep these in case you still want them later */
+    .names{ display:none; }
+    .date{ display:none; }
 
-    /* ===== PASSWORD ===== */
-    .pw-wrap{ margin-top:28px; }
+    /* ===== PASSWORD (kept, but hidden after unlock) ===== */
+    .pw-wrap{
+      margin-top:26px;
+    }
 
     .pw-row{
       display:flex;
       gap:12px;
+      justify-content:center;
+      align-items:center;
     }
 
     .pw-input,
@@ -160,23 +165,25 @@
       min-height:14px;
       font-size:12px;
       text-align:center;
+      opacity:.9;
     }
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE (NAV FIX) ===== */
+    /* ===== MOBILE (same as before, tidy) ===== */
     @media (max-width:768px){
+      body{ overflow:hidden; }
 
-      /* Nav (matches welcome.html after unlock) */
       .topnav{
         top: calc(45px + env(safe-area-inset-top));
         width:100%;
-        padding:0 20px;
+        padding:0 20px 16px;
         flex-direction:column;
         align-items:center;
         gap:16px;
         font-size:10px;
         letter-spacing:0.28em;
+        border-bottom:1px solid rgba(255,255,255,.20);
       }
 
       .topnav .left{
@@ -188,6 +195,10 @@
       .topnav .rsvp{
         margin-top:6px;
         padding:8px 16px;
+      }
+
+      .monogram{
+        width: min(220px, 60vw);
       }
 
       .pw-row{
@@ -202,40 +213,14 @@
       }
 
       .pw-btn{ width:160px; }
-
-      /* Hide nav until unlock */
-      #siteContent{ display:none; }
-      #siteContent.is-visible{ display:block; }
     }
   </style>
 </head>
 
 <body>
 
-<!-- HOME ONLY -->
-<section class="scene scene-home" id="sceneHome">
+  <section class="scene-home" id="sceneHome">
 
-  <div class="hero-wrap">
-    <div class="home-center">
-      <div class="monogram">
-        <img src="monogram1.png" alt="Monogram">
-      </div>
-
-      <img class="names" src="signature1.png" alt="Shannen & Samarth">
-
-      <div class="date is-hidden" id="weddingDate">27 · 02 · 27</div>
-
-      <div class="pw-wrap" id="pwWrap">
-        <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password" autocomplete="off">
-          <button id="pwBtn" class="pw-btn">Enter</button>
-        </div>
-        <div class="pw-error" id="pwError"></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="siteContent">
     <nav class="topnav">
       <div class="left">
         <a href="index.html">Home</a>
@@ -245,9 +230,24 @@
       </div>
       <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
     </nav>
-  </div>
 
-</section>
+    <div class="hero-wrap">
+      <div class="home-center">
+        <div class="monogram">
+          <img src="monogram1.png" alt="Monogram">
+        </div>
+
+        <div class="pw-wrap" id="pwWrap">
+          <div class="pw-row">
+            <input id="pwInput" class="pw-input" type="password" placeholder="Enter password" autocomplete="off">
+            <button id="pwBtn" class="pw-btn">Enter</button>
+          </div>
+          <div class="pw-error" id="pwError"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
 
 <script>
   const UNLOCK_KEY = "siteUnlocked";
@@ -256,27 +256,17 @@
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
   const pwWrap = document.getElementById("pwWrap");
-  const weddingDate = document.getElementById("weddingDate");
-  const protectedLinks = document.querySelectorAll("[data-protected]");
   const pwError = document.getElementById("pwError");
-  const siteContent = document.getElementById("siteContent");
-
-  function isMobile(){
-    return window.matchMedia("(max-width: 768px)").matches;
-  }
+  const protectedLinks = document.querySelectorAll("[data-protected]");
 
   function lockUI(){
     protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
-    weddingDate.classList.add("is-hidden");
-    if (isMobile()) siteContent.classList.remove("is-visible");
   }
 
   function unlockUI(){
     protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
-    weddingDate.classList.remove("is-hidden");
-    if (isMobile()) siteContent.classList.add("is-visible");
   }
 
   if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
