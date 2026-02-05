@@ -54,7 +54,7 @@
       align-items:center;
     }
 
-    /* ===== TOP SIGNATURE (HEADER) ===== */
+    /* ===== TOP SIGNATURE ===== */
     .top-signature{
       width: clamp(300px, 48vw, 520px);
       margin-top: 8px;
@@ -214,6 +214,23 @@
       padding:0 18px;
       width:min(300px,72vw);
       outline:none;
+      color:#fff;          /* typed text white */
+      caret-color:#fff;   /* cursor white */
+    }
+
+    /* PLACEHOLDER TEXT — WHITE */
+    .pw-input::placeholder{
+      color: rgba(255,255,255,0.92);
+      opacity:1;
+    }
+    .pw-input::-webkit-input-placeholder{
+      color: rgba(255,255,255,0.92);
+    }
+    .pw-input:-ms-input-placeholder{
+      color: rgba(255,255,255,0.92);
+    }
+    .pw-input::-ms-input-placeholder{
+      color: rgba(255,255,255,0.92);
     }
 
     .pw-btn{
@@ -266,7 +283,7 @@
 
       .pw-input{
         width:min(78vw,340px);
-        font-size:16px;
+        font-size:16px; /* prevent iOS zoom */
         text-align:center;
       }
 
@@ -285,7 +302,6 @@
 <!-- ENVELOPE -->
 <section class="scene scene-envelope" id="sceneEnvelope">
   <div class="page">
-
     <div class="top-signature">
       <img src="signature.png" alt="Shannen & Samarth">
     </div>
@@ -298,7 +314,6 @@
     </button>
 
     <div class="bottom-instruction">Click envelope to open…</div>
-
   </div>
 </section>
 
