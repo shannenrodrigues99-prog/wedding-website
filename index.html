@@ -282,6 +282,10 @@
       }
 
       .pw-btn{ width:160px; }
+
+      /* ✅ NEW: Hide headings/nav on mobile until unlocked */
+      #siteContent{ display:none; }
+      #siteContent.is-visible{ display:block; }
     }
   </style>
 </head>
@@ -308,16 +312,8 @@
 
 <!-- HOME -->
 <section class="scene scene-home" id="sceneHome">
-  <nav class="topnav">
-    <div class="left">
-      <a href="index.html">Home</a>
-      <a data-protected href="welcome.html">Welcome</a>
-      <a data-protected href="schedule.html">Schedule</a>
-      <a data-protected href="faqs.html">FAQs</a>
-    </div>
-    <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
-  </nav>
 
+  <!-- ✅ Password stays outside so it’s the only thing you see on mobile before unlock -->
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
@@ -337,6 +333,20 @@
       </div>
     </div>
   </div>
+
+  <!-- ✅ Everything that should NOT show on mobile until unlocked -->
+  <div id="siteContent">
+    <nav class="topnav">
+      <div class="left">
+        <a href="index.html">Home</a>
+        <a data-protected href="welcome.html">Welcome</a>
+        <a data-protected href="schedule.html">Schedule</a>
+        <a data-protected href="faqs.html">FAQs</a>
+      </div>
+      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
+    </nav>
+  </div>
+
 </section>
 
 <script>
@@ -370,16 +380,26 @@
   const protectedLinks = document.querySelectorAll("[data-protected]");
   const pwError = document.getElementById("pwError");
 
+  // ✅ NEW
+  const siteContent = document.getElementById("siteContent");
+  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+
   function lockUI(){
     protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
     weddingDate.classList.add("is-hidden");
+
+    // ✅ Hide headings/nav on mobile
+    if (isMobile) siteContent.classList.remove("is-visible");
   }
 
   function unlockUI(){
     protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
     weddingDate.classList.remove("is-hidden");
+
+    // ✅ Show headings/nav on mobile after unlock
+    if (isMobile) siteContent.classList.add("is-visible");
   }
 
   if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
