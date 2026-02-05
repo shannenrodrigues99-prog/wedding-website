@@ -54,10 +54,17 @@
       align-items:center;
     }
 
-    .top-title{
-      font-family:"Alex Brush", cursive;
-      font-size:clamp(36px,5vw,56px);
-      color:#111;
+    /* TOP SIGNATURE */
+    .top-signature{
+      width: clamp(220px, 36vw, 360px);
+      margin-top: 10px;
+      opacity: 0.95;
+    }
+
+    .top-signature img{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
     .bottom-instruction{
@@ -65,6 +72,7 @@
       font-size:26px;
       color:#111;
       opacity:0.9;
+      margin-top:12px;
     }
 
     .envelope{
@@ -163,7 +171,6 @@
       align-items:center;
     }
 
-    /* SMALLER MONOGRAM */
     .monogram{
       width: clamp(80px, 12vw, 140px);
       margin-bottom: 24px;
@@ -171,11 +178,10 @@
 
     .monogram img{ width:100%; }
 
-    /* MUCH LARGER SIGNATURE */
     .names{
       width: clamp(300px, 60vw, 520px);
       margin-bottom: 14px;
-      display: block;
+      display:block;
     }
 
     .date{
@@ -232,49 +238,35 @@
       .scene,
       .scene-home{ min-height:100svh; }
 
-      /* ✅ EVEN TOP SPACING + LEVEL WITH RSVP */
       .topnav{
         top: calc(14px + env(safe-area-inset-top));
         width: calc(100% - 28px);
-        padding: 0 4px;
-
         font-size:9.5px;
         letter-spacing:1.1px;
-
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        white-space:nowrap;
         height:36px;
       }
 
-      .topnav .left{
-        display:flex;
-        align-items:center;
-        gap:18px;
-        flex-wrap:nowrap;
-      }
+      .topnav .left{ gap:18px; }
 
       .topnav a{
         display:inline-flex;
         align-items:center;
         height:36px;
-        line-height:1;
-        padding:0;
-        flex-shrink:0;
       }
 
       .topnav .rsvp{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
         height:36px;
         padding:0 16px;
       }
 
+      .top-signature{
+        width:260px;
+        margin-top:4px;
+      }
+
       .pw-input{
         width:min(78vw,340px);
-        font-size:16px;        /* prevent iOS zoom */
+        font-size:16px;
         text-align:center;
       }
 
@@ -293,14 +285,20 @@
 <!-- ENVELOPE -->
 <section class="scene scene-envelope" id="sceneEnvelope">
   <div class="page">
-    <div class="top-title">Shannen &amp; Samarth</div>
+
+    <div class="top-signature">
+      <img src="signature.png" alt="Shannen & Samarth">
+    </div>
+
     <button class="envelope" id="env" aria-label="Open invitation">
       <div class="inner">
         <div class="face front"><img src="envelope-front1.png" alt=""></div>
         <div class="face back"><img src="envelope-back1.png" alt=""></div>
       </div>
     </button>
+
     <div class="bottom-instruction">Click envelope to open…</div>
+
   </div>
 </section>
 
@@ -322,7 +320,7 @@
         <img src="monogram1.png" alt="Monogram">
       </div>
 
-      <img class="names" src="signature1.png" alt="Shannen &amp; Samarth">
+      <img class="names" src="signature.png" alt="Shannen & Samarth">
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 2027</div>
 
