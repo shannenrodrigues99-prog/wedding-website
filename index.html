@@ -70,21 +70,16 @@
     .topnav a:hover{ opacity:1; }
 
 .topnav .rsvp{
-  padding:0;
-  border:none;
-  opacity:1;                    /* stronger presence */
-  letter-spacing:0.36em;        /* micro emphasis */
+  padding:10px 18px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:999px;
+  opacity:1;
+  letter-spacing:0.34em;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-.topnav .rsvp::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-8px;                  /* slightly more air */
-  height:1.5px;                 /* thicker underline */
-  background:rgba(255,255,255,.85);
-}
 
     .locked-link{
       pointer-events:none;
