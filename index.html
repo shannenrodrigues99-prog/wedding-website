@@ -69,17 +69,17 @@
 
     .topnav a:hover{ opacity:1; }
 
-.topnav .rsvp{
-  padding:10px 18px;
-  border:1px solid rgba(255,255,255,.55);
-  border-radius:999px;
-  opacity:1;
-  letter-spacing:0.34em;
-  background:rgba(255,255,255,0.06);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
+    /* RSVP – base (all devices) */
+    .topnav .rsvp{
+      padding:10px 18px;
+      border:1px solid rgba(255,255,255,.55);
+      border-radius:999px;
+      opacity:1;
+      letter-spacing:0.34em;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
 
     .locked-link{
       pointer-events:none;
@@ -115,7 +115,6 @@
       display:block;
     }
 
-    /* ===== NAMES WRAPPER (ONLY ADDITION) ===== */
     #logoAfter{
       width:200%;
       display:block;
@@ -280,12 +279,13 @@
         width: clamp(260px, 26vw, 360px);
       }
 
-      /* DESKTOP ONLY: move RSVP next to the other tabs */
       .topnav{
         justify-content:flex-start;
       }
+
       .topnav .rsvp{
         margin-left:56px;
+        padding:8px 14px; /* narrower pill – desktop only */
       }
     }
   </style>
@@ -312,7 +312,6 @@
       <div class="monogram">
         <img id="logoBefore" src="monogram1.png" alt="Monogram">
 
-        <!-- ONLY STRUCTURAL ADDITION -->
         <div id="logoAfterWrap" class="is-hidden">
           <span class="wedding-label">THE WEDDING OF</span>
           <img id="logoAfter" src="names.png" alt="Names">
