@@ -21,79 +21,147 @@
     body{
       font-family:"Playfair Display", serif;
       overflow:hidden;
-      color:#fff;
     }
 
-    /* ===== BACKGROUND ===== */
-    .scene-home{
+    /* ===== SCENES ===== */
+    .scene{
       position:fixed;
       inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:opacity 1.6s ease;
+      min-height:100vh;
+    }
+
+    /* ===== ENVELOPE ===== */
+    .scene-envelope{
+      background:#fff;
+      z-index:2;
+    }
+
+    .scene-envelope.fade-out{
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .page{
+      min-height:100vh;
+      padding:70px 20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    /* ===== TOP SIGNATURE ===== */
+    .top-signature{
+      width: clamp(300px, 48vw, 520px);
+      margin-top: 8px;
+      opacity: 0.96;
+    }
+
+    .top-signature img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    .bottom-instruction{
+      font-family:"Alex Brush", cursive;
+      font-size:26px;
+      color:#111;
+      opacity:0.9;
+      margin-top:12px;
+    }
+
+    .envelope{
+      width:min(560px,82vw);
+      perspective:1400px;
+      cursor:pointer;
+      background:transparent;
+      border:0;
+    }
+
+    .inner{
+      width:100%;
+      aspect-ratio:3/2;
+      transform-style:preserve-3d;
+      transition:transform 1.5s ease-in-out;
+      position:relative;
+    }
+
+    .envelope.flipped .inner{
+      transform:rotateY(180deg);
+    }
+
+    .face{
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+    }
+
+    .face img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .back{ transform:rotateY(180deg); }
+
+    /* ===== HOME ===== */
+    .scene-home{
+      z-index:1;
+      opacity:0;
+      color:#fff;
       background:
-        linear-gradient(rgba(0,0,0,.14), rgba(0,0,0,.14)),
+        linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
         url("hero.jpg") center/cover no-repeat;
     }
 
-    /* ===== NAV ===== */
+    .scene-home.fade-in{ opacity:1; }
+
+    /* ===== NAV (DESKTOP UNCHANGED) ===== */
     .topnav{
-      position:fixed;
+      position:absolute;
       top:28px;
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
-      align-items:center;
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
-      letter-spacing:0.34em;
-      font-size:11px;
-      z-index:10;
-      padding-bottom:18px;
-      border-bottom:1px solid rgba(255,255,255,.22);
+      letter-spacing:0.32em;
+      font-size:12px;
+      z-index:5;
     }
 
     .topnav .left{
       display:flex;
-      gap:56px;
-      align-items:center;
+      gap:44px;
     }
 
     .topnav a{
       color:#fff;
       text-decoration:none;
-      opacity:.78;
-      transition:opacity .2s ease;
-      position:relative;
+      opacity:.85;
     }
-
-    .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
-      padding:0;
-      border:none;
-      opacity:.9;
-    }
-
-    .topnav .rsvp::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-6px;
-      height:1px;
-      background:rgba(255,255,255,.65);
+      padding:10px 18px;
+      border:1px solid rgba(255,255,255,.65);
     }
 
     .locked-link{
       pointer-events:none;
-      opacity:.30 !important;
+      opacity:.35 !important;
     }
 
-    /* ===== CENTER CONTENT ===== */
+    /* ===== HERO ===== */
     .hero-wrap{
-      position:relative;
-      height:100vh;
+      min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -103,110 +171,67 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:center;
-      text-align:center;
-      gap:22px;
     }
 
     .monogram{
-      width: clamp(150px, 17vw, 250px);
-      opacity:.96;
+      width: clamp(80px, 12vw, 140px);
+      margin-bottom: 24px;
     }
 
-    .monogram img{
-      width:100%;
-      height:auto;
+    .monogram img{ width:100%; }
+
+    .names{
+      width: clamp(300px, 60vw, 520px);
+      margin-bottom: 14px;
       display:block;
     }
 
-    /* ===== NAMES WRAPPER (ONLY ADDITION) ===== */
-#logoAfter{
-  width:200%;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-
-    .wedding-label{
-      font-family:"Montserrat", sans-serif;
-      font-size:14px;
-      letter-spacing:0.34em;
-      text-transform:uppercase;
-      margin-bottom:14px;
-      opacity:.85;
-    }
-
-    #logoAfter{
-      width:200%;
-      position:relative;
-      left:50%;
-      transform:translateX(-50%);
-    }
-
-    .wedding-date{
-      margin-top:20px;
-      font-family:"Montserrat", sans-serif;
-      font-size:16px;
-      letter-spacing:0.12em;
+    .date{
+      font-size:20px;
+      letter-spacing:3px;
       opacity:.9;
+      margin-bottom:26px;
     }
 
     /* ===== PASSWORD ===== */
-    .pw-wrap{
-      margin-top:6px;
-    }
+    .pw-wrap{ margin-top:28px; }
 
     .pw-row{
       display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:16px;
+      gap:12px;
+    }
+
+    .pw-input,
+    .pw-btn{
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      backdrop-filter: blur(18px) saturate(160%);
+      background: rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.28);
+      border-radius:999px;
+      height:46px;
+      color:#fff;
     }
 
     .pw-input{
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      backdrop-filter: blur(18px) saturate(160%);
-      background: rgba(255,255,255,0.16);
-      border:1px solid rgba(255,255,255,0.26);
-      box-shadow:
-        0 14px 34px rgba(0,0,0,0.32),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-      color:#fff;
-      border-radius:999px;
-      height:48px;
-      width: clamp(320px, 34vw, 460px);
-      padding:0 20px;
+      padding:0 18px;
+      width:min(300px,72vw);
       outline:none;
       caret-color:#fff;
-      font-size:14px;
-      line-height:1;
     }
 
     .pw-input::placeholder{
       color:#fff;
-      opacity:.9;
+      opacity:1;
     }
 
     .pw-btn{
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      backdrop-filter: blur(18px) saturate(160%);
-      background: rgba(255,255,255,0.14);
-      border:1px solid rgba(255,255,255,0.28);
-      box-shadow:
-        0 12px 30px rgba(0,0,0,0.28),
-        inset 0 1px 0 rgba(255,255,255,0.20);
-      color:#fff;
-      border-radius:999px;
-      height:48px;
-      padding:0 22px;
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       font-size:11px;
-      letter-spacing:0.34em;
+      letter-spacing:0.32em;
       text-transform:uppercase;
+      padding:0 22px;
       cursor:pointer;
-      opacity:.95;
     }
 
     .pw-error{
@@ -214,23 +239,49 @@
       min-height:14px;
       font-size:12px;
       text-align:center;
-      opacity:.9;
     }
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE ===== */
+    /* ===== MOBILE (ENVELOPE + NAV FIX) ===== */
     @media (max-width:768px){
+
+      /* Envelope page */
+      .page{
+        min-height:100svh;
+        padding:
+          calc(18px + env(safe-area-inset-top))
+          18px
+          calc(22px + env(safe-area-inset-bottom));
+        justify-content:center;
+        gap:22px;
+      }
+
+      .top-signature{
+        width:min(320px,78vw);
+        margin-top:0;
+      }
+
+      .envelope{
+        width:min(520px,92vw);
+      }
+
+      .bottom-instruction{
+        font-size:22px;
+        margin-top:0;
+        opacity:0.85;
+      }
+
+      /* Nav (matches welcome.html after unlock) */
       .topnav{
         top: calc(45px + env(safe-area-inset-top));
         width:100%;
-        padding:0 20px 16px;
+        padding:0 20px;
         flex-direction:column;
         align-items:center;
         gap:16px;
         font-size:10px;
         letter-spacing:0.28em;
-        border-bottom:1px solid rgba(255,255,255,.20);
       }
 
       .topnav .left{
@@ -239,60 +290,75 @@
         flex-wrap:wrap;
       }
 
-      .home-center{
-        gap:14px;
-        padding:0 16px;
-      }
-
-      .monogram{
-        width: min(150px, 40vw);
+      .topnav .rsvp{
+        margin-top:6px;
+        padding:8px 16px;
       }
 
       .pw-row{
         flex-direction:column;
-        gap:10px;
-      }
-
-      .pw-input,
-      .pw-btn{
-        height:44px;
+        align-items:center;
       }
 
       .pw-input{
-        width: min(82vw, 360px);
-        text-align:center;
-        font-family:"Montserrat", sans-serif;
-        font-weight:500;
+        width:min(78vw,340px);
         font-size:16px;
-        letter-spacing:0.12em;
-        padding:0 18px;
+        text-align:center;
       }
 
-      .pw-btn{
-        width: min(82vw, 360px);
-        font-size:11px;
-        letter-spacing:0.34em;
-      }
-    }
+      .pw-btn{ width:160px; }
 
-    /* ===== DESKTOP ===== */
-    @media (min-width:769px){
-      .monogram{
-        margin-bottom:28px;
-      }
-
-      .pw-input{
-        width: clamp(260px, 26vw, 360px);
-      }
+      /* Hide nav until unlock */
+      #siteContent{ display:none; }
+      #siteContent.is-visible{ display:block; }
     }
   </style>
 </head>
 
 <body>
 
-<section class="scene-home" id="sceneHome">
+<!-- ENVELOPE -->
+<section class="scene scene-envelope" id="sceneEnvelope">
+  <div class="page">
+    <div class="top-signature">
+      <img src="signature.png" alt="Shannen & Samarth">
+    </div>
 
-  <div id="siteNav" class="is-hidden">
+    <button class="envelope" id="env" aria-label="Open invitation">
+      <div class="inner">
+        <div class="face front"><img src="envelope-front1.png" alt=""></div>
+        <div class="face back"><img src="envelope-back1.png" alt=""></div>
+      </div>
+    </button>
+
+    <div class="bottom-instruction">Click envelope to open…</div>
+  </div>
+</section>
+
+<!-- HOME -->
+<section class="scene scene-home" id="sceneHome">
+
+  <div class="hero-wrap">
+    <div class="home-center">
+      <div class="monogram">
+        <img src="monogram1.png" alt="Monogram">
+      </div>
+
+      <img class="names" src="signature1.png" alt="Shannen & Samarth">
+
+      <div class="date is-hidden" id="weddingDate">27 · 02 · 27</div>
+
+      <div class="pw-wrap" id="pwWrap">
+        <div class="pw-row">
+          <input id="pwInput" class="pw-input" type="password" placeholder="Enter password" autocomplete="off">
+          <button id="pwBtn" class="pw-btn">Enter</button>
+        </div>
+        <div class="pw-error" id="pwError"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="siteContent">
     <nav class="topnav">
       <div class="left">
         <a href="index.html">Home</a>
@@ -304,59 +370,56 @@
     </nav>
   </div>
 
-  <div class="hero-wrap">
-    <div class="home-center">
-      <div class="monogram">
-        <img id="logoBefore" src="monogram1.png" alt="Monogram">
-
-        <!-- ONLY STRUCTURAL ADDITION -->
-        <div id="logoAfterWrap" class="is-hidden">
-          <span class="wedding-label">THE WEDDING OF</span>
-          <img id="logoAfter" src="names.png" alt="Names">
-          <span class="wedding-date">27.02.27</span>
-        </div>
-      </div>
-
-      <div class="pw-wrap" id="pwWrap">
-        <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here" autocomplete="off">
-          <button id="pwBtn" class="pw-btn">Enter</button>
-        </div>
-        <div class="pw-error" id="pwError"></div>
-      </div>
-    </div>
-  </div>
-
 </section>
 
 <script>
+  const env = document.getElementById("env");
+  const envelopeScene = document.getElementById("sceneEnvelope");
+  const homeScene = document.getElementById("sceneHome");
+
+  const INVITE_OPEN_KEY = "inviteOpened";
   const UNLOCK_KEY = "siteUnlocked";
   const SITE_PASSWORD = "ss2027";
+
+  if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
+    envelopeScene.classList.add("fade-out");
+    homeScene.classList.add("fade-in");
+    env.classList.add("flipped");
+  }
+
+  env.addEventListener("click", () => {
+    sessionStorage.setItem(INVITE_OPEN_KEY, "1");
+    env.classList.add("flipped");
+    setTimeout(() => {
+      envelopeScene.classList.add("fade-out");
+      homeScene.classList.add("fade-in");
+    }, 2700);
+  });
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
   const pwWrap = document.getElementById("pwWrap");
-  const pwError = document.getElementById("pwError");
+  const weddingDate = document.getElementById("weddingDate");
   const protectedLinks = document.querySelectorAll("[data-protected]");
-  const siteNav = document.getElementById("siteNav");
+  const pwError = document.getElementById("pwError");
+  const siteContent = document.getElementById("siteContent");
 
-  const logoBefore = document.getElementById("logoBefore");
-  const logoAfterWrap = document.getElementById("logoAfterWrap");
+  function isMobile(){
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
 
   function lockUI(){
     protectedLinks.forEach(l => l.classList.add("locked-link"));
     pwWrap.classList.remove("is-hidden");
-    siteNav.classList.add("is-hidden");
-    logoBefore.classList.remove("is-hidden");
-    logoAfterWrap.classList.add("is-hidden");
+    weddingDate.classList.add("is-hidden");
+    if (isMobile()) siteContent.classList.remove("is-visible");
   }
 
   function unlockUI(){
     protectedLinks.forEach(l => l.classList.remove("locked-link"));
     pwWrap.classList.add("is-hidden");
-    siteNav.classList.remove("is-hidden");
-    logoBefore.classList.add("is-hidden");
-    logoAfterWrap.classList.remove("is-hidden");
+    weddingDate.classList.remove("is-hidden");
+    if (isMobile()) siteContent.classList.add("is-visible");
   }
 
   if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
