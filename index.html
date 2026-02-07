@@ -123,22 +123,24 @@
     }
 
     /* ===== DEFAULT (ALL DEVICES) SPACING ===== */
-    .wedding-label{
-      font-family:"Montserrat", sans-serif;
-      font-size:14px;
-      letter-spacing:0.34em;
-      text-transform:uppercase;
-      margin-bottom:70px;
-      opacity:.85;
+   .wedding-label{
+  display:block; /* IMPORTANT: makes margin work */
+  font-family:"Montserrat", sans-serif;
+  font-size:14px;
+  letter-spacing:0.34em;
+  text-transform:uppercase;
+  margin-bottom:70px; /* default (mobile + general) */
+  opacity:.85;
     }
 
-    .wedding-date{
-      margin-top:50px;
-      font-family:"Montserrat", sans-serif;
-      font-size:16px;
-      letter-spacing:0.12em;
-      opacity:.9;
-    }
+.wedding-date{
+  display:block; /* IMPORTANT: makes margin work */
+  margin-top:50px; /* default (mobile + general) */
+  font-family:"Montserrat", sans-serif;
+  font-size:16px;
+  letter-spacing:0.12em;
+  opacity:.9;
+}
 
     #logoAfter{
       width:200%;
@@ -290,13 +292,13 @@
       }
 
       /* DESKTOP-ONLY HERO SPACING */
-      .scene-home .wedding-label{
-        margin-bottom:200px;
-      }
+.scene-home .wedding-label{
+  margin-bottom:200px;
+}
 
-      .scene-home .wedding-date{
-        margin-top:200px;
-      }
+.scene-home .wedding-date{
+  margin-top:200px;
+}
     }
   </style>
 </head>
