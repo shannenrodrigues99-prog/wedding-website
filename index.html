@@ -69,7 +69,7 @@
 
     .topnav a:hover{ opacity:1; }
 
-    /* RSVP – base (all devices) */
+    /* RSVP */
     .topnav .rsvp{
       padding:10px 18px;
       border:1px solid rgba(255,255,255,.55);
@@ -122,13 +122,22 @@
       margin-right:auto;
     }
 
+    /* ===== DEFAULT (ALL DEVICES) SPACING ===== */
     .wedding-label{
       font-family:"Montserrat", sans-serif;
       font-size:14px;
       letter-spacing:0.34em;
       text-transform:uppercase;
-      margin-bottom:200px;
+      margin-bottom:70px;
       opacity:.85;
+    }
+
+    .wedding-date{
+      margin-top:50px;
+      font-family:"Montserrat", sans-serif;
+      font-size:16px;
+      letter-spacing:0.12em;
+      opacity:.9;
     }
 
     #logoAfter{
@@ -136,14 +145,6 @@
       position:relative;
       left:50%;
       transform:translateX(-50%);
-    }
-
-    .wedding-date{
-      margin-top:200px;
-      font-family:"Montserrat", sans-serif;
-      font-size:16px;
-      letter-spacing:0.12em;
-      opacity:.9;
     }
 
     /* ===== PASSWORD ===== */
@@ -285,7 +286,16 @@
 
       .topnav .rsvp{
         margin-left:56px;
-        padding:4px 14px; /* narrower pill – desktop only */
+        padding:4px 14px;
+      }
+
+      /* DESKTOP-ONLY HERO SPACING */
+      .scene-home .wedding-label{
+        margin-bottom:200px;
+      }
+
+      .scene-home .wedding-date{
+        margin-top:200px;
       }
     }
   </style>
