@@ -69,21 +69,22 @@
 
     .topnav a:hover{ opacity:1; }
 
-    .topnav .rsvp{
-      padding:0;
-      border:none;
-      opacity:.9;
-    }
+.topnav .rsvp{
+  padding:0;
+  border:none;
+  opacity:1;                    /* stronger presence */
+  letter-spacing:0.36em;        /* micro emphasis */
+}
 
-    .topnav .rsvp::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-6px;
-      height:1px;
-      background:rgba(255,255,255,.65);
-    }
+.topnav .rsvp::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-8px;                  /* slightly more air */
+  height:1.5px;                 /* thicker underline */
+  background:rgba(255,255,255,.85);
+}
 
     .locked-link{
       pointer-events:none;
