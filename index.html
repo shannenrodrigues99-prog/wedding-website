@@ -69,16 +69,20 @@
 
     .topnav a:hover{ opacity:1; }
 
-    /* RSVP */
     .topnav .rsvp{
-      padding:10px 18px;
-      border:1px solid rgba(255,255,255,.55);
-      border-radius:999px;
-      opacity:1;
-      letter-spacing:0.34em;
-      background:rgba(255,255,255,0.06);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      padding:0;
+      border:none;
+      opacity:.9;
+    }
+
+    .topnav .rsvp::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-6px;
+      height:1px;
+      background:rgba(255,255,255,.65);
     }
 
     .locked-link{
@@ -115,31 +119,22 @@
       display:block;
     }
 
-    #logoAfter{
-      width:200%;
-      display:block;
-      margin-left:auto;
-      margin-right:auto;
-    }
+    /* ===== NAMES WRAPPER (ONLY ADDITION) ===== */
+#logoAfter{
+  width:200%;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
 
-    /* ===== BASE SPACING (ALL DEVICES) ===== */
+
     .wedding-label{
-      display:block;
       font-family:"Montserrat", sans-serif;
       font-size:14px;
       letter-spacing:0.34em;
       text-transform:uppercase;
-      margin-bottom:70px;
+      margin-bottom:14px;
       opacity:.85;
-    }
-
-    .wedding-date{
-      display:block;
-      margin-top:50px;
-      font-family:"Montserrat", sans-serif;
-      font-size:16px;
-      letter-spacing:0.12em;
-      opacity:.9;
     }
 
     #logoAfter{
@@ -147,6 +142,14 @@
       position:relative;
       left:50%;
       transform:translateX(-50%);
+    }
+
+    .wedding-date{
+      margin-top:20px;
+      font-family:"Montserrat", sans-serif;
+      font-size:16px;
+      letter-spacing:0.12em;
+      opacity:.9;
     }
 
     /* ===== PASSWORD ===== */
@@ -219,7 +222,7 @@
     /* ===== MOBILE ===== */
     @media (max-width:768px){
       .topnav{
-        top: calc(25px + env(safe-area-inset-top));
+        top: calc(45px + env(safe-area-inset-top));
         width:100%;
         padding:0 20px 16px;
         flex-direction:column;
@@ -243,15 +246,6 @@
 
       .monogram{
         width: min(150px, 40vw);
-      }
-
-      /* MOBILE-ONLY HERO SPACING */
-      .scene-home .wedding-label{
-        margin-bottom:10px;
-      }
-
-      .scene-home .wedding-date{
-        margin-top:10px;
       }
 
       .pw-row{
@@ -290,24 +284,6 @@
       .pw-input{
         width: clamp(260px, 26vw, 360px);
       }
-
-      .topnav{
-        justify-content:flex-start;
-      }
-
-      .topnav .rsvp{
-        margin-left:56px;
-        padding:4px 14px;
-      }
-
-      /* DESKTOP-ONLY HERO SPACING */
-      .scene-home .wedding-label{
-        margin-bottom:5px;
-      }
-
-      .scene-home .wedding-date{
-        margin-top:5px;
-      }
     }
   </style>
 </head>
@@ -333,6 +309,7 @@
       <div class="monogram">
         <img id="logoBefore" src="monogram1.png" alt="Monogram">
 
+        <!-- ONLY STRUCTURAL ADDITION -->
         <div id="logoAfterWrap" class="is-hidden">
           <span class="wedding-label">THE WEDDING OF</span>
           <img id="logoAfter" src="names.png" alt="Names">
