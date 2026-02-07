@@ -120,13 +120,12 @@
     }
 
     /* ===== NAMES WRAPPER (ONLY ADDITION) ===== */
-#logoAfter{
-  width:200%;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-}
-
+    #logoAfter{
+      width:200%;
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+    }
 
     .wedding-label{
       font-family:"Montserrat", sans-serif;
@@ -283,6 +282,14 @@
 
       .pw-input{
         width: clamp(260px, 26vw, 360px);
+      }
+
+      /* DESKTOP ONLY: move RSVP next to the other tabs */
+      .topnav{
+        justify-content:flex-start;
+      }
+      .topnav .rsvp{
+        margin-left:56px;
       }
     }
   </style>
