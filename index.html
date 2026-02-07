@@ -119,22 +119,7 @@
       display:block;
     }
 
-    /* ===== NAMES LOCKUP ===== */
-    #logoAfterWrap{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-    }
-
-    .wedding-label{
-      font-family:"Montserrat", sans-serif;
-      font-size:14px;
-      letter-spacing:0.34em;
-      text-transform:uppercase;
-      opacity:.85;
-    }
-
+    /* ===== NAMES WRAPPER (ONLY ADDITION) ===== */
     #logoAfter{
       width:200%;
       display:block;
@@ -142,7 +127,24 @@
       margin-right:auto;
     }
 
+    .wedding-label{
+      font-family:"Montserrat", sans-serif;
+      font-size:14px;
+      letter-spacing:0.34em;
+      text-transform:uppercase;
+      margin-bottom:80px;
+      opacity:.85;
+    }
+
+    #logoAfter{
+      width:200%;
+      position:relative;
+      left:50%;
+      transform:translateX(-50%);
+    }
+
     .wedding-date{
+      margin-top:60px;
       font-family:"Montserrat", sans-serif;
       font-size:16px;
       letter-spacing:0.12em;
@@ -150,7 +152,9 @@
     }
 
     /* ===== PASSWORD ===== */
-    .pw-wrap{ margin-top:6px; }
+    .pw-wrap{
+      margin-top:6px;
+    }
 
     .pw-row{
       display:flex;
@@ -175,6 +179,12 @@
       outline:none;
       caret-color:#fff;
       font-size:14px;
+      line-height:1;
+    }
+
+    .pw-input::placeholder{
+      color:#fff;
+      opacity:.9;
     }
 
     .pw-btn{
@@ -182,18 +192,25 @@
       backdrop-filter: blur(18px) saturate(160%);
       background: rgba(255,255,255,0.14);
       border:1px solid rgba(255,255,255,0.28);
+      box-shadow:
+        0 12px 30px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.20);
       color:#fff;
       border-radius:999px;
       height:48px;
       padding:0 22px;
       font-family:"Montserrat", sans-serif;
+      font-weight:500;
       font-size:11px;
       letter-spacing:0.34em;
       text-transform:uppercase;
+      cursor:pointer;
+      opacity:.95;
     }
 
     .pw-error{
       margin-top:10px;
+      min-height:14px;
       font-size:12px;
       text-align:center;
       opacity:.9;
@@ -201,7 +218,7 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE (UNCHANGED) ===== */
+    /* ===== MOBILE ===== */
     @media (max-width:768px){
       .topnav{
         top: calc(45px + env(safe-area-inset-top));
@@ -243,6 +260,8 @@
       .pw-input{
         width: min(82vw, 360px);
         text-align:center;
+        font-family:"Montserrat", sans-serif;
+        font-weight:500;
         font-size:16px;
         letter-spacing:0.12em;
         padding:0 18px;
@@ -250,28 +269,35 @@
 
       .pw-btn{
         width: min(82vw, 360px);
+        font-size:11px;
+        letter-spacing:0.34em;
       }
     }
 
-    /* ===== DESKTOP ONLY ===== */
+    /* ===== DESKTOP ===== */
     @media (min-width:769px){
-      .monogram{ margin-bottom:28px; }
-      .pw-input{ width: clamp(260px, 26vw, 360px); }
+      .monogram{
+        margin-bottom:28px;
+      }
 
-      /* Vogue spacing */
-      .wedding-label{ margin-bottom:56px; }
-      .wedding-date{ margin-top:72px; }
+      .pw-input{
+        width: clamp(260px, 26vw, 360px);
+      }
 
-      /* RSVP grouped with tabs */
-      .topnav{ justify-content:flex-start; }
-      .topnav .rsvp{ margin-left:56px; }
+      /* DESKTOP ONLY: move RSVP next to the other tabs */
+      .topnav{
+        justify-content:flex-start;
+      }
+      .topnav .rsvp{
+        margin-left:56px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<section class="scene-home">
+<section class="scene-home" id="sceneHome">
 
   <div id="siteNav" class="is-hidden">
     <nav class="topnav">
@@ -290,6 +316,7 @@
       <div class="monogram">
         <img id="logoBefore" src="monogram1.png" alt="Monogram">
 
+        <!-- ONLY STRUCTURAL ADDITION -->
         <div id="logoAfterWrap" class="is-hidden">
           <span class="wedding-label">THE WEDDING OF</span>
           <img id="logoAfter" src="names.png" alt="Names">
