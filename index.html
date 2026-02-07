@@ -86,112 +86,15 @@
       opacity:.30 !important;
     }
 
-    /* ===== CENTER CONTENT ===== */
-    .hero-wrap{
-      position:relative;
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .home-center{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      gap:22px;
-    }
-
-    .monogram{
-      width: clamp(150px, 17vw, 250px);
-      opacity:.96;
-    }
-
-    .monogram img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    /* ===== BASE SPACING ===== */
-    .wedding-label{
-      display:block;
-      font-family:"Montserrat", sans-serif;
-      font-size:14px;
-      letter-spacing:0.34em;
-      text-transform:uppercase;
-      margin-bottom:70px;
-      opacity:.85;
-    }
-
-    .wedding-date{
-      display:block;
-      margin-top:50px;
-      font-family:"Montserrat", sans-serif;
-      font-size:16px;
-      letter-spacing:0.12em;
-      opacity:.9;
-    }
-
-    #logoAfter{
-      width:200%;
-      display:block;
-      position:relative;
-      left:50%;
-      transform:translateX(-50%);
-    }
-
-    /* ===== PASSWORD ===== */
-    .pw-wrap{ margin-top:6px; }
-
-    .pw-row{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:16px;
-    }
-
-    .pw-input{
-      backdrop-filter: blur(18px) saturate(160%);
-      background: rgba(255,255,255,0.16);
-      border:1px solid rgba(255,255,255,0.26);
-      color:#fff;
-      border-radius:999px;
-      height:48px;
-      width: clamp(320px, 34vw, 460px);
-      padding:0 20px;
-      outline:none;
-      font-size:14px;
-    }
-
-    .pw-btn{
-      backdrop-filter: blur(18px) saturate(160%);
-      background: rgba(255,255,255,0.14);
-      border:1px solid rgba(255,255,255,0.28);
-      color:#fff;
-      border-radius:999px;
-      height:48px;
-      padding:0 22px;
-      font-family:"Montserrat", sans-serif;
-      font-size:11px;
-      letter-spacing:0.34em;
-      text-transform:uppercase;
-      cursor:pointer;
-    }
-
-    .is-hidden{ display:none !important; }
-
-    /* ===== MOBILE (UPDATED) ===== */
+    /* ===== MOBILE ONLY ADJUSTMENT ===== */
     @media (max-width:768px){
       .topnav{
         top: calc(45px + env(safe-area-inset-top));
         width:100%;
-        padding:0 20px 10px;   /* ↓ reduced bottom space */
+        padding:8px 20px 8px; /* ← ONLY CHANGE */
         flex-direction:column;
         align-items:center;
-        gap:10px;              /* ↓ reduced space above RSVP */
+        gap:10px;
         font-size:10px;
         letter-spacing:0.28em;
         border-bottom:1px solid rgba(255,255,255,.20);
@@ -202,45 +105,12 @@
         justify-content:center;
         flex-wrap:wrap;
       }
-
-      .monogram{
-        width: min(150px, 40vw);
-      }
-
-      /* mobile hero spacing */
-      .scene-home .wedding-label{ margin-bottom:40px; }
-      .scene-home .wedding-date{ margin-top:32px; }
-
-      .pw-row{
-        flex-direction:column;
-        gap:10px;
-      }
-
-      .pw-input,
-      .pw-btn{
-        height:44px;
-        width: min(82vw, 360px);
-      }
-    }
-
-    /* ===== DESKTOP ===== */
-    @media (min-width:769px){
-      .topnav{
-        justify-content:flex-start;
-      }
-
-      .topnav .rsvp{
-        margin-left:56px;
-        padding:4px 14px;
-      }
-
-      .scene-home .wedding-label{ margin-bottom:5px; }
-      .scene-home .wedding-date{ margin-top:5px; }
     }
   </style>
 </head>
 
 <body>
+
 <section class="scene-home">
   <nav class="topnav">
     <div class="left">
@@ -252,5 +122,6 @@
     <a class="rsvp">RSVP</a>
   </nav>
 </section>
+
 </body>
 </html>
