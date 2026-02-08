@@ -67,7 +67,7 @@
       color:#2B2B2B;
     }
 
-    /* ===== MOBILE (FIXED + FULL FROST STRIP) ===== */
+    /* ===== MOBILE (UNCHANGED) ===== */
     @media (max-width:768px){
       .topnav{
         position:fixed;
@@ -129,51 +129,11 @@
       max-width:760px;
     }
 
-    /* ===== COUNTDOWN ===== */
-    .countdown-center{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      transform: translateY(-10px);
-    }
-
-    .countdown-meta{ opacity:0.45; }
-
-    .countdown-line{
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      gap:10px;
-    }
-
-    .time{
-      font-family:"Montserrat", sans-serif;
-      font-size:clamp(16px, 2vw, 22px);
-      letter-spacing:0.10em;
-    }
-
-    .sep{
-      opacity:0.55;
-      transform:translateY(-1px);
-    }
-
-    .countdown-labels{
-      display:flex;
-      gap:26px;
-      margin-top:8px;
-      font-size:8px;
-      letter-spacing:0.32em;
-      text-transform:uppercase;
-      opacity:0.55;
-    }
-
     @media (max-width:768px){
       .wrap{
         padding:160px 20px 40px;
         align-items:flex-start;
       }
-
-      .countdown-center{ transform:none; }
     }
   </style>
 </head>
@@ -184,38 +144,15 @@
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
-      <a href="schedule.html" style="font-weight:600; opacity:1;">Schedule</a>
-      <a href="faqs.html">FAQs</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="faqs.html" style="font-weight:600; opacity:1;">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
   <main class="wrap">
     <div class="content">
-
-      <section class="countdown-center">
-
-        <div class="countdown-meta">
-          <div class="countdown-line">
-            <div class="time" id="cdDays">—</div>
-            <span class="sep">·</span>
-            <div class="time" id="cdHours">—</div>
-            <span class="sep">·</span>
-            <div class="time" id="cdMins">—</div>
-            <span class="sep">·</span>
-            <div class="time" id="cdSecs">—</div>
-          </div>
-
-          <div class="countdown-labels">
-            <span>DAYS</span>
-            <span>HOURS</span>
-            <span>MINS</span>
-            <span>SECS</span>
-          </div>
-        </div>
-
-      </section>
-
+      <!-- intentionally empty for now -->
     </div>
   </main>
 
@@ -223,41 +160,6 @@
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
-
-    const weddingISO = "2027-02-27T00:00:00+08:00";
-    const weddingDate = new Date(weddingISO);
-
-    const d = document.getElementById("cdDays");
-    const h = document.getElementById("cdHours");
-    const m = document.getElementById("cdMins");
-    const s = document.getElementById("cdSecs");
-
-    function pad(n){ return String(n).padStart(2,"0"); }
-
-    function tick(){
-      const now = new Date();
-      let diff = weddingDate - now;
-
-      if(diff <= 0){
-        d.textContent = "0";
-        h.textContent = m.textContent = s.textContent = "00";
-        return;
-      }
-
-      const total = Math.floor(diff/1000);
-      const days = Math.floor(total/86400);
-      const hrs  = Math.floor((total%86400)/3600);
-      const mins = Math.floor((total%3600)/60);
-      const secs = total%60;
-
-      d.textContent = days;
-      h.textContent = pad(hrs);
-      m.textContent = pad(mins);
-      s.textContent = pad(secs);
-    }
-
-    tick();
-    setInterval(tick,1000);
   </script>
 
 </body>
