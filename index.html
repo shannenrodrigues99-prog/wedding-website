@@ -54,6 +54,7 @@
       align-items:center;
     }
 
+    /* ===== TOP SIGNATURE ===== */
     .top-signature{
       width: clamp(300px, 48vw, 520px);
       margin-top: 8px;
@@ -120,7 +121,7 @@
 
     .scene-home.fade-in{ opacity:1; }
 
-    /* ===== NAV ===== */
+    /* ===== NAV (FROM VERSION 2) ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -150,12 +151,17 @@
       color:#fff;
       text-decoration:none;
       opacity:.78;
+      transition:opacity .2s ease;
     }
+
+    .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
       border:1px solid rgba(255,255,255,.55);
       border-radius:999px;
+      opacity:1;
+      letter-spacing:0.34em;
       background:rgba(255,255,255,0.06);
       backdrop-filter: blur(6px);
     }
@@ -187,7 +193,7 @@
 
     .monogram img{ width:100%; }
 
-    /* === HOME TITLE (REPLACED signature1.png) === */
+    /* === HOME NAMES (TEXT REPLACING signature1.png) === */
     .home-names{
       font-family:"Montserrat", sans-serif;
       font-weight:500;
@@ -228,6 +234,12 @@
       padding:0 18px;
       width:min(300px,72vw);
       outline:none;
+      caret-color:#fff;
+    }
+
+    .pw-input::placeholder{
+      color:#fff;
+      opacity:1;
     }
 
     .pw-btn{
@@ -274,13 +286,25 @@
 <!-- HOME -->
 <section class="scene scene-home" id="sceneHome">
 
+  <div id="siteNav" class="is-hidden">
+    <nav class="topnav">
+      <div class="left">
+        <a href="index.html" style="font-weight:600; opacity:1;">Home</a>
+        <a data-protected href="welcome.html">Welcome</a>
+        <a data-protected href="schedule.html">Schedule</a>
+        <a data-protected href="faqs.html">FAQs</a>
+      </div>
+      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
+    </nav>
+  </div>
+
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
         <img src="monogram1.png" alt="Monogram">
       </div>
 
-      <!-- ONLY CHANGE HERE -->
+      <!-- ONLY CHANGE -->
       <div class="home-names">SHANNEN &amp; SAMARTH</div>
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 27</div>
