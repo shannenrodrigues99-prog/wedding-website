@@ -67,10 +67,10 @@
       color:#2B2B2B;
     }
 
-    /* ===== MOBILE (ONLY FIX: NAV STAYS FIXED) ===== */
+    /* ===== MOBILE (FIXED + FROSTED) ===== */
     @media (max-width:768px){
       .topnav{
-        position:fixed; /* ✅ reinforce stationary nav on mobile */
+        position:fixed;
         top: calc(25px + env(safe-area-inset-top));
         width:100%;
         padding:0 20px 16px;
@@ -80,6 +80,11 @@
         font-size:10px;
         letter-spacing:0.28em;
         border-bottom:1px solid rgba(43,43,43,.20);
+
+        /* ✨ Frosted glass */
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
       }
 
       .topnav .left{
@@ -115,7 +120,7 @@
       max-width:760px;
     }
 
-    /* ===== DATE + COUNTDOWN (RESTORED) ===== */
+    /* ===== DATE + COUNTDOWN ===== */
     .countdown-center{
       display:flex;
       flex-direction:column;
@@ -132,9 +137,7 @@
       letter-spacing:0.055em;
     }
 
-    .countdown-meta{
-      opacity:0.45;
-    }
+    .countdown-meta{ opacity:0.45; }
 
     .countdown-line{
       display:flex;
@@ -146,65 +149,32 @@
     .time{
       font-family:"Montserrat", sans-serif;
       font-size:clamp(16px, 2vw, 22px);
-      font-weight:400;
       letter-spacing:0.10em;
-      line-height:1;
     }
 
     .sep{
-      font-family:"Montserrat", sans-serif;
-      font-size:clamp(14px, 1.6vw, 18px);
-      font-weight:400;
       opacity:0.55;
       transform:translateY(-1px);
     }
 
     .countdown-labels{
       display:flex;
-      justify-content:center;
       gap:26px;
       margin-top:8px;
-      font-family:"Montserrat", sans-serif;
       font-size:8px;
       letter-spacing:0.32em;
       text-transform:uppercase;
       opacity:0.55;
     }
 
-    /* ===== MOBILE (UNCHANGED) ===== */
+    /* ===== MOBILE CONTENT (UNCHANGED) ===== */
     @media (max-width:768px){
       .wrap{
         padding:160px 20px 40px;
         align-items:flex-start;
       }
 
-      .countdown-center{
-        transform:none;
-      }
-
-      .fancy-date{
-        font-size:22px;
-        margin-bottom:14px;
-        letter-spacing:0.05em;
-      }
-
-      .countdown-line{
-        gap:8px;
-      }
-
-      .time{
-        font-size:16px;
-        letter-spacing:0.09em;
-      }
-
-      .sep{
-        font-size:14px;
-      }
-
-      .countdown-labels{
-        gap:18px;
-        font-size:7.5px;
-      }
+      .countdown-center{ transform:none; }
     }
   </style>
 </head>
