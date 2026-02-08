@@ -77,6 +77,11 @@
         gap:16px;
         font-size:10px;
         letter-spacing:0.28em;
+
+        /* ✨ Frosted glass (same as Schedule) */
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
       }
 
       .topnav .left{
@@ -115,7 +120,6 @@
       gap:90px;
     }
 
-    /* Desktop lift */
     @media (min-width:769px){
       .content{
         margin-top:-80px;
@@ -174,7 +178,7 @@
     /* ===== MOBILE ===== */
     @media (max-width: 768px){
       body{
-        overflow-y:auto; /* MOBILE: allow scroll */
+        overflow-y:auto;
       }
 
       .wrap{
@@ -240,11 +244,7 @@
 
         <p class="welcome-signoff">With love,</p>
 
-        <img
-          src="signature.png"
-          alt="Shannen & Samarth"
-          class="signature"
-        />
+        <img src="signature.png" alt="Shannen & Samarth" class="signature" />
       </div>
 
       <div class="welcome-image">
