@@ -23,105 +23,26 @@
       overflow:hidden;
     }
 
-    /* ===== SCENES ===== */
+    /* ===== SCENE ===== */
     .scene{
       position:fixed;
       inset:0;
       display:flex;
       align-items:center;
       justify-content:center;
-      transition:opacity 1.6s ease;
       min-height:100vh;
     }
-
-    /* ===== ENVELOPE ===== */
-    .scene-envelope{
-      background:#fff;
-      z-index:2;
-    }
-
-    .scene-envelope.fade-out{
-      opacity:0;
-      pointer-events:none;
-    }
-
-    .page{
-      min-height:100vh;
-      padding:70px 20px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      align-items:center;
-    }
-
-    /* ===== TOP SIGNATURE ===== */
-    .top-signature{
-      width: clamp(300px, 48vw, 520px);
-      margin-top: 8px;
-      opacity: 0.96;
-    }
-
-    .top-signature img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .bottom-instruction{
-      font-family:"Alex Brush", cursive;
-      font-size:26px;
-      color:#111;
-      opacity:0.9;
-      margin-top:12px;
-    }
-
-    .envelope{
-      width:min(560px,82vw);
-      perspective:1400px;
-      cursor:pointer;
-      background:transparent;
-      border:0;
-    }
-
-    .inner{
-      width:100%;
-      aspect-ratio:3/2;
-      transform-style:preserve-3d;
-      transition:transform 1.5s ease-in-out;
-      position:relative;
-    }
-
-    .envelope.flipped .inner{
-      transform:rotateY(180deg);
-    }
-
-    .face{
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
-    }
-
-    .face img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-    }
-
-    .back{ transform:rotateY(180deg); }
 
     /* ===== HOME ===== */
     .scene-home{
       z-index:1;
-      opacity:0;
       color:#fff;
       background:
         linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
         url("hero.jpg") center/cover no-repeat;
     }
 
-    .scene-home.fade-in{ opacity:1; }
-
-    /* ===== NAV (FROM VERSION 2) ===== */
+    /* ===== NAV ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -152,12 +73,10 @@
       text-decoration:none;
       opacity:.78;
       transition:opacity .2s ease;
-      position:relative;
     }
 
     .topnav a:hover{ opacity:1; }
 
-    /* RSVP */
     .topnav .rsvp{
       padding:10px 18px;
       border:1px solid rgba(255,255,255,.55);
@@ -188,11 +107,10 @@
       align-items:center;
     }
 
-.monogram{
-  width: clamp(120px, 18vw, 220px);
-  margin-bottom: 28px;
-}
-
+    .monogram{
+      width: clamp(120px, 18vw, 220px);
+      margin-bottom: 28px;
+    }
 
     .monogram img{ width:100%; }
 
@@ -259,36 +177,8 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE (ENVELOPE + NAV FIX) ===== */
+    /* ===== MOBILE ===== */
     @media (max-width:768px){
-
-      /* Envelope page */
-      .page{
-        min-height:100svh;
-        padding:
-          calc(18px + env(safe-area-inset-top))
-          18px
-          calc(22px + env(safe-area-inset-bottom));
-        justify-content:center;
-        gap:22px;
-      }
-
-      .top-signature{
-        width:min(320px,78vw);
-        margin-top:0;
-      }
-
-      .envelope{
-        width:min(520px,92vw);
-      }
-
-      .bottom-instruction{
-        font-size:22px;
-        margin-top:0;
-        opacity:0.85;
-      }
-
-      /* Nav (FROM VERSION 2) */
       .topnav{
         top: calc(25px + env(safe-area-inset-top));
         width:100%;
@@ -337,32 +227,12 @@
 
 <body>
 
-<!-- ENVELOPE -->
-<section class="scene scene-envelope" id="sceneEnvelope">
-  <div class="page">
-    <div class="top-signature">
-      <img src="signature.png" alt="Shannen & Samarth">
-    </div>
-
-    <button class="envelope" id="env" aria-label="Open invitation">
-      <div class="inner">
-        <div class="face front"><img src="envelope-front1.png" alt=""></div>
-        <div class="face back"><img src="envelope-back1.png" alt=""></div>
-      </div>
-    </button>
-
-    <div class="bottom-instruction">Click envelope to open…</div>
-  </div>
-</section>
-
 <!-- HOME -->
-<section class="scene scene-home" id="sceneHome">
+<section class="scene scene-home">
 
-  <!-- NAV (FROM VERSION 2) -->
   <div id="siteNav" class="is-hidden">
     <nav class="topnav">
       <div class="left">
-        <!-- ONLY CHANGE: Home is bold -->
         <a href="index.html" style="font-weight:600; opacity:1;">Home</a>
         <a data-protected href="welcome.html">Welcome</a>
         <a data-protected href="schedule.html">Schedule</a>
@@ -395,28 +265,8 @@
 </section>
 
 <script>
-  const env = document.getElementById("env");
-  const envelopeScene = document.getElementById("sceneEnvelope");
-  const homeScene = document.getElementById("sceneHome");
-
-  const INVITE_OPEN_KEY = "inviteOpened";
   const UNLOCK_KEY = "siteUnlocked";
   const SITE_PASSWORD = "ss2027";
-
-  if (sessionStorage.getItem(INVITE_OPEN_KEY) === "1") {
-    envelopeScene.classList.add("fade-out");
-    homeScene.classList.add("fade-in");
-    env.classList.add("flipped");
-  }
-
-  env.addEventListener("click", () => {
-    sessionStorage.setItem(INVITE_OPEN_KEY, "1");
-    env.classList.add("flipped");
-    setTimeout(() => {
-      envelopeScene.classList.add("fade-out");
-      homeScene.classList.add("fade-in");
-    }, 2700);
-  });
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
@@ -424,8 +274,6 @@
   const weddingDate = document.getElementById("weddingDate");
   const protectedLinks = document.querySelectorAll("[data-protected]");
   const pwError = document.getElementById("pwError");
-
-  /* NAV (FROM VERSION 2) */
   const siteNav = document.getElementById("siteNav");
 
   function lockUI(){
