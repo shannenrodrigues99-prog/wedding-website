@@ -54,22 +54,16 @@
       align-items:center;
     }
 
-    /* ===== TOP SIGNATURE ===== */
     .top-signature{
       width: clamp(300px, 48vw, 520px);
       margin-top: 8px;
       opacity: 0.96;
-      text-align:center;
     }
 
-    .top-signature-text{
-      font-family:"Montserrat", sans-serif;
-      font-weight:500;
-      text-transform:uppercase;
-      letter-spacing:0.34em;
-      font-size:14px;
-      color:#111;
-      display:inline-block;
+    .top-signature img{
+      width:100%;
+      height:auto;
+      display:block;
     }
 
     .bottom-instruction{
@@ -126,7 +120,7 @@
 
     .scene-home.fade-in{ opacity:1; }
 
-    /* ===== NAV (FROM VERSION 2) ===== */
+    /* ===== NAV ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -156,10 +150,7 @@
       color:#fff;
       text-decoration:none;
       opacity:.78;
-      transition:opacity .2s ease;
     }
-
-    .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
@@ -186,6 +177,7 @@
       display:flex;
       flex-direction:column;
       align-items:center;
+      text-align:center;
     }
 
     .monogram{
@@ -195,10 +187,15 @@
 
     .monogram img{ width:100%; }
 
-    .names{
-      width: clamp(300px, 60vw, 520px);
-      margin-bottom: 14px;
-      display:block;
+    /* === HOME TITLE (REPLACED signature1.png) === */
+    .home-names{
+      font-family:"Montserrat", sans-serif;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:0.34em;
+      font-size:16px;
+      color:#fff;
+      margin-bottom:14px;
     }
 
     .date{
@@ -231,7 +228,6 @@
       padding:0 18px;
       width:min(300px,72vw);
       outline:none;
-      caret-color:#fff;
     }
 
     .pw-btn{
@@ -252,54 +248,6 @@
     }
 
     .is-hidden{ display:none !important; }
-
-    @media (max-width:768px){
-      .page{
-        min-height:100svh;
-        padding:
-          calc(18px + env(safe-area-inset-top))
-          18px
-          calc(22px + env(safe-area-inset-bottom));
-        justify-content:center;
-        gap:22px;
-      }
-
-      .top-signature{
-        width:min(320px,78vw);
-        margin-top:0;
-      }
-
-      .topnav{
-        top: calc(25px + env(safe-area-inset-top));
-        width:100%;
-        padding:0 20px 16px;
-        flex-direction:column;
-        align-items:center;
-        gap:16px;
-        font-size:10px;
-        letter-spacing:0.28em;
-        border-bottom:1px solid rgba(255,255,255,.20);
-      }
-
-      .topnav .left{
-        gap:24px;
-        justify-content:center;
-        flex-wrap:wrap;
-      }
-
-      .pw-row{
-        flex-direction:column;
-        align-items:center;
-      }
-
-      .pw-input{
-        width:min(78vw,340px);
-        font-size:16px;
-        text-align:center;
-      }
-
-      .pw-btn{ width:160px; }
-    }
   </style>
 </head>
 
@@ -309,7 +257,7 @@
 <section class="scene scene-envelope" id="sceneEnvelope">
   <div class="page">
     <div class="top-signature">
-      <span class="top-signature-text">SHANNEN &amp; SAMARTH</span>
+      <img src="signature.png" alt="Shannen & Samarth">
     </div>
 
     <button class="envelope" id="env" aria-label="Open invitation">
@@ -325,13 +273,15 @@
 
 <!-- HOME -->
 <section class="scene scene-home" id="sceneHome">
+
   <div class="hero-wrap">
     <div class="home-center">
       <div class="monogram">
         <img src="monogram1.png" alt="Monogram">
       </div>
 
-      <img class="names" src="signature1.png" alt="Shannen & Samarth">
+      <!-- ONLY CHANGE HERE -->
+      <div class="home-names">SHANNEN &amp; SAMARTH</div>
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 27</div>
 
@@ -344,6 +294,7 @@
       </div>
     </div>
   </div>
+
 </section>
 
 </body>
