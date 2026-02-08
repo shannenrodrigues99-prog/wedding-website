@@ -18,9 +18,10 @@
       background:#ffffff;
       color:#111;
       min-height:100vh;
+      overflow:hidden; /* DESKTOP: no scroll */
     }
 
-    /* ===== NAV (EDITORIAL UI) ===== */
+    /* ===== NAV ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -29,36 +30,71 @@
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
+      align-items:center;
       font-family:"Montserrat", sans-serif;
-      font-weight:400;
+      font-weight:500;
       text-transform:uppercase;
-      letter-spacing:0.36em;
+      letter-spacing:0.34em;
       font-size:11px;
       z-index:10;
+      padding-bottom:18px;
+      color:#2B2B2B;
+      border-bottom:1px solid rgba(43,43,43,.22);
     }
 
     .topnav .left{
       display:flex;
-      gap:44px;
+      gap:56px;
+      align-items:center;
     }
 
     .topnav a{
-      color:#111;
+      color:#2B2B2B;
       text-decoration:none;
-      opacity:0.75;
+      opacity:.78;
+      transition:opacity .2s ease;
     }
 
     .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
-      border:1px solid rgba(0,0,0,0.35);
+      border:1px solid rgba(43,43,43,.55);
+      border-radius:999px;
+      letter-spacing:0.34em;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color:#2B2B2B;
     }
 
-    /* ✅ Override so FAQs renders correctly */
-    .nav-faqs{
-      text-transform:none;
-      letter-spacing:0.28em;
+    @media (max-width:768px){
+      .topnav{
+        top: calc(25px + env(safe-area-inset-top));
+        width:100%;
+        padding:0 20px 16px;
+        flex-direction:column;
+        gap:16px;
+        font-size:10px;
+        letter-spacing:0.28em;
+      }
+
+      .topnav .left{
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
+      }
+    }
+
+    @media (min-width:769px){
+      .topnav{
+        justify-content:flex-start;
+      }
+
+      .topnav .rsvp{
+        margin-left:56px;
+        padding:4px 14px;
+      }
     }
 
     /* ===== PAGE LAYOUT ===== */
@@ -77,6 +113,13 @@
       grid-template-columns: 1fr 1fr;
       align-items:center;
       gap:90px;
+    }
+
+    /* Desktop lift */
+    @media (min-width:769px){
+      .content{
+        margin-top:-80px;
+      }
     }
 
     /* ===== LEFT TEXT ===== */
@@ -116,35 +159,22 @@
       display:block;
     }
 
-    /* ===== RIGHT IMAGE PLACEHOLDER ===== */
+    /* ===== IMAGE SECTION ===== */
     .welcome-image{
       width:100%;
-      min-height:420px;
+    }
+
+    .welcome-image img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:2px;
     }
 
     /* ===== MOBILE ===== */
     @media (max-width: 768px){
-
-      .topnav{
-        top:45px;
-        width:100%;
-        padding:0 20px;
-        flex-direction:column;
-        align-items:center;
-        gap:16px;
-        font-size:10px;
-        letter-spacing:0.28em;
-      }
-
-      .topnav .left{
-        gap:24px;
-        justify-content:center;
-        flex-wrap:wrap;
-      }
-
-      .topnav .rsvp{
-        margin-top:6px;
-        padding:8px 16px;
+      body{
+        overflow-y:auto; /* MOBILE: allow scroll */
       }
 
       .wrap{
@@ -174,11 +204,11 @@
 
       .signature{
         max-width:320px;
-        margin:0 auto;
+        margin:0 auto 56px;
       }
 
       .welcome-image{
-        display:none;
+        margin-top:40px;
       }
     }
   </style>
@@ -189,9 +219,9 @@
   <nav class="topnav">
     <div class="left">
       <a href="index.html">Home</a>
-      <a href="welcome.html" style="opacity:1;">Welcome</a>
+      <a href="welcome.html" style="font-weight:600; opacity:1;">Welcome</a>
       <a href="schedule.html">Schedule</a>
-      <a href="faqs.html" class="nav-faqs">FAQs</a>
+      <a href="faqs.html">FAQs</a>
     </div>
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
@@ -217,7 +247,9 @@
         />
       </div>
 
-      <div class="welcome-image"></div>
+      <div class="welcome-image">
+        <img src="welcome-photo.jpg" alt="Shannen & Samarth">
+      </div>
 
     </div>
   </main>
