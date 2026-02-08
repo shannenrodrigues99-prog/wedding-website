@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RSVP | Shannen & Samarth</title>
+  <title>Schedule | Shannen & Samarth</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -20,7 +20,7 @@
       min-height:100vh;
     }
 
-    /* ===== NAV (EDITORIAL – RSVP UNCHANGED) ===== */
+    /* ===== NAV (UNCHANGED) ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -29,65 +29,71 @@
       width:calc(100% - 80px);
       display:flex;
       justify-content:space-between;
+      align-items:center;
       font-family:"Montserrat", sans-serif;
-      font-weight:400;
+      font-weight:500;
       text-transform:uppercase;
-      letter-spacing:0.36em;
+      letter-spacing:0.34em;
       font-size:11px;
       z-index:10;
+      padding-bottom:18px;
+      color:#2B2B2B;
+      border-bottom:1px solid rgba(43,43,43,.22);
     }
 
     .topnav .left{
       display:flex;
-      gap:44px;
+      gap:56px;
+      align-items:center;
     }
 
     .topnav a{
-      color:#111;
+      color:#2B2B2B;
       text-decoration:none;
-      opacity:0.75;
+      opacity:.78;
+      transition:opacity .2s ease;
     }
 
     .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
-      border:1px solid rgba(0,0,0,0.35);
-      /* intentionally untouched */
+      border:1px solid rgba(43,43,43,.55);
+      border-radius:999px;
+      letter-spacing:0.34em;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color:#2B2B2B;
     }
 
-    /* ✅ Override for FAQs only */
-    .nav-faqs{
-      text-transform:none;
-      letter-spacing:0.28em;
-    }
-
-    /* ===== PAGE LAYOUT ===== */
-    .wrap{
-      min-height:100vh;
-      padding:140px 80px 40px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .content{
-      width:100%;
-      max-width:1100px;
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px){
-
+    /* ===== MOBILE (UNCHANGED) ===== */
+    @media (max-width:768px){
       .topnav{
-        top:45px;
+        position:fixed;
+        top: calc(25px + env(safe-area-inset-top));
         width:100%;
-        padding:0 20px;
+        padding:0 20px 16px;
         flex-direction:column;
         align-items:center;
         gap:16px;
         font-size:10px;
         letter-spacing:0.28em;
+        border-bottom:1px solid rgba(43,43,43,.20);
+        isolation:isolate;
+      }
+
+      .topnav::before{
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        top: calc(-25px - env(safe-area-inset-top));
+        height: calc(100% + 25px + env(safe-area-inset-top));
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        z-index:-1;
       }
 
       .topnav .left{
@@ -95,19 +101,38 @@
         justify-content:center;
         flex-wrap:wrap;
       }
+    }
 
-      .topnav .rsvp{
-        margin-top:6px;
-        padding:8px 16px;
+    @media (min-width:769px){
+      .topnav{
+        justify-content:flex-start;
       }
 
+      .topnav .rsvp{
+        margin-left:56px;
+        padding:4px 14px;
+      }
+    }
+
+    /* ===== PAGE ===== */
+    .wrap{
+      min-height:100vh;
+      padding:130px 80px 60px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .content{
+      width:100%;
+      max-width:760px;
+    }
+
+    @media (max-width:768px){
       .wrap{
         padding:160px 20px 40px;
         align-items:flex-start;
-      }
-
-      .content{
-        width:min(800px,90vw);
       }
     }
   </style>
@@ -120,14 +145,14 @@
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
       <a href="schedule.html">Schedule</a>
-      <a href="faqs.html" class="nav-faqs">FAQs</a>
+      <a href="faqs.html">FAQs</a>
     </div>
-    <a class="rsvp" href="rsvp.html" style="opacity:1;">RSVP</a>
+    <a class="rsvp" href="rsvp.html" style="font-weight:600; opacity:1;">RSVP</a>
   </nav>
 
   <main class="wrap">
     <div class="content">
-      <!-- RSVP content will go here -->
+      <!-- intentionally empty for now -->
     </div>
   </main>
 
