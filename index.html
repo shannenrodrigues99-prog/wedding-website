@@ -188,43 +188,24 @@
       align-items:center;
     }
 
-    .monogram{
-      width: clamp(120px, 18vw, 220px);
-      margin-bottom: 28px;
-      opacity: 0.85; /* editorial calm */
-    }
+.monogram{
+  width: clamp(120px, 18vw, 220px);
+  margin-bottom: 28px;
+}
 
-    .monogram img{
-      width:100%;
-      filter: brightness(0.95); /* softer than pure white */
-    }
 
-    /* replaced image names with editorial text */
-    .names-text{
-      font-family: "Playfair Display", serif;
-      font-weight: 500;
-      font-size: clamp(36px, 6vw, 72px);
-      letter-spacing: 0.08em;
-      text-align: center;
-      color: rgba(255,255,255,0.9);
+    .monogram img{ width:100%; }
+
+    .names{
+      width: clamp(300px, 60vw, 520px);
       margin-bottom: 14px;
-      opacity: 0.92;
-    }
-
-    .names-text span{
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      margin: 0 10px;
-      font-size: 0.85em;
-      opacity: 0.7;
-      position: relative;
-      top: -0.08em;
+      display:block;
     }
 
     .date{
-      font-size:14px;
-      letter-spacing:0.32em;
-      opacity:.6;
+      font-size:20px;
+      letter-spacing:3px;
+      opacity:.9;
       margin-bottom:26px;
     }
 
@@ -397,8 +378,7 @@
         <img src="monogram1.png" alt="Monogram">
       </div>
 
-      <!-- CHANGED: image -> editorial text -->
-      <div class="names-text">Shannen <span>&</span> Samarth</div>
+      <img class="names" src="signature1.png" alt="Shannen & Samarth">
 
       <div class="date is-hidden" id="weddingDate">27 · 02 · 27</div>
 
