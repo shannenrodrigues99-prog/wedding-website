@@ -79,7 +79,8 @@
     @media (max-width: 768px){
 
       .topnav{
-        top:45px;
+        position:fixed; /* ✅ ensure nav stays stationary */
+        top: calc(45px + env(safe-area-inset-top));
         width:100%;
         padding:0 20px;
         flex-direction:column;
@@ -87,6 +88,23 @@
         gap:16px;
         font-size:10px;
         letter-spacing:0.28em;
+
+        /* keep nav above its frosted strip */
+        isolation:isolate;
+      }
+
+      /* ✅ Frosted strip that stays during scroll (covers the whole top area) */
+      .topnav::before{
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        top: calc(-45px - env(safe-area-inset-top)); /* extend into the top gap */
+        height: calc(100% + 45px + env(safe-area-inset-top));
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        z-index:-1;
       }
 
       .topnav .left{
