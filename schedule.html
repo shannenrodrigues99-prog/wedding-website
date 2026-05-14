@@ -39,6 +39,7 @@
       padding-bottom:18px;
       color:#2B2B2B;
       border-bottom:1px solid rgba(43,43,43,.10);
+      background:#fff;
     }
 
     .topnav .left{
@@ -67,7 +68,6 @@
       color:#2B2B2B;
     }
 
-    /* ===== MOBILE (FIXED + FULL FROST STRIP) ===== */
     @media (max-width:768px){
       .topnav{
         position:fixed;
@@ -80,18 +80,15 @@
         font-size:10px;
         letter-spacing:0.28em;
         border-bottom:1px solid rgba(43,43,43,.10);
-
-        /* keep nav above its frosted strip */
         isolation:isolate;
       }
 
-      /* ✅ Frosted strip that stays during scroll (covers the whole top area) */
       .topnav::before{
         content:"";
         position:absolute;
         left:0;
         right:0;
-        top: calc(-25px - env(safe-area-inset-top)); /* extend into the top gap */
+        top: calc(-25px - env(safe-area-inset-top));
         height: calc(100% + 25px + env(safe-area-inset-top));
         background: rgba(255,255,255,0.72);
         backdrop-filter: blur(14px) saturate(160%);
@@ -120,16 +117,16 @@
     /* ===== PAGE ===== */
     .wrap{
       min-height:100vh;
-      padding:130px 80px 60px;
+      padding:130px 80px 80px;
       display:flex;
       align-items:flex-start;
       justify-content:center;
-      text-align:center;
     }
 
     .content{
       width:100%;
-      max-width:760px;
+      max-width:1100px;
+      text-align:center;
     }
 
     /* ===== DATE + COUNTDOWN ===== */
@@ -149,7 +146,9 @@
       letter-spacing:0.055em;
     }
 
-    .countdown-meta{ opacity:0.45; }
+    .countdown-meta{
+      opacity:0.45;
+    }
 
     .countdown-line{
       display:flex;
@@ -179,14 +178,99 @@
       opacity:0.55;
     }
 
-    /* ===== MOBILE CONTENT (UNCHANGED) ===== */
+    /* ===== SCHEDULE DETAILS ===== */
+    .schedule-details{
+      margin-top:140px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:120px;
+      text-align:left;
+    }
+
+    .schedule-block{
+      border-top:1px solid rgba(43,43,43,.12);
+      padding-top:36px;
+    }
+
+    .schedule-label{
+      font-family:"Montserrat", sans-serif;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:0.34em;
+      text-transform:uppercase;
+      margin-bottom:28px;
+      color:#2B2B2B;
+    }
+
+    .schedule-time{
+      font-family:"Playfair Display", serif;
+      font-size:32px;
+      font-style:italic;
+      margin-bottom:26px;
+      color:#111;
+    }
+
+    .schedule-place{
+      font-family:"Playfair Display", serif;
+      font-size:24px;
+      line-height:1.45;
+      margin-bottom:18px;
+      color:#111;
+    }
+
+    .schedule-address{
+      font-family:"Montserrat", sans-serif;
+      font-weight:300;
+      font-size:14px;
+      line-height:1.9;
+      letter-spacing:0.03em;
+      color:#333;
+    }
+
+    .schedule-note{
+      margin-top:24px;
+      font-family:"Montserrat", sans-serif;
+      font-weight:300;
+      font-size:13px;
+      line-height:1.8;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      color:#666;
+    }
+
+    /* ===== MOBILE ===== */
     @media (max-width:768px){
+
       .wrap{
-        padding:160px 20px 40px;
-        align-items:flex-start;
+        padding:160px 24px 60px;
       }
 
-      .countdown-center{ transform:none; }
+      .content{
+        max-width:100%;
+      }
+
+      .countdown-center{
+        transform:none;
+      }
+
+      .schedule-details{
+        margin-top:90px;
+        grid-template-columns:1fr;
+        gap:72px;
+        text-align:center;
+      }
+
+      .schedule-block{
+        padding-top:30px;
+      }
+
+      .schedule-time{
+        font-size:26px;
+      }
+
+      .schedule-place{
+        font-size:20px;
+      }
     }
   </style>
 </head>
@@ -213,6 +297,7 @@
         </div>
 
         <div class="countdown-meta">
+
           <div class="countdown-line">
             <div class="time" id="cdDays">—</div>
             <span class="sep">·</span>
@@ -229,6 +314,57 @@
             <span>MINS</span>
             <span>SECS</span>
           </div>
+
+        </div>
+
+      </section>
+
+      <section class="schedule-details">
+
+        <div class="schedule-block">
+
+          <div class="schedule-label">
+            Ceremony
+          </div>
+
+          <div class="schedule-time">
+            2:00 pm
+          </div>
+
+          <div class="schedule-place">
+            Notre Dame Catholic Church
+          </div>
+
+          <div class="schedule-address">
+            345 Wright Street<br>
+            Cloverdale WA 6105
+          </div>
+
+          <div class="schedule-note">
+            Please arrive by 1:45 pm
+          </div>
+
+        </div>
+
+        <div class="schedule-block">
+
+          <div class="schedule-label">
+            Reception
+          </div>
+
+          <div class="schedule-time">
+            6:00 pm
+          </div>
+
+          <div class="schedule-place">
+            Abruzzo Molise Sporting Club
+          </div>
+
+          <div class="schedule-address">
+            30 Brook Road<br>
+            Wattle Grove WA 6107
+          </div>
+
         </div>
 
       </section>
@@ -237,6 +373,7 @@
   </main>
 
   <script>
+
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
@@ -259,9 +396,12 @@
     const m = document.getElementById("cdMins");
     const s = document.getElementById("cdSecs");
 
-    function pad(n){ return String(n).padStart(2,"0"); }
+    function pad(n){
+      return String(n).padStart(2,"0");
+    }
 
     function tick(){
+
       const now = new Date();
       let diff = weddingDate - now;
 
@@ -272,6 +412,7 @@
       }
 
       const total = Math.floor(diff/1000);
+
       const days = Math.floor(total/86400);
       const hrs  = Math.floor((total%86400)/3600);
       const mins = Math.floor((total%3600)/60);
@@ -285,6 +426,7 @@
 
     tick();
     setInterval(tick,1000);
+
   </script>
 
 </body>
