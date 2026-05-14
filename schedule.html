@@ -11,16 +11,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
     body{
       font-family:"Playfair Display", serif;
-      background:#ffffff;
+      background:#fdfcf9;
       color:#111;
       min-height:100vh;
     }
 
     /* ===== NAV (UNCHANGED) ===== */
+
     .topnav{
       position:fixed;
       top:28px;
@@ -39,7 +45,7 @@
       padding-bottom:18px;
       color:#2B2B2B;
       border-bottom:1px solid rgba(43,43,43,.10);
-      background:#fff;
+      background:#fdfcf9;
     }
 
     .topnav .left{
@@ -55,7 +61,9 @@
       transition:opacity .2s ease;
     }
 
-    .topnav a:hover{ opacity:1; }
+    .topnav a:hover{
+      opacity:1;
+    }
 
     .topnav .rsvp{
       padding:10px 18px;
@@ -69,6 +77,7 @@
     }
 
     @media (max-width:768px){
+
       .topnav{
         position:fixed;
         top: calc(25px + env(safe-area-inset-top));
@@ -90,7 +99,7 @@
         right:0;
         top: calc(-25px - env(safe-area-inset-top));
         height: calc(100% + 25px + env(safe-area-inset-top));
-        background: rgba(255,255,255,0.72);
+        background: rgba(253,252,249,0.78);
         backdrop-filter: blur(14px) saturate(160%);
         -webkit-backdrop-filter: blur(14px) saturate(160%);
         z-index:-1;
@@ -104,6 +113,7 @@
     }
 
     @media (min-width:769px){
+
       .topnav{
         justify-content:flex-start;
       }
@@ -115,9 +125,10 @@
     }
 
     /* ===== PAGE ===== */
+
     .wrap{
       min-height:100vh;
-      padding:130px 80px 80px;
+      padding:130px 80px 90px;
       display:flex;
       align-items:flex-start;
       justify-content:center;
@@ -125,25 +136,26 @@
 
     .content{
       width:100%;
-      max-width:1100px;
+      max-width:1200px;
       text-align:center;
     }
 
     /* ===== DATE + COUNTDOWN ===== */
+
     .countdown-center{
       display:flex;
       flex-direction:column;
       align-items:center;
-      transform: translateY(-10px);
+      transform:translateY(-10px);
     }
 
     .fancy-date{
       font-family:"Playfair Display", serif;
-      font-size:clamp(24px, 2.8vw, 34px);
+      font-size:clamp(28px, 3vw, 38px);
       font-weight:500;
       line-height:1.35;
       margin-bottom:16px;
-      letter-spacing:0.055em;
+      letter-spacing:0.04em;
     }
 
     .countdown-meta{
@@ -178,18 +190,56 @@
       opacity:0.55;
     }
 
-    /* ===== SCHEDULE DETAILS ===== */
+    /* ===== INTRO ===== */
+
+    .schedule-intro{
+      margin-top:105px;
+      margin-bottom:70px;
+      text-align:center;
+    }
+
+    .schedule-intro span{
+      font-family:"Montserrat", sans-serif;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:0.34em;
+      text-transform:uppercase;
+      color:#666;
+    }
+
+    /* ===== SCHEDULE ===== */
+
     .schedule-details{
-      margin-top:140px;
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:120px;
       text-align:left;
+      position:relative;
+    }
+
+    .schedule-details::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:0;
+      bottom:0;
+      width:1px;
+      background:rgba(43,43,43,.08);
+      transform:translateX(-50%);
     }
 
     .schedule-block{
-      border-top:1px solid rgba(43,43,43,.12);
       padding-top:36px;
+      border-top:1px solid rgba(43,43,43,.08);
+    }
+
+    .schedule-number{
+      font-family:"Playfair Display", serif;
+      font-size:42px;
+      font-style:italic;
+      opacity:.12;
+      margin-bottom:18px;
+      line-height:1;
     }
 
     .schedule-label{
@@ -198,22 +248,22 @@
       font-weight:500;
       letter-spacing:0.34em;
       text-transform:uppercase;
-      margin-bottom:28px;
+      margin-bottom:30px;
       color:#2B2B2B;
     }
 
     .schedule-time{
       font-family:"Playfair Display", serif;
-      font-size:32px;
+      font-size:34px;
       font-style:italic;
-      margin-bottom:26px;
+      margin-bottom:34px;
       color:#111;
     }
 
     .schedule-place{
       font-family:"Playfair Display", serif;
-      font-size:24px;
-      line-height:1.45;
+      font-size:22px;
+      line-height:1.55;
       margin-bottom:18px;
       color:#111;
     }
@@ -233,16 +283,26 @@
       font-weight:300;
       font-size:13px;
       line-height:1.8;
-      letter-spacing:0.06em;
-      text-transform:uppercase;
+      letter-spacing:0.03em;
       color:#666;
     }
 
+    .schedule-footer{
+      margin-top:90px;
+      text-align:center;
+      font-family:"Montserrat", sans-serif;
+      font-size:12px;
+      letter-spacing:0.24em;
+      text-transform:uppercase;
+      color:#777;
+    }
+
     /* ===== MOBILE ===== */
+
     @media (max-width:768px){
 
       .wrap{
-        padding:160px 24px 60px;
+        padding:160px 24px 70px;
       }
 
       .content{
@@ -253,25 +313,40 @@
         transform:none;
       }
 
+      .schedule-intro{
+        margin-top:80px;
+        margin-bottom:56px;
+      }
+
       .schedule-details{
-        margin-top:90px;
         grid-template-columns:1fr;
         gap:72px;
         text-align:center;
       }
 
-      .schedule-block{
-        padding-top:30px;
+      .schedule-details::before{
+        display:none;
+      }
+
+      .schedule-number{
+        font-size:34px;
       }
 
       .schedule-time{
-        font-size:26px;
+        font-size:28px;
       }
 
       .schedule-place{
         font-size:20px;
       }
+
+      .schedule-footer{
+        margin-top:70px;
+        font-size:11px;
+        line-height:1.8;
+      }
     }
+
   </style>
 </head>
 
@@ -284,11 +359,15 @@
       <a href="schedule.html" style="font-weight:600; opacity:1;">Schedule</a>
       <a href="faqs.html">FAQs</a>
     </div>
+
     <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
   <main class="wrap">
+
     <div class="content">
+
+      <!-- DATE + COUNTDOWN -->
 
       <section class="countdown-center">
 
@@ -319,9 +398,21 @@
 
       </section>
 
+      <!-- INTRO -->
+
+      <div class="schedule-intro">
+        <span>Order of the Day</span>
+      </div>
+
+      <!-- SCHEDULE -->
+
       <section class="schedule-details">
 
+        <!-- CEREMONY -->
+
         <div class="schedule-block">
+
+          <div class="schedule-number">01</div>
 
           <div class="schedule-label">
             Ceremony
@@ -346,7 +437,11 @@
 
         </div>
 
+        <!-- RECEPTION -->
+
         <div class="schedule-block">
+
+          <div class="schedule-number">02</div>
 
           <div class="schedule-label">
             Reception
@@ -369,7 +464,14 @@
 
       </section>
 
+      <!-- FOOTER -->
+
+      <div class="schedule-footer">
+        Dinner, dancing and celebrations to follow
+      </div>
+
     </div>
+
   </main>
 
   <script>
