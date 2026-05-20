@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -24,6 +25,8 @@
       min-height:100vh;
       overflow-x:hidden;
     }
+
+    /* ===== NAV ===== */
 
     .topnav{
       position:fixed;
@@ -43,11 +46,15 @@
       font-size:11px;
 
       z-index:1000;
+
       padding-bottom:18px;
 
       color:#2B2B2B;
+
       border-bottom:1px solid rgba(43,43,43,.10);
+
       background:#ffffff;
+
       overflow:hidden;
     }
 
@@ -70,23 +77,31 @@
 
     .topnav .rsvp{
       margin-left:56px;
+
       padding:4px 14px;
+
       border:1px solid rgba(43,43,43,.55);
       border-radius:999px;
+
       letter-spacing:0.34em;
+
       opacity:1;
     }
 
+    /* ===== PAGE ===== */
+
     .wrap{
       min-height:100vh;
+
       padding:150px 80px 90px;
+
       display:flex;
       justify-content:center;
     }
 
     .content{
       width:100%;
-      max-width:980px;
+      max-width:1180px;
     }
 
     .header{
@@ -96,61 +111,99 @@
 
     .eyebrow{
       font-family:"Montserrat", sans-serif;
+
       font-size:10px;
+
       letter-spacing:0.42em;
+
       text-transform:uppercase;
+
       color:#777;
+
       margin-bottom:20px;
     }
 
     h1{
       font-family:"Playfair Display", serif;
+
       font-size:clamp(40px, 5vw, 68px);
+
       font-weight:400;
+
       letter-spacing:0.04em;
+
       line-height:0.9;
+    }
+
+    /* ===== SCHEDULE ===== */
+
+    .schedule-layout{
+      display:grid;
+
+      grid-template-columns:1fr 1fr;
+
+      gap:78px;
+
+      align-items:start;
     }
 
     .schedule-list{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:58px 78px;
+
+      gap:58px;
+
       text-align:left;
     }
 
     .schedule-item{
       border-top:1px solid rgba(43,43,43,.12);
+
       padding-top:28px;
     }
 
-    .schedule-time{
+    .schedule-question{
       font-family:"Montserrat", sans-serif;
+
       font-size:11px;
+
       font-weight:500;
+
       letter-spacing:0.28em;
+
       text-transform:uppercase;
+
       line-height:1.8;
+
       margin-bottom:18px;
+
       color:#111;
     }
 
-    .schedule-title{
-      font-family:"Playfair Display", serif;
-      font-size:24px;
-      font-weight:400;
-      letter-spacing:0.04em;
-      margin-bottom:14px;
-      color:#111;
-    }
-
-    .schedule-detail{
+    .schedule-answer{
       font-family:"Montserrat", sans-serif;
+
       font-size:13px;
+
       font-weight:300;
+
       line-height:2;
+
       letter-spacing:0.04em;
+
       color:#555;
     }
+
+    .schedule-photo img{
+      width:100%;
+
+      height:640px;
+
+      object-fit:cover;
+
+      display:block;
+    }
+
+    /* ===== MOBILE ===== */
 
     @media (max-width:768px){
 
@@ -160,43 +213,63 @@
 
       .topnav{
         top:calc(25px + env(safe-area-inset-top));
+
         width:100%;
+
         padding:0 20px 16px;
+
         flex-direction:column;
+
         align-items:center;
+
         gap:16px;
+
         font-size:10px;
+
         letter-spacing:0.28em;
+
         border-bottom:1px solid rgba(43,43,43,.10);
+
         isolation:isolate;
       }
 
       .topnav::before{
         content:"";
+
         position:absolute;
+
         left:0;
         right:0;
+
         top:calc(-25px - env(safe-area-inset-top));
+
         height:calc(100% + 25px + env(safe-area-inset-top));
+
         background:rgba(255,255,255,0.84);
+
         backdrop-filter:blur(14px) saturate(160%);
         -webkit-backdrop-filter:blur(14px) saturate(160%);
+
         z-index:-1;
       }
 
       .topnav .left{
         gap:24px;
+
         justify-content:center;
+
         flex-wrap:wrap;
       }
 
       .topnav .rsvp{
         margin-left:0;
+
         padding:8px 16px;
       }
 
       .wrap{
         min-height:auto;
+
         padding:175px 24px 70px;
       }
 
@@ -206,6 +279,7 @@
 
       .eyebrow{
         font-size:9px;
+
         margin-bottom:18px;
       }
 
@@ -213,8 +287,13 @@
         font-size:44px;
       }
 
-      .schedule-list{
+      .schedule-layout{
         grid-template-columns:1fr;
+
+        gap:42px;
+      }
+
+      .schedule-list{
         gap:34px;
       }
 
@@ -222,28 +301,32 @@
         padding-top:22px;
       }
 
-      .schedule-time{
+      .schedule-question{
         font-size:9.5px;
+
         letter-spacing:0.22em;
+
         margin-bottom:12px;
       }
 
-      .schedule-title{
-        font-size:21px;
-        margin-bottom:10px;
-      }
-
-      .schedule-detail{
+      .schedule-answer{
         font-size:11.5px;
+
         line-height:1.8;
       }
+
+      .schedule-photo img{
+        height:360px;
+      }
     }
+
   </style>
 </head>
 
 <body>
 
   <nav class="topnav">
+
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
@@ -252,59 +335,79 @@
     </div>
 
     <a class="rsvp" href="rsvp.html">RSVP</a>
+
   </nav>
 
   <main class="wrap">
+
     <div class="content">
 
       <section class="header">
-        <div class="eyebrow">Wedding Day</div>
+
+        <div class="eyebrow">
+          Wedding Day
+        </div>
+
         <h1>Schedule</h1>
+
       </section>
 
-      <section class="schedule-list">
+      <section class="schedule-layout">
 
-        <div class="schedule-item">
-          <div class="schedule-time">1:45 pm</div>
-          <div class="schedule-title">Guest Arrival</div>
-          <div class="schedule-detail">
-            Please arrive early to allow time to park, find your seat and settle in before the ceremony begins.
-          </div>
-        </div>
+        <section class="schedule-list">
 
-        <div class="schedule-item">
-          <div class="schedule-time">2:00 pm</div>
-          <div class="schedule-title">Ceremony</div>
-          <div class="schedule-detail">
-            Our wedding ceremony will begin at 2:00 pm.
-          </div>
-        </div>
+          <div class="schedule-item">
 
-        <div class="schedule-item">
-          <div class="schedule-time">Following Ceremony</div>
-          <div class="schedule-title">Photos</div>
-          <div class="schedule-detail">
-            Family and bridal party photos will take place after the ceremony.
-          </div>
-        </div>
+            <div class="schedule-question">
+              Ceremony
+            </div>
 
-        <div class="schedule-item">
-          <div class="schedule-time">Evening</div>
-          <div class="schedule-title">Reception</div>
-          <div class="schedule-detail">
-            Guests are invited to join us for dinner, drinks and dancing as we continue the celebration.
+            <div class="schedule-answer">
+              2:00 pm<br><br>
+
+              Notre Dame Catholic Church<br>
+              345 Wright St, Cloverdale WA 6105<br><br>
+
+              Guests are kindly requested to be seated by 1:45 pm prior to the commencement of the ceremony.
+            </div>
+
           </div>
-        </div>
+
+          <div class="schedule-item">
+
+            <div class="schedule-question">
+              Reception
+            </div>
+
+            <div class="schedule-answer">
+              6:30 pm Arrival<br><br>
+
+              Abruzzo Molise Sporting Club<br>
+              30 Brook Rd, Wattle Grove WA 6107
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="schedule-photo">
+
+          <img src="your-photo.jpg" alt="Wedding Photo">
+
+        </section>
 
       </section>
 
     </div>
+
   </main>
 
   <script>
+
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
+
   </script>
 
 </body>
