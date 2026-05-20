@@ -7,26 +7,17 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+    *{ margin:0; padding:0; box-sizing:border-box; }
 
     body{
       font-family:"Playfair Display", serif;
       background:#ffffff;
       color:#111;
       min-height:100vh;
-      overflow-x:hidden;
     }
-
-    /* ===== NAV ===== */
 
     .topnav{
       position:fixed;
@@ -34,25 +25,18 @@
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
-
       display:flex;
       justify-content:flex-start;
       align-items:center;
-
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
       letter-spacing:0.34em;
       font-size:11px;
-
-      z-index:20;
-
+      z-index:10;
       padding-bottom:18px;
-
       color:#2B2B2B;
-
       border-bottom:1px solid rgba(43,43,43,.10);
-
       background:#ffffff;
     }
 
@@ -69,39 +53,25 @@
       transition:opacity .2s ease;
     }
 
-    .topnav a:hover{
-      opacity:1;
-    }
+    .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       margin-left:56px;
-
       padding:4px 14px;
-
       border:1px solid rgba(43,43,43,.55);
       border-radius:999px;
-
       letter-spacing:0.34em;
-
       opacity:1;
     }
 
-    /* ===== PAGE ===== */
-
     .wrap{
       min-height:100vh;
-
-      padding:145px 80px 70px;
-
+      padding:140px 80px 70px;
       display:grid;
       grid-template-columns:1fr 0.72fr;
-
-      gap:80px;
-
+      gap:70px;
       align-items:center;
-
-      max-width:1320px;
-
+      max-width:1280px;
       margin:0 auto;
     }
 
@@ -112,225 +82,131 @@
 
     .eyebrow{
       font-family:"Montserrat", sans-serif;
-
       font-size:11px;
-
       letter-spacing:0.42em;
-
       text-transform:uppercase;
-
       color:#777;
-
-      margin-bottom:30px;
+      margin-bottom:28px;
     }
 
     h1{
       font-family:"Playfair Display", serif;
-
-      font-size:clamp(84px, 10vw, 160px);
-
+      font-size:clamp(78px, 9vw, 145px);
       font-weight:400;
-
       letter-spacing:0.04em;
-
-      line-height:0.88;
-
-      margin-bottom:42px;
+      line-height:0.9;
+      margin-bottom:38px;
     }
 
     .message{
       font-family:"Montserrat", sans-serif;
-
       font-size:12px;
-
-      line-height:2.1;
-
+      line-height:2;
       letter-spacing:0.16em;
-
       text-transform:uppercase;
-
       color:#444;
-
-      max-width:580px;
-
-      margin:0 auto 46px;
+      max-width:560px;
+      margin:0 auto 42px;
     }
 
     .rsvp-main-button{
-      display:inline-flex;
-
-      align-items:center;
-      justify-content:center;
-
-      padding:15px 36px;
-
+      display:inline-block;
+      padding:14px 34px;
       border:1px solid rgba(43,43,43,.65);
-
       border-radius:999px;
-
       font-family:"Montserrat", sans-serif;
-
       font-size:11px;
-
       font-weight:500;
-
       letter-spacing:0.32em;
-
       text-transform:uppercase;
-
       color:#111;
-
       text-decoration:none;
-
-      background:#fff;
-
+      background:white;
       transition:.25s ease;
     }
 
     .rsvp-main-button:hover{
       background:#111;
-      color:#fff;
+      color:white;
     }
 
     .rsvp-deadline{
-      margin-top:30px;
-
+      margin-top:24px;
       font-family:"Montserrat", sans-serif;
-
-      font-size:11px;
-
-      font-weight:500;
-
-      letter-spacing:0.28em;
-
+      font-size:10px;
+      letter-spacing:0.24em;
       text-transform:uppercase;
-
-      color:#111;
-
-      display:inline-block;
-
-      padding-top:18px;
-
-      border-top:1px solid rgba(43,43,43,.14);
+      color:#888;
     }
-
-    /* ===== PHOTO ===== */
 
     .photo-wrap{
       width:100%;
-
-      height:72vh;
-
-      min-height:560px;
-
+      height:68vh;
+      min-height:520px;
       overflow:hidden;
-
       position:relative;
     }
 
     .photo-wrap img{
       width:100%;
       height:100%;
-
       object-fit:cover;
-
       display:block;
-
-      filter:
-        grayscale(10%)
-        contrast(.96)
-        brightness(1.03);
+      filter:grayscale(15%) contrast(.95) brightness(1.04);
     }
 
     .photo-wrap::after{
       content:"";
-
       position:absolute;
-
       inset:0;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,.04),
-          rgba(255,255,255,.08)
-        );
-
+      background:rgba(255,255,255,.08);
       pointer-events:none;
     }
 
-    /* ===== MOBILE ===== */
-
     @media (max-width:768px){
-
       .topnav{
-        position:fixed;
-
         top:calc(25px + env(safe-area-inset-top));
-
         width:100%;
-
         padding:0 20px 16px;
-
         flex-direction:column;
-
         align-items:center;
-
         gap:16px;
-
         font-size:10px;
-
         letter-spacing:0.28em;
-
         border-bottom:1px solid rgba(43,43,43,.10);
-
         isolation:isolate;
       }
 
       .topnav::before{
         content:"";
-
         position:absolute;
-
         left:0;
         right:0;
-
         top:calc(-25px - env(safe-area-inset-top));
-
         height:calc(100% + 25px + env(safe-area-inset-top));
-
-        background:rgba(255,255,255,0.84);
-
+        background:rgba(255,255,255,0.82);
         backdrop-filter:blur(14px) saturate(160%);
         -webkit-backdrop-filter:blur(14px) saturate(160%);
-
         z-index:-1;
       }
 
       .topnav .left{
         gap:24px;
-
         justify-content:center;
-
         flex-wrap:wrap;
       }
 
       .topnav .rsvp{
         margin-left:0;
-
         padding:8px 16px;
       }
 
       .wrap{
         min-height:auto;
-
-        padding:175px 24px 70px;
-
+        padding:170px 24px 60px;
         display:flex;
-
         flex-direction:column;
-
-        gap:46px;
+        gap:42px;
       }
 
       .content{
@@ -338,39 +214,26 @@
       }
 
       h1{
-        font-size:82px;
-
-        margin-bottom:36px;
+        font-size:78px;
+        margin-bottom:34px;
       }
 
       .message{
         font-size:11px;
-
-        line-height:2;
+        line-height:1.9;
       }
 
       .photo-wrap{
-        height:440px;
-
-        min-height:440px;
-      }
-
-      .rsvp-deadline{
-        margin-top:26px;
-
-        font-size:10px;
-
-        line-height:1.8;
+        height:420px;
+        min-height:420px;
       }
     }
-
   </style>
 </head>
 
 <body>
 
   <nav class="topnav">
-
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
@@ -378,19 +241,13 @@
       <a href="faqs.html">FAQs</a>
     </div>
 
-    <a class="rsvp" href="rsvp.html" style="font-weight:600; opacity:1;">
-      RSVP
-    </a>
-
+    <a class="rsvp" href="rsvp.html" style="font-weight:600; opacity:1;">RSVP</a>
   </nav>
 
   <main class="wrap">
 
     <section class="content">
-
-      <div class="eyebrow">
-        Kindly Respond
-      </div>
+      <div class="eyebrow">Kindly Respond</div>
 
       <h1>RSVP</h1>
 
@@ -399,37 +256,25 @@
         Please continue to our RSVP page to confirm your attendance.
       </div>
 
-      <a
-        class="rsvp-main-button"
-        href="YOUR-WITHJOY-LINK-HERE"
-        target="_blank"
-      >
+      <a class="rsvp-main-button" href="YOUR-WITHJOY-LINK-HERE" target="_blank">
         Continue to RSVP
       </a>
 
       <div class="rsvp-deadline">
-        RSVP closes 1 December 2026
+        Please respond by 1 December 2026
       </div>
-
     </section>
 
     <section class="photo-wrap">
-
-      <img
-        src="your-photo.jpg"
-        alt="Shannen and Samarth"
-      >
-
+      <img src="your-photo.jpg" alt="Shannen and Samarth">
     </section>
 
   </main>
 
   <script>
-
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
-
   </script>
 
 </body>
