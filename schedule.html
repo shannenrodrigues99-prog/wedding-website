@@ -11,34 +11,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html,
+    body{
+      height:100%;
+      overflow:hidden;
+    }
 
     body{
       font-family:"Playfair Display", serif;
       background:#ffffff;
       color:#111;
-      min-height:100vh;
       overflow-x:hidden;
     }
+
+    /* ===== NAV ===== */
 
     .topnav{
       position:fixed;
       top:28px;
       left:50%;
       transform:translateX(-50%);
+
       width:calc(100% - 80px);
+
       display:flex;
       justify-content:flex-start;
       align-items:center;
+
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
       letter-spacing:0.34em;
       font-size:11px;
+
       z-index:20;
+
       padding-bottom:18px;
-      color:#2B2B2B;
+
       border-bottom:1px solid rgba(43,43,43,.10);
+
       background:#ffffff;
     }
 
@@ -55,221 +73,336 @@
       transition:opacity .2s ease;
     }
 
-    .topnav a:hover{ opacity:1; }
-
-    .topnav .rsvp{
-      margin-left:56px;
-      padding:4px 14px;
-      border:1px solid rgba(43,43,43,.55);
-      border-radius:999px;
-      letter-spacing:0.34em;
+    .topnav a:hover{
       opacity:1;
     }
 
+    .topnav .rsvp{
+      margin-left:56px;
+
+      padding:4px 14px;
+
+      border:1px solid rgba(43,43,43,.55);
+      border-radius:999px;
+
+      letter-spacing:0.34em;
+
+      opacity:1;
+    }
+
+    /* ===== PAGE ===== */
+
     .wrap{
-      min-height:100vh;
-      padding:145px 80px 70px;
+      height:100vh;
+
+      padding:135px 80px 50px;
+
       display:grid;
       grid-template-columns:1fr 0.72fr;
-      gap:86px;
+
+      gap:82px;
+
       align-items:center;
+
       max-width:1320px;
+
       margin:0 auto;
+    }
+
+    .content{
+      align-self:center;
     }
 
     .eyebrow{
       font-family:"Montserrat", sans-serif;
+
       font-size:11px;
+
       letter-spacing:0.42em;
+
       text-transform:uppercase;
+
       color:#777;
-      margin-bottom:20px;
+
+      margin-bottom:18px;
     }
 
     h1{
       font-family:"Playfair Display", serif;
-      font-size:clamp(38px, 4.8vw, 68px);
+
+      font-size:clamp(32px, 4vw, 56px);
+
       font-weight:400;
+
       letter-spacing:0.04em;
+
       line-height:1;
-      margin-bottom:26px;
+
+      margin-bottom:18px;
     }
 
     .date{
-      display:inline-block;
-      font-family:"Montserrat", sans-serif;
-      font-size:12px;
-      font-weight:500;
-      letter-spacing:0.30em;
-      text-transform:uppercase;
+      font-family:"Playfair Display", serif;
+
+      font-size:28px;
+
+      font-style:italic;
+
+      letter-spacing:0.04em;
+
       color:#111;
-      padding-top:18px;
-      border-top:1px solid rgba(43,43,43,.18);
+
       margin-bottom:58px;
+
+      opacity:.92;
     }
+
+    /* ===== EVENTS ===== */
 
     .events{
       display:grid;
+
       grid-template-columns:1fr 1fr;
-      gap:44px;
+
+      gap:42px;
+
       max-width:760px;
     }
 
     .event{
       border-top:1px solid rgba(43,43,43,.14);
-      padding-top:28px;
+
+      padding-top:24px;
     }
 
     .event-number{
       font-family:"Playfair Display", serif;
-      font-size:30px;
+
+      font-size:28px;
+
       font-style:italic;
+
       opacity:.16;
+
       line-height:1;
-      margin-bottom:14px;
+
+      margin-bottom:12px;
     }
 
     .event-label{
       font-family:"Montserrat", sans-serif;
-      font-size:11px;
+
+      font-size:10px;
+
       font-weight:500;
+
       letter-spacing:0.34em;
+
       text-transform:uppercase;
+
       margin-bottom:14px;
+
       color:#111;
     }
 
     .event-time{
       font-family:"Playfair Display", serif;
-      font-size:28px;
+
+      font-size:26px;
+
       font-style:italic;
-      margin-bottom:22px;
-      color:#111;
+
+      margin-bottom:18px;
     }
 
     .event-place{
       font-family:"Playfair Display", serif;
+
       font-size:18px;
+
       line-height:1.6;
-      margin-bottom:14px;
+
+      margin-bottom:12px;
     }
 
     .event-address{
       font-family:"Montserrat", sans-serif;
-      font-size:12px;
+
+      font-size:11px;
+
       font-weight:300;
+
       line-height:1.9;
+
       letter-spacing:0.05em;
+
       color:#555;
     }
 
     .event-note{
-      margin-top:18px;
+      margin-top:16px;
+
       font-family:"Montserrat", sans-serif;
-      font-size:10px;
+
+      font-size:9px;
+
       font-weight:500;
+
       letter-spacing:0.24em;
+
       text-transform:uppercase;
+
       color:#777;
     }
 
+    /* ===== PHOTO ===== */
+
     .photo-wrap{
       width:100%;
+
       height:72vh;
-      min-height:560px;
+
       overflow:hidden;
+
       position:relative;
     }
 
     .photo-wrap img{
       width:100%;
       height:100%;
+
       object-fit:cover;
+
       display:block;
-      filter:grayscale(10%) contrast(.96) brightness(1.03);
+
+      filter:
+        grayscale(10%)
+        contrast(.96)
+        brightness(1.03);
     }
 
     .photo-wrap::after{
       content:"";
+
       position:absolute;
+
       inset:0;
+
       background:rgba(255,255,255,.08);
+
       pointer-events:none;
     }
 
-    .is-hidden{ display:none !important; }
+    .is-hidden{
+      display:none !important;
+    }
+
+    /* ===== MOBILE ===== */
 
     @media (max-width:768px){
+
+      html,
+      body{
+        overflow:auto;
+        height:auto;
+      }
+
       .topnav{
         top:calc(25px + env(safe-area-inset-top));
+
         width:100%;
+
         padding:0 20px 16px;
+
         flex-direction:column;
+
         align-items:center;
+
         gap:16px;
+
         font-size:10px;
+
         letter-spacing:0.28em;
+
         border-bottom:1px solid rgba(43,43,43,.10);
+
         isolation:isolate;
       }
 
       .topnav::before{
         content:"";
+
         position:absolute;
+
         left:0;
         right:0;
+
         top:calc(-25px - env(safe-area-inset-top));
+
         height:calc(100% + 25px + env(safe-area-inset-top));
+
         background:rgba(255,255,255,0.84);
+
         backdrop-filter:blur(14px) saturate(160%);
         -webkit-backdrop-filter:blur(14px) saturate(160%);
+
         z-index:-1;
       }
 
       .topnav .left{
         gap:24px;
+
         justify-content:center;
+
         flex-wrap:wrap;
       }
 
       .topnav .rsvp{
         margin-left:0;
+
         padding:8px 16px;
       }
 
       .wrap{
+        height:auto;
+
         padding:175px 24px 70px;
+
         display:flex;
+
         flex-direction:column;
+
         gap:46px;
       }
 
       h1{
-        font-size:52px;
+        font-size:46px;
       }
 
       .date{
-        font-size:10px;
-        line-height:1.8;
-        margin-bottom:46px;
+        font-size:22px;
+
+        margin-bottom:42px;
       }
 
       .events{
         grid-template-columns:1fr;
-        gap:46px;
+
+        gap:42px;
       }
 
       .photo-wrap{
         height:430px;
-        min-height:430px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
   <nav class="topnav">
+
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
@@ -277,24 +410,43 @@
       <a href="faqs.html">FAQs</a>
     </div>
 
-    <a class="rsvp" href="rsvp.html">RSVP</a>
+    <a class="rsvp" href="rsvp.html">
+      RSVP
+    </a>
+
   </nav>
 
   <main class="wrap">
 
     <section class="content">
-      <div class="eyebrow">Order of the Day</div>
 
-      <h1>Schedule</h1>
+      <div class="eyebrow">
+        Order of the Day
+      </div>
 
-      <div class="date">Saturday, 27 February 2027</div>
+      <h1>
+        Schedule
+      </h1>
+
+      <div class="date">
+        Saturday, 27 February 2027
+      </div>
 
       <div class="events" id="scheduleDetails">
 
         <div class="event full-only">
-          <div class="event-number">01</div>
-          <div class="event-label">Ceremony</div>
-          <div class="event-time">2:00 pm</div>
+
+          <div class="event-number">
+            01
+          </div>
+
+          <div class="event-label">
+            Ceremony
+          </div>
+
+          <div class="event-time">
+            2:00 pm
+          </div>
 
           <div class="event-place">
             Notre Dame Catholic Church
@@ -308,12 +460,22 @@
           <div class="event-note">
             Please arrive by 1:45 pm
           </div>
+
         </div>
 
         <div class="event">
-          <div class="event-number" id="receptionNumber">02</div>
-          <div class="event-label" id="receptionLabel">Reception</div>
-          <div class="event-time">6:30 pm</div>
+
+          <div class="event-number" id="receptionNumber">
+            02
+          </div>
+
+          <div class="event-label" id="receptionLabel">
+            Reception
+          </div>
+
+          <div class="event-time">
+            6:30 pm
+          </div>
 
           <div class="event-place">
             Abruzzo Molise Sporting Club
@@ -323,18 +485,26 @@
             30 Brook Road<br>
             Wattle Grove WA 6107
           </div>
+
         </div>
 
       </div>
+
     </section>
 
     <section class="photo-wrap">
-      <img src="your-photo.jpg" alt="Shannen and Samarth">
+
+      <img
+        src="your-photo.jpg"
+        alt="Shannen and Samarth"
+      >
+
     </section>
 
   </main>
 
   <script>
+
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
@@ -342,14 +512,18 @@
     const guestType = sessionStorage.getItem("guestType");
 
     if (guestType === "celebration") {
+
       document.querySelectorAll(".full-only").forEach(section => {
         section.classList.add("is-hidden");
       });
 
       document.getElementById("scheduleDetails").style.gridTemplateColumns = "1fr";
+
       document.getElementById("receptionNumber").textContent = "01";
+
       document.getElementById("receptionLabel").textContent = "Celebration";
     }
+
   </script>
 
 </body>
