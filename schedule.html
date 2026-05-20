@@ -11,34 +11,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
     }
 
-    html,
-    body{
-      height:100%;
-      overflow:hidden;
-    }
-
     body{
       font-family:"Playfair Display", serif;
       background:#ffffff;
       color:#111;
+      min-height:100vh;
       overflow-x:hidden;
     }
-
-    /* ===== NAV ===== */
 
     .topnav{
       position:fixed;
       top:28px;
       left:50%;
       transform:translateX(-50%);
-
       width:calc(100% - 80px);
 
       display:flex;
@@ -51,13 +42,13 @@
       letter-spacing:0.34em;
       font-size:11px;
 
-      z-index:20;
-
+      z-index:1000;
       padding-bottom:18px;
 
+      color:#2B2B2B;
       border-bottom:1px solid rgba(43,43,43,.10);
-
       background:#ffffff;
+      overflow:hidden;
     }
 
     .topnav .left{
@@ -79,330 +70,180 @@
 
     .topnav .rsvp{
       margin-left:56px;
-
       padding:4px 14px;
-
       border:1px solid rgba(43,43,43,.55);
       border-radius:999px;
-
       letter-spacing:0.34em;
-
       opacity:1;
     }
 
-    /* ===== PAGE ===== */
-
     .wrap{
-      height:100vh;
-
-      padding:135px 80px 50px;
-
-      display:grid;
-      grid-template-columns:1fr 0.72fr;
-
-      gap:82px;
-
-      align-items:center;
-
-      max-width:1320px;
-
-      margin:0 auto;
+      min-height:100vh;
+      padding:150px 80px 90px;
+      display:flex;
+      justify-content:center;
     }
 
     .content{
-      align-self:center;
+      width:100%;
+      max-width:980px;
+    }
+
+    .header{
+      text-align:center;
+      margin-bottom:70px;
     }
 
     .eyebrow{
       font-family:"Montserrat", sans-serif;
-
-      font-size:11px;
-
+      font-size:10px;
       letter-spacing:0.42em;
-
       text-transform:uppercase;
-
       color:#777;
-
-      margin-bottom:18px;
+      margin-bottom:20px;
     }
 
     h1{
       font-family:"Playfair Display", serif;
-
-      font-size:clamp(32px, 4vw, 56px);
-
+      font-size:clamp(40px, 5vw, 68px);
       font-weight:400;
-
       letter-spacing:0.04em;
-
-      line-height:1;
-
-      margin-bottom:18px;
+      line-height:0.9;
     }
 
-    .date{
-      font-family:"Playfair Display", serif;
-
-      font-size:28px;
-
-      font-style:italic;
-
-      letter-spacing:0.04em;
-
-      color:#111;
-
-      margin-bottom:58px;
-
-      opacity:.92;
-    }
-
-    /* ===== EVENTS ===== */
-
-    .events{
+    .schedule-list{
       display:grid;
-
       grid-template-columns:1fr 1fr;
-
-      gap:42px;
-
-      max-width:760px;
+      gap:58px 78px;
+      text-align:left;
     }
 
-    .event{
-      border-top:1px solid rgba(43,43,43,.14);
-
-      padding-top:24px;
+    .schedule-item{
+      border-top:1px solid rgba(43,43,43,.12);
+      padding-top:28px;
     }
 
-    .event-number{
-      font-family:"Playfair Display", serif;
-
-      font-size:28px;
-
-      font-style:italic;
-
-      opacity:.16;
-
-      line-height:1;
-
-      margin-bottom:12px;
-    }
-
-    .event-label{
+    .schedule-time{
       font-family:"Montserrat", sans-serif;
-
-      font-size:10px;
-
+      font-size:11px;
       font-weight:500;
-
-      letter-spacing:0.34em;
-
+      letter-spacing:0.28em;
       text-transform:uppercase;
-
-      margin-bottom:14px;
-
+      line-height:1.8;
+      margin-bottom:18px;
       color:#111;
     }
 
-    .event-time{
+    .schedule-title{
       font-family:"Playfair Display", serif;
-
-      font-size:26px;
-
-      font-style:italic;
-
-      margin-bottom:18px;
+      font-size:24px;
+      font-weight:400;
+      letter-spacing:0.04em;
+      margin-bottom:14px;
+      color:#111;
     }
 
-    .event-place{
-      font-family:"Playfair Display", serif;
-
-      font-size:18px;
-
-      line-height:1.6;
-
-      margin-bottom:12px;
-    }
-
-    .event-address{
+    .schedule-detail{
       font-family:"Montserrat", sans-serif;
-
-      font-size:11px;
-
+      font-size:13px;
       font-weight:300;
-
-      line-height:1.9;
-
-      letter-spacing:0.05em;
-
+      line-height:2;
+      letter-spacing:0.04em;
       color:#555;
     }
 
-    .event-note{
-      margin-top:16px;
-
-      font-family:"Montserrat", sans-serif;
-
-      font-size:9px;
-
-      font-weight:500;
-
-      letter-spacing:0.24em;
-
-      text-transform:uppercase;
-
-      color:#777;
-    }
-
-    /* ===== PHOTO ===== */
-
-    .photo-wrap{
-      width:100%;
-
-      height:72vh;
-
-      overflow:hidden;
-
-      position:relative;
-    }
-
-    .photo-wrap img{
-      width:100%;
-      height:100%;
-
-      object-fit:cover;
-
-      display:block;
-
-      filter:
-        grayscale(10%)
-        contrast(.96)
-        brightness(1.03);
-    }
-
-    .photo-wrap::after{
-      content:"";
-
-      position:absolute;
-
-      inset:0;
-
-      background:rgba(255,255,255,.08);
-
-      pointer-events:none;
-    }
-
-    .is-hidden{
-      display:none !important;
-    }
-
-    /* ===== MOBILE ===== */
-
     @media (max-width:768px){
 
-      html,
       body{
-        overflow:auto;
-        height:auto;
+        overflow-y:auto;
       }
 
       .topnav{
         top:calc(25px + env(safe-area-inset-top));
-
         width:100%;
-
         padding:0 20px 16px;
-
         flex-direction:column;
-
         align-items:center;
-
         gap:16px;
-
         font-size:10px;
-
         letter-spacing:0.28em;
-
         border-bottom:1px solid rgba(43,43,43,.10);
-
         isolation:isolate;
       }
 
       .topnav::before{
         content:"";
-
         position:absolute;
-
         left:0;
         right:0;
-
         top:calc(-25px - env(safe-area-inset-top));
-
         height:calc(100% + 25px + env(safe-area-inset-top));
-
         background:rgba(255,255,255,0.84);
-
         backdrop-filter:blur(14px) saturate(160%);
         -webkit-backdrop-filter:blur(14px) saturate(160%);
-
         z-index:-1;
       }
 
       .topnav .left{
         gap:24px;
-
         justify-content:center;
-
         flex-wrap:wrap;
       }
 
       .topnav .rsvp{
         margin-left:0;
-
         padding:8px 16px;
       }
 
       .wrap{
-        height:auto;
-
+        min-height:auto;
         padding:175px 24px 70px;
+      }
 
-        display:flex;
+      .header{
+        margin-bottom:46px;
+      }
 
-        flex-direction:column;
-
-        gap:46px;
+      .eyebrow{
+        font-size:9px;
+        margin-bottom:18px;
       }
 
       h1{
-        font-size:46px;
+        font-size:44px;
       }
 
-      .date{
-        font-size:22px;
-
-        margin-bottom:42px;
-      }
-
-      .events{
+      .schedule-list{
         grid-template-columns:1fr;
-
-        gap:42px;
+        gap:34px;
       }
 
-      .photo-wrap{
-        height:430px;
+      .schedule-item{
+        padding-top:22px;
+      }
+
+      .schedule-time{
+        font-size:9.5px;
+        letter-spacing:0.22em;
+        margin-bottom:12px;
+      }
+
+      .schedule-title{
+        font-size:21px;
+        margin-bottom:10px;
+      }
+
+      .schedule-detail{
+        font-size:11.5px;
+        line-height:1.8;
       }
     }
-
   </style>
 </head>
 
 <body>
 
   <nav class="topnav">
-
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
@@ -410,120 +251,60 @@
       <a href="faqs.html">FAQs</a>
     </div>
 
-    <a class="rsvp" href="rsvp.html">
-      RSVP
-    </a>
-
+    <a class="rsvp" href="rsvp.html">RSVP</a>
   </nav>
 
   <main class="wrap">
+    <div class="content">
 
-    <section class="content">
+      <section class="header">
+        <div class="eyebrow">Wedding Day</div>
+        <h1>Schedule</h1>
+      </section>
 
-      <div class="eyebrow">
-        Order of the Day
-      </div>
+      <section class="schedule-list">
 
-      <h1>
-        Schedule
-      </h1>
-
-      <div class="date">
-        Saturday, 27 February 2027
-      </div>
-
-      <div class="events" id="scheduleDetails">
-
-        <div class="event full-only">
-
-          <div class="event-number">
-            01
+        <div class="schedule-item">
+          <div class="schedule-time">1:45 pm</div>
+          <div class="schedule-title">Guest Arrival</div>
+          <div class="schedule-detail">
+            Please arrive early to allow time to park, find your seat and settle in before the ceremony begins.
           </div>
-
-          <div class="event-label">
-            Ceremony
-          </div>
-
-          <div class="event-time">
-            2:00 pm
-          </div>
-
-          <div class="event-place">
-            Notre Dame Catholic Church
-          </div>
-
-          <div class="event-address">
-            345 Wright Street<br>
-            Cloverdale WA 6105
-          </div>
-
-          <div class="event-note">
-            Please arrive by 1:45 pm
-          </div>
-
         </div>
 
-        <div class="event">
-
-          <div class="event-number" id="receptionNumber">
-            02
+        <div class="schedule-item">
+          <div class="schedule-time">2:00 pm</div>
+          <div class="schedule-title">Ceremony</div>
+          <div class="schedule-detail">
+            Our wedding ceremony will begin at 2:00 pm.
           </div>
-
-          <div class="event-label" id="receptionLabel">
-            Reception
-          </div>
-
-          <div class="event-time">
-            6:30 pm
-          </div>
-
-          <div class="event-place">
-            Abruzzo Molise Sporting Club
-          </div>
-
-          <div class="event-address">
-            30 Brook Road<br>
-            Wattle Grove WA 6107
-          </div>
-
         </div>
 
-      </div>
+        <div class="schedule-item">
+          <div class="schedule-time">Following Ceremony</div>
+          <div class="schedule-title">Photos</div>
+          <div class="schedule-detail">
+            Family and bridal party photos will take place after the ceremony.
+          </div>
+        </div>
 
-    </section>
+        <div class="schedule-item">
+          <div class="schedule-time">Evening</div>
+          <div class="schedule-title">Reception</div>
+          <div class="schedule-detail">
+            Guests are invited to join us for dinner, drinks and dancing as we continue the celebration.
+          </div>
+        </div>
 
-    <section class="photo-wrap">
+      </section>
 
-      <img
-        src="your-photo.jpg"
-        alt="Shannen and Samarth"
-      >
-
-    </section>
-
+    </div>
   </main>
 
   <script>
-
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
-
-    const guestType = sessionStorage.getItem("guestType");
-
-    if (guestType === "celebration") {
-
-      document.querySelectorAll(".full-only").forEach(section => {
-        section.classList.add("is-hidden");
-      });
-
-      document.getElementById("scheduleDetails").style.gridTemplateColumns = "1fr";
-
-      document.getElementById("receptionNumber").textContent = "01";
-
-      document.getElementById("receptionLabel").textContent = "Celebration";
-    }
-
   </script>
 
 </body>
