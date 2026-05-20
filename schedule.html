@@ -1,47 +1,177 @@
-const weddingISO = "2027-02-27T00:00:00+08:00";
-const weddingDate = new Date(weddingISO);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schedule | Shannen & Samarth</title>
 
-const formatted = new Intl.DateTimeFormat("en-AU", {
-  weekday:"long",
-  day:"2-digit",
-  month:"long",
-  year:"numeric",
-  timeZone:"Australia/Perth"
-}).format(weddingDate).replace(/^(\p{L}+)/u, "$1,");
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-document.getElementById("weddingDateText").textContent = formatted;
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-const d = document.getElementById("cdDays");
-const h = document.getElementById("cdHours");
-const m = document.getElementById("cdMins");
-const s = document.getElementById("cdSecs");
+    body{
+      font-family:"Playfair Display", serif;
+      background:#ffffff;
+      color:#111;
+      min-height:100vh;
+    }
 
-function pad(n){
-  return String(n).padStart(2,"0");
-}
+    /* ===== NAV ===== */
 
-function tick(){
-  const now = new Date();
-  let diff = weddingDate - now;
+    .topnav{
+      position:fixed;
+      top:28px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 80px);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-family:"Montserrat", sans-serif;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:0.34em;
+      font-size:11px;
+      z-index:10;
+      padding-bottom:18px;
+      color:#2B2B2B;
+      border-bottom:1px solid rgba(43,43,43,.10);
+      background:#ffffff;
+    }
 
-  if(diff <= 0){
-    d.textContent = "0";
-    h.textContent = m.textContent = s.textContent = "00";
-    return;
-  }
+    .topnav .left{
+      display:flex;
+      gap:56px;
+      align-items:center;
+    }
 
-  const total = Math.floor(diff/1000);
+    .topnav a{
+      color:#2B2B2B;
+      text-decoration:none;
+      opacity:.78;
+      transition:opacity .2s ease;
+    }
 
-  const days = Math.floor(total/86400);
-  const hrs  = Math.floor((total%86400)/3600);
-  const mins = Math.floor((total%3600)/60);
-  const secs = total%60;
+    .topnav a:hover{
+      opacity:1;
+    }
 
-  d.textContent = days;
-  h.textContent = pad(hrs);
-  m.textContent = pad(mins);
-  s.textContent = pad(secs);
-}
+    .topnav .rsvp{
+      padding:10px 18px;
+      border:1px solid rgba(43,43,43,.55);
+      border-radius:999px;
+      letter-spacing:0.34em;
+      background:rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color:#2B2B2B;
+    }
 
-tick();
-setInterval(tick,1000);
+    /* ===== PAGE ===== */
+
+    .wrap{
+      min-height:100vh;
+      padding:130px 80px 60px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .content{
+      width:100%;
+      max-width:760px;
+    }
+
+    /* ===== MOBILE ===== */
+
+    @media (max-width:768px){
+
+      .topnav{
+        position:fixed;
+        top: calc(25px + env(safe-area-inset-top));
+        width:100%;
+        padding:0 20px 16px;
+        flex-direction:column;
+        align-items:center;
+        gap:16px;
+        font-size:10px;
+        letter-spacing:0.28em;
+        border-bottom:1px solid rgba(43,43,43,.10);
+        isolation:isolate;
+      }
+
+      .topnav::before{
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        top: calc(-25px - env(safe-area-inset-top));
+        height: calc(100% + 25px + env(safe-area-inset-top));
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        z-index:-1;
+      }
+
+      .topnav .left{
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
+      }
+
+      .wrap{
+        padding:160px 20px 40px;
+        align-items:flex-start;
+      }
+    }
+
+    @media (min-width:769px){
+
+      .topnav{
+        justify-content:flex-start;
+      }
+
+      .topnav .rsvp{
+        margin-left:56px;
+        padding:4px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="topnav">
+    <div class="left">
+      <a href="index.html">Home</a>
+      <a href="welcome.html">Welcome</a>
+      <a href="schedule.html" style="font-weight:600; opacity:1;">Schedule</a>
+      <a href="faqs.html">FAQs</a>
+    </div>
+
+    <a class="rsvp" href="rsvp.html">RSVP</a>
+  </nav>
+
+  <main class="wrap">
+    <div class="content">
+      <!-- intentionally empty for now -->
+    </div>
+  </main>
+
+  <script>
+    if (sessionStorage.getItem("siteUnlocked") !== "1") {
+      window.location.replace("index.html");
+    }
+  </script>
+
+</body>
+</html>
