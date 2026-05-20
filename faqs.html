@@ -3,42 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Schedule | Shannen & Samarth</title>
+  <title>FAQs | Shannen & Samarth</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
     body{
       font-family:"Playfair Display", serif;
       background:#ffffff;
       color:#111;
       min-height:100vh;
+      overflow-x:hidden;
     }
 
-    /* ===== NAV (UNCHANGED) ===== */
+    /* ===== NAV ===== */
+
     .topnav{
       position:fixed;
       top:28px;
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
+
       display:flex;
-      justify-content:space-between;
+      justify-content:flex-start;
       align-items:center;
+
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
       letter-spacing:0.34em;
       font-size:11px;
-      z-index:10;
+
+      z-index:20;
+
       padding-bottom:18px;
+
       color:#2B2B2B;
+
       border-bottom:1px solid rgba(43,43,43,.10);
+
+      background:#ffffff;
     }
 
     .topnav .left{
@@ -54,112 +69,345 @@
       transition:opacity .2s ease;
     }
 
-    .topnav a:hover{ opacity:1; }
-
-    .topnav .rsvp{
-      padding:10px 18px;
-      border:1px solid rgba(43,43,43,.55);
-      border-radius:999px;
-      letter-spacing:0.34em;
-      background:rgba(255,255,255,0.6);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      color:#2B2B2B;
+    .topnav a:hover{
+      opacity:1;
     }
 
-    /* ===== MOBILE (UNCHANGED) ===== */
+    .topnav .rsvp{
+      margin-left:56px;
+
+      padding:4px 14px;
+
+      border:1px solid rgba(43,43,43,.55);
+      border-radius:999px;
+
+      letter-spacing:0.34em;
+
+      opacity:1;
+    }
+
+    /* ===== PAGE ===== */
+
+    .wrap{
+      min-height:100vh;
+
+      padding:150px 80px 90px;
+
+      display:flex;
+      justify-content:center;
+    }
+
+    .content{
+      width:100%;
+      max-width:980px;
+    }
+
+    .header{
+      text-align:center;
+      margin-bottom:80px;
+    }
+
+    .eyebrow{
+      font-family:"Montserrat", sans-serif;
+
+      font-size:11px;
+
+      letter-spacing:0.42em;
+
+      text-transform:uppercase;
+
+      color:#777;
+
+      margin-bottom:28px;
+    }
+
+    h1{
+      font-family:"Playfair Display", serif;
+
+      font-size:clamp(72px, 9vw, 135px);
+
+      font-weight:400;
+
+      letter-spacing:0.04em;
+
+      line-height:0.9;
+    }
+
+    .faq-list{
+      display:grid;
+
+      grid-template-columns:1fr 1fr;
+
+      gap:58px 78px;
+
+      text-align:left;
+    }
+
+    .faq-item{
+      border-top:1px solid rgba(43,43,43,.12);
+
+      padding-top:28px;
+    }
+
+    .faq-question{
+      font-family:"Montserrat", sans-serif;
+
+      font-size:11px;
+
+      font-weight:500;
+
+      letter-spacing:0.28em;
+
+      text-transform:uppercase;
+
+      line-height:1.8;
+
+      margin-bottom:18px;
+
+      color:#111;
+    }
+
+    .faq-answer{
+      font-family:"Montserrat", sans-serif;
+
+      font-size:13px;
+
+      font-weight:300;
+
+      line-height:2;
+
+      letter-spacing:0.04em;
+
+      color:#555;
+    }
+
+    .faq-answer a{
+      color:#111;
+
+      text-decoration:none;
+
+      border-bottom:1px solid rgba(43,43,43,.35);
+    }
+
+    /* ===== MOBILE ===== */
+
     @media (max-width:768px){
+
       .topnav{
-        position:fixed;
-        top: calc(25px + env(safe-area-inset-top));
+        top:calc(25px + env(safe-area-inset-top));
+
         width:100%;
+
         padding:0 20px 16px;
+
         flex-direction:column;
+
         align-items:center;
+
         gap:16px;
+
         font-size:10px;
+
         letter-spacing:0.28em;
+
         border-bottom:1px solid rgba(43,43,43,.10);
+
         isolation:isolate;
       }
 
       .topnav::before{
         content:"";
+
         position:absolute;
+
         left:0;
         right:0;
-        top: calc(-25px - env(safe-area-inset-top));
-        height: calc(100% + 25px + env(safe-area-inset-top));
-        background: rgba(255,255,255,0.72);
-        backdrop-filter: blur(14px) saturate(160%);
-        -webkit-backdrop-filter: blur(14px) saturate(160%);
+
+        top:calc(-25px - env(safe-area-inset-top));
+
+        height:calc(100% + 25px + env(safe-area-inset-top));
+
+        background:rgba(255,255,255,0.84);
+
+        backdrop-filter:blur(14px) saturate(160%);
+        -webkit-backdrop-filter:blur(14px) saturate(160%);
+
         z-index:-1;
       }
 
       .topnav .left{
         gap:24px;
-        justify-content:center;
-        flex-wrap:wrap;
-      }
-    }
 
-    @media (min-width:769px){
-      .topnav{
-        justify-content:flex-start;
+        justify-content:center;
+
+        flex-wrap:wrap;
       }
 
       .topnav .rsvp{
-        margin-left:56px;
-        padding:4px 14px;
+        margin-left:0;
+
+        padding:8px 16px;
       }
-    }
 
-    /* ===== PAGE ===== */
-    .wrap{
-      min-height:100vh;
-      padding:130px 80px 60px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      text-align:center;
-    }
-
-    .content{
-      width:100%;
-      max-width:760px;
-    }
-
-    @media (max-width:768px){
       .wrap{
-        padding:160px 20px 40px;
-        align-items:flex-start;
+        padding:175px 24px 70px;
+      }
+
+      .header{
+        margin-bottom:58px;
+      }
+
+      h1{
+        font-size:76px;
+      }
+
+      .faq-list{
+        grid-template-columns:1fr;
+
+        gap:44px;
+      }
+
+      .faq-question{
+        font-size:10px;
+      }
+
+      .faq-answer{
+        font-size:12px;
+
+        line-height:1.9;
       }
     }
+
   </style>
 </head>
 
 <body>
 
   <nav class="topnav">
+
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
       <a href="schedule.html">Schedule</a>
       <a href="faqs.html" style="font-weight:600; opacity:1;">FAQs</a>
     </div>
+
     <a class="rsvp" href="rsvp.html">RSVP</a>
+
   </nav>
 
   <main class="wrap">
+
     <div class="content">
-      <!-- intentionally empty for now -->
+
+      <section class="header">
+
+        <div class="eyebrow">
+          Wedding Details
+        </div>
+
+        <h1>FAQs</h1>
+
+      </section>
+
+      <section class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-question">
+            How and when should I RSVP?
+          </div>
+
+          <div class="faq-answer">
+            Please visit the RSVP tab and follow the link to submit your response.
+            Kindly respond by 1 December 2026.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Can I bring a plus one?
+          </div>
+
+          <div class="faq-answer">
+            Due to venue capacity, we are only able to accommodate the guests formally named on your invitation.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            What is the dress code?
+          </div>
+
+          <div class="faq-answer">
+            Formal wedding attire (Western or Indian traditional).
+            Please visit the link to view the moodboard.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Can I take photos during the ceremony?
+          </div>
+
+          <div class="faq-answer">
+            You are welcome to take photos, however we kindly ask that you remain mindful of our professional photographer and videographer.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            What time should I arrive?
+          </div>
+
+          <div class="faq-answer">
+            Please arrive at the ceremony by 1:45 pm so you have time to be seated before the ceremony begins.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Where should I park?
+          </div>
+
+          <div class="faq-answer">
+            Parking is available onsite at both the church and reception venue.
+            We want everyone to enjoy the evening safely, so please plan ahead and arrange a lift, rideshare or taxi if you are drinking.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            What should I know about Communion?
+          </div>
+
+          <div class="faq-answer">
+            During Communion, those who are Catholic are invited to receive the Eucharist.
+            If you are not Catholic, you are welcome to remain seated or come forward with your arms crossed to receive a blessing.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Who can I contact with questions?
+          </div>
+
+          <div class="faq-answer">
+            If you have any questions, please reach out to Shannen or Samarth.
+          </div>
+        </div>
+
+      </section>
+
     </div>
+
   </main>
 
   <script>
+
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
+
   </script>
 
 </body>
