@@ -94,13 +94,14 @@
     }
 
     /* ===== HERO ===== */
-.hero-wrap{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transform: translateY(25px);
-}
+    .hero-wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transform: translateY(25px);
+    }
+
     .home-center{
       display:flex;
       flex-direction:column;
@@ -114,13 +115,12 @@
 
     .monogram img{ width:100%; }
 
-.names{
-  width: clamp(300px, 60vw, 520px);
-  margin-bottom: 36px; 
-  display:block;
-}
+    .names{
+      width: clamp(300px, 60vw, 520px);
+      margin-bottom: 36px; 
+      display:block;
+    }
 
-    /* ===== DATE (ONLY CHANGE MADE) ===== */
     .date{
       font-family:"Montserrat", sans-serif;
       font-weight:500;
@@ -177,6 +177,7 @@
       min-height:14px;
       font-size:12px;
       text-align:center;
+      color:#fff;
     }
 
     .is-hidden{ display:none !important; }
@@ -248,29 +249,47 @@
 
   <div class="hero-wrap">
     <div class="home-center">
+
       <div class="monogram">
         <img src="monogram1.png" alt="Monogram">
       </div>
 
       <img class="names" src="signature1.png" alt="Shannen & Samarth">
 
-      <div class="date is-hidden" id="weddingDate">27 · 02 · 27</div>
+      <div class="date is-hidden" id="weddingDate">
+        27 · 02 · 27
+      </div>
 
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
-          <input id="pwInput" class="pw-input" type="password" placeholder="Type password here" autocomplete="off">
-          <button id="pwBtn" class="pw-btn">Enter</button>
+          <input 
+            id="pwInput" 
+            class="pw-input" 
+            type="password" 
+            placeholder="Type password here" 
+            autocomplete="off"
+          >
+
+          <button id="pwBtn" class="pw-btn">
+            Enter
+          </button>
         </div>
+
         <div class="pw-error" id="pwError"></div>
       </div>
+
     </div>
   </div>
 
 </section>
 
 <script>
+
   const UNLOCK_KEY = "siteUnlocked";
-  const SITE_PASSWORD = "ss2027";
+  const GUEST_TYPE_KEY = "guestType";
+
+  const FULL_PASSWORD = "ss2027";
+  const CELEBRATION_PASSWORD = "ssforever";
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
@@ -280,39 +299,73 @@
   const pwError = document.getElementById("pwError");
   const siteNav = document.getElementById("siteNav");
 
-  function lockUI(){
-    protectedLinks.forEach(l => l.classList.add("locked-link"));
+  function lockUI() {
+    protectedLinks.forEach(link => {
+      link.classList.add("locked-link");
+    });
+
     pwWrap.classList.remove("is-hidden");
     weddingDate.classList.add("is-hidden");
     siteNav.classList.add("is-hidden");
   }
 
-  function unlockUI(){
-    protectedLinks.forEach(l => l.classList.remove("locked-link"));
+  function unlockUI() {
+    protectedLinks.forEach(link => {
+      link.classList.remove("locked-link");
+    });
+
     pwWrap.classList.add("is-hidden");
     weddingDate.classList.remove("is-hidden");
     siteNav.classList.remove("is-hidden");
   }
 
-  if (sessionStorage.getItem(UNLOCK_KEY) === "1") unlockUI();
-  else lockUI();
+  if (sessionStorage.getItem(UNLOCK_KEY) === "1") {
+    unlockUI();
+  } else {
+    lockUI();
+  }
 
-  function tryUnlock(){
-    if (pwInput.value.trim() === SITE_PASSWORD) {
+  function tryUnlock() {
+
+    const enteredPassword = pwInput.value.trim().toLowerCase();
+
+    if (enteredPassword === FULL_PASSWORD.toLowerCase()) {
+
       sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "full");
+
       pwError.textContent = "";
       unlockUI();
-    } else {
+
+    } 
+    
+    else if (enteredPassword === CELEBRATION_PASSWORD.toLowerCase()) {
+
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "celebration");
+
+      pwError.textContent = "";
+      unlockUI();
+
+    } 
+    
+    else {
+
       pwError.textContent = "Incorrect password.";
       pwInput.value = "";
       pwInput.focus();
+
     }
   }
 
   pwBtn.addEventListener("click", tryUnlock);
+
   pwInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") tryUnlock();
+    if (e.key === "Enter") {
+      tryUnlock();
+    }
   });
+
 </script>
 
 </body>
