@@ -5,18 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schedule | Shannen & Samarth</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+    *{ margin:0; padding:0; box-sizing:border-box; }
 
     body{
       font-family:"Playfair Display", serif;
@@ -24,8 +18,6 @@
       color:#111;
       min-height:100vh;
     }
-
-    /* ===== NAV (UNCHANGED) ===== */
 
     .topnav{
       position:fixed;
@@ -61,9 +53,7 @@
       transition:opacity .2s ease;
     }
 
-    .topnav a:hover{
-      opacity:1;
-    }
+    .topnav a:hover{ opacity:1; }
 
     .topnav .rsvp{
       padding:10px 18px;
@@ -75,56 +65,6 @@
       -webkit-backdrop-filter: blur(6px);
       color:#2B2B2B;
     }
-
-    @media (max-width:768px){
-
-      .topnav{
-        position:fixed;
-        top: calc(25px + env(safe-area-inset-top));
-        width:100%;
-        padding:0 20px 16px;
-        flex-direction:column;
-        align-items:center;
-        gap:16px;
-        font-size:10px;
-        letter-spacing:0.28em;
-        border-bottom:1px solid rgba(43,43,43,.10);
-        isolation:isolate;
-      }
-
-      .topnav::before{
-        content:"";
-        position:absolute;
-        left:0;
-        right:0;
-        top: calc(-25px - env(safe-area-inset-top));
-        height: calc(100% + 25px + env(safe-area-inset-top));
-        background: rgba(253,252,249,0.78);
-        backdrop-filter: blur(14px) saturate(160%);
-        -webkit-backdrop-filter: blur(14px) saturate(160%);
-        z-index:-1;
-      }
-
-      .topnav .left{
-        gap:24px;
-        justify-content:center;
-        flex-wrap:wrap;
-      }
-    }
-
-    @media (min-width:769px){
-
-      .topnav{
-        justify-content:flex-start;
-      }
-
-      .topnav .rsvp{
-        margin-left:56px;
-        padding:4px 14px;
-      }
-    }
-
-    /* ===== PAGE ===== */
 
     .wrap{
       min-height:100vh;
@@ -139,8 +79,6 @@
       max-width:1200px;
       text-align:center;
     }
-
-    /* ===== DATE + COUNTDOWN ===== */
 
     .countdown-center{
       display:flex;
@@ -158,9 +96,7 @@
       letter-spacing:0.04em;
     }
 
-    .countdown-meta{
-      opacity:0.45;
-    }
+    .countdown-meta{ opacity:0.45; }
 
     .countdown-line{
       display:flex;
@@ -190,8 +126,6 @@
       opacity:0.55;
     }
 
-    /* ===== INTRO ===== */
-
     .schedule-intro{
       margin-top:105px;
       margin-bottom:70px;
@@ -206,8 +140,6 @@
       text-transform:uppercase;
       color:#666;
     }
-
-    /* ===== SCHEDULE ===== */
 
     .schedule-details{
       display:grid;
@@ -226,6 +158,18 @@
       width:1px;
       background:rgba(43,43,43,.08);
       transform:translateX(-50%);
+    }
+
+    .schedule-details.single-event{
+      grid-template-columns:1fr;
+      max-width:520px;
+      margin:0 auto;
+      gap:0;
+      text-align:center;
+    }
+
+    .schedule-details.single-event::before{
+      display:none;
     }
 
     .schedule-block{
@@ -297,21 +241,49 @@
       color:#777;
     }
 
-    /* ===== MOBILE ===== */
+    .is-hidden{ display:none !important; }
 
     @media (max-width:768px){
+      .topnav{
+        position:fixed;
+        top: calc(25px + env(safe-area-inset-top));
+        width:100%;
+        padding:0 20px 16px;
+        flex-direction:column;
+        align-items:center;
+        gap:16px;
+        font-size:10px;
+        letter-spacing:0.28em;
+        border-bottom:1px solid rgba(43,43,43,.10);
+        isolation:isolate;
+      }
+
+      .topnav::before{
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        top: calc(-25px - env(safe-area-inset-top));
+        height: calc(100% + 25px + env(safe-area-inset-top));
+        background: rgba(253,252,249,0.78);
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        z-index:-1;
+      }
+
+      .topnav .left{
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
+      }
 
       .wrap{
         padding:160px 24px 70px;
       }
 
-      .content{
-        max-width:100%;
-      }
+      .content{ max-width:100%; }
 
-      .countdown-center{
-        transform:none;
-      }
+      .countdown-center{ transform:none; }
 
       .schedule-intro{
         margin-top:80px;
@@ -324,21 +296,13 @@
         text-align:center;
       }
 
-      .schedule-details::before{
-        display:none;
-      }
+      .schedule-details::before{ display:none; }
 
-      .schedule-number{
-        font-size:34px;
-      }
+      .schedule-number{ font-size:34px; }
 
-      .schedule-time{
-        font-size:28px;
-      }
+      .schedule-time{ font-size:28px; }
 
-      .schedule-place{
-        font-size:20px;
-      }
+      .schedule-place{ font-size:20px; }
 
       .schedule-footer{
         margin-top:70px;
@@ -347,6 +311,14 @@
       }
     }
 
+    @media (min-width:769px){
+      .topnav{ justify-content:flex-start; }
+
+      .topnav .rsvp{
+        margin-left:56px;
+        padding:4px 14px;
+      }
+    }
   </style>
 </head>
 
@@ -364,19 +336,14 @@
   </nav>
 
   <main class="wrap">
-
     <div class="content">
 
-      <!-- DATE + COUNTDOWN -->
-
       <section class="countdown-center">
-
         <div class="fancy-date" id="weddingDateText">
           Saturday, 27 February 2027
         </div>
 
         <div class="countdown-meta">
-
           <div class="countdown-line">
             <div class="time" id="cdDays">—</div>
             <span class="sep">·</span>
@@ -393,25 +360,16 @@
             <span>MINS</span>
             <span>SECS</span>
           </div>
-
         </div>
-
       </section>
-
-      <!-- INTRO -->
 
       <div class="schedule-intro">
         <span>Order of the Day</span>
       </div>
 
-      <!-- SCHEDULE -->
+      <section class="schedule-details" id="scheduleDetails">
 
-      <section class="schedule-details">
-
-        <!-- CEREMONY -->
-
-        <div class="schedule-block">
-
+        <div class="schedule-block full-only">
           <div class="schedule-number">01</div>
 
           <div class="schedule-label">
@@ -434,16 +392,12 @@
           <div class="schedule-note">
             Please arrive by 1:45 pm
           </div>
-
         </div>
 
-        <!-- RECEPTION -->
+        <div class="schedule-block" id="receptionBlock">
+          <div class="schedule-number" id="receptionNumber">02</div>
 
-        <div class="schedule-block">
-
-          <div class="schedule-number">02</div>
-
-          <div class="schedule-label">
+          <div class="schedule-label" id="receptionLabel">
             Reception
           </div>
 
@@ -459,25 +413,32 @@
             30 Brook Road<br>
             Wattle Grove WA 6107
           </div>
-
         </div>
 
       </section>
-
-      <!-- FOOTER -->
 
       <div class="schedule-footer">
         Dinner, dancing and celebrations to follow
       </div>
 
     </div>
-
   </main>
 
   <script>
-
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
+    }
+
+    const guestType = sessionStorage.getItem("guestType");
+
+    if (guestType === "celebration") {
+      document.querySelectorAll(".full-only").forEach(section => {
+        section.classList.add("is-hidden");
+      });
+
+      document.getElementById("scheduleDetails").classList.add("single-event");
+      document.getElementById("receptionNumber").textContent = "01";
+      document.getElementById("receptionLabel").textContent = "Celebration";
     }
 
     const weddingISO = "2027-02-27T00:00:00+08:00";
@@ -503,7 +464,6 @@
     }
 
     function tick(){
-
       const now = new Date();
       let diff = weddingDate - now;
 
@@ -528,7 +488,6 @@
 
     tick();
     setInterval(tick,1000);
-
   </script>
 
 </body>
