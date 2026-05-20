@@ -11,7 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
     body{
       font-family:"Playfair Display", serif;
@@ -21,24 +26,33 @@
       overflow-x:hidden;
     }
 
+    /* ===== NAV ===== */
+
     .topnav{
       position:fixed;
       top:28px;
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
+
       display:flex;
       justify-content:flex-start;
       align-items:center;
+
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
       letter-spacing:0.34em;
       font-size:11px;
+
       z-index:20;
+
       padding-bottom:18px;
+
       color:#2B2B2B;
+
       border-bottom:1px solid rgba(43,43,43,.10);
+
       background:#ffffff;
     }
 
@@ -55,25 +69,39 @@
       transition:opacity .2s ease;
     }
 
-    .topnav a:hover{ opacity:1; }
-
-    .topnav .rsvp{
-      margin-left:56px;
-      padding:4px 14px;
-      border:1px solid rgba(43,43,43,.55);
-      border-radius:999px;
-      letter-spacing:0.34em;
+    .topnav a:hover{
       opacity:1;
     }
 
+    .topnav .rsvp{
+      margin-left:56px;
+
+      padding:4px 14px;
+
+      border:1px solid rgba(43,43,43,.55);
+      border-radius:999px;
+
+      letter-spacing:0.34em;
+
+      opacity:1;
+    }
+
+    /* ===== PAGE ===== */
+
     .wrap{
       min-height:100vh;
+
       padding:145px 80px 70px;
+
       display:grid;
       grid-template-columns:1fr 0.72fr;
+
       gap:86px;
+
       align-items:center;
+
       max-width:1320px;
+
       margin:0 auto;
     }
 
@@ -83,41 +111,62 @@
 
     .eyebrow{
       font-family:"Montserrat", sans-serif;
+
       font-size:11px;
+
       letter-spacing:0.42em;
+
       text-transform:uppercase;
+
       color:#777;
-      margin-bottom:30px;
+
+      margin-bottom:26px;
     }
 
     h1{
       font-family:"Playfair Display", serif;
-      font-size:clamp(76px, 9vw, 145px);
+
+      font-size:clamp(52px, 6vw, 92px);
+
       font-weight:400;
+
       letter-spacing:0.04em;
+
       line-height:0.9;
-      margin-bottom:24px;
+
+      margin-bottom:20px;
     }
 
     .date{
       font-family:"Montserrat", sans-serif;
+
       font-size:11px;
+
       letter-spacing:0.28em;
+
       text-transform:uppercase;
+
       color:#666;
-      margin-bottom:70px;
+
+      margin-bottom:62px;
     }
 
+    /* ===== TIMELINE ===== */
+
     .timeline{
-      max-width:640px;
+      max-width:620px;
+
       position:relative;
+
       padding-left:34px;
+
       border-left:1px solid rgba(43,43,43,.14);
     }
 
     .event{
       position:relative;
-      padding-bottom:62px;
+
+      padding-bottom:56px;
     }
 
     .event:last-child{
@@ -126,90 +175,141 @@
 
     .event::before{
       content:"";
+
       position:absolute;
+
       left:-40px;
       top:7px;
+
       width:11px;
       height:11px;
+
       border:1px solid rgba(43,43,43,.42);
+
       border-radius:50%;
+
       background:#fff;
     }
 
     .event-number{
       font-family:"Playfair Display", serif;
-      font-size:34px;
+
+      font-size:30px;
+
       font-style:italic;
+
       opacity:.16;
+
       line-height:1;
-      margin-bottom:16px;
+
+      margin-bottom:14px;
     }
 
     .event-label{
       font-family:"Montserrat", sans-serif;
+
       font-size:11px;
+
       font-weight:500;
+
       letter-spacing:0.34em;
+
       text-transform:uppercase;
-      margin-bottom:18px;
+
+      margin-bottom:14px;
+
       color:#111;
     }
 
     .event-time{
       font-family:"Playfair Display", serif;
-      font-size:38px;
+
+      font-size:28px;
+
       font-style:italic;
-      margin-bottom:26px;
+
+      margin-bottom:22px;
+
       color:#111;
     }
 
     .event-place{
       font-family:"Playfair Display", serif;
-      font-size:24px;
-      line-height:1.45;
-      margin-bottom:16px;
+
+      font-size:18px;
+
+      line-height:1.6;
+
+      margin-bottom:14px;
     }
 
     .event-address{
       font-family:"Montserrat", sans-serif;
-      font-size:13px;
+
+      font-size:12px;
+
       font-weight:300;
+
       line-height:1.9;
+
       letter-spacing:0.05em;
+
       color:#555;
     }
 
     .event-note{
-      margin-top:22px;
+      margin-top:18px;
+
       font-family:"Montserrat", sans-serif;
+
       font-size:10px;
+
       font-weight:500;
+
       letter-spacing:0.24em;
+
       text-transform:uppercase;
+
       color:#777;
     }
 
+    /* ===== PHOTO ===== */
+
     .photo-wrap{
       width:100%;
+
       height:72vh;
+
       min-height:560px;
+
       overflow:hidden;
+
       position:relative;
     }
 
     .photo-wrap img{
       width:100%;
       height:100%;
+
       object-fit:cover;
+
       display:block;
-      filter:grayscale(10%) contrast(.96) brightness(1.03);
+
+      filter:
+        grayscale(10%)
+        contrast(.96)
+        brightness(1.03);
     }
 
     .photo-wrap::after{
       content:"";
+
       position:absolute;
+
       inset:0;
+
       background:rgba(255,255,255,.08);
+
       pointer-events:none;
     }
 
@@ -217,60 +317,88 @@
       display:none !important;
     }
 
+    /* ===== MOBILE ===== */
+
     @media (max-width:768px){
+
       .topnav{
         top:calc(25px + env(safe-area-inset-top));
+
         width:100%;
+
         padding:0 20px 16px;
+
         flex-direction:column;
+
         align-items:center;
+
         gap:16px;
+
         font-size:10px;
+
         letter-spacing:0.28em;
+
         border-bottom:1px solid rgba(43,43,43,.10);
+
         isolation:isolate;
       }
 
       .topnav::before{
         content:"";
+
         position:absolute;
+
         left:0;
         right:0;
+
         top:calc(-25px - env(safe-area-inset-top));
+
         height:calc(100% + 25px + env(safe-area-inset-top));
+
         background:rgba(255,255,255,0.84);
+
         backdrop-filter:blur(14px) saturate(160%);
         -webkit-backdrop-filter:blur(14px) saturate(160%);
+
         z-index:-1;
       }
 
       .topnav .left{
         gap:24px;
+
         justify-content:center;
+
         flex-wrap:wrap;
       }
 
       .topnav .rsvp{
         margin-left:0;
+
         padding:8px 16px;
       }
 
       .wrap{
         min-height:auto;
+
         padding:175px 24px 70px;
+
         display:flex;
+
         flex-direction:column;
+
         gap:46px;
       }
 
       h1{
-        font-size:76px;
+        font-size:68px;
       }
 
       .date{
         font-size:10px;
+
         line-height:1.8;
-        margin-bottom:56px;
+
+        margin-bottom:52px;
       }
 
       .timeline{
@@ -282,24 +410,27 @@
       }
 
       .event-time{
-        font-size:34px;
+        font-size:24px;
       }
 
       .event-place{
-        font-size:22px;
+        font-size:18px;
       }
 
       .photo-wrap{
         height:430px;
+
         min-height:430px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
   <nav class="topnav">
+
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
@@ -308,23 +439,38 @@
     </div>
 
     <a class="rsvp" href="rsvp.html">RSVP</a>
+
   </nav>
 
   <main class="wrap">
 
     <section class="content">
-      <div class="eyebrow">Order of the Day</div>
+
+      <div class="eyebrow">
+        Order of the Day
+      </div>
 
       <h1>Schedule</h1>
 
-      <div class="date">Saturday, 27 February 2027</div>
+      <div class="date">
+        Saturday, 27 February 2027
+      </div>
 
       <div class="timeline" id="scheduleDetails">
 
         <div class="event full-only">
-          <div class="event-number">01</div>
-          <div class="event-label">Ceremony</div>
-          <div class="event-time">2:00 pm</div>
+
+          <div class="event-number">
+            01
+          </div>
+
+          <div class="event-label">
+            Ceremony
+          </div>
+
+          <div class="event-time">
+            2:00 pm
+          </div>
 
           <div class="event-place">
             Notre Dame Catholic Church
@@ -338,12 +484,22 @@
           <div class="event-note">
             Please arrive by 1:45 pm
           </div>
+
         </div>
 
         <div class="event">
-          <div class="event-number" id="receptionNumber">02</div>
-          <div class="event-label" id="receptionLabel">Reception</div>
-          <div class="event-time">6:30 pm</div>
+
+          <div class="event-number" id="receptionNumber">
+            02
+          </div>
+
+          <div class="event-label" id="receptionLabel">
+            Reception
+          </div>
+
+          <div class="event-time">
+            6:30 pm
+          </div>
 
           <div class="event-place">
             Abruzzo Molise Sporting Club
@@ -353,18 +509,26 @@
             30 Brook Road<br>
             Wattle Grove WA 6107
           </div>
+
         </div>
 
       </div>
+
     </section>
 
     <section class="photo-wrap">
-      <img src="your-photo.jpg" alt="Shannen and Samarth">
+
+      <img
+        src="your-photo.jpg"
+        alt="Shannen and Samarth"
+      >
+
     </section>
 
   </main>
 
   <script>
+
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
@@ -372,13 +536,16 @@
     const guestType = sessionStorage.getItem("guestType");
 
     if (guestType === "celebration") {
+
       document.querySelectorAll(".full-only").forEach(section => {
         section.classList.add("is-hidden");
       });
 
       document.getElementById("receptionNumber").textContent = "01";
+
       document.getElementById("receptionLabel").textContent = "Celebration";
     }
+
   </script>
 
 </body>
