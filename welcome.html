@@ -377,22 +377,21 @@
     </section>
 
   </main>
-    <script>
-    if (sessionStorage.getItem("siteUnlocked") !== "1") {
-      window.location.replace("index.html");
-    }
+  <script>
+ <script>
+  if (sessionStorage.getItem("siteUnlocked") !== "1") {
+    window.location.replace("index.html");
+  }
 
-    const guestType = sessionStorage.getItem("guestType");
+  const guestType = sessionStorage.getItem("guestType");
 
-    };
+  if (!guestType) {
+    window.location.replace("index.html");
+  }
 
-    if (!pages[guestType]) {
-      window.location.replace("index.html");
-    }
-
-    document.getElementById("scheduleLink").href = "schedule.html";
-    document.getElementById("faqLink").href = "faqs.html";
-  </script>
+  document.getElementById("scheduleLink").href = "schedule.html";
+  document.getElementById("faqLink").href = "faqs.html";
+</script>
 
 </body>
 </html>
