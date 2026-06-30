@@ -187,7 +187,6 @@
 
       margin:0 auto;
     }
-
     .photo-wrap{
       width:100%;
 
@@ -339,8 +338,8 @@
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html" style="font-weight:600; opacity:1;">Welcome</a>
-      <a href="schedule.html">Schedule</a>
-      <a href="faqs.html">FAQs</a>
+      <a id="scheduleLink" href="#">Schedule</a>
+      <a id="faqLink" href="#">FAQs</a>
     </div>
 
     <a class="rsvp" href="rsvp.html">RSVP</a>
@@ -378,13 +377,41 @@
     </section>
 
   </main>
-
-  <script>
-
+    <script>
     if (sessionStorage.getItem("siteUnlocked") !== "1") {
       window.location.replace("index.html");
     }
 
+    const guestType = sessionStorage.getItem("guestType");
+
+    const pages = {
+      all: {
+        schedule: "schedule-all.html",
+        faq: "faqs-all.html"
+      },
+
+      saturday: {
+        schedule: "schedule-saturday.html",
+        faq: "faqs-saturday.html"
+      },
+
+      receptionSunday: {
+        schedule: "schedule-reception-sunday.html",
+        faq: "faqs-reception-sunday.html"
+      },
+
+      reception: {
+        schedule: "schedule-reception.html",
+        faq: "faqs-reception.html"
+      }
+    };
+
+    if (!pages[guestType]) {
+      window.location.replace("index.html");
+    }
+
+    document.getElementById("scheduleLink").href = pages[guestType].schedule;
+    document.getElementById("faqLink").href = pages[guestType].faq;
   </script>
 
 </body>
