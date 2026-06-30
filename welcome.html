@@ -384,34 +384,14 @@
 
     const guestType = sessionStorage.getItem("guestType");
 
-    const pages = {
-      all: {
-        schedule: "schedule-all.html",
-        faq: "faqs-all.html"
-      },
-
-      saturday: {
-        schedule: "schedule-saturday.html",
-        faq: "faqs-saturday.html"
-      },
-
-      receptionSunday: {
-        schedule: "schedule-reception-sunday.html",
-        faq: "faqs-reception-sunday.html"
-      },
-
-      reception: {
-        schedule: "schedule-reception.html",
-        faq: "faqs-reception.html"
-      }
     };
 
     if (!pages[guestType]) {
       window.location.replace("index.html");
     }
 
-    document.getElementById("scheduleLink").href = pages[guestType].schedule;
-    document.getElementById("faqLink").href = pages[guestType].faq;
+    document.getElementById("scheduleLink").href = "schedule.html";
+    document.getElementById("faqLink").href = "faqs.html";
   </script>
 
 </body>
