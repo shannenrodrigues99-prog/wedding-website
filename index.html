@@ -68,8 +68,7 @@
       margin-bottom:36px;
       display:block;
     }
-
-    .date{
+        .date{
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
@@ -130,6 +129,7 @@
     }
 
     @media (max-width:768px){
+
       .pw-row{
         flex-direction:column;
         align-items:center;
@@ -144,7 +144,9 @@
       .pw-btn{
         width:160px;
       }
+
     }
+
   </style>
 </head>
 
@@ -153,44 +155,58 @@
 <section class="scene scene-home">
 
   <div class="hero-wrap">
+
     <div class="home-center">
 
       <div class="monogram">
         <img src="monogram2.png" alt="Monogram">
       </div>
 
-      <img class="names" src="signature1.png" alt="Shannen & Samarth">
+      <img
+        class="names"
+        src="signature1.png"
+        alt="Shannen & Samarth"
+      >
 
       <div class="date">
         27 · 02 · 27
       </div>
 
-      <div class="pw-wrap" id="pwWrap">
+      <div class="pw-wrap">
+
         <div class="pw-row">
 
-          <input 
-            id="pwInput" 
-            class="pw-input" 
-            type="password" 
-            placeholder="Type password here" 
+          <input
+            id="pwInput"
+            class="pw-input"
+            type="password"
+            placeholder="Type password here"
             autocomplete="off"
           >
 
-          <button id="pwBtn" class="pw-btn">
+          <button
+            id="pwBtn"
+            class="pw-btn"
+          >
             Enter
           </button>
 
         </div>
 
-        <div class="pw-error" id="pwError"></div>
+        <div
+          id="pwError"
+          class="pw-error"
+        ></div>
+
       </div>
 
     </div>
+
   </div>
 
 </section>
-
 <script>
+
   const UNLOCK_KEY = "siteUnlocked";
   const GUEST_TYPE_KEY = "guestType";
 
@@ -211,59 +227,64 @@
   const pwError = document.getElementById("pwError");
 
   function goToGuestHome(guestType) {
+
     sessionStorage.setItem(UNLOCK_KEY, "1");
     sessionStorage.setItem(GUEST_TYPE_KEY, guestType);
 
-    if (guestType === "all") {
-      window.location.href = "welcome-all.html";
-    }
+    window.location.href = "welcome.html";
 
-    else if (guestType === "saturday") {
-      window.location.href = "welcome-saturday.html";
-    }
-
-    else if (guestType === "receptionSunday") {
-      window.location.href = "welcome-reception-sunday.html";
-    }
-
-    else if (guestType === "reception") {
-      window.location.href = "welcome-reception.html";
-    }
   }
 
   function tryUnlock() {
+
     const enteredPassword = pwInput.value.trim().toLowerCase();
 
     if (enteredPassword === ALL_PASSWORD.toLowerCase()) {
+
       goToGuestHome("all");
+
     }
 
     else if (enteredPassword === SATURDAY_PASSWORD.toLowerCase()) {
+
       goToGuestHome("saturday");
+
     }
 
     else if (enteredPassword === RECEPTION_SUNDAY_PASSWORD.toLowerCase()) {
+
       goToGuestHome("receptionSunday");
+
     }
 
     else if (enteredPassword === RECEPTION_PASSWORD.toLowerCase()) {
+
       goToGuestHome("reception");
+
     }
 
     else {
+
       pwError.textContent = "Incorrect password.";
       pwInput.value = "";
       pwInput.focus();
+
     }
+
   }
 
   pwBtn.addEventListener("click", tryUnlock);
 
-  pwInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
+  pwInput.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
       tryUnlock();
+
     }
+
   });
+
 </script>
 
 </body>
