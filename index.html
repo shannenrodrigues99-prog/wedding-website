@@ -23,7 +23,6 @@
       overflow:hidden;
     }
 
-    /* ===== SCENE ===== */
     .scene{
       position:fixed;
       inset:0;
@@ -33,7 +32,6 @@
       min-height:100vh;
     }
 
-    /* ===== HOME ===== */
     .scene-home{
       z-index:1;
       color:#fff;
@@ -42,7 +40,6 @@
         url("hero.jpg") center/cover no-repeat;
     }
 
-    /* ===== NAV ===== */
     .topnav{
       position:fixed;
       top:28px;
@@ -93,7 +90,6 @@
       opacity:.30 !important;
     }
 
-    /* ===== HERO ===== */
     .hero-wrap{
       min-height:100vh;
       display:flex;
@@ -131,7 +127,6 @@
       margin-bottom:30px;
     }
 
-    /* ===== PASSWORD ===== */
     .pw-wrap{ margin-top:28px; }
 
     .pw-row{
@@ -182,7 +177,6 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE ===== */
     @media (max-width:768px){
       .topnav{
         top: calc(25px + env(safe-area-inset-top));
@@ -216,7 +210,6 @@
       .pw-btn{ width:160px; }
     }
 
-    /* ===== DESKTOP ===== */
     @media (min-width:769px){
       .topnav{
         justify-content:flex-start;
@@ -232,7 +225,6 @@
 
 <body>
 
-<!-- HOME -->
 <section class="scene scene-home">
 
   <div id="siteNav" class="is-hidden">
@@ -284,12 +276,20 @@
 </section>
 
 <script>
-
   const UNLOCK_KEY = "siteUnlocked";
   const GUEST_TYPE_KEY = "guestType";
 
-  const FULL_PASSWORD = "ss2027";
-  const CELEBRATION_PASSWORD = "ssforever";
+  /* 
+    PASSWORD 1: all events
+    PASSWORD 2: Saturday only
+    PASSWORD 3: Reception + Sunday
+    PASSWORD 4: Reception only
+  */
+
+  const ALL_PASSWORD = "ss2027";
+  const SATURDAY_PASSWORD = "saturday2027";
+  const RECEPTION_SUNDAY_PASSWORD = "sunday2027";
+  const RECEPTION_PASSWORD = "reception2027";
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
@@ -326,35 +326,40 @@
   }
 
   function tryUnlock() {
-
     const enteredPassword = pwInput.value.trim().toLowerCase();
 
-    if (enteredPassword === FULL_PASSWORD.toLowerCase()) {
-
+    if (enteredPassword === ALL_PASSWORD.toLowerCase()) {
       sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "full");
-
+      sessionStorage.setItem(GUEST_TYPE_KEY, "all");
       pwError.textContent = "";
       unlockUI();
+    }
 
-    } 
-    
-    else if (enteredPassword === CELEBRATION_PASSWORD.toLowerCase()) {
-
+    else if (enteredPassword === SATURDAY_PASSWORD.toLowerCase()) {
       sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "celebration");
-
+      sessionStorage.setItem(GUEST_TYPE_KEY, "saturday");
       pwError.textContent = "";
       unlockUI();
+    }
 
-    } 
-    
+    else if (enteredPassword === RECEPTION_SUNDAY_PASSWORD.toLowerCase()) {
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "receptionSunday");
+      pwError.textContent = "";
+      unlockUI();
+    }
+
+    else if (enteredPassword === RECEPTION_PASSWORD.toLowerCase()) {
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "reception");
+      pwError.textContent = "";
+      unlockUI();
+    }
+
     else {
-
       pwError.textContent = "Incorrect password.";
       pwInput.value = "";
       pwInput.focus();
-
     }
   }
 
@@ -365,7 +370,6 @@
       tryUnlock();
     }
   });
-
 </script>
 
 </body>
