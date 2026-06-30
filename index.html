@@ -288,8 +288,10 @@
   const UNLOCK_KEY = "siteUnlocked";
   const GUEST_TYPE_KEY = "guestType";
 
-  const FULL_PASSWORD = "ss2027";
-  const CELEBRATION_PASSWORD = "ssforever";
+const ALL_PASSWORD = "ss2027";
+const SATURDAY_PASSWORD = "saturday2027";
+const RECEPTION_SUNDAY_PASSWORD = "sunday2027";
+const RECEPTION_PASSWORD = "reception2027";
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
@@ -327,44 +329,65 @@
 
   function tryUnlock() {
 
-    const enteredPassword = pwInput.value.trim().toLowerCase();
+  const enteredPassword = pwInput.value.trim().toLowerCase();
 
-    if (enteredPassword === FULL_PASSWORD.toLowerCase()) {
+  if (enteredPassword === ALL_PASSWORD.toLowerCase()) {
 
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "full");
+    sessionStorage.setItem(UNLOCK_KEY, "1");
+    sessionStorage.setItem(GUEST_TYPE_KEY, "all");
 
-      pwError.textContent = "";
-      unlockUI();
+    pwError.textContent = "";
+    unlockUI();
 
-    } 
-    
-    else if (enteredPassword === CELEBRATION_PASSWORD.toLowerCase()) {
-
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "celebration");
-
-      pwError.textContent = "";
-      unlockUI();
-
-    } 
-    
-    else {
-
-      pwError.textContent = "Incorrect password.";
-      pwInput.value = "";
-      pwInput.focus();
-
-    }
   }
 
-  pwBtn.addEventListener("click", tryUnlock);
+  else if (enteredPassword === SATURDAY_PASSWORD.toLowerCase()) {
 
-  pwInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-      tryUnlock();
-    }
-  });
+    sessionStorage.setItem(UNLOCK_KEY, "1");
+    sessionStorage.setItem(GUEST_TYPE_KEY, "saturday");
+
+    pwError.textContent = "";
+    unlockUI();
+
+  }
+
+  else if (enteredPassword === RECEPTION_SUNDAY_PASSWORD.toLowerCase()) {
+
+    sessionStorage.setItem(UNLOCK_KEY, "1");
+    sessionStorage.setItem(GUEST_TYPE_KEY, "receptionSunday");
+
+    pwError.textContent = "";
+    unlockUI();
+
+  }
+
+  else if (enteredPassword === RECEPTION_PASSWORD.toLowerCase()) {
+
+    sessionStorage.setItem(UNLOCK_KEY, "1");
+    sessionStorage.setItem(GUEST_TYPE_KEY, "reception");
+
+    pwError.textContent = "";
+    unlockUI();
+
+  }
+
+  else {
+
+    pwError.textContent = "Incorrect password.";
+    pwInput.value = "";
+    pwInput.focus();
+
+  }
+
+}
+
+pwBtn.addEventListener("click", tryUnlock);
+
+pwInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    tryUnlock();
+  }
+});
 
 </script>
 
