@@ -187,6 +187,7 @@
 
       margin:0 auto;
     }
+
     .photo-wrap{
       width:100%;
 
@@ -338,8 +339,8 @@
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html" style="font-weight:600; opacity:1;">Welcome</a>
-      <a id="scheduleLink" href="#">Schedule</a>
-      <a id="faqLink" href="#">FAQs</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="faqs.html">FAQs</a>
     </div>
 
     <a class="rsvp" href="rsvp.html">RSVP</a>
@@ -377,18 +378,14 @@
     </section>
 
   </main>
+
   <script>
-<script>
-  if (sessionStorage.getItem("siteUnlocked") !== "1") {
-    window.location.replace("index.html");
-  }
 
-  const guestType = sessionStorage.getItem("guestType");
+    if (sessionStorage.getItem("siteUnlocked") !== "1") {
+      window.location.replace("index.html");
+    }
 
-  if (!guestType) {
-    window.location.replace("index.html");
-  }
-</script>
+  </script>
 
 </body>
 </html>
