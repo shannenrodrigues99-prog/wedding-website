@@ -151,77 +151,108 @@
 
     /* ===== SCHEDULE ===== */
 
-    .schedule-layout{
-      display:grid;
+.schedule-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:78px;
+  align-items:start;
+}
 
-      grid-template-columns:1fr 1fr;
+.schedule-list{
+  display:grid;
+  gap:0;
+}
 
-      gap:78px;
+.schedule-day{
+  display:grid;
+  grid-template-columns:150px 1px 1fr;
+  column-gap:34px;
+  padding:0 0 40px;
+}
 
-      align-items:start;
-    }
+.schedule-day + .schedule-day{
+  border-top:1px solid rgba(43,43,43,.12);
+  padding-top:40px;
+}
 
-    .schedule-list{
-      display:grid;
+.schedule-date{
+  font-family:"Montserrat", sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  line-height:1.8;
+  text-align:right;
+  color:#111;
+}
 
-      gap:42px;
+.schedule-line{
+  background:rgba(43,43,43,.12);
+  position:relative;
+}
 
-      text-align:left;
-    }
+.schedule-line::before{
+  content:"";
+  position:absolute;
+  top:4px;
+  left:50%;
+  transform:translateX(-50%);
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#c7b79d;
+}
 
-    .schedule-item{
-      border-top:1px solid rgba(43,43,43,.12);
+.schedule-events{
+  display:grid;
+  gap:34px;
+}
 
-      padding-top:22px;
-    }
+.schedule-event + .schedule-event{
+  border-top:1px solid rgba(43,43,43,.12);
+  padding-top:30px;
+}
 
-    .schedule-question{
-      font-family:"Montserrat", sans-serif;
+.schedule-time{
+  font-family:"Montserrat", sans-serif;
+  font-size:13px;
+  font-weight:300;
+  line-height:1.7;
+  letter-spacing:.04em;
+  color:#555;
+  margin-bottom:8px;
+}
 
-      font-size:11px;
+.schedule-title{
+  font-family:"Montserrat", sans-serif;
+  font-size:13px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#111;
+  margin-bottom:18px;
+}
 
-      font-weight:500;
+.schedule-answer{
+  font-family:"Montserrat", sans-serif;
+  font-size:13px;
+  font-weight:300;
+  line-height:1.8;
+  letter-spacing:.04em;
+  color:#555;
+}
 
-      letter-spacing:0.28em;
+.schedule-answer strong{
+  font-weight:600;
+  color:#111;
+}
 
-      text-transform:uppercase;
-
-      line-height:1.8;
-
-      margin-bottom:14px;
-
-      color:#111;
-    }
-
-    .schedule-answer{
-      font-family:"Montserrat", sans-serif;
-
-      font-size:13px;
-
-      font-weight:300;
-
-      line-height:1.8;
-
-      letter-spacing:0.04em;
-
-      color:#555;
-    }
-
-    .schedule-answer strong{
-      font-weight:600;
-
-      color:#111;
-    }
-
-    .schedule-photo img{
-      width:100%;
-
-      height:640px;
-
-      object-fit:cover;
-
-      display:block;
-    }
+.schedule-photo img{
+  width:100%;
+  height:640px;
+  object-fit:cover;
+  display:block;
+}
 
     /* ===== MOBILE ===== */
 
@@ -376,75 +407,77 @@
 
 <section class="schedule-list">
 
-  <!-- SATURDAY -->
+  <div class="schedule-day">
 
-  <div class="schedule-item" id="churchSection">
-
-    <div class="schedule-question">
-      Saturday, 27 February 2027
+    <div class="schedule-date">
+      Saturday,<br>
+      27 February 2027
     </div>
 
-    <div class="schedule-answer">
+    <div class="schedule-line"></div>
 
-      <strong>CHURCH CEREMONY</strong><br>
-      2:00 pm<br><br>
+    <div class="schedule-events">
 
-      Notre Dame Catholic Church<br>
-      345 Wright St, Cloverdale<br>
-      WA 6105<br><br>
+      <div class="schedule-event" id="churchSection">
+        <div class="schedule-time">2:00 pm</div>
+        <div class="schedule-title">Church Ceremony</div>
 
-      Guests are kindly requested to be seated by
-      <strong>1:45 pm</strong>
-      prior to the commencement of the ceremony.
+        <div class="schedule-answer">
+          Notre Dame Catholic Church<br>
+          345 Wright St, Cloverdale<br>
+          WA 6105<br><br>
 
-    </div>
+          Guests are kindly requested to be seated by
+          <strong>1:45 pm</strong>
+          prior to the commencement of the ceremony.
+        </div>
+      </div>
 
-  </div>
+      <div class="schedule-event" id="receptionSection">
+        <div class="schedule-time">6:00 pm</div>
+        <div class="schedule-title">Reception</div>
 
-  <div class="schedule-item" id="receptionSection">
+        <div class="schedule-answer">
+          Abruzzo Molise Sporting Club<br>
+          30 Brook Rd, Wattle Grove<br>
+          WA 6017<br><br>
 
-<div class="schedule-question" id="receptionDate">
-  Saturday, 27 February 2027
-</div>
-
-    <div class="schedule-answer">
-
-<strong>RECEPTION</strong><br>
-6:00 pm<br><br>
-
-Abruzzo Molise Sporting Club<br>
-30 Brook Rd, Wattle Grove<br>
-WA 6017<br><br>
-
-<strong>Dress code:</strong><br>
-Formal Attire<br>
-Western or Indian Traditional
+          <strong>Dress code:</strong><br>
+          Formal Attire<br>
+          Western or Indian Traditional
+        </div>
+      </div>
 
     </div>
 
   </div>
 
-  <!-- SUNDAY -->
+  <div class="schedule-day" id="hinduSection">
 
-  <div class="schedule-item" id="hinduSection">
-
-    <div class="schedule-question">
-      Sunday, 28 February 2027
+    <div class="schedule-date">
+      Sunday,<br>
+      28 February 2027
     </div>
 
-    <div class="schedule-answer">
+    <div class="schedule-line"></div>
 
-      <strong>HINDU CEREMONY</strong><br>
-      10:30 am<br><br>
+    <div class="schedule-events">
 
-      Shree Jalaram Sanatan Mandir<br>
-      4 Accomplish Way<br>
-      Gnangara WA 6077<br><br>
+      <div class="schedule-event">
+        <div class="schedule-time">10:30 am</div>
+        <div class="schedule-title">Hindu Ceremony</div>
 
-      Lunch to follow<br><br>
+        <div class="schedule-answer">
+          Shree Jalaram Sanatan Mandir<br>
+          4 Accomplish Way<br>
+          Gnangara WA 6077<br><br>
 
-      <strong>Dress code:</strong><br>
-      Indian Traditional
+          Lunch to follow<br><br>
+
+          <strong>Dress code:</strong><br>
+          Indian Traditional
+        </div>
+      </div>
 
     </div>
 
@@ -480,18 +513,13 @@ Western or Indian Traditional
   const churchSection = document.getElementById("churchSection");
   const receptionSection = document.getElementById("receptionSection");
   const hinduSection = document.getElementById("hinduSection");
-  const receptionDate = document.getElementById("receptionDate");
 
   switch (guestType) {
 
   case "all":
-    // Hide the second Saturday heading
-    receptionDate.style.display = "none";
     break;
 
   case "saturday":
-    // Hide the second Saturday heading
-    receptionDate.style.display = "none";
     hinduSection.style.display = "none";
     break;
 
