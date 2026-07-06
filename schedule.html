@@ -532,13 +532,21 @@
     break;
 
   case "receptionSunday":
-    churchSection.style.display = "none";
-    break;
+  churchSection.style.display = "none";
 
-  case "reception":
-    churchSection.style.display = "none";
-    hinduSection.style.display = "none";
-    break;
+  receptionSection.style.borderTop = "none";
+  receptionSection.style.paddingTop = "0";
+
+  break;
+
+case "reception":
+  churchSection.style.display = "none";
+  hinduSection.style.display = "none";
+
+  receptionSection.style.borderTop = "none";
+  receptionSection.style.paddingTop = "0";
+
+  break;
 
   default:
     window.location.replace("index.html");
