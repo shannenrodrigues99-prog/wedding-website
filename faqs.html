@@ -118,74 +118,50 @@
       line-height:0.9;
     }
 
-    .faq-layout{
-      display:flex;
-      flex-direction:column;
-      gap:70px;
-    }
-
-    .faq-photo{
-      width:100%;
-      display:flex;
-      justify-content:center;
-    }
-
-    .faq-photo img{
-      width:100%;
-      max-width:960px;
-      height:460px;
-      object-fit:cover;
-      display:block;
-    }
-
-    .faq-list{
+   .faq-layout{
   width:100%;
-  max-width:1450px;
-  margin:0 auto;
+}
 
+.faq-list{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   column-gap:90px;
-  row-gap:42px;
+  row-gap:0;
+  border-top:1px solid rgba(43,43,43,.14);
 }
 
 .faq-item{
-  padding-top:22px;
-  border-top:1px solid rgba(43,43,43,.12);
-}
-
-.faq-number,
-.faq-line{
-  display:none;
+  padding:34px 0 38px;
+  border-bottom:1px solid rgba(43,43,43,.14);
 }
 
 .faq-question{
-  font-family:"Montserrat",sans-serif;
-  font-size:12px;
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:.22em;
+  font-family:"Playfair Display",serif;
+  font-size:25px;
+  font-weight:400;
+  line-height:1.18;
+  letter-spacing:.02em;
   color:#111;
-
-  margin-bottom:22px;
+  margin-bottom:18px;
 }
 
 .faq-answer{
   font-family:"Montserrat",sans-serif;
-  font-size:15px;
+  font-size:13px;
   font-weight:300;
-  line-height:2;
-  letter-spacing:.02em;
+  line-height:1.9;
+  letter-spacing:.03em;
   color:#555;
+  max-width:480px;
 }
 
 .faq-answer strong{
-  display:block;
-  margin:0 0 4px;
   font-weight:500;
   color:#111;
 }
-
     @media (max-width:768px){
 
       body{
@@ -251,9 +227,6 @@
         gap:42px;
       }
 
-      .faq-photo img{
-        height:360px;
-      }
 
       .faq-list{
         gap:0;
@@ -317,81 +290,51 @@
         <h1>FAQs</h1>
       </section>
 
-      <section class="faq-layout">
+     <section class="faq-layout">
 
-        <section class="faq-photo">
-          <img src="SS.jpg" alt="Shannen & Samarth">
-        </section>
+  <section class="faq-list">
 
-      <section class="faq-list">
-
-  <div class="faq-item">
-  
-    <div>
+    <div class="faq-item">
       <div class="faq-question">How and when should I RSVP?</div>
       <div class="faq-answer">
         Please visit the <strong>RSVP</strong> tab at the top of the page and follow the link to submit your response.
         We kindly ask that you RSVP by <strong>1 December 2026</strong>.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-number">02</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item">
       <div class="faq-question">Can I bring a plus one?</div>
       <div class="faq-answer">
         Due to venue capacity, we are only able to accommodate the guests formally named on your invitation.
         Thank you for your understanding.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-number">03</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item">
       <div class="faq-question">What is the dress code?</div>
       <div class="faq-answer" id="dressCodeAnswer"></div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-number">04</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item">
       <div class="faq-question">What time should I arrive?</div>
       <div class="faq-answer">
         Please refer to the <strong>Schedule</strong> page for the arrival time and details.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-number">05</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item">
       <div class="faq-question">Is parking available?</div>
       <div class="faq-answer" id="parkingAnswer"></div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-number">06</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item">
       <div class="faq-question">Can I take photos during the ceremonies?</div>
       <div class="faq-answer">
         You are welcome to take photos during the ceremony. We simply ask that you remain mindful of our professional photographer and videographer and avoid moving into the aisles during the ceremony.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item" id="churchFaq">
-    <div class="faq-number">07</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item" id="churchFaq">
       <div class="faq-question">Is there anything I should know about attending a Church Ceremony?</div>
       <div class="faq-answer">
         If this is your first time visiting a Catholic Church, welcome! Out of respect for the Church and the ceremony, we ask that guests keep noise to a minimum.
@@ -402,35 +345,23 @@
         If you are not Catholic, you are welcome to remain seated or come forward with your arms crossed to receive a blessing.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item" id="hinduFaq">
-    <div class="faq-number">08</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item" id="hinduFaq">
       <div class="faq-question">Is there anything I should know about attending a Hindu Ceremony?</div>
       <div class="faq-answer">
         If this is your first time attending a Hindu Temple, welcome!<br><br>
         More details to come.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item" id="dietaryFaq">
-    <div class="faq-number">09</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item" id="dietaryFaq">
       <div class="faq-question">Can you cater for dietary requirements?</div>
       <div class="faq-answer">
         Absolutely! Please include any dietary requirements when submitting your RSVP, and we will do our best to accommodate them.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-number">10</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item">
       <div class="faq-question">Do you have a wedding registry?</div>
       <div class="faq-answer">
         Your presence at our wedding is the greatest gift we could ask for.
@@ -438,12 +369,8 @@
         Your kindness and generosity are sincerely appreciated but never expected.
       </div>
     </div>
-  </div>
 
-  <div class="faq-item">
-    <div class="faq-number">11</div>
-    <div class="faq-line"></div>
-    <div>
+    <div class="faq-item">
       <div class="faq-question">Who can I contact if I have any questions?</div>
       <div class="faq-answer">
         If you have any questions leading up to the wedding, please don't hesitate to get in touch with either of us.<br><br>
@@ -451,11 +378,10 @@
         Samarth: 04XX XXX XXX
       </div>
     </div>
-  </div>
 
-        </section>
+  </section>
 
-      </section>
+</section>
 
     </div>
 
