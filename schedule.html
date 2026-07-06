@@ -380,7 +380,7 @@
 
   <div class="schedule-item" id="churchSection">
 
-    <div class="schedule-question">
+    <div class="schedule-question" id="receptionDate">
       Saturday, 27 February 2027
     </div>
 
@@ -480,29 +480,33 @@ Western or Indian Traditional
   const churchSection = document.getElementById("churchSection");
   const receptionSection = document.getElementById("receptionSection");
   const hinduSection = document.getElementById("hinduSection");
+  const receptionDate = document.getElementById("receptionDate");
 
   switch (guestType) {
 
-    case "all":
-      // Show everything
-      break;
+  case "all":
+    // Hide the second Saturday heading
+    receptionDate.style.display = "none";
+    break;
 
-    case "saturday":
-      hinduSection.style.display = "none";
-      break;
+  case "saturday":
+    // Hide the second Saturday heading
+    receptionDate.style.display = "none";
+    hinduSection.style.display = "none";
+    break;
 
-    case "receptionSunday":
-      churchSection.style.display = "none";
-      break;
+  case "receptionSunday":
+    churchSection.style.display = "none";
+    break;
 
-    case "reception":
-      churchSection.style.display = "none";
-      hinduSection.style.display = "none";
-      break;
+  case "reception":
+    churchSection.style.display = "none";
+    hinduSection.style.display = "none";
+    break;
 
-    default:
-      window.location.replace("index.html");
-  }
+  default:
+    window.location.replace("index.html");
+}
 
 </script>
 
