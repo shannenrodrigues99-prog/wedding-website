@@ -31,24 +31,31 @@
       left:50%;
       transform:translateX(-50%);
       width:calc(100% - 80px);
-
       display:flex;
       justify-content:flex-start;
       align-items:center;
-
       font-family:"Montserrat", sans-serif;
       font-weight:500;
       text-transform:uppercase;
       letter-spacing:0.34em;
       font-size:11px;
-
       z-index:1000;
       padding-bottom:18px;
-
       color:#2B2B2B;
       border-bottom:1px solid rgba(43,43,43,.10);
       background:#ffffff;
-      overflow:hidden;
+      overflow:visible;
+    }
+
+    .topnav::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:-28px;
+      height:calc(100% + 28px);
+      background:#ffffff;
+      z-index:-1;
     }
 
     .topnav .left{
@@ -86,7 +93,7 @@
 
     .content{
       width:100%;
-      max-width:980px;
+      max-width:1180px;
     }
 
     .header{
@@ -111,42 +118,96 @@
       line-height:0.9;
     }
 
+    .faq-layout{
+      display:flex;
+      flex-direction:column;
+      gap:70px;
+    }
+
+    .faq-photo{
+      width:100%;
+      display:flex;
+      justify-content:center;
+    }
+
+    .faq-photo img{
+      width:100%;
+      max-width:960px;
+      height:460px;
+      object-fit:cover;
+      display:block;
+    }
+
     .faq-list{
+      width:100%;
+      max-width:960px;
+      margin:0 auto;
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:58px 78px;
-      text-align:left;
+      gap:0;
     }
 
     .faq-item{
-      border-top:1px solid rgba(43,43,43,.12);
-      padding-top:28px;
+      display:grid;
+      grid-template-columns:150px 1px 1fr;
+      column-gap:34px;
+      padding:0 0 34px;
     }
 
-    .faq-question{
+    .faq-item + .faq-item{
+      border-top:1px solid rgba(43,43,43,.12);
+      padding-top:34px;
+    }
+
+    .faq-number{
       font-family:"Montserrat", sans-serif;
       font-size:11px;
       font-weight:500;
       letter-spacing:0.28em;
       text-transform:uppercase;
       line-height:1.8;
-      margin-bottom:18px;
+      text-align:right;
       color:#111;
+    }
+
+    .faq-line{
+      background:rgba(43,43,43,.12);
+      position:relative;
+    }
+
+    .faq-line::before{
+      content:"";
+      position:absolute;
+      top:4px;
+      left:50%;
+      transform:translateX(-50%);
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#c7b79d;
+    }
+
+    .faq-question{
+      font-family:"Montserrat", sans-serif;
+      font-size:13px;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#111;
+      margin-bottom:16px;
     }
 
     .faq-answer{
       font-family:"Montserrat", sans-serif;
       font-size:13px;
       font-weight:300;
-      line-height:2;
-      letter-spacing:0.04em;
+      line-height:1.8;
+      letter-spacing:.04em;
       color:#555;
     }
 
-    .faq-answer a{
+    .faq-answer strong{
+      font-weight:600;
       color:#111;
-      text-decoration:none;
-      border-bottom:1px solid rgba(43,43,43,.35);
     }
 
     @media (max-width:768px){
@@ -210,18 +271,41 @@
         font-size:44px;
       }
 
+      .faq-layout{
+        gap:42px;
+      }
+
+      .faq-photo img{
+        height:360px;
+      }
+
       .faq-list{
-        grid-template-columns:1fr;
-        gap:34px;
+        gap:0;
       }
 
       .faq-item{
-        padding-top:22px;
+        grid-template-columns:1fr;
+        gap:14px;
+        padding-bottom:30px;
+      }
+
+      .faq-item + .faq-item{
+        padding-top:30px;
+      }
+
+      .faq-number{
+        text-align:left;
+        font-size:9.5px;
+        letter-spacing:0.22em;
+      }
+
+      .faq-line{
+        display:none;
       }
 
       .faq-question{
-        font-size:9.5px;
-        letter-spacing:0.22em;
+        font-size:11px;
+        letter-spacing:0.12em;
         margin-bottom:12px;
       }
 
@@ -236,96 +320,147 @@
 <body>
 
   <nav class="topnav">
+
     <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
-      <a href="schedule.html">Schedule</a>
-      <a href="faqs.html" style="font-weight:600; opacity:1;">FAQs</a>
+      <a id="scheduleLink" href="#">Schedule</a>
+      <a id="faqLink" href="#" style="font-weight:600; opacity:1;">FAQs</a>
     </div>
 
     <a class="rsvp" href="rsvp.html">RSVP</a>
+
   </nav>
 
   <main class="wrap">
+
     <div class="content">
 
       <section class="header">
-        <div class="eyebrow">Helpful Information</div>
+        <div class="eyebrow">Wedding</div>
         <h1>FAQs</h1>
       </section>
 
-      <section class="faq-list">
+      <section class="faq-layout">
 
-        <div class="faq-item">
-          <div class="faq-question">How and when should I RSVP?</div>
-          <div class="faq-answer">
-            Please visit the RSVP tab and follow the link to submit your response.
-            Kindly respond by 1 December 2026.
-          </div>
-        </div>
+        <section class="faq-photo">
+          <img src="SS.jpg" alt="Shannen & Samarth">
+        </section>
 
-        <div class="faq-item">
-          <div class="faq-question">Can I bring a plus one?</div>
-          <div class="faq-answer">
-            Due to venue capacity, we are only able to accommodate the guests formally named on your invitation.
-          </div>
-        </div>
+        <section class="faq-list">
 
-        <div class="faq-item">
-          <div class="faq-question">What is the dress code?</div>
-          <div class="faq-answer">
-            Formal wedding attire, Western or Indian traditional.
-            Please visit the link to view the moodboard.
+          <div class="faq-item">
+            <div class="faq-number">01</div>
+            <div class="faq-line"></div>
+            <div>
+              <div class="faq-question">How and when should I RSVP?</div>
+              <div class="faq-answer">
+                Please visit the <strong>RSVP</strong> tab at the top of the page and follow the link to submit your response.
+                We kindly ask that you RSVP by <strong>1 December 2026</strong>.
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-question">Can I take photos during the ceremony?</div>
-          <div class="faq-answer">
-            You are welcome to take photos, however we kindly ask that you remain mindful of our professional photographer and videographer.
+          <div class="faq-item">
+            <div class="faq-number">02</div>
+            <div class="faq-line"></div>
+            <div>
+              <div class="faq-question">Can I bring a plus one?</div>
+              <div class="faq-answer">
+                Due to venue capacity, we are only able to accommodate the guests formally named on your invitation.
+                Thank you for your understanding.
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-question">What time should I arrive?</div>
-          <div class="faq-answer">
-            Please arrive at the ceremony by 1:45 pm so you have time to be seated before the ceremony begins.
+          <div class="faq-item">
+            <div class="faq-number">03</div>
+            <div class="faq-line"></div>
+            <div>
+              <div class="faq-question">What is the dress code?</div>
+              <div class="faq-answer">
+                Please refer to the <strong>Schedule</strong> page for the dress code listed for the event you are attending.
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-question">Where should I park?</div>
-          <div class="faq-answer">
-            Parking is available onsite at both the church and reception venue.
-            We want everyone to enjoy the evening safely, so please plan ahead and arrange a lift, rideshare or taxi if you are drinking.
+          <div class="faq-item">
+            <div class="faq-number">04</div>
+            <div class="faq-line"></div>
+            <div>
+              <div class="faq-question">Are dietary requirements catered for?</div>
+              <div class="faq-answer">
+                Absolutely. Please include any dietary requirements when submitting your RSVP, so we can make the proper arrangements.
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-question">What should I know about Communion?</div>
-          <div class="faq-answer">
-            During Communion, those who are Catholic are invited to receive the Eucharist.
-            If you are not Catholic, you are welcome to remain seated or come forward with your arms crossed to receive a blessing.
+          <div class="faq-item">
+            <div class="faq-number">05</div>
+            <div class="faq-line"></div>
+            <div>
+              <div class="faq-question">Is parking available?</div>
+              <div class="faq-answer">
+                Parking is available onsite. We encourage all guests who will be drinking to plan ahead and arrange a designated driver, rideshare or taxi.
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <div class="faq-question">Who can I contact with questions?</div>
-          <div class="faq-answer">
-            If you have any questions, please reach out to Shannen or Samarth.
+          <div class="faq-item">
+            <div class="faq-number">06</div>
+            <div class="faq-line"></div>
+            <div>
+              <div class="faq-question">What time should I arrive?</div>
+              <div class="faq-answer">
+                Please refer to the <strong>Schedule</strong> page for arrival and event times.
+                We recommend allowing a little extra time for parking and getting settled.
+              </div>
+            </div>
           </div>
-        </div>
+
+          <div class="faq-item">
+            <div class="faq-number">07</div>
+            <div class="faq-line"></div>
+            <div>
+              <div class="faq-question">Can I take photos?</div>
+              <div class="faq-answer">
+                We would love for you to be present with us during the formal moments.
+                You are welcome to take photos throughout the celebrations, but please be mindful of our photographer and videographer.
+              </div>
+            </div>
+          </div>
+
+        </section>
 
       </section>
 
     </div>
+
   </main>
 
-  <script>
-    if (sessionStorage.getItem("siteUnlocked") !== "1") {
+<script>
+
+  if (sessionStorage.getItem("siteUnlocked") !== "1") {
+    window.location.replace("index.html");
+  }
+
+  const guestType = sessionStorage.getItem("guestType");
+
+  document.getElementById("scheduleLink").href = "schedule.html";
+  document.getElementById("faqLink").href = "faqs.html";
+
+  switch (guestType) {
+    case "all":
+    case "saturday":
+    case "receptionSunday":
+    case "reception":
+      break;
+
+    default:
       window.location.replace("index.html");
-    }
-  </script>
+  }
+
+</script>
 
 </body>
 </html>
