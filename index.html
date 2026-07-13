@@ -121,16 +121,6 @@
       display:block;
     }
 
-    .date{
-      font-family:"Montserrat", sans-serif;
-      font-weight:500;
-      text-transform:uppercase;
-      letter-spacing:0.15em;
-      font-size:15px;
-      opacity:.9;
-      margin-bottom:30px;
-    }
-
     /* ===== PASSWORD ===== */
     .pw-wrap{ margin-top:28px; }
 
@@ -256,8 +246,6 @@
 
       <img class="names" src="signature1.png" alt="Shannen & Samarth">
 
-      </div>
-
       <div class="pw-wrap" id="pwWrap">
         <div class="pw-row">
           <input 
@@ -294,7 +282,6 @@ const RECEPTION_PASSWORD = "reception2027";
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
   const pwWrap = document.getElementById("pwWrap");
-  const weddingDate = document.getElementById("weddingDate");
   const protectedLinks = document.querySelectorAll("[data-protected]");
   const pwError = document.getElementById("pwError");
   const siteNav = document.getElementById("siteNav");
@@ -305,7 +292,6 @@ const RECEPTION_PASSWORD = "reception2027";
     });
 
     pwWrap.classList.remove("is-hidden");
-    weddingDate.classList.add("is-hidden");
     siteNav.classList.add("is-hidden");
   }
 
@@ -315,7 +301,6 @@ const RECEPTION_PASSWORD = "reception2027";
     });
 
     pwWrap.classList.add("is-hidden");
-    weddingDate.classList.remove("is-hidden");
     siteNav.classList.remove("is-hidden");
   }
 
