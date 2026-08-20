@@ -313,10 +313,11 @@
     </div>
 
     <div class="faq-item">
-      <div class="faq-question">Is parking available?</div>
-      <div class="faq-answer" id="parkingAnswer"></div>
-    </div>
-
+<div class="faq-item" id="parkingFaq">
+  <div class="faq-question">Is parking available?</div>
+  <div class="faq-answer" id="parkingAnswer"></div>
+</div>
+      
     <div class="faq-item">
       <div class="faq-question">Can I take photos during the ceremonies?</div>
       <div class="faq-answer">
@@ -351,7 +352,7 @@
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" id="registryFaq">
       <div class="faq-question">Do you have a wedding registry?</div>
       <div class="faq-answer">
         Your presence at our wedding is the greatest gift we could ask for.
@@ -364,8 +365,8 @@
       <div class="faq-question">Who can I contact if I have any questions?</div>
       <div class="faq-answer">
         If you have any questions leading up to the wedding, please don't hesitate to get in touch with either of us.<br><br>
-        Shannen: 04XX XXX XXX<br>
-        Samarth: 04XX XXX XXX
+        Shannen: 0403 773 875<br>
+        Samarth: 0405 117 810
       </div>
     </div>
 
@@ -392,7 +393,9 @@
   const parkingAnswer = document.getElementById("parkingAnswer");
   const churchFaq = document.getElementById("churchFaq");
   const hinduFaq = document.getElementById("hinduFaq");
-
+  const parkingFaq = document.getElementById("parkingFaq");
+  const registryFaq = document.getElementById("registryFaq");
+  
   switch (guestType) {
 
     case "all":
@@ -445,6 +448,17 @@
       `;
       break;
 
+case "sunday":
+  churchFaq.style.display = "none";
+  parkingFaq.style.display = "none";
+  registryFaq.style.display = "none";
+
+  dressCodeAnswer.innerHTML = `
+    Indian Traditional Attire.<br><br>
+    If you're looking for a little inspiration, please visit our Vision Board.
+  `;
+  break;
+      
     case "reception":
       churchFaq.style.display = "none";
       hinduFaq.style.display = "none";
