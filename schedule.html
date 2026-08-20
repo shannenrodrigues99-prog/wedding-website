@@ -537,33 +537,41 @@
 
   switch (guestType) {
 
-  case "all":
-    break;
+    // Full Wedding
+    case "all":
+      break;
 
-  case "saturday":
-    hinduSection.style.display = "none";
-    break;
+    // Saturday Only
+    case "saturday":
+      hinduSection.style.display = "none";
+      break;
 
-  case "receptionSunday":
-  churchSection.style.display = "none";
+    // Reception + Sunday
+    case "receptionSunday":
+      churchSection.style.display = "none";
 
-  receptionSection.style.borderTop = "none";
-  receptionSection.style.paddingTop = "0";
+      receptionSection.style.borderTop = "none";
+      receptionSection.style.paddingTop = "0";
+      break;
 
-  break;
+    // Reception Only
+    case "reception":
+      churchSection.style.display = "none";
+      hinduSection.style.display = "none";
 
-case "reception":
-  churchSection.style.display = "none";
-  hinduSection.style.display = "none";
+      receptionSection.style.borderTop = "none";
+      receptionSection.style.paddingTop = "0";
+      break;
 
-  receptionSection.style.borderTop = "none";
-  receptionSection.style.paddingTop = "0";
+    // Sunday Only
+    case "sundayOnly":
+      churchSection.style.display = "none";
+      receptionSection.style.display = "none";
+      break;
 
-  break;
-
-  default:
-    window.location.replace("index.html");
-}
+    default:
+      window.location.replace("index.html");
+  }
 
 </script>
 
