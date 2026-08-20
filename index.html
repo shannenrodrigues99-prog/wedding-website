@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shannen & Samarth</title>
 
-  <!-- Fonts -->
+  <!-- Fonts --> const UNLOCK_KEY = "siteUnlocked";
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
@@ -271,13 +271,16 @@
 
 <script>
 
+<script>
+
   const UNLOCK_KEY = "siteUnlocked";
   const GUEST_TYPE_KEY = "guestType";
 
-const ALL_PASSWORD = "ss2027";
-const SATURDAY_PASSWORD = "saturday2027";
-const RECEPTION_SUNDAY_PASSWORD = "sunday2027";
-const RECEPTION_PASSWORD = "reception2027";
+  const ALL_PASSWORD = "ss2027";
+  const SATURDAY_PASSWORD = "saturday2027";
+  const RECEPTION_SUNDAY_PASSWORD = "sunday2027";
+  const RECEPTION_PASSWORD = "reception2027";
+  const SUNDAY_ONLY_PASSWORD = "sundayonly2027";
 
   const pwInput = document.getElementById("pwInput");
   const pwBtn = document.getElementById("pwBtn");
@@ -312,65 +315,75 @@ const RECEPTION_PASSWORD = "reception2027";
 
   function tryUnlock() {
 
-  const enteredPassword = pwInput.value.trim().toLowerCase();
+    const enteredPassword = pwInput.value.trim().toLowerCase();
 
-  if (enteredPassword === ALL_PASSWORD.toLowerCase()) {
+    if (enteredPassword === ALL_PASSWORD.toLowerCase()) {
 
-    sessionStorage.setItem(UNLOCK_KEY, "1");
-    sessionStorage.setItem(GUEST_TYPE_KEY, "all");
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "all");
 
-    pwError.textContent = "";
-    unlockUI();
+      pwError.textContent = "";
+      unlockUI();
+
+    }
+
+    else if (enteredPassword === SATURDAY_PASSWORD.toLowerCase()) {
+
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "saturday");
+
+      pwError.textContent = "";
+      unlockUI();
+
+    }
+
+    else if (enteredPassword === RECEPTION_SUNDAY_PASSWORD.toLowerCase()) {
+
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "receptionSunday");
+
+      pwError.textContent = "";
+      unlockUI();
+
+    }
+
+    else if (enteredPassword === RECEPTION_PASSWORD.toLowerCase()) {
+
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "reception");
+
+      pwError.textContent = "";
+      unlockUI();
+
+    }
+
+    else if (enteredPassword === SUNDAY_ONLY_PASSWORD.toLowerCase()) {
+
+      sessionStorage.setItem(UNLOCK_KEY, "1");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "sundayOnly");
+
+      pwError.textContent = "";
+      unlockUI();
+
+    }
+
+    else {
+
+      pwError.textContent = "Incorrect password.";
+      pwInput.value = "";
+      pwInput.focus();
+
+    }
 
   }
 
-  else if (enteredPassword === SATURDAY_PASSWORD.toLowerCase()) {
+  pwBtn.addEventListener("click", tryUnlock);
 
-    sessionStorage.setItem(UNLOCK_KEY, "1");
-    sessionStorage.setItem(GUEST_TYPE_KEY, "saturday");
-
-    pwError.textContent = "";
-    unlockUI();
-
-  }
-
-  else if (enteredPassword === RECEPTION_SUNDAY_PASSWORD.toLowerCase()) {
-
-    sessionStorage.setItem(UNLOCK_KEY, "1");
-    sessionStorage.setItem(GUEST_TYPE_KEY, "receptionSunday");
-
-    pwError.textContent = "";
-    unlockUI();
-
-  }
-
-  else if (enteredPassword === RECEPTION_PASSWORD.toLowerCase()) {
-
-    sessionStorage.setItem(UNLOCK_KEY, "1");
-    sessionStorage.setItem(GUEST_TYPE_KEY, "reception");
-
-    pwError.textContent = "";
-    unlockUI();
-
-  }
-
-  else {
-
-    pwError.textContent = "Incorrect password.";
-    pwInput.value = "";
-    pwInput.focus();
-
-  }
-
-}
-
-pwBtn.addEventListener("click", tryUnlock);
-
-pwInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    tryUnlock();
-  }
-});
+  pwInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      tryUnlock();
+    }
+  });
 
 </script>
 
