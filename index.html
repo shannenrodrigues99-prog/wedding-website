@@ -354,7 +354,7 @@
     else if (enteredPassword === SUNDAY_ONLY_PASSWORD.toLowerCase()) {
 
       sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "sundayOnly");
+      sessionStorage.setItem(GUEST_TYPE_KEY, "sunday");
       pwError.textContent = "";
       unlockUI();
 
