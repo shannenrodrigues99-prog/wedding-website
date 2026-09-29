@@ -357,13 +357,38 @@
         gap:42px;
       }
 
-      .schedule-list{
-        gap:34px;
-      }
+.schedule-list{
+  gap:34px;
+}
 
-      .schedule-item{
-        padding-top:22px;
-      }
+.schedule-day{
+  grid-template-columns:20px minmax(0, 1fr);
+  column-gap:26px;
+  row-gap:30px;
+}
+
+.schedule-date{
+  grid-column:1 / -1;
+  text-align:left;
+}
+
+.schedule-date br{
+  display:none;
+}
+
+.schedule-line{
+  grid-column:1;
+  grid-row:2;
+}
+
+.schedule-events{
+  grid-column:2;
+  grid-row:2;
+}
+
+.schedule-item{
+  padding-top:22px;
+}
 
       .schedule-question{
         font-size:9.5px;
