@@ -477,9 +477,9 @@ case "sunday":
       `;
       break;
 
-    default:
+       default:
       window.location.replace("index.html");
-  } // End of switch
+  }
 
   const moodBoardPdfs = {
     all: "Mood Board 1.pdf",
@@ -488,6 +488,97 @@ case "sunday":
     sunday: "Mood Board 4.pdf",
     reception: "Mood Board 2.pdf"
   };
+
+  // Turn the Mood Board words in the displayed answer into a button.
+  dressCodeAnswer.innerHTML = dressCodeAnswer.innerHTML.replace(
+    "Mood Board",
+    '<button type="button" id="moodBoardButton" class="mood-board-button">Mood Board</button>'
+  );
+
+  // Create the popup.
+  const moodBoardDialog = document.createElement("dialog");
+  moodBoardDialog.className = "mood-board-dialog";
+  moodBoardDialog.innerHTML = `
+    <div class="mood-board-header">
+      <strong>Mood Board</strong>
+      <button type="button" class="mood-board-close" aria-label="Close Mood Board">&times;</button>
+    </div>
+    <iframe title="Mood Board PDF"></iframe>
+    <a target="_blank" rel="noopener">Open PDF in a new tab</a>
+  `;
+  document.body.appendChild(moodBoardDialog);
+
+  const moodBoardStyles = document.createElement("style");
+  moodBoardStyles.textContent = `
+    .mood-board-button {
+      border: 0;
+      padding: 0;
+      background: none;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .mood-board-dialog {
+      width: min(900px, 94vw);
+      height: 90vh;
+      max-width: none;
+      max-height: none;
+      margin: auto;
+      padding: 20px;
+      border: 0;
+      background: #fff;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .mood-board-dialog::backdrop {
+      background: rgba(0, 0, 0, .7);
+    }
+
+    .mood-board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .mood-board-close {
+      border: 0;
+      background: none;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .mood-board-dialog iframe {
+      width: 100%;
+      height: calc(100% - 85px);
+      border: 0;
+    }
+
+    .mood-board-dialog a {
+      color: #111;
+      font-size: 12px;
+    }
+  `;
+  document.head.appendChild(moodBoardStyles);
+
+  document.getElementById("moodBoardButton").addEventListener("click", () => {
+    const pdf = moodBoardPdfs[guestType];
+    moodBoardDialog.querySelector("iframe").src = pdf;
+    moodBoardDialog.querySelector("a").href = pdf;
+    moodBoardDialog.showModal();
+  });
+
+  moodBoardDialog.querySelector(".mood-board-close").addEventListener("click", () => {
+    moodBoardDialog.close();
+  });
+
+  moodBoardDialog.addEventListener("close", () => {
+    moodBoardDialog.querySelector("iframe").removeAttribute("src");
+  });
 
 </script>
 
