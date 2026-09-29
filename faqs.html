@@ -481,7 +481,7 @@ case "sunday":
       window.location.replace("index.html");
   }
 
-    const moodBoardImages = {
+      const moodBoardImages = {
     all: [
       "Mood Board 1 - Page 1.png",
       "Mood Board 1 - Page 2.png"
@@ -507,7 +507,14 @@ case "sunday":
       <strong>Mood Board</strong>
       <button type="button" class="mood-board-close" aria-label="Close Mood Board">&times;</button>
     </div>
-    <div class="mood-board-pages"></div>
+
+    <div class="mood-board-viewer">
+      <button type="button" class="mood-board-arrow mood-board-prev" aria-label="Previous page">&#10094;</button>
+      <img class="mood-board-image" alt="Wedding attire inspiration">
+      <button type="button" class="mood-board-arrow mood-board-next" aria-label="Next page">&#10095;</button>
+    </div>
+
+    <div class="mood-board-counter"></div>
   `;
   document.body.appendChild(moodBoardDialog);
 
@@ -545,8 +552,8 @@ case "sunday":
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 20px;
-      background: #fff;
+      height: 60px;
+      padding: 0 20px;
       border-bottom: 1px solid #ddd;
     }
 
@@ -557,39 +564,109 @@ case "sunday":
       cursor: pointer;
     }
 
-    .mood-board-pages {
-      height: calc(100% - 61px);
-      overflow-y: auto;
-      padding: 20px;
+    .mood-board-viewer {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: calc(100% - 105px);
+      padding: 15px 55px;
     }
 
-    .mood-board-pages img {
+    .mood-board-image {
       display: block;
-      width: 100%;
-      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
 
-    .mood-board-pages img + img {
-      margin-top: 20px;
+    .mood-board-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      background: #fff;
+      color: #111;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .mood-board-prev { left: 10px; }
+    .mood-board-next { right: 10px; }
+
+    .mood-board-arrow:disabled {
+      opacity: .25;
+      cursor: default;
+    }
+
+    .mood-board-counter {
+      height: 45px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 45px;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      .mood-board-viewer {
+        padding: 10px 42px;
+      }
+
+      .mood-board-arrow {
+        width: 34px;
+        height: 34px;
+      }
+
+      .mood-board-prev { left: 4px; }
+      .mood-board-next { right: 4px; }
     }
   `;
   document.head.appendChild(moodBoardStyles);
 
-  document.getElementById("moodBoardButton").addEventListener("click", () => {
+  const moodBoardImage = moodBoardDialog.querySelector(".mood-board-image");
+  const previousButton = moodBoardDialog.querySelector(".mood-board-prev");
+  const nextButton = moodBoardDialog.querySelector(".mood-board-next");
+  const pageCounter = moodBoardDialog.querySelector(".mood-board-counter");
+
+  let currentPage = 0;
+
+  function showMoodBoardPage() {
     const pages = moodBoardImages[guestType];
-    const container = moodBoardDialog.querySelector(".mood-board-pages");
 
-    container.replaceChildren();
+    moodBoardImage.src = pages[currentPage];
+    moodBoardImage.alt = `Mood Board page ${currentPage + 1} of ${pages.length}`;
 
-    pages.forEach((src, index) => {
-      const image = document.createElement("img");
-      image.src = src;
-      image.alt = `Mood Board page ${index + 1}`;
-      container.appendChild(image);
-    });
+    const hasMultiplePages = pages.length > 1;
+    previousButton.hidden = !hasMultiplePages;
+    nextButton.hidden = !hasMultiplePages;
+    pageCounter.hidden = !hasMultiplePages;
 
-    container.scrollTop = 0;
+    previousButton.disabled = currentPage === 0;
+    nextButton.disabled = currentPage === pages.length - 1;
+    pageCounter.textContent = `${currentPage + 1} of ${pages.length}`;
+  }
+
+  document.getElementById("moodBoardButton").addEventListener("click", () => {
+    currentPage = 0;
+    showMoodBoardPage();
     moodBoardDialog.showModal();
+  });
+
+  previousButton.addEventListener("click", () => {
+    if (currentPage > 0) {
+      currentPage--;
+      showMoodBoardPage();
+    }
+  });
+
+  nextButton.addEventListener("click", () => {
+    if (currentPage < moodBoardImages[guestType].length - 1) {
+      currentPage++;
+      showMoodBoardPage();
+    }
   });
 
   moodBoardDialog.querySelector(".mood-board-close").addEventListener("click", () => {
