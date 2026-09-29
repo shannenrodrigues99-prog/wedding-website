@@ -248,12 +248,44 @@
   font-size:10px;
   letter-spacing:0.26em;
   line-height:1.7;
+  margin-bottom:0;
+  position:relative;
+  padding-right:30px;
+  cursor:pointer;
+}
+
+.faq-question::after{
+  content:"+";
+  position:absolute;
+  right:0;
+  top:0;
+  font-size:18px;
+  font-weight:300;
+  line-height:1;
+  letter-spacing:0;
+}
+
+.faq-item.is-open .faq-question{
   margin-bottom:12px;
 }
-      .faq-answer{
-        font-size:11.5px;
-        line-height:1.8;
-      }
+
+.faq-item.is-open .faq-question::after{
+  content:"−";
+}
+
+.faq-question:focus-visible{
+  outline:2px solid #111;
+  outline-offset:4px;
+}
+
+.faq-item:not(.is-open) .faq-answer{
+  display:none;
+}
+
+.faq-answer{
+  font-size:11.5px;
+  line-height:1.8;
+}
     }
   </style>
 </head>
@@ -481,6 +513,71 @@ case "sunday":
       window.location.replace("index.html");
   }
 
+    const mobileFaqQuery = window.matchMedia("(max-width:768px)");
+  const faqItems = [...document.querySelectorAll(".faq-item")];
+
+  faqItems.forEach((item, index) => {
+    const question = item.querySelector(".faq-question");
+    const answer = item.querySelector(".faq-answer");
+    answer.id ||= `faq-answer-${index + 1}`;
+
+    function toggleAnswer() {
+      if (!mobileFaqQuery.matches) return;
+
+      const wasOpen = item.classList.contains("is-open");
+
+      faqItems.forEach(other => {
+        other.classList.remove("is-open");
+        other.querySelector(".faq-question")
+          .setAttribute("aria-expanded", "false");
+      });
+
+      if (!wasOpen) {
+        item.classList.add("is-open");
+        question.setAttribute("aria-expanded", "true");
+      }
+    }
+
+    question.addEventListener("click", toggleAnswer);
+
+    question.addEventListener("keydown", event => {
+      if (
+        mobileFaqQuery.matches &&
+        (event.key === "Enter" || event.key === " ")
+      ) {
+        event.preventDefault();
+        toggleAnswer();
+      }
+    });
+  });
+
+  function updateFaqLayout() {
+    faqItems.forEach((item, index) => {
+      const question = item.querySelector(".faq-question");
+
+      if (mobileFaqQuery.matches) {
+        const isOpen = index === 0;
+        item.classList.toggle("is-open", isOpen);
+        question.setAttribute("role", "button");
+        question.setAttribute("tabindex", "0");
+        question.setAttribute(
+          "aria-controls",
+          item.querySelector(".faq-answer").id
+        );
+        question.setAttribute("aria-expanded", String(isOpen));
+      } else {
+        item.classList.remove("is-open");
+        question.removeAttribute("role");
+        question.removeAttribute("tabindex");
+        question.removeAttribute("aria-controls");
+        question.removeAttribute("aria-expanded");
+      }
+    });
+  }
+
+  mobileFaqQuery.addEventListener("change", updateFaqLayout);
+  updateFaqLayout();
+  
       const moodBoardImages = {
     all: [
       "Mood Board 1 - Page 1.png",
