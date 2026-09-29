@@ -289,7 +289,7 @@
 <div class="faq-item">
   <div class="faq-question">How and when should I RSVP?</div>
   <div class="faq-answer">
-    Please visit the <a href="https://thesswedding.com/rsvp.html"><strong>RSVP</strong></a> page and follow the link to submit your response.
+    Please visit the <a href="https://thesswedding.com/rsvp.html"><strong>RSVP</strong></a> page and follow the link to submit your response.<br>
     We kindly ask that you RSVP by <strong>1 December 2026</strong>.
   </div>
 </div>
@@ -302,7 +302,7 @@
       </div>
     </div>
 
-    <div class="faq-item">
+    <div class="faq-item" id="dressCodeFaq">
       <div class="faq-question">What is the dress code?</div>
       <div class="faq-answer" id="dressCodeAnswer"></div>
     </div>
@@ -391,6 +391,7 @@
   document.getElementById("faqLink").href = "faqs.html";
 
   const dressCodeAnswer = document.getElementById("dressCodeAnswer");
+  const dressCodeFaq = document.getElementById("dressCodeFaq");
   const parkingAnswer = document.getElementById("parkingAnswer");
   const churchFaq = document.getElementById("churchFaq");
   const hinduFaq = document.getElementById("hinduFaq");
@@ -451,13 +452,11 @@
 
 case "sunday":
   churchFaq.style.display = "none";
+  dressCodeFaq.style.display = "none";
   parkingFaq.style.display = "none";
-  registryFaq.style.display = "none";
-
-  dressCodeAnswer.innerHTML = `
-    Indian Traditional Attire.<br><br>
-    If you're looking for a little inspiration, please visit our Vision Board.
-  `;
+  hinduFaq.style.display = "none";
+  registryFaq.querySelector(".faq-answer").textContent =
+    "We do not have a wedding registry. Your presence at our wedding celebration is the greatest gift we could ask for. If you wish to honour us with a gift, we kindly ask for no boxed gifts.";
   break;
       
     case "reception":
