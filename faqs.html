@@ -481,21 +481,25 @@ case "sunday":
       window.location.replace("index.html");
   }
 
-  const moodBoardPdfs = {
-    all: "Mood Board 1.pdf",
-    saturday: "Mood Board 2.pdf",
-    receptionSunday: "Mood Board 3.pdf",
-    sunday: "Mood Board 4.pdf",
-    reception: "Mood Board 2.pdf"
+    const moodBoardImages = {
+    all: [
+      "Mood Board 1 - Page 1.png",
+      "Mood Board 1 - Page 2.png"
+    ],
+    saturday: ["Mood Board 2.png"],
+    reception: ["Mood Board 2.png"],
+    receptionSunday: [
+      "Mood Board 2 - Page 1.png",
+      "Mood Board 3 - Page 2.png"
+    ],
+    sunday: ["Mood Board 4.png"]
   };
 
-  // Turn the Mood Board words in the displayed answer into a button.
   dressCodeAnswer.innerHTML = dressCodeAnswer.innerHTML.replace(
     "Mood Board",
     '<button type="button" id="moodBoardButton" class="mood-board-button">Mood Board</button>'
   );
 
-  // Create the popup.
   const moodBoardDialog = document.createElement("dialog");
   moodBoardDialog.className = "mood-board-dialog";
   moodBoardDialog.innerHTML = `
@@ -503,8 +507,7 @@ case "sunday":
       <strong>Mood Board</strong>
       <button type="button" class="mood-board-close" aria-label="Close Mood Board">&times;</button>
     </div>
-    <iframe title="Mood Board PDF"></iframe>
-    <a target="_blank" rel="noopener">Open PDF in a new tab</a>
+    <div class="mood-board-pages"></div>
   `;
   document.body.appendChild(moodBoardDialog);
 
@@ -528,7 +531,7 @@ case "sunday":
       max-width: none;
       max-height: none;
       margin: auto;
-      padding: 20px;
+      padding: 0;
       border: 0;
       background: #fff;
       font-family: "Montserrat", sans-serif;
@@ -542,7 +545,9 @@ case "sunday":
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      padding: 12px 20px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
     }
 
     .mood-board-close {
@@ -552,32 +557,43 @@ case "sunday":
       cursor: pointer;
     }
 
-    .mood-board-dialog iframe {
-      width: 100%;
-      height: calc(100% - 85px);
-      border: 0;
+    .mood-board-pages {
+      height: calc(100% - 61px);
+      overflow-y: auto;
+      padding: 20px;
     }
 
-    .mood-board-dialog a {
-      color: #111;
-      font-size: 12px;
+    .mood-board-pages img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .mood-board-pages img + img {
+      margin-top: 20px;
     }
   `;
   document.head.appendChild(moodBoardStyles);
 
   document.getElementById("moodBoardButton").addEventListener("click", () => {
-    const pdf = moodBoardPdfs[guestType];
-    moodBoardDialog.querySelector("iframe").src = pdf;
-    moodBoardDialog.querySelector("a").href = pdf;
+    const pages = moodBoardImages[guestType];
+    const container = moodBoardDialog.querySelector(".mood-board-pages");
+
+    container.replaceChildren();
+
+    pages.forEach((src, index) => {
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = `Mood Board page ${index + 1}`;
+      container.appendChild(image);
+    });
+
+    container.scrollTop = 0;
     moodBoardDialog.showModal();
   });
 
   moodBoardDialog.querySelector(".mood-board-close").addEventListener("click", () => {
     moodBoardDialog.close();
-  });
-
-  moodBoardDialog.addEventListener("close", () => {
-    moodBoardDialog.querySelector("iframe").removeAttribute("src");
   });
 
 </script>
