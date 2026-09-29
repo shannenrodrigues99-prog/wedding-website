@@ -319,7 +319,7 @@
   <div class="faq-answer" id="parkingAnswer"></div>
 </div>
       
-    <div class="faq-item">
+    <div class="faq-item" id="photosFaq">
       <div class="faq-question">Can I take photos during the ceremony?</div>
       <div class="faq-answer">
         You are welcome to take photos during the ceremony. We simply ask that you remain mindful of our professional photographer and videographer and avoid stepping into the aisle during the ceremony.
@@ -467,6 +467,7 @@ case "sunday":
     case "reception":
       churchFaq.style.display = "none";
       hinduFaq.style.display = "none";
+      document.getElementById("photosFaq").style.display = "none";
 
       dressCodeAnswer.innerHTML = `
         Formal Attire – Western or Indian Traditional.<br><br>
