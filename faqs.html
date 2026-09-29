@@ -289,7 +289,7 @@
 <div class="faq-item">
   <div class="faq-question">How and when should I RSVP?</div>
   <div class="faq-answer">
-    Please visit the <a href="https://thesswedding.com/rsvp.html"><strong>RSVP</strong></a> page and follow the link to submit your response.<br>
+    Please visit the <a href="https://thesswedding.com/rsvp.html"><strong>RSVP</strong></a> page and follow the link to submit your response.<br><br>
     We kindly ask that you RSVP by <strong>1 December 2026</strong>.
   </div>
 </div>
@@ -452,9 +452,14 @@
 
 case "sunday":
   churchFaq.style.display = "none";
-  dressCodeFaq.style.display = "none";
   parkingFaq.style.display = "none";
   hinduFaq.style.display = "none";
+
+  dressCodeAnswer.innerHTML = `
+    Indian Traditional Attire.<br><br>
+    If you're looking for a little inspiration, please visit our Vision Board.
+  `;
+
   registryFaq.querySelector(".faq-answer").textContent =
     "We do not have a wedding registry. Your presence at our wedding celebration is the greatest gift we could ask for. If you wish to honour us with a gift, we kindly ask for no boxed gifts.";
   break;
