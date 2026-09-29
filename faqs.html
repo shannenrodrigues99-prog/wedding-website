@@ -495,10 +495,10 @@ case "sunday":
     sunday: ["Mood Board 4.png"]
   };
 
-  dressCodeAnswer.innerHTML = dressCodeAnswer.innerHTML.replace(
-    "Mood Board",
-    '<button type="button" id="moodBoardButton" class="mood-board-button">Mood Board</button>'
-  );
+dressCodeAnswer.innerHTML = dressCodeAnswer.innerHTML.replace(
+  "Mood Board",
+  '<button type="button" id="moodBoardButton" class="mood-board-button"><strong><u>Mood Board</u></strong></button>'
+);
 
   const moodBoardDialog = document.createElement("dialog");
   moodBoardDialog.className = "mood-board-dialog";
