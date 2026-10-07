@@ -171,39 +171,46 @@
 
     .is-hidden{ display:none !important; }
 
-    /* ===== MOBILE ===== */
-    @media (max-width:768px){
-      .topnav{
-        top: calc(25px + env(safe-area-inset-top));
-        width:100%;
-        padding:0 20px 16px;
-        flex-direction:column;
-        align-items:center;
-        gap:16px;
-        font-size:10px;
-        letter-spacing:0.28em;
-        border-bottom:1px solid rgba(255,255,255,.20);
-      }
+   /* ===== MOBILE ===== */
+@media (max-width:768px){
 
-      .topnav .left{
-        gap:24px;
-        justify-content:center;
-        flex-wrap:wrap;
-      }
+  .scene-home{
+    background-image:
+      linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
+      url("Khichkeh-43 2.jpg");
+  }
 
-      .pw-row{
-        flex-direction:column;
-        align-items:center;
-      }
+  .topnav{
+    top: calc(25px + env(safe-area-inset-top));
+    width:100%;
+    padding:0 20px 16px;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    font-size:10px;
+    letter-spacing:0.28em;
+    border-bottom:1px solid rgba(255,255,255,.20);
+  }
 
-      .pw-input{
-        width:min(78vw,340px);
-        font-size:16px;
-        text-align:center;
-      }
+  .topnav .left{
+    gap:24px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
 
-      .pw-btn{ width:160px; }
-    }
+  .pw-row{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .pw-input{
+    width:min(78vw,340px);
+    font-size:16px;
+    text-align:center;
+  }
+
+  .pw-btn{ width:160px; }
+}
 
     /* ===== DESKTOP ===== */
     @media (min-width:769px){
