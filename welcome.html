@@ -235,10 +235,12 @@
         height:100dvh;
         min-height:0;
 
-        padding:80px 80px 0;
+        padding:80px 60px 0;
+        max-width:1200px;
 
-        grid-template-columns:1.05fr 0.95fr;
+        grid-template-columns:auto minmax(0, 1fr);
         grid-template-rows:minmax(0, 1fr);
+        gap:50px;
 
         align-items:center;
       }
@@ -259,9 +261,12 @@
         justify-self:start;
       }
 
-      .content{
+         .content{
         grid-column:2;
         grid-row:1;
+
+        width:100%;
+        max-width:500px;
         justify-self:center;
       }
     }
@@ -402,9 +407,9 @@
       <h1>Welcome</h1>
 
       <div class="welcome-text">
-        We are so excited to celebrate our wedding with the people we love most.
+        We are so excited to celebrate our wedding with the people we love most. Having you there to share in the joy means so much to us.
         <br><br>
-        Here you will find all the details for the celebrations ahead, and we cannot wait to share this special occasion with you.
+        Here you will find all the details for the celebrations ahead. We cannot wait to make wonderful memories with you.
       </div>
 
       <div class="welcome-signoff">
