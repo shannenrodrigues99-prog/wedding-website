@@ -358,13 +358,18 @@
       }
 
 .schedule-list{
-  gap:34px;
+  gap:18px;
 }
 
 .schedule-day{
   grid-template-columns:20px minmax(0, 1fr);
   column-gap:26px;
   row-gap:30px;
+  padding-bottom:24px;
+}
+
+.schedule-day + .schedule-day{
+  padding-top:28px;
 }
 
 .schedule-date{
