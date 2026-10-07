@@ -120,56 +120,67 @@
       display:block;
     }
 
-    /* ===== PASSWORD ===== */
-    .pw-wrap{ margin-top:28px; }
+  /* ===== PASSWORD ===== */
+.pw-wrap{
+  margin-top:28px;
+}
 
-    .pw-row{
-      display:flex;
-      gap:12px;
-    }
+.pw-row{
+  display:flex;
+  gap:12px;
+}
 
-    .pw-input,
-    .pw-btn{
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      backdrop-filter: blur(18px) saturate(160%);
-      background: rgba(255,255,255,0.10);
-      border:1px solid rgba(255,255,255,0.28);
-      border-radius:999px;
-      height:46px;
-      color:#fff;
-    }
+.pw-input,
+.pw-btn{
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.28);
+  border-radius:999px;
+  height:46px;
+  color:#fff;
 
-    .pw-input{
-      padding:0 18px;
-      width:min(300px,72vw);
-      outline:none;
-      caret-color:#fff;
-    }
+  font-family:"Montserrat", sans-serif;
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+}
 
-    .pw-input::placeholder{
-      color:#fff;
-      opacity:1;
-    }
+.pw-input{
+  padding:0 18px;
+  width:min(300px,72vw);
+  outline:none;
+  caret-color:#fff;
+  text-align:center;
+}
 
-    .pw-btn{
-      font-family:"Montserrat", sans-serif;
-      font-weight:500;
-      font-size:11px;
-      letter-spacing:0.32em;
-      text-transform:uppercase;
-      padding:0 22px;
-      cursor:pointer;
-    }
+.pw-input::placeholder{
+  color:#fff;
+  opacity:1;
+  font-family:"Montserrat", sans-serif;
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+}
 
-    .pw-error{
-      margin-top:10px;
-      min-height:14px;
-      font-size:12px;
-      text-align:center;
-      color:#fff;
-    }
+.pw-btn{
+  padding:0 22px;
+  cursor:pointer;
+}
 
-    .is-hidden{ display:none !important; }
+.pw-error{
+  margin-top:10px;
+  min-height:14px;
+  font-size:12px;
+  text-align:center;
+  color:#fff;
+}
+
+.is-hidden{
+  display:none !important;
+}
 
    /* ===== MOBILE ===== */
 @media (max-width:768px){
@@ -203,11 +214,9 @@
     align-items:center;
   }
 
-  .pw-input{
-    width:min(78vw,340px);
-    font-size:16px;
-    text-align:center;
-  }
+.pw-input{
+  width:min(78vw,340px);
+}
 
   .pw-btn{ width:160px; }
 }
