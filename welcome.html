@@ -221,7 +221,7 @@
   display:none;
     }
 
-        /* ===== DESKTOP ONLY ===== */
+    /* ===== DESKTOP ONLY ===== */
 
     @media (min-width:769px){
       html,
@@ -261,15 +261,51 @@
         justify-self:start;
       }
 
-         .content{
+      .content{
         grid-column:2;
         grid-row:1;
 
         width:100%;
         max-width:500px;
         justify-self:center;
+
+        text-align:left;
+      }
+
+      .eyebrow{
+        margin-bottom:18px;
+      }
+
+      h1{
+        font-size:clamp(58px, 5.5vw, 80px);
+        line-height:1.05;
+        letter-spacing:0;
+        margin-bottom:28px;
+      }
+
+      .welcome-text{
+        width:100%;
+        max-width:440px;
+
+        font-size:13px;
+        font-weight:400;
+        line-height:1.95;
+        letter-spacing:0.015em;
+
+        text-align:left;
+        margin:0 0 24px;
+      }
+
+      .content > .welcome-text:last-of-type{
+        margin-bottom:12px;
+      }
+
+      .signature{
+        max-width:300px;
+        margin:0;
       }
     }
+
     
     /* ===== MOBILE ===== */
 
