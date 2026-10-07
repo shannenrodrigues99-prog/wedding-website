@@ -223,6 +223,27 @@
   display:none;
     }
 
+    /* ===== DESKTOP ONLY ===== */
+
+    @media (min-width:769px){
+      .wrap{
+        grid-template-columns:1.05fr 0.95fr;
+      }
+
+      .photo-wrap{
+        grid-column:1;
+        grid-row:1;
+        height:72vh;
+        min-height:550px;
+      }
+
+      .content{
+        grid-column:2;
+        grid-row:1;
+        justify-self:center;
+      }
+    }
+    
     /* ===== MOBILE ===== */
 
     @media (max-width:768px){
