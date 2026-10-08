@@ -423,6 +423,10 @@
         margin-bottom:0;
       }
 
+body.is-unlocked .home-center{
+  transform:translateY(-3svh) scale(.90);
+}
+      
       .menu-panel{
         margin-top:30px;
       }
@@ -498,29 +502,56 @@
     }
 
 
-    /* ===== DESKTOP ===== */
+/* ===== DESKTOP ===== */
 
-    @media (min-width:769px){
+@media (min-width:769px){
 
-      /* Mobile button menu stays hidden on desktop */
+  .hero-wrap{
+    transform:translateY(-20px);
+  }
 
-      .menu-panel{
-        display:none !important;
-      }
+  .topnav{
+    justify-content:flex-start;
+  }
 
-      .hero-wrap{
-        transform:translateY(-20px);
-      }
+  .topnav .rsvp{
+    margin-left:56px;
+    padding:4px 14px;
+  }
 
-      .topnav{
-        justify-content:flex-start;
-      }
 
-      .topnav .rsvp{
-        margin-left:56px;
-        padding:4px 14px;
-      }
-    }
+  /* ===== AFTER LOGIN ON DESKTOP ===== */
+
+  body.is-unlocked #siteNav{
+    display:none !important;
+  }
+
+  body.is-unlocked .names{
+    display:none;
+  }
+
+  body.is-unlocked .monogram{
+    width:110px;
+    margin-bottom:0;
+  }
+
+  .menu-panel{
+    margin-top:26px;
+  }
+
+  .menu-title{
+    margin-bottom:22px;
+  }
+
+  .menu-links{
+    gap:12px;
+  }
+
+  .menu-link{
+    width:330px;
+    height:46px;
+  }
+}
 
   </style>
 </head>
@@ -605,7 +636,7 @@
         </div>
 
 
-        <!-- LOGGED-IN MOBILE MENU -->
+        <!-- LOGGED-IN MENU -->
 
         <div class="menu-panel is-hidden" id="menuPanel">
 
