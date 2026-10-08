@@ -182,43 +182,129 @@
   display:none !important;
 }
 
-   /* ===== MOBILE ===== */
+/* ===== MOBILE ===== */
 @media (max-width:768px){
 
   .scene-home{
     background-image:
       linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
-      url("Khichkeh-43 3.jpg");
+      url("Khichkeh-43.jpg");
+    background-size:cover;
+    background-position:center bottom;
+    background-repeat:no-repeat;
+  }
+
+  .scene{
+    min-height:100svh;
+  }
+
+  .hero-wrap{
+    width:100%;
+    min-height:100svh;
+    transform:none;
+    align-items:flex-start;
+    padding:26svh 20px 0;
+  }
+
+  .home-center{
+    width:100%;
+  }
+
+  .monogram{
+    width:clamp(140px,42vw,190px);
+    margin-bottom:32px;
+  }
+
+  .monogram img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+
+  .names{
+    width:min(88vw,380px);
+    height:auto;
+    margin-bottom:0;
+  }
+
+  .pw-wrap{
+    width:100%;
+    margin-top:38px;
+  }
+
+  .pw-row{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+
+  .pw-input,
+  .pw-btn{
+    height:48px;
+    background:rgba(35,35,35,.28);
+    border:1px solid rgba(255,255,255,.60);
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px);
+  }
+
+  .pw-input{
+    width:min(82vw,340px);
+    font-size:16px;
+    letter-spacing:.16em;
+  }
+
+  .pw-input::placeholder{
+    font-size:10px;
+    letter-spacing:.24em;
+  }
+
+  .pw-btn{
+    width:150px;
+    font-size:11px;
+    letter-spacing:.28em;
+  }
+
+  .pw-error{
+    margin-top:12px;
+    font-family:"Montserrat",sans-serif;
+    font-size:11px;
+    letter-spacing:0;
   }
 
   .topnav{
-    top: calc(25px + env(safe-area-inset-top));
+    top:calc(20px + env(safe-area-inset-top));
     width:100%;
-    padding:0 20px 16px;
+    padding:0 16px 14px;
     flex-direction:column;
     align-items:center;
-    gap:16px;
+    gap:14px;
     font-size:10px;
-    letter-spacing:0.28em;
+    letter-spacing:.18em;
     border-bottom:1px solid rgba(255,255,255,.20);
   }
 
   .topnav .left{
-    gap:24px;
+    gap:20px;
     justify-content:center;
     flex-wrap:wrap;
   }
-
-  .pw-row{
-    flex-direction:column;
-    align-items:center;
-  }
-
-.pw-input{
-  width:min(78vw,340px);
 }
 
-  .pw-btn{ width:160px; }
+@media (max-width:768px) and (max-height:700px){
+
+  .hero-wrap{
+    padding-top:21svh;
+  }
+
+  .monogram{
+    width:130px;
+    margin-bottom:22px;
+  }
+
+  .pw-wrap{
+    margin-top:26px;
+  }
 }
 
     /* ===== DESKTOP ===== */
