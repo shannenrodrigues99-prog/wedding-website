@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Shannen & Samarth</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Alex+Brush&family=Montserrat:wght@500;600&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
-    *{ margin:0; padding:0; box-sizing:border-box; }
 
-    html, body{
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html,
+    body{
       height:100%;
       background:#000;
     }
 
     body{
-      font-family:"Playfair Display", serif;
+      font-family:"Playfair Display",serif;
       overflow:hidden;
     }
 
+
     /* ===== SCENE ===== */
+
     .scene{
       position:fixed;
       inset:0;
@@ -32,39 +46,50 @@
       min-height:100vh;
     }
 
-    /* ===== HOME ===== */
+
+    /* ===== BACKGROUND ===== */
+
     .scene-home{
       z-index:1;
       color:#fff;
+
       background:
         linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
         url("Khichkeh-43.jpg") center/cover no-repeat;
     }
 
-    /* ===== NAV ===== */
+
+    /* ===== DESKTOP NAVIGATION ===== */
+
     .topnav{
       position:fixed;
       top:28px;
       left:50%;
       transform:translateX(-50%);
+
       width:calc(100% - 80px);
+
       display:flex;
       justify-content:space-between;
       align-items:center;
-      font-family:"Montserrat", sans-serif;
-      font-weight:500;
-      text-transform:uppercase;
-      letter-spacing:0.34em;
-      font-size:11px;
-      z-index:10;
+
       padding-bottom:18px;
+
       border-bottom:1px solid rgba(255,255,255,.22);
+
+      font-family:"Montserrat",sans-serif;
+      font-weight:500;
+      font-size:11px;
+      letter-spacing:.34em;
+      text-transform:uppercase;
+
+      z-index:10;
     }
 
     .topnav .left{
       display:flex;
-      gap:56px;
       align-items:center;
+      gap:56px;
     }
 
     .topnav a{
@@ -74,17 +99,22 @@
       transition:opacity .2s ease;
     }
 
-    .topnav a:hover{ opacity:1; }
+    .topnav a:hover{
+      opacity:1;
+    }
 
     .topnav .rsvp{
       padding:10px 18px;
+
       border:1px solid rgba(255,255,255,.55);
       border-radius:999px;
+
+      background:rgba(255,255,255,.06);
+
+      -webkit-backdrop-filter:blur(6px);
+      backdrop-filter:blur(6px);
+
       opacity:1;
-      letter-spacing:0.34em;
-      background:rgba(255,255,255,0.06);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
     }
 
     .locked-link{
@@ -92,13 +122,17 @@
       opacity:.30 !important;
     }
 
+
     /* ===== HERO ===== */
+
     .hero-wrap{
       min-height:100vh;
+
       display:flex;
       align-items:center;
       justify-content:center;
-      transform: translateY(25px);
+
+      transform:translateY(25px);
     }
 
     .home-center{
@@ -107,412 +141,687 @@
       align-items:center;
     }
 
+
+    /* ===== MONOGRAM ===== */
+
     .monogram{
-      width: clamp(120px, 18vw, 220px);
-      margin-bottom: 28px;
+      width:clamp(120px,18vw,220px);
+      margin-bottom:28px;
     }
 
-    .monogram img{ width:100%; }
+    .monogram img{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+
+
+    /* ===== NAMES ===== */
 
     .names{
-      width: clamp(300px, 60vw, 520px);
-      margin-bottom: 36px; 
       display:block;
+      width:clamp(300px,60vw,520px);
+      height:auto;
+      margin-bottom:36px;
     }
 
-  /* ===== PASSWORD ===== */
-.pw-wrap{
-  margin-top:28px;
-}
 
-.pw-row{
-  display:flex;
-  gap:12px;
-}
+    /* ===== PASSWORD ===== */
 
-.pw-input,
-.pw-btn{
-  -webkit-backdrop-filter:blur(18px) saturate(160%);
-  backdrop-filter:blur(18px) saturate(160%);
-  background:rgba(255,255,255,0.10);
-  border:1px solid rgba(255,255,255,0.28);
-  border-radius:999px;
-  height:46px;
-  color:#fff;
+    .pw-wrap{
+      margin-top:28px;
+    }
 
-  font-family:"Montserrat", sans-serif;
-  font-weight:500;
-  font-size:11px;
-  letter-spacing:0.32em;
-  text-transform:uppercase;
-}
+    .pw-row{
+      display:flex;
+      gap:12px;
+    }
 
-.pw-input{
-  padding:0 18px;
-  width:min(300px,72vw);
-  outline:none;
-  caret-color:#fff;
-  text-align:center;
-}
+    .pw-input,
+    .pw-btn{
+      height:46px;
 
-.pw-input::placeholder{
-  color:#fff;
-  opacity:1;
-  font-family:"Montserrat", sans-serif;
-  font-weight:500;
-  font-size:11px;
-  letter-spacing:0.32em;
-  text-transform:uppercase;
-}
+      color:#fff;
 
-.pw-btn{
-  padding:0 22px;
-  cursor:pointer;
-}
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:999px;
 
-.pw-error{
-  margin-top:10px;
-  min-height:14px;
-  font-size:12px;
-  text-align:center;
-  color:#fff;
-}
+      -webkit-backdrop-filter:blur(18px) saturate(160%);
+      backdrop-filter:blur(18px) saturate(160%);
 
-.is-hidden{
-  display:none !important;
-}
+      font-family:"Montserrat",sans-serif;
+      font-weight:500;
+      font-size:11px;
+      letter-spacing:.32em;
+      text-transform:uppercase;
+    }
 
-/* ===== MOBILE ===== */
-@media (max-width:768px){
+    .pw-input{
+      width:min(300px,72vw);
+      padding:0 18px;
 
-.scene-home{
-  background-image:
-    linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
-    url("Khichkeh-43.jpg?v=7");
+      outline:none;
+      caret-color:#fff;
+      text-align:center;
+    }
 
-  background-size:auto 108%;
-  background-position:68% top;
-  background-repeat:no-repeat;
-}
+    .pw-input::placeholder{
+      color:#fff;
+      opacity:1;
 
-  .scene{
-    min-height:100svh;
-  }
+      font-family:"Montserrat",sans-serif;
+      font-weight:500;
+      font-size:11px;
+      letter-spacing:.32em;
+      text-transform:uppercase;
+    }
 
-  .hero-wrap{
-    width:100%;
-    min-height:100svh;
-    transform:none;
-    align-items:flex-start;
-    padding:20svh 20px 0;
-  }
+    .pw-btn{
+      padding:0 22px;
+      cursor:pointer;
+    }
 
-.home-center{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+    .pw-error{
+      min-height:14px;
+      margin-top:10px;
 
-  transform:translateY(1svh) scale(.90);
-  transform-origin:top center;
-}
+      color:#fff;
 
-  .monogram{
-    width:clamp(135px,38vw,170px);
-    margin-bottom:20px;
-  }
+      font-size:12px;
+      text-align:center;
+    }
 
-  .monogram img{
-    display:block;
-    width:100%;
-    height:auto;
-  }
 
-  .names{
-    display:block;
-    width:min(80vw,350px);
-    height:auto;
-    margin-bottom:0;
-  }
+    /* ===== LOGGED-IN MENU ===== */
 
-  .pw-wrap{
-    width:100%;
-    margin-top:26px;
-  }
+    .menu-panel{
+      width:100%;
 
-  .pw-row{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:14px;
-  }
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
 
-  .pw-input,
-  .pw-btn{
-    height:46px;
-    color:#fff;
-    background:rgba(35,35,35,.28);
-    border:1px solid rgba(255,255,255,.60);
-    border-radius:999px;
+    .menu-title{
+      font-family:"Montserrat",sans-serif;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.42em;
+      line-height:1;
+      text-transform:uppercase;
+    }
 
-    -webkit-backdrop-filter:blur(12px);
-    backdrop-filter:blur(12px);
-  }
+    .menu-links{
+      width:100%;
 
-  .pw-input{
-    width:min(64vw,280px);
-    padding:0 16px;
-    font-size:16px;
-    letter-spacing:.14em;
-    text-align:center;
-  }
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
 
-  .pw-input::placeholder{
-    color:#fff;
-    opacity:1;
-    font-size:10px;
-    letter-spacing:.22em;
-  }
+    .menu-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
-  .pw-btn{
-    width:125px;
-    padding:0;
-    font-size:11px;
-    letter-spacing:.28em;
-  }
+      color:#fff;
 
-  .pw-error{
-    margin-top:12px;
-    min-height:14px;
-    color:#fff;
-    font-family:"Montserrat",sans-serif;
-    font-size:11px;
-    text-align:center;
-    letter-spacing:0;
-  }
+      background:rgba(35,35,35,.28);
+      border:1px solid rgba(255,255,255,.60);
+      border-radius:999px;
 
-  .topnav{
-    top:calc(20px + env(safe-area-inset-top));
-    width:100%;
-    padding:0 16px 14px;
-    flex-direction:column;
-    align-items:center;
-    gap:14px;
-    font-size:10px;
-    letter-spacing:.18em;
-    border-bottom:1px solid rgba(255,255,255,.20);
-  }
+      -webkit-backdrop-filter:blur(12px);
+      backdrop-filter:blur(12px);
 
-  .topnav .left{
-    gap:20px;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-}
+      font-family:"Montserrat",sans-serif;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.30em;
+      text-decoration:none;
+      text-transform:uppercase;
+    }
 
-/* Shorter phones */
-@media (max-width:768px) and (max-height:700px){
 
-  .hero-wrap{
-    padding-top:16svh;
-  }
+    /* ===== HIDDEN ELEMENTS ===== */
 
-  .monogram{
-    width:125px;
-    margin-bottom:16px;
-  }
+    .is-hidden{
+      display:none !important;
+    }
 
-  .names{
-    width:min(76vw,320px);
-  }
 
-  .pw-wrap{
-    margin-top:20px;
-  }
+    /* ===== MOBILE ===== */
 
-  .pw-input,
-  .pw-btn{
-    height:44px;
-  }
-}
-/* ===== DESKTOP ===== */
-@media (min-width:769px){
+    @media (max-width:768px){
 
-  .hero-wrap{
-    transform:translateY(-20px);
-  }
+      .scene-home{
+        background-image:
+          linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
+          url("Khichkeh-43.jpg?v=8");
 
-  .topnav{
-    justify-content:flex-start;
-  }
+        background-size:auto 108%;
+        background-position:68% top;
+        background-repeat:no-repeat;
+      }
 
-  .topnav .rsvp{
-    margin-left:56px;
-    padding:4px 14px;
-  }
-}
+      .scene{
+        min-height:100svh;
+      }
+
+      .hero-wrap{
+        width:100%;
+        min-height:100svh;
+
+        align-items:flex-start;
+
+        padding:20svh 20px 0;
+
+        transform:none;
+      }
+
+      .home-center{
+        width:100%;
+
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+
+        transform:translateY(1svh) scale(.90);
+        transform-origin:top center;
+      }
+
+      .monogram{
+        width:clamp(135px,38vw,170px);
+        margin-bottom:20px;
+      }
+
+      .names{
+        width:min(80vw,350px);
+        margin-bottom:0;
+      }
+
+      .pw-wrap{
+        width:100%;
+        margin-top:26px;
+      }
+
+      .pw-row{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:14px;
+      }
+
+      .pw-input,
+      .pw-btn{
+        height:46px;
+
+        color:#fff;
+
+        background:rgba(35,35,35,.28);
+        border:1px solid rgba(255,255,255,.60);
+        border-radius:999px;
+
+        -webkit-backdrop-filter:blur(12px);
+        backdrop-filter:blur(12px);
+      }
+
+      .pw-input{
+        width:min(64vw,280px);
+        padding:0 16px;
+
+        font-size:16px;
+        letter-spacing:.14em;
+        text-align:center;
+      }
+
+      .pw-input::placeholder{
+        color:#fff;
+        opacity:1;
+
+        font-size:10px;
+        letter-spacing:.22em;
+      }
+
+      .pw-btn{
+        width:125px;
+        padding:0;
+
+        font-size:11px;
+        letter-spacing:.28em;
+      }
+
+      .pw-error{
+        min-height:14px;
+        margin-top:12px;
+
+        color:#fff;
+
+        font-family:"Montserrat",sans-serif;
+        font-size:11px;
+        letter-spacing:0;
+        text-align:center;
+      }
+
+
+      /* ===== AFTER LOGIN ON MOBILE ===== */
+
+      body.is-unlocked #siteNav{
+        display:none !important;
+      }
+
+      body.is-unlocked .hero-wrap{
+        padding-top:17svh;
+      }
+
+      body.is-unlocked .names{
+        display:none;
+      }
+
+      body.is-unlocked .monogram{
+        width:clamp(95px,28vw,120px);
+        margin-bottom:0;
+      }
+
+      .menu-panel{
+        margin-top:30px;
+      }
+
+      .menu-title{
+        margin-bottom:24px;
+      }
+
+      .menu-links{
+        gap:12px;
+      }
+
+      .menu-link{
+        width:min(68vw,300px);
+        height:46px;
+      }
+    }
+
+
+    /* ===== SHORTER PHONES ===== */
+
+    @media (max-width:768px) and (max-height:700px){
+
+      .hero-wrap{
+        padding-top:16svh;
+      }
+
+      .monogram{
+        width:125px;
+        margin-bottom:16px;
+      }
+
+      .names{
+        width:min(76vw,320px);
+      }
+
+      .pw-wrap{
+        margin-top:20px;
+      }
+
+      .pw-input,
+      .pw-btn{
+        height:44px;
+      }
+
+
+      /* After login */
+
+      body.is-unlocked .hero-wrap{
+        padding-top:12svh;
+      }
+
+      body.is-unlocked .monogram{
+        width:90px;
+        margin-bottom:0;
+      }
+
+      .menu-panel{
+        margin-top:22px;
+      }
+
+      .menu-title{
+        margin-bottom:18px;
+      }
+
+      .menu-links{
+        gap:10px;
+      }
+
+      .menu-link{
+        height:43px;
+      }
+    }
+
+
+    /* ===== DESKTOP ===== */
+
+    @media (min-width:769px){
+
+      /* Mobile button menu stays hidden on desktop */
+
+      .menu-panel{
+        display:none !important;
+      }
+
+      .hero-wrap{
+        transform:translateY(-20px);
+      }
+
+      .topnav{
+        justify-content:flex-start;
+      }
+
+      .topnav .rsvp{
+        margin-left:56px;
+        padding:4px 14px;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-<!-- HOME -->
-<section class="scene scene-home">
+  <section class="scene scene-home">
 
-  <div id="siteNav" class="is-hidden">
-    <nav class="topnav">
-      <div class="left">
-        <a href="index.html" style="font-weight:600; opacity:1;">Home</a>
-        <a data-protected href="welcome.html">Welcome</a>
-        <a data-protected href="schedule.html">Schedule</a>
-        <a data-protected href="faqs.html">FAQs</a>
-      </div>
-      <a data-protected class="rsvp" href="rsvp.html">RSVP</a>
-    </nav>
-  </div>
+    <!-- DESKTOP NAVIGATION -->
 
-  <div class="hero-wrap">
-    <div class="home-center">
+    <div id="siteNav" class="is-hidden">
 
-      <div class="monogram">
-        <img src="monogram3.png" alt="Monogram">
-      </div>
+      <nav class="topnav">
 
-      <img class="names" src="signature1.png" alt="Shannen & Samarth">
+        <div class="left">
+          <a href="index.html" style="font-weight:600; opacity:1;">
+            Home
+          </a>
 
-      <div class="pw-wrap" id="pwWrap">
-        <div class="pw-row">
-          <input 
-            id="pwInput" 
-            class="pw-input" 
-            type="password" 
-            placeholder="Type password here" 
-            autocomplete="off"
-          >
+          <a data-protected href="welcome.html">
+            Welcome
+          </a>
 
-          <button id="pwBtn" class="pw-btn">
-            Enter
-          </button>
+          <a data-protected href="schedule.html">
+            Schedule
+          </a>
+
+          <a data-protected href="faqs.html">
+            FAQs
+          </a>
         </div>
 
-        <div class="pw-error" id="pwError"></div>
+        <a data-protected class="rsvp" href="rsvp.html">
+          RSVP
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <!-- CENTRE CONTENT -->
+
+    <div class="hero-wrap">
+
+      <div class="home-center">
+
+        <div class="monogram">
+          <img src="monogram3.png" alt="Monogram">
+        </div>
+
+        <img
+          class="names"
+          src="signature1.png"
+          alt="Shannen & Samarth"
+        >
+
+
+        <!-- PASSWORD -->
+
+        <div class="pw-wrap" id="pwWrap">
+
+          <div class="pw-row">
+
+            <input
+              id="pwInput"
+              class="pw-input"
+              type="password"
+              placeholder="Type password here"
+              autocomplete="off"
+            >
+
+            <button id="pwBtn" class="pw-btn">
+              Enter
+            </button>
+
+          </div>
+
+          <div class="pw-error" id="pwError"></div>
+
+        </div>
+
+
+        <!-- LOGGED-IN MOBILE MENU -->
+
+        <div class="menu-panel is-hidden" id="menuPanel">
+
+          <div class="menu-title">
+            Menu
+          </div>
+
+          <div class="menu-links">
+
+            <a
+              data-protected
+              class="menu-link"
+              href="welcome.html"
+            >
+              Welcome
+            </a>
+
+            <a
+              data-protected
+              class="menu-link"
+              href="schedule.html"
+            >
+              Schedule
+            </a>
+
+            <a
+              data-protected
+              class="menu-link"
+              href="faqs.html"
+            >
+              FAQs
+            </a>
+
+            <a
+              data-protected
+              class="menu-link"
+              href="rsvp.html"
+            >
+              RSVP
+            </a>
+
+          </div>
+
+        </div>
+
       </div>
 
     </div>
-  </div>
 
-</section>
+  </section>
 
-<script>
 
-  const UNLOCK_KEY = "siteUnlocked";
-  const GUEST_TYPE_KEY = "guestType";
+  <script>
 
-  const ALL_PASSWORD = "ss2027";
-  const SATURDAY_PASSWORD = "shansam2027";
-  const RECEPTION_SUNDAY_PASSWORD = "sswedding27";
-  const RECEPTION_PASSWORD = "ss27feb";
-  const SUNDAY_ONLY_PASSWORD = "sswedding0227";
+    const UNLOCK_KEY = "siteUnlocked";
+    const GUEST_TYPE_KEY = "guestType";
 
-  const pwInput = document.getElementById("pwInput");
-  const pwBtn = document.getElementById("pwBtn");
-  const pwWrap = document.getElementById("pwWrap");
-  const protectedLinks = document.querySelectorAll("[data-protected]");
-  const pwError = document.getElementById("pwError");
-  const siteNav = document.getElementById("siteNav");
+    const ALL_PASSWORD = "ss2027";
+    const SATURDAY_PASSWORD = "shansam2027";
+    const RECEPTION_SUNDAY_PASSWORD = "sswedding27";
+    const RECEPTION_PASSWORD = "ss27feb";
+    const SUNDAY_ONLY_PASSWORD = "sswedding0227";
 
-  function lockUI() {
-    protectedLinks.forEach(link => {
-      link.classList.add("locked-link");
+
+    const pwInput = document.getElementById("pwInput");
+    const pwBtn = document.getElementById("pwBtn");
+    const pwWrap = document.getElementById("pwWrap");
+    const pwError = document.getElementById("pwError");
+
+    const siteNav = document.getElementById("siteNav");
+    const menuPanel = document.getElementById("menuPanel");
+
+    const protectedLinks =
+      document.querySelectorAll("[data-protected]");
+
+
+    function lockUI(){
+
+      protectedLinks.forEach(link => {
+        link.classList.add("locked-link");
+      });
+
+      pwWrap.classList.remove("is-hidden");
+
+      siteNav.classList.add("is-hidden");
+      menuPanel.classList.add("is-hidden");
+
+      document.body.classList.remove("is-unlocked");
+    }
+
+
+    function unlockUI(){
+
+      protectedLinks.forEach(link => {
+        link.classList.remove("locked-link");
+      });
+
+      pwWrap.classList.add("is-hidden");
+
+      siteNav.classList.remove("is-hidden");
+      menuPanel.classList.remove("is-hidden");
+
+      document.body.classList.add("is-unlocked");
+    }
+
+
+    if(sessionStorage.getItem(UNLOCK_KEY) === "1"){
+      unlockUI();
+    }
+    else{
+      lockUI();
+    }
+
+
+    function tryUnlock(){
+
+      const enteredPassword =
+        pwInput.value.trim().toLowerCase();
+
+
+      if(enteredPassword === ALL_PASSWORD.toLowerCase()){
+
+        sessionStorage.setItem(UNLOCK_KEY,"1");
+        sessionStorage.setItem(GUEST_TYPE_KEY,"all");
+
+        pwError.textContent = "";
+
+        unlockUI();
+      }
+
+      else if(
+        enteredPassword ===
+        SATURDAY_PASSWORD.toLowerCase()
+      ){
+
+        sessionStorage.setItem(UNLOCK_KEY,"1");
+        sessionStorage.setItem(
+          GUEST_TYPE_KEY,
+          "saturday"
+        );
+
+        pwError.textContent = "";
+
+        unlockUI();
+      }
+
+      else if(
+        enteredPassword ===
+        RECEPTION_SUNDAY_PASSWORD.toLowerCase()
+      ){
+
+        sessionStorage.setItem(UNLOCK_KEY,"1");
+        sessionStorage.setItem(
+          GUEST_TYPE_KEY,
+          "receptionSunday"
+        );
+
+        pwError.textContent = "";
+
+        unlockUI();
+      }
+
+      else if(
+        enteredPassword ===
+        RECEPTION_PASSWORD.toLowerCase()
+      ){
+
+        sessionStorage.setItem(UNLOCK_KEY,"1");
+        sessionStorage.setItem(
+          GUEST_TYPE_KEY,
+          "reception"
+        );
+
+        pwError.textContent = "";
+
+        unlockUI();
+      }
+
+      else if(
+        enteredPassword ===
+        SUNDAY_ONLY_PASSWORD.toLowerCase()
+      ){
+
+        sessionStorage.setItem(UNLOCK_KEY,"1");
+        sessionStorage.setItem(
+          GUEST_TYPE_KEY,
+          "sunday"
+        );
+
+        pwError.textContent = "";
+
+        unlockUI();
+      }
+
+      else{
+
+        pwError.textContent = "Incorrect password.";
+
+        pwInput.value = "";
+        pwInput.focus();
+      }
+    }
+
+
+    pwBtn.addEventListener("click",tryUnlock);
+
+
+    pwInput.addEventListener("keydown",event => {
+
+      if(event.key === "Enter"){
+        tryUnlock();
+      }
+
     });
 
-    pwWrap.classList.remove("is-hidden");
-    siteNav.classList.add("is-hidden");
-  }
+  </script>
 
-  function unlockUI() {
-    protectedLinks.forEach(link => {
-      link.classList.remove("locked-link");
-    });
-
-    pwWrap.classList.add("is-hidden");
-    siteNav.classList.remove("is-hidden");
-  }
-
-  if (sessionStorage.getItem(UNLOCK_KEY) === "1") {
-    unlockUI();
-  } else {
-    lockUI();
-  }
-
-  function tryUnlock() {
-
-    const enteredPassword = pwInput.value.trim().toLowerCase();
-
-    if (enteredPassword === ALL_PASSWORD.toLowerCase()) {
-
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "all");
-      pwError.textContent = "";
-      unlockUI();
-
-    }
-
-    else if (enteredPassword === SATURDAY_PASSWORD.toLowerCase()) {
-
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "saturday");
-      pwError.textContent = "";
-      unlockUI();
-
-    }
-
-    else if (enteredPassword === RECEPTION_SUNDAY_PASSWORD.toLowerCase()) {
-
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "receptionSunday");
-      pwError.textContent = "";
-      unlockUI();
-
-    }
-
-    else if (enteredPassword === RECEPTION_PASSWORD.toLowerCase()) {
-
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "reception");
-      pwError.textContent = "";
-      unlockUI();
-
-    }
-
-    else if (enteredPassword === SUNDAY_ONLY_PASSWORD.toLowerCase()) {
-
-      sessionStorage.setItem(UNLOCK_KEY, "1");
-      sessionStorage.setItem(GUEST_TYPE_KEY, "sunday");
-      pwError.textContent = "";
-      unlockUI();
-
-    }
-
-    else {
-
-      pwError.textContent = "Incorrect password.";
-      pwInput.value = "";
-      pwInput.focus();
-
-    }
-
-  }
-
-  pwBtn.addEventListener("click", tryUnlock);
-
-  pwInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-      tryUnlock();
-    }
-  });
-
-</script>
-
-
-
+</body>
+</html>
