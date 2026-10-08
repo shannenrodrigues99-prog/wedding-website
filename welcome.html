@@ -572,7 +572,6 @@
 .mobile-menu-overlay{
   position:fixed;
   inset:0;
-
   z-index:3000;
 
   display:flex;
@@ -584,10 +583,11 @@
     28px
     calc(24px + env(safe-area-inset-bottom));
 
-  background:rgba(18,18,18,.58);
+  /* Soft ivory-white overlay */
+  background:rgba(247,244,238,.76);
 
-  -webkit-backdrop-filter:blur(22px) saturate(120%);
-  backdrop-filter:blur(22px) saturate(120%);
+  -webkit-backdrop-filter:blur(24px) saturate(115%);
+  backdrop-filter:blur(24px) saturate(115%);
 
   opacity:0;
   visibility:hidden;
@@ -604,29 +604,38 @@
   pointer-events:auto;
 }
 
+
+/* Close button */
+
 .mobile-menu-close{
   position:absolute;
-
   top:calc(22px + env(safe-area-inset-top));
   right:20px;
 
-  padding:10px 16px;
+  height:40px;
+  padding:0 17px;
 
-  color:#fff;
-  background:rgba(0,0,0,.72);
+  color:#222;
+  background:rgba(255,255,255,.62);
 
-  border:1px solid rgba(255,255,255,.70);
+  border:1px solid rgba(25,25,25,.42);
   border-radius:999px;
+
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
 
   font-family:"Montserrat",sans-serif;
   font-size:9px;
   font-weight:500;
   letter-spacing:.28em;
+  line-height:1;
   text-transform:uppercase;
 
   appearance:none;
   cursor:pointer;
 }
+
+
+/* Menu content */
 
 .mobile-menu-content{
   width:100%;
@@ -637,9 +646,9 @@
 }
 
 .mobile-menu-heading{
-  margin-bottom:28px;
+  margin-bottom:30px;
 
-  color:#fff;
+  color:#222;
 
   font-family:"Montserrat",sans-serif;
   font-size:11px;
@@ -647,6 +656,9 @@
   letter-spacing:.42em;
   text-transform:uppercase;
 }
+
+
+/* Menu buttons */
 
 .mobile-menu-links{
   width:100%;
@@ -666,11 +678,13 @@
   align-items:center;
   justify-content:center;
 
-  color:#fff;
-  background:rgba(20,20,20,.48);
+  color:#222;
+  background:rgba(255,255,255,.56);
 
-  border:1px solid rgba(255,255,255,.72);
+  border:1px solid rgba(25,25,25,.42);
   border-radius:999px;
+
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
 
   -webkit-backdrop-filter:blur(14px);
   backdrop-filter:blur(14px);
@@ -681,10 +695,16 @@
   letter-spacing:.30em;
   text-decoration:none;
   text-transform:uppercase;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease;
 }
 
 .mobile-menu-links a:active{
-  background:rgba(0,0,0,.90);
+  color:#fff;
+  background:#1d1d1d;
   transform:scale(.98);
 }
 
@@ -744,28 +764,29 @@ body.menu-is-open{
     Close
   </button>
 
-  <div class="mobile-menu-content">
+<div class="mobile-menu-content">
 
-    <div class="mobile-menu-heading">
-      Menu
-    </div>
+  <div class="mobile-menu-heading">
+    Menu
+  </div>
 
-    <div class="mobile-menu-links">
+  <div class="mobile-menu-links">
 
-      <a href="welcome.html">Welcome</a>
+    <a href="index.html">Home</a>
 
-      <a href="schedule.html">Schedule</a>
+    <a href="welcome.html">Welcome</a>
 
-      <a href="faqs.html">FAQs</a>
+    <a href="schedule.html">Schedule</a>
 
-      <a href="rsvp.html">RSVP</a>
+    <a href="faqs.html">FAQs</a>
 
-    </div>
+    <a href="rsvp.html">RSVP</a>
 
   </div>
 
 </div>
 
+</div>
 
 <main class="wrap">
 
