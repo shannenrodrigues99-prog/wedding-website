@@ -213,7 +213,7 @@
   flex-direction:column;
   align-items:center;
 
-  transform:translateY(2svh) scale(.90);
+  transform:translateY(1svh) scale(.90);
   transform-origin:top center;
 }
 
@@ -335,17 +335,22 @@
     height:44px;
   }
 }
-    /* ===== DESKTOP ===== */
-    @media (min-width:769px){
-      .topnav{
-        justify-content:flex-start;
-      }
+/* ===== DESKTOP ===== */
+@media (min-width:769px){
 
-      .topnav .rsvp{
-        margin-left:56px;
-        padding:4px 14px;
-      }
-    }
+  .hero-wrap{
+    transform:translateY(-20px);
+  }
+
+  .topnav{
+    justify-content:flex-start;
+  }
+
+  .topnav .rsvp{
+    margin-left:56px;
+    padding:4px 14px;
+  }
+}
   </style>
 </head>
 
