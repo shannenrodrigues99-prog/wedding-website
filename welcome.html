@@ -309,7 +309,8 @@
     /* Hidden outside mobile */
 
 .mobile-brand,
-.mobile-menu-button{
+.mobile-menu-button,
+.mobile-menu-overlay{
   display:none;
 }
     
@@ -341,7 +342,7 @@
 
     display:flex;
     flex-direction:row;
-    align-items:center;
+    align-items:flex-end;
     justify-content:space-between;
 
     border-bottom:none;
@@ -362,21 +363,26 @@
 
   /* Monogram */
 
-  .mobile-brand{
-    display:block;
+.mobile-brand{
+  display:flex;
+  align-items:flex-end;
 
-    width:54px;
-    height:auto;
+  width:54px;
+  height:44px;
 
-    opacity:1 !important;
-  }
+  opacity:1 !important;
+}
 
-  .mobile-brand img{
-    display:block;
+.mobile-brand img{
+  display:block;
 
-    width:100%;
-    height:auto;
-  }
+  width:auto;
+  max-width:54px;
+  height:44px;
+
+  object-fit:contain;
+  object-position:left bottom;
+}
 
 
   /* Black Menu button */
@@ -545,16 +551,148 @@
     text-align:left;
   }
 
-  .signature{
-    display:block;
+.signature{
+  display:block;
 
-    width:100%;
-    max-width:240px;
-    height:auto;
+  width:100%;
+  max-width:240px;
+  height:auto;
 
-    margin:0;
-  }
+  margin:0;
 }
+
+
+/* ===== BLURRED MOBILE MENU ===== */
+
+.mobile-menu-button{
+  appearance:none;
+  cursor:pointer;
+}
+
+.mobile-menu-overlay{
+  position:fixed;
+  inset:0;
+
+  z-index:3000;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:
+    calc(24px + env(safe-area-inset-top))
+    28px
+    calc(24px + env(safe-area-inset-bottom));
+
+  background:rgba(18,18,18,.58);
+
+  -webkit-backdrop-filter:blur(22px) saturate(120%);
+  backdrop-filter:blur(22px) saturate(120%);
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transition:
+    opacity .3s ease,
+    visibility .3s ease;
+}
+
+.mobile-menu-overlay.is-open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.mobile-menu-close{
+  position:absolute;
+
+  top:calc(22px + env(safe-area-inset-top));
+  right:20px;
+
+  padding:10px 16px;
+
+  color:#fff;
+  background:rgba(0,0,0,.72);
+
+  border:1px solid rgba(255,255,255,.70);
+  border-radius:999px;
+
+  font-family:"Montserrat",sans-serif;
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+
+  appearance:none;
+  cursor:pointer;
+}
+
+.mobile-menu-content{
+  width:100%;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.mobile-menu-heading{
+  margin-bottom:28px;
+
+  color:#fff;
+
+  font-family:"Montserrat",sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+}
+
+.mobile-menu-links{
+  width:100%;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  gap:14px;
+}
+
+.mobile-menu-links a{
+  width:min(76vw,320px);
+  height:48px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+  background:rgba(20,20,20,.48);
+
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:999px;
+
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+
+  font-family:"Montserrat",sans-serif;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.30em;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+
+.mobile-menu-links a:active{
+  background:rgba(0,0,0,.90);
+  transform:scale(.98);
+}
+
+body.menu-is-open{
+  overflow:hidden;
+}
+
+} /* closes the mobile media section */
 
   </style>
 </head>
@@ -567,9 +705,15 @@
     <img src="monogram3.png" alt="Shannen and Samarth">
   </a>
 
-  <a class="mobile-menu-button" href="index.html">
-    Menu
-  </a>
+<button
+  class="mobile-menu-button"
+  id="mobileMenuButton"
+  type="button"
+  aria-label="Open menu"
+  aria-expanded="false"
+>
+  Menu
+</button>
 
   <div class="left">
     <a href="index.html">Home</a>
@@ -582,45 +726,135 @@
 
 </nav>
 
-  <main class="wrap">
 
-    <section class="content">
+<!-- MOBILE MENU OVERLAY -->
 
-      <div class="eyebrow">
-        A Note From Us
-      </div>
+<div
+  class="mobile-menu-overlay"
+  id="mobileMenuOverlay"
+  aria-hidden="true"
+>
 
-      <h1>Welcome</h1>
+  <button
+    class="mobile-menu-close"
+    id="mobileMenuClose"
+    type="button"
+    aria-label="Close menu"
+  >
+    Close
+  </button>
 
-<div class="welcome-text">
-  We are so excited to celebrate our wedding with the people we love most. Having you there to share in the joy means so much to&nbsp;us.
-  <br><br>
-  Here you will find all the details for the celebrations ahead. We cannot wait to make wonderful memories with you.
+  <div class="mobile-menu-content">
+
+    <div class="mobile-menu-heading">
+      Menu
+    </div>
+
+    <div class="mobile-menu-links">
+
+      <a href="welcome.html">Welcome</a>
+
+      <a href="schedule.html">Schedule</a>
+
+      <a href="faqs.html">FAQs</a>
+
+      <a href="rsvp.html">RSVP</a>
+
+    </div>
+
+  </div>
+
 </div>
 
-        <div class="welcome-text">
-        With love,
-      </div>
 
-      <img src="signature.png" alt="Shannen and Samarth" class="signature">
+<main class="wrap">
 
-    </section>
+  <section class="content">
 
-    <section class="photo-wrap">
+    <div class="eyebrow">
+      A Note From Us
+    </div>
 
-      <img src="IMG_3352 2.jpg" alt="Shannen and Samarth">
+    <h1>Welcome</h1>
 
-    </section>
+    <div class="welcome-text">
+      We are so excited to celebrate our wedding with the people we love most. Having you there to share in the joy means so much to&nbsp;us.
+      <br><br>
+      Here you will find all the details for the celebrations ahead. We cannot wait to make wonderful memories with you.
+    </div>
 
-  </main>
+    <div class="welcome-signoff">
+      With love,
+    </div>
 
-  <script>
+    <img
+      src="signature.png"
+      alt="Shannen and Samarth"
+      class="signature"
+    >
 
-    if (sessionStorage.getItem("siteUnlocked") !== "1") {
-      window.location.replace("index.html");
+  </section>
+
+  <section class="photo-wrap">
+
+    <img
+      src="IMG_3352 2.jpg"
+      alt="Shannen and Samarth"
+    >
+
+  </section>
+
+</main>
+
+<script>
+  if(sessionStorage.getItem("siteUnlocked") !== "1"){
+    window.location.replace("index.html");
+  }
+
+  const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
+
+  const mobileMenuOverlay =
+    document.getElementById("mobileMenuOverlay");
+
+  const mobileMenuClose =
+    document.getElementById("mobileMenuClose");
+
+
+  function openMobileMenu(){
+    mobileMenuOverlay.classList.add("is-open");
+    mobileMenuOverlay.setAttribute("aria-hidden", "false");
+    mobileMenuButton.setAttribute("aria-expanded", "true");
+    document.body.classList.add("menu-is-open");
+  }
+
+
+  function closeMobileMenu(){
+    mobileMenuOverlay.classList.remove("is-open");
+    mobileMenuOverlay.setAttribute("aria-hidden", "true");
+    mobileMenuButton.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("menu-is-open");
+  }
+
+
+  mobileMenuButton.addEventListener("click", openMobileMenu);
+
+  mobileMenuClose.addEventListener("click", closeMobileMenu);
+
+
+  mobileMenuOverlay.addEventListener("click", event => {
+    if(event.target === mobileMenuOverlay){
+      closeMobileMenu();
     }
+  });
 
-  </script>
+
+  document.addEventListener("keydown", event => {
+    if(event.key === "Escape"){
+      closeMobileMenu();
+    }
+  });
+</script>
 
 </body>
 </html>
