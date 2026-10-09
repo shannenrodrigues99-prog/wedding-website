@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Mood Board | Shannen & Samarth</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      min-height:100vh;
+
+      color:#111;
+      background:#fff;
+
+      font-family:"Playfair Display",serif;
+
+      overflow-x:hidden;
+    }
+
+
+    /* ===== TOP BAR ===== */
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+
+      width:100%;
+
+      padding:
+        calc(18px + env(safe-area-inset-top))
+        20px
+        16px;
+
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+
+      background:rgba(255,255,255,.88);
+
+      border-bottom:1px solid rgba(17,17,17,.10);
+
+      -webkit-backdrop-filter:blur(16px) saturate(150%);
+      backdrop-filter:blur(16px) saturate(150%);
+    }
+
+
+    .back-button{
+      min-width:150px;
+      height:44px;
+
+      padding:0 20px;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      color:#fff;
+      background:#1d1d1d;
+
+      border:1px solid #1d1d1d;
+      border-radius:999px;
+
+      font-family:"Montserrat",sans-serif;
+      font-size:9px;
+      font-weight:500;
+      letter-spacing:.24em;
+      line-height:1;
+
+      text-decoration:none;
+      text-transform:uppercase;
+    }
+
+
+    /* ===== INTRODUCTION ===== */
+
+    .intro{
+      padding:48px 24px 34px;
+
+      text-align:center;
+    }
+
+
+    .eyebrow{
+      margin-bottom:16px;
+
+      color:#555;
+
+      font-family:"Montserrat",sans-serif;
+      font-size:9px;
+      font-weight:500;
+      letter-spacing:.40em;
+
+      text-transform:uppercase;
+    }
+
+
+    h1{
+      margin-bottom:18px;
+
+      font-family:"Playfair Display",serif;
+      font-size:48px;
+      font-weight:400;
+      line-height:1;
+    }
+
+
+    .instructions{
+      max-width:310px;
+
+      margin:0 auto;
+
+      color:#555;
+
+      font-family:"Montserrat",sans-serif;
+      font-size:11px;
+      font-weight:400;
+      letter-spacing:.03em;
+      line-height:1.8;
+    }
+
+
+    /* ===== MOOD BOARD LIST ===== */
+
+    .board-list{
+      width:100%;
+
+      padding:
+        0
+        12px
+        calc(70px + env(safe-area-inset-bottom));
+    }
+
+
+    .board-page{
+      width:100%;
+      max-width:1000px;
+
+      margin:0 auto;
+
+      scroll-margin-top:90px;
+    }
+
+
+    .page-label{
+      margin-bottom:14px;
+
+      color:#555;
+
+      font-family:"Montserrat",sans-serif;
+      font-size:9px;
+      font-weight:500;
+      letter-spacing:.32em;
+
+      text-align:center;
+      text-transform:uppercase;
+    }
+
+
+    .board-image{
+      display:block;
+
+      width:100%;
+      height:auto;
+
+      background:#fff;
+
+      border:1px solid rgba(17,17,17,.10);
+
+      box-shadow:0 8px 28px rgba(0,0,0,.08);
+    }
+
+
+    /* ===== SCROLL PROMPT ===== */
+
+    .scroll-prompt{
+      width:100%;
+
+      margin:32px 0 38px;
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+
+      gap:11px;
+
+      color:#222;
+      background:none;
+
+      border:0;
+
+      font-family:"Montserrat",sans-serif;
+      font-size:9px;
+      font-weight:500;
+      letter-spacing:.28em;
+
+      text-transform:uppercase;
+
+      appearance:none;
+      cursor:pointer;
+    }
+
+
+    .scroll-arrow{
+      width:42px;
+      height:42px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      color:#fff;
+      background:#1d1d1d;
+
+      border-radius:50%;
+
+      font-family:Arial,sans-serif;
+      font-size:20px;
+
+      animation:arrowMove 1.5s ease-in-out infinite;
+    }
+
+
+    @keyframes arrowMove{
+
+      0%,
+      100%{
+        transform:translateY(0);
+      }
+
+      50%{
+        transform:translateY(6px);
+      }
+
+    }
+
+
+    /* ===== DESKTOP FALLBACK ===== */
+
+    @media (min-width:769px){
+
+      .topbar{
+        padding:22px 40px;
+      }
+
+      .intro{
+        padding:65px 40px 42px;
+      }
+
+      h1{
+        font-size:64px;
+      }
+
+      .board-list{
+        padding:0 40px 90px;
+      }
+
+      .board-page{
+        margin-bottom:10px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <header class="topbar">
+
+    <a
+      class="back-button"
+      href="faqs.html"
+    >
+      ← Back to FAQs
+    </a>
+
+  </header>
+
+
+  <main>
+
+
+    <section class="intro">
+
+      <div class="eyebrow">
+        Attire Inspiration
+      </div>
+
+      <h1>
+        Mood Board
+      </h1>
+
+      <div class="instructions">
+        Pinch to zoom or rotate your phone for a closer view.
+      </div>
+
+    </section>
+
+
+    <section
+      class="board-list"
+      id="boardList"
+    ></section>
+
+
+  </main>
+
+
+  <script>
+
+    /* ===== ACCESS CHECK ===== */
+
+    if(sessionStorage.getItem("siteUnlocked") !== "1"){
+
+      window.location.replace("index.html");
+
+    }
+
+
+    /* ===== GUEST TYPE ===== */
+
+    const guestType =
+      sessionStorage.getItem("guestType") || "all";
+
+
+    /* ===== MOOD BOARD IMAGES ===== */
+
+    const moodBoardImages = {
+
+      all: [
+        "Mood Board 1 - Page 1.png",
+        "Mood Board 1 - Page 2.png"
+      ],
+
+      saturday: [
+        "Mood Board 2.png"
+      ],
+
+      reception: [
+        "Mood Board 2.png"
+      ],
+
+      receptionSunday: [
+        "Mood Board 2.png",
+        "Mood Board 3 - Page 2.png"
+      ],
+
+      sunday: [
+        "Mood Board 4.png"
+      ]
+
+    };
+
+
+    const pages =
+      moodBoardImages[guestType] || moodBoardImages.all;
+
+
+    const boardList =
+      document.getElementById("boardList");
+
+
+    /* ===== CREATE MOOD BOARD PAGES ===== */
+
+    pages.forEach((imageSource, index) => {
+
+      const boardPage =
+        document.createElement("section");
+
+
+      boardPage.className = "board-page";
+
+      boardPage.id =
+        `moodBoardPage${index + 1}`;
+
+
+      const pageLabel =
+        document.createElement("div");
+
+
+      pageLabel.className = "page-label";
+
+      pageLabel.textContent =
+        `Page ${index + 1} of ${pages.length}`;
+
+
+      const image =
+        document.createElement("img");
+
+
+      image.className = "board-image";
+
+      image.src = imageSource;
+
+      image.alt =
+        `Wedding attire Mood Board page ${index + 1}`;
+
+      image.loading =
+        index === 0 ? "eager" : "lazy";
+
+
+      boardPage.appendChild(pageLabel);
+
+      boardPage.appendChild(image);
+
+      boardList.appendChild(boardPage);
+
+
+      /* Show scrolling prompt only when another page exists */
+
+      if(index < pages.length - 1){
+
+        const scrollPrompt =
+          document.createElement("button");
+
+
+        scrollPrompt.className =
+          "scroll-prompt";
+
+        scrollPrompt.type =
+          "button";
+
+        scrollPrompt.innerHTML = `
+          <span>Scroll to view next page</span>
+          <span class="scroll-arrow">↓</span>
+        `;
+
+
+        scrollPrompt.addEventListener("click", () => {
+
+          const nextPage =
+            document.getElementById(
+              `moodBoardPage${index + 2}`
+            );
+
+
+          nextPage.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"start"
+
+          });
+
+        });
+
+
+        boardList.appendChild(scrollPrompt);
+
+      }
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>
