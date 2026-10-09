@@ -1140,11 +1140,21 @@ dressCodeAnswer.innerHTML = dressCodeAnswer.innerHTML.replace(
     pageCounter.textContent = `${currentPage + 1} of ${pages.length}`;
   }
 
-  document.getElementById("moodBoardButton").addEventListener("click", () => {
-    currentPage = 0;
-    showMoodBoardPage();
-    moodBoardDialog.showModal();
-  });
+document.getElementById("moodBoardButton").addEventListener("click", () => {
+
+  const isMobile =
+    window.matchMedia("(max-width: 768px)").matches;
+
+  if(isMobile){
+    window.location.href = "moodboard.html";
+    return;
+  }
+
+  currentPage = 0;
+  showMoodBoardPage();
+  moodBoardDialog.showModal();
+
+});
 
   previousButton.addEventListener("click", () => {
     if (currentPage > 0) {
