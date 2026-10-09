@@ -328,6 +328,13 @@
         color:#888;
       }
     }
+
+/* Hidden outside mobile */
+
+.mobile-menu-button,
+.mobile-menu-overlay{
+  display:none;
+}
     
     /* ===== MOBILE ===== */
 
@@ -429,15 +436,383 @@
         margin:0 auto;
       }
     }
+/* ===== UPDATED MOBILE RSVP ===== */
 
-  </style>
+@media (max-width:768px){
+
+  body{
+    overflow-y:auto;
+    background:#ffffff;
+  }
+
+  /* Navigation */
+
+  .topnav{
+    position:absolute;
+    top:0;
+    left:0;
+    transform:none;
+
+    width:100%;
+
+    padding:
+      calc(20px + env(safe-area-inset-top))
+      20px
+      18px;
+
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:flex-end;
+
+    background:transparent;
+    border:none;
+
+    z-index:1000;
+  }
+
+  .topnav::before{
+    display:none;
+  }
+
+  .topnav .left,
+  .topnav .rsvp{
+    display:none;
+  }
+
+  .mobile-menu-button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:112px;
+    height:44px;
+    padding:0 22px;
+
+    color:#fff;
+    background:rgba(20,20,20,.92);
+
+    border:1px solid rgba(255,255,255,.90);
+    border-radius:999px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.20);
+
+    font-family:"Montserrat",sans-serif;
+    font-size:10px;
+    font-weight:500;
+    letter-spacing:.32em;
+    line-height:1;
+    text-transform:uppercase;
+
+    appearance:none;
+    cursor:pointer;
+  }
+
+  /* Layout */
+
+  .wrap{
+    width:100%;
+    max-width:none;
+    min-height:auto;
+
+    margin:0;
+    padding:0;
+
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+
+  /* Photograph first */
+
+  .photo-wrap{
+    order:1;
+
+    width:100%;
+    height:56svh;
+    min-height:360px;
+
+    margin:0;
+    aspect-ratio:auto;
+
+    overflow:hidden;
+  }
+
+  .photo-wrap img{
+    display:block;
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center center;
+  }
+
+  /* RSVP content underneath */
+
+  .content{
+    order:2;
+
+    width:100%;
+    max-width:none;
+
+    padding:42px 28px 64px;
+
+    background:#ffffff;
+    text-align:left;
+  }
+
+  .eyebrow{
+    margin-bottom:18px;
+
+    color:#444;
+
+    font-size:10px;
+    font-weight:500;
+    letter-spacing:.42em;
+    text-align:left;
+  }
+
+  h1{
+    margin-bottom:28px;
+
+    color:#111;
+
+    font-size:50px;
+    line-height:1;
+    letter-spacing:0;
+    text-align:left;
+  }
+
+  .message{
+    width:100%;
+    max-width:340px;
+
+    margin:0 0 30px;
+
+    color:#333;
+
+    font-size:12px;
+    font-weight:400;
+    line-height:1.9;
+    letter-spacing:.015em;
+    text-align:left;
+  }
+
+  .rsvp-main-button{
+    width:min(76vw,300px);
+    height:50px;
+    padding:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    background:#1d1d1d;
+
+    border:1px solid #1d1d1d;
+    border-radius:999px;
+
+    font-size:10px;
+    letter-spacing:.28em;
+    line-height:1;
+    text-align:center;
+  }
+
+  .rsvp-deadline{
+    margin-top:20px;
+
+    color:#444;
+
+    font-family:"Montserrat",sans-serif;
+    font-size:9px;
+    font-weight:500;
+    letter-spacing:.20em;
+    line-height:1.6;
+    text-align:left;
+    text-transform:uppercase;
+  }
+
+  /* Blurred photograph menu */
+
+  .mobile-menu-overlay{
+    position:fixed;
+    inset:0;
+    z-index:3000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:
+      calc(24px + env(safe-area-inset-top))
+      24px
+      calc(24px + env(safe-area-inset-bottom));
+
+    overflow:hidden;
+    isolation:isolate;
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transition:
+      opacity .3s ease,
+      visibility .3s ease;
+  }
+
+  .mobile-menu-overlay::before{
+    content:"";
+
+    position:absolute;
+    inset:-25px;
+
+    background:
+      url("Khichkeh-91 2.jpg")
+      center center / cover
+      no-repeat;
+
+    filter:blur(11px);
+    transform:scale(1.08);
+
+    z-index:-2;
+  }
+
+  .mobile-menu-overlay::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:rgba(15,15,15,.26);
+
+    z-index:-1;
+  }
+
+  .mobile-menu-overlay.is-open{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+
+  /* Close button */
+
+  .mobile-menu-close{
+    position:absolute;
+    top:calc(18px + env(safe-area-inset-top));
+    right:18px;
+
+    width:48px;
+    height:48px;
+    padding:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    background:transparent;
+    border:none;
+
+    font-family:Arial,sans-serif;
+    font-size:42px;
+    font-weight:300;
+    line-height:1;
+
+    appearance:none;
+    cursor:pointer;
+  }
+
+  /* Menu content */
+
+  .mobile-menu-content{
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    transform:translateY(-2svh);
+  }
+
+  .mobile-menu-heading{
+    margin-bottom:28px;
+
+    color:#fff;
+
+    font-family:"Montserrat",sans-serif;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+  }
+
+  .mobile-menu-links{
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:14px;
+  }
+
+  .mobile-menu-links a{
+    width:min(74vw,300px);
+    height:50px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    background:rgba(25,25,25,.40);
+
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:999px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.12);
+
+    -webkit-backdrop-filter:blur(14px) saturate(130%);
+    backdrop-filter:blur(14px) saturate(130%);
+
+    font-family:"Montserrat",sans-serif;
+    font-size:10px;
+    font-weight:500;
+    letter-spacing:.30em;
+    text-decoration:none;
+    text-transform:uppercase;
+  }
+
+  .mobile-menu-links a:active{
+    background:rgba(0,0,0,.88);
+    transform:scale(.98);
+  }
+
+  body.menu-is-open{
+    overflow:hidden;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <nav class="topnav">
+<nav class="topnav">
 
-    <div class="left">
+  <button
+    class="mobile-menu-button"
+    id="mobileMenuButton"
+    type="button"
+    aria-controls="mobileMenuOverlay"
+    aria-expanded="false"
+  >
+    Menu
+  </button>
+
+  <div class="left">
       <a href="index.html">Home</a>
       <a href="welcome.html">Welcome</a>
       <a href="schedule.html">Schedule</a>
@@ -447,6 +822,37 @@
     <a class="rsvp" href="rsvp.html" style="font-weight:600; opacity:1;">RSVP</a>
 
   </nav>
+<!-- MOBILE MENU OVERLAY -->
+
+<div
+  class="mobile-menu-overlay"
+  id="mobileMenuOverlay"
+  aria-hidden="true"
+>
+  <button
+    class="mobile-menu-close"
+    id="mobileMenuClose"
+    type="button"
+    aria-label="Close menu"
+  >
+    &times;
+  </button>
+
+  <div class="mobile-menu-content">
+
+    <div class="mobile-menu-heading">
+      Menu
+    </div>
+
+    <div class="mobile-menu-links">
+      <a href="index.html">Home</a>
+      <a href="welcome.html">Welcome</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="faqs.html">FAQs</a>
+    </div>
+
+  </div>
+</div>
 
   <main class="wrap">
 
@@ -481,13 +887,52 @@
 
   </main>
 
-  <script>
+<script>
 
-    if (sessionStorage.getItem("siteUnlocked") !== "1") {
-      window.location.replace("index.html");
+  if (sessionStorage.getItem("siteUnlocked") !== "1") {
+    window.location.replace("index.html");
+  }
+
+  const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
+
+  const mobileMenuOverlay =
+    document.getElementById("mobileMenuOverlay");
+
+  const mobileMenuClose =
+    document.getElementById("mobileMenuClose");
+
+  function openMobileMenu(){
+    mobileMenuOverlay.classList.add("is-open");
+    mobileMenuOverlay.setAttribute("aria-hidden", "false");
+    mobileMenuButton.setAttribute("aria-expanded", "true");
+    document.body.classList.add("menu-is-open");
+  }
+
+  function closeMobileMenu(){
+    mobileMenuOverlay.classList.remove("is-open");
+    mobileMenuOverlay.setAttribute("aria-hidden", "true");
+    mobileMenuButton.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("menu-is-open");
+  }
+
+  mobileMenuButton.addEventListener("click", openMobileMenu);
+
+  mobileMenuClose.addEventListener("click", closeMobileMenu);
+
+  mobileMenuOverlay.addEventListener("click", event => {
+    if(event.target === mobileMenuOverlay){
+      closeMobileMenu();
     }
+  });
 
-  </script>
+  document.addEventListener("keydown", event => {
+    if(event.key === "Escape"){
+      closeMobileMenu();
+    }
+  });
+
+</script>
 
 </body>
 </html>
